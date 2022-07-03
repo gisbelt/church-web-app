@@ -1,47 +1,90 @@
-<?php
-if($_SESSION['correo_cliente']=='ok'){
-    $nombreCliente=$_SESSION['nombreCliente'];
-}
-?>
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <a class="navbar-brand d-md-none d-inline" href="">Brand</a>
-    <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="nav-link" href="#"><i class="bi bi-search mr-1"></i></a>
-    
-    <div class="nav navbar-collapse collapse navbar-nav justify-content-md-center">
-        <!-- <a class="nav-item nav-link active" href="#">Sistema <span class="visually-hidden">(current)</span></a> -->
-        <a class="nav-item nav-link active" href="?url=home">Home</a>
-        <a class="nav-item nav-link" href="?controlador=empleados&accion=inicio">Nosotros</a>
-        <a class="nav-item nav-link" href="?url=tienda">Tienda</a>
-        <a class="nav-item nav-link" href="?controlador=empleados&accion=inicio">Contacto</a>
-        <?php if(!isset($nombreCliente)){ ?>
-        <a class="nav-item nav-link" href="?url=registrarse">Registrarse</a>
-        <a class="nav-item nav-link" href="?url=login">Iniciar Sesión</a>
-        <?php } ?>        
-    </div>    
-    <div class="nav navbar-nav justify-content-start flex-nowrap">
-        <li class="nav-item">
-            <?php if(isset($nombreCliente)){ ?>
-            <div class="dropdown ">
-                <button class="btn btn-light dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    Hola <?php echo $nombreCliente;?>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="triggerId">
-                    <a class="dropdown-item" href="?url=perfil">Cuenta <i class="bi bi-person text-success"></i> </a>
-                    <a class="dropdown-item" href="?url=pedidos">Pedidos</a>
-                    <a class="dropdown-item" href="?url=logout">Cerrar Sesión</a> 
+<div id="body-pd" class="">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu text-bdazzled-blue' id="header-toggle"></i> </div>
+        <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> 
+                <a href="#" class="nav_logo"> 
+                    <i class='bx bx-layer nav_logo-icon'></i> 
+                    <span class="nav_logo-name">Sistema</span> 
+                </a>
+                <div class="nav_list"> 
+                    <li> 
+                        <a href="#" class="nav_link active" data-number="1">
+                            <i class='bx bx-grid-alt nav_icon'></i> 
+                            <span class="nav_name">Dashboard</span> 
+                        </a>
+                        <ul class="hidden item_show_1 itemShow">
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#">App Design</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#">Web Design</a></li>
+                            <div class="dropdown-divider"></div>
+                        </ul> 
+                    </li>
+                    <li>
+                        <a href="#" class="nav_link" data-number="2"> 
+                            <i class='bx bx-user nav_icon'></i> 
+                            <span class="nav_name">Acceso</span> 
+                        </a>
+                        <ul class="hidden item_show_2 itemShow">
+                            <div class="dropdown-divider"></div>
+                            <li><a href="?url=consultarUsuarios">Usuarios</a></li>
+                            <div class="dropdown-divider"></div>
+                        </ul> 
+                    </li>
+                    <li>
+                        <a href="#" class="nav_link" data-number="3">
+                            <i class='bx bx-message-square-detail nav_icon'></i> 
+                            <span class="nav_name">Messages</span> 
+                        </a>
+                        <ul class="hidden item_show_3 itemShow">
+                            <li><a href="#">App Design</a></li>
+                            <li><a href="#">Web Design</a></li>
+                        </ul> 
+                    </li>
+                    <li>
+                        <a href="#" class="nav_link" data-number="4"> 
+                            <i class='bx bx-bookmark nav_icon'></i> 
+                            <span class="nav_name">Bookmark</span> 
+                        </a> 
+                        <ul class="hidden item_show_4 itemShow">
+                            <li><a href="#">App Design</a></li>
+                            <li><a href="#">Web Design</a></li>
+                        </ul> 
+                    </li>
+                    <li>
+                        <a href="#" class="nav_link" data-number="5"> 
+                            <i class='bx bx-folder nav_icon'></i> 
+                            <span class="nav_name">Files</span> 
+                        </a> 
+                        <ul class="hidden item_show_5 itemShow">
+                            <li><a href="#">App Design</a></li>
+                            <li><a href="#">Web Design</a></li>
+                        </ul> 
+                    </li>
+                    <li>
+                        <a href="#" class="nav_link" data-number="6"> 
+                            <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
+                            <span class="nav_name">Stats</span> 
+                        </a> 
+                        <ul class="hidden item_show_6 itemShow">
+                            <li><a href="#">App Design</a></li>
+                            <li><a href="#">Web Design</a></li>
+                        </ul> 
+                    </li>
                 </div>
+            </div> 
+            <div class="dropdown">
+                <a href="?url=logout" class="nav_link" data-number="7" title="Cerrar sesión"> 
+                    <i class='bx bx-log-out nav_icon'></i> 
+                    <span class="nav_name">SignOut</span>
+                </a>
             </div>
-            <?php } ?>
-        </li>
-        <a class="nav-item nav-link" href="?url=ver_carrito" style="margin-right: 10px;" title="Ver carrito">
-            <strong style="color: rgb(226, 83, 83);" class="conteoCarrito">
-                <?php if ($conteo > 0) { printf("(%d)", $conteo); } ?>
-            </strong>
-            <i class="bi bi-cart2 text-success"></i>
-        </a> 
-    </div>    
-</nav>
+        </nav>
+    </div>
+</div>
+
+<!-- https://azmind.com/demo/bootstrap-4-sidebar-menu/  -->

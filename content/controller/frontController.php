@@ -14,7 +14,7 @@ class frontController extends sysconfig{
             $this->validarURL();
         }
         else{
-            die("<script>location='?url=home'</script>");
+            die("<script>location='?url=login'</script>");
         }
     }
 

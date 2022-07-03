@@ -1,8 +1,0 @@
-{
-    "autoload": {
-    	"psr-4": {
-    		"config\\" : "content/config",
-    		"content\\" : "content"
-    	}
-    }
-}
