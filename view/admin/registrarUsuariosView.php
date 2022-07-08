@@ -74,5 +74,7 @@
     });
 </script>
 </body>
-<br><br>
+<footer>
+<?php $footer->Footer(); ?>
+</footer>
 </html>

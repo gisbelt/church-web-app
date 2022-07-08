@@ -1,4 +1,4 @@
-## :rocket: Sistema de Gestión de Procesos Iglesia La Gracia de Dios
+## :rocket: Sistema de Seguimiento de personal y visitantes de La Iglesia la Gracia de Dios
 ### `PHP - COMPOSER - MVC - BOOTSTRAP - RESPONSIVE`
 
 

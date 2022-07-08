@@ -1,7 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+:root{
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #0191b3;
+    --first-color-yellow: #f1d302ff;
+    --first-color-yellow-red: #ffbf46ff;
+    --first-color-light-blue: #94c5ccff;
+    --second-color: #525157;
+    --white-color: #F7F6FB;
+    --body-font: 'Nunito', sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100;
+
+    --light-blue: #94c5ccff;
+    --cultured: #f8f8f8ff;
+    --red-pigment: #ed1c24ff;
+    --baby-powder: #fdfffcff;
+    --bdazzled-blue: #0191b3;
+    --safety-yellow: #f1d302ff;
+    --maximum-yellow-red: #ffbf46ff;
+    --black: #020100ff;
+}
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+body{
+    /* background-image: url("../img/logo2.png");
+    background-repeat: no-repeat;
+    background-position:50vh; */
+    font-family: var(--body-font) !important;
+    font-size: var(--normal-font-size) !important;
 }
 .flex-row{
     display: flex;
@@ -29,6 +59,11 @@
     display: flex;
     align-items: flex-end;
     justify-content: end;
+}
+.izquierda{
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: start;
 }
 .hidden{
     display: none;
@@ -62,23 +97,19 @@
     color: rgb(192, 185, 185);
     cursor: pointer;
 }
+.dropdown-menu{
+    background-color: var(--first-color);
+    opacity: 0.8;
+}
+.dropdown-menu a:hover{
+    color: var(--first-color-yellow) !important;
+}
 /*Menú Vertical*/
 
 
-/* ventas  */
-.input_venta{
-    position: relative;
+/* Login */
+.rowLogin{
+    /* width: 100vw; */
+    height: 72.7vh;
 }
-.input_venta_icon{
-    position: absolute;
-	left: 86%;
-	top: 13%;
-	transform: translateY(-35%);
-}
-.nombre_articulo{
-    width: 100px !important;
-    white-space:nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-}
-/* ventas */
+/* Login  */

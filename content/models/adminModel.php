@@ -39,5 +39,16 @@ class adminModel extends BD{
         }
     }
 
+    public static function validarLogout(){
+        // Si existe alguien logueado, mosrar alerta de cerrar sesión
+        if(isset($_SESSION['correo'])){
+            echo "
+            <script>
+            alert('Por favor cerrar sesión');
+            window.location.href = '?url=admin';
+            </script>";
+        }
+    }
+
 }
 ?>

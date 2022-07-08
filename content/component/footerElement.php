@@ -6,58 +6,17 @@ class footerElement{
 
     static public function Footer(){
         echo (
-        '    
-        <!-- Section: Social media -->
-        <section class="d-flex justify-content-between p-4 bg-info">
-           <!-- Left -->
-           <div class="me-5">
-               <span class="default">Mantente conectado con nosotros en las redes sociales</span>
-           </div>
-           <!-- Left -->
-       
-           <!-- Right -->
-           <div>
-               <a href="" class="text-decoration-none default me-4">
-               <i class="bi bi-facebook"></i>
-               </a>
-               <a href="" class="text-decoration-none default me-4">
-               <i class="bi bi-twitter"></i>
-               </a>
-               <a href="" class="text-decoration-none default me-4">
-               <i class="bi bi-google"></i>
-               </a>
-               <a href="" class="text-decoration-none default me-4">
-               <i class="bi bi-instagram"></i>
-               </a>
-               <a href="" class="text-decoration-none default me-4">
-               <i class="bi bi-linkedin"></i>
-               </a>
-           </div>
-           <!-- Right -->        
-       </section>
-       <!-- Section: Social media -->
-       
+        '          
        <!-- Section: Links  -->
        <section class="">
-           <div class="container text-center text-md-start mt-5">
+           <div class="container text-center text-md-start">
                <!-- Grid row -->
-               <div class="row mt-3">
+               <div class="row mt-4">
                    <!-- Grid column -->
-                   <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
+                   <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                        <!-- Links -->
-                       <h6 class="text-uppercase fw-bold">Dirección</h6>
-                       <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
-                       <p> Av. Los Horcones, Av. La Salle, Barquisimeto 3001, Lara</p>
-                   </div>
-                   <!-- Grid column -->
-       
-                   <!-- Grid column -->
-                   <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-md-0 mb-4">
-                       <!-- Links -->
-                       <h6 class="text-uppercase fw-bold">Contacto</h6>
-                       <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
-                       <p><i class="bi bi-envelope"></i>contacto@casacarlina.com.ve</p>
-                       <p><i class="bi bi-telephone"></i> +58 587 7489</p>
+                       <h6 class="text-uppercase text-center fw-bold">Av. Los Horcones, Av. La Salle, Barquisimeto 3001, Lara</h6>
+                       <hr class="mt-0 d-inline-block mx-auto" style="width: 100%; background-color: #7c4dff; height: 2px" />
                    </div>
                    <!-- Grid column -->
                </div>

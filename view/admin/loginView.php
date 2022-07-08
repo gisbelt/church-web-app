@@ -9,13 +9,10 @@
 <?php require_once "content/component/initComponent.php"; ?>
 <!-- Menú -->
 
-<div class="container height-100 bg-light">
-    <div class="row">
-
-        <div class="col-md-4"></div>
+<div class="container">
+    <div class="row rowLogin center">
 
         <div class="col-md-4">
-            <br><br><br>
             <div class="card">
                 <div class="card-header">
                     Login
@@ -48,7 +45,8 @@
                             <input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Escribe tu contraseña">
                         </div>
                         <br>
-                        <button type="submit" name="login" class="btn btn-primary">Iniciar Sesión</button>
+                        <a href="?url=forgotPassword" class="text-info">¿Olvidaste la constraseña?</a>
+                        <button type="submit" name="login" class="btn btn-primary w-100 mt-2">Iniciar Sesión</button>
                     </form>                        
                 
                 </div>
@@ -62,7 +60,6 @@
 
 <?php $bottom->Bottom(); ?>
 </body>
-<br><br>
 <footer>
 <?php $footer->Footer(); ?>
 </footer>

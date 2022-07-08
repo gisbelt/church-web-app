@@ -2,9 +2,11 @@
 :root{
     --header-height: 3rem;
     --nav-width: 68px;
-    --first-color: #4723D9;
-    --first-color-light: #AFA5D9;
-    --first-color-pink: #d63384;;
+    --first-color: #235789ff;
+    --first-color-yellow: #f1d302ff;
+    --first-color-yellow-red: #ffbf46ff;
+    --first-color-light-blue: #94c5ccff;
+    --second-color: #525157;
     --white-color: #F7F6FB;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
@@ -14,7 +16,7 @@
     --cultured: #f8f8f8ff;
     --red-pigment: #ed1c24ff;
     --baby-powder: #fdfffcff;
-    --bdazzled-blue: #235789ff;
+    --bdazzled-blue: #0191b3;
     --safety-yellow: #f1d302ff;
     --maximum-yellow-red: #ffbf46ff;
     --black: #020100ff;
@@ -65,7 +67,13 @@ a{
     overflow: hidden;
 }
 .header_img img{
-    width: 40px;
+    /* width: 40px; */
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .l-navbar{
     position: fixed;
@@ -129,10 +137,36 @@ a{
     transform: scale(1.05);
     z-index: 1;
 }
+.nav_list li .item_show_tip{
+    position: absolute;
+    left: 68px;
+    transform: translateY(-125%);
+    z-index: 3;
+    background-color: var(--bdazzled-blue);
+    padding-left: 20px;
+    height: auto;
+    width: 120px;
+    color: var(--black);
+    white-space: nowrap;
+    line-height: 35px;
+    opacity: 0;
+    transition: 0s;
+}
+.nav_list li .item_show_tip a{
+    color: var(--first-color-yellow);
+}
+.nav_list li:hover .item_show_tip{
+    opacity: 1;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+.l-navbar.open li .item_show_tip{
+    display: none;
+}
 .nav_icon{
     font-size: 1.25rem;
 }
-.show{
+.open{
     left: 0;
 }
 .body-pd{
@@ -173,10 +207,35 @@ a{
         left: 0;
         padding: 1rem 1rem 0 0;
     }
-    .show{
+    .open{
         width: calc(var(--nav-width) + 156px);
     }
     .body-pd{
         padding-left: calc(var(--nav-width) + 188px);
+    }
+}
+@media screen and (min-width: 390px){
+    body{
+        margin: calc(var(--header-height) + 1rem) 0 0 0;
+    }
+    .header{
+        height: calc(var(--header-height) + 1rem);
+        padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+    }
+    .header_img{
+        width: 40px;
+        height: 40px;
+    }
+    .header_img img{
+        width: 45px;
+    }
+    .l-navbar{
+        width: var(--nav-width);
+    }
+    .open{
+        width: calc(var(--nav-width) + 120px);
+    }
+    .body-pd{
+        padding-left: calc(var(--nav-width) + 125px);
     }
 }

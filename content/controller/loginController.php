@@ -11,6 +11,8 @@ $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
+admin::validarLogout();
+
 if(isset($_POST['login'])){
     $correo = $_POST['correo'];
     $contrasenia = $_POST['contrasenia'];
@@ -26,7 +28,7 @@ if(isset($_POST['login'])){
             $_SESSION['nombreAdmin']=$consultarAdmin->nombre;
             $_SESSION['date']=date('d_m_Y_H_i');
             $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
-            header("location:?url=admin");  
+            header("location:?url=home");  
         }else{
             $mensaje2="Error, el correo o contraseña son incorrectos";
         }    

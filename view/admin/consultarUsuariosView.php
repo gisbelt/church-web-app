@@ -10,7 +10,7 @@
 <!-- Menú -->
 
 <br>
-<div class="row center">
+<div class="row m-0 center">
     <div class="col-md-6 col-sm-12 col-xs-12">
         <h3 class="text-center mb-4">Listado de usuarios <a href="?url=registrarUsuarios" class="btn btn-success">Nuevo</a></h3>
         <form action="" method="post">
@@ -25,7 +25,7 @@
 </div>
 
 <div class=""> <!--container-->
-    <div class="row">
+    <div class="row m-0">
         <div class="col-md-12">
             <!-- b4-table-default -->
             <table class="table table-bordered table-responsive">
@@ -56,7 +56,6 @@
                             </form>
                         </td>
                     </tr>             
-                    
                 <?php } ?>
                 </tbody>
             </table>
@@ -67,5 +66,4 @@
 <!-- ********************************* -->
 <?php $bottom->Bottom(); ?>
 </body>
-<br><br>
 </html>
