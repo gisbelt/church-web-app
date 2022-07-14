@@ -31,32 +31,32 @@
             <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th>Dirección</th>
-                        <th>Acciones</th>
+                        <th class="text-center">Cedula</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Correo</th>
+                        <th class="text-center">Teléfono</th>                        
+                        <th class="text-center">Dirección</th>
+                        <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($consulta as $consulta) { ?> 
-                    <tr id="proveedor<?php echo $consulta['id_proveedores']; ?>">
-                        <td name="nombre_proveedor"><?php echo $consulta['nombre_proveedor'] ?></td>
-                        <td name="telefono_proveedor"><?php echo $consulta['telefono_proveedor']; ?></td>
-                        <td name="correo_proveedor"><?php echo $consulta['correo_proveedor']; ?></td>
-                        <td name="direccion"><?php echo $consulta['direccion']; ?></td>
+                    <tr id="">
+                        <td name="cedula"></td>
+                        <td name="nombre"></td>
+                        <td name="correo"></td>
+                        <td name="telefono"></td>
+                        <td name="direccion"></td>
                         <td>
-                            <form method="POST">                            
-                                <a href="?url=registrarProveedor&id_proveedores=<?php echo $consulta['id_proveedores'];?>" name="seleccionar" id="seleccionar" class="btn btn-info seleccionar" value="">
+                            <form method="POST" class="center justify-content-evenly">                            
+                                <a href="" name="seleccionar" id="seleccionar" class="btn btn-info seleccionar" value="">
                                     <i class="bi bi-pencil text-light"></i>
                                 </a>
-                                <a name="borrar" id="<?php echo $consulta['id_proveedores']; ?>" class="btn btn-secondary mt-1 borrar_proveedor">
+                                <a href="" name="borrar" id="" class="btn btn-danger">
                                     <i class="bi bi-trash text-light"></i>
                                 </a>
                             </form>
                         </td>
                     </tr>             
-                <?php } ?>
                 </tbody>
             </table>
         </div>

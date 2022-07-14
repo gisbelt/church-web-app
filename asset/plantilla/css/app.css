@@ -36,6 +36,9 @@ body{
     font-size: var(--normal-font-size);
     transition: .5s;
 }
+.body{
+    padding-left: calc(var(--nav-width) + 120px);
+}
 a{
     text-decoration: none;
 }

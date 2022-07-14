@@ -5,21 +5,19 @@ use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
 use content\component\footerElement as footerElement;
 
-use content\models\adminModel as admin;
-// use content\models\articulosModel as articulos;
-// use content\models\categoriasModel as categorias;
+use content\models\usuariosModel as usuarios;
 
 $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-admin::validarLogin();
+usuarios::validarLogin();
 
 if($_SESSION['correo']=='ok'){
-    $nombreAdmin=$_SESSION['nombreAdmin'];
+    $nombreUsuario=$_SESSION['nombreUsuario'];
     $date=$_SESSION['date'];
 }
 
-include_once("view/admin/consultarUsuariosView.php");
+include_once("view/usuarios/consultarUsuariosView.php");
 
 ?>

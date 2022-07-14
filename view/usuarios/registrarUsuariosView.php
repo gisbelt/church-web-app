@@ -10,7 +10,6 @@
 <!-- Menú -->
 <div class="offset-md-3 col-md-6">
     <br>
-    <!-- b4-card-head-foot -->
     <div class="card">
         <div class="card-header">
             <p class="p-0 absolute">Datos de los usuarios</p>
@@ -27,33 +26,37 @@
                 </div>
             <?php }?>
 
-            <!-- !crt-form-login -->
             <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios">
+                
+                <div class = "form-group">
+                    <label for="Cedula" class="fw-bold">Cedula: </label>
+                    <input type="text" required class="form-control mb-2" value="" id="cedula" name="cedula" placeholder="Cedula">
+                </div>
 
                 <div class = "form-group">
-                    <label for="nombre" class="fw-bold mb-1">Nombre del usuario: </label>
+                    <label for="nombre" class="fw-bold">Nombre del usuario: </label>
                     <input type="text" required class="form-control mb-2" value="" id="nombre" name="nombre" placeholder="Nombre">
                 </div>
 
                 <div class = "form-group">
-                    <label for="telefono" class="fw-bold mb-1">Teléfono: </label>
-                    <input type="text" required class="form-control mb-2" value="" id="telefono" name="telefono" placeholder="Teléfono">
+                    <label for="correo" class="fw-bold">Correo: </label>
+                    <input type="text" required class="form-control mb-2" value="" id="correo" name="correo" placeholder="Correo">
                 </div>
 
                 <div class = "form-group">
-                    <label for="correo_proveedor" class="fw-bold mb-1">Correo: </label>
-                    <input type="text" required class="form-control mb-2" value="" id="correo_proveedor" name="correo_proveedor" placeholder="Correo">
+                    <label for="telefono" class="fw-bold">Teléfono: </label>
+                    <input type="text" required class="form-control mb-2" value="" id="telefono" name="telefono" placeholder="Teléfono">
                 </div>
 
                 <div class="form-group">
-                    <label for="direccion" class="fw-bold mb-1">Dirección:</label>
+                    <label for="direccion" class="fw-bold">Dirección:</label>
                     <textarea class="form-control mb-2" name="direccion" id="direccion" rows="3"></textarea>
                 </div>
 
                 <br>
                 <div class="btn-group modal-footer" role="group" aria-label="">
                     <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
-                    <a name="limpiar" value="Limpiar" class="btn btn-danger" onclick="limpiar();">Limpiar</a>
+                    <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                 </div>
             </form>
         </div>
@@ -67,10 +70,10 @@
 <script>
     function limpiar(){
         $("#form-registrarUsuarios")[0].reset();
-        $("#nombre").focus();
+        $("#cedula").focus();
     }
     $(document).ready(function(){
-        $("#nombre").focus();
+        $("#cedula").focus();
     });
 </script>
 </body>

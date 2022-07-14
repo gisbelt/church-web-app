@@ -2,7 +2,7 @@
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu text-bdazzled-blue' id="header-toggle"></i> </div>
         <div class="header_img"> <img src="asset/img/logo.png" alt=""> </div>
-        <?php if(isset($nombreAdmin)){ ?>
+        <?php if(isset($nombreUsuario)){ ?>
         <div class="dropdown ">
             <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">

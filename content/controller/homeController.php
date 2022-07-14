@@ -5,16 +5,16 @@ use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
 use content\component\footerElement as footerElement;
 
-use content\models\adminModel as admin;
+use content\models\usuariosModel as usuarios;
 
 $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-admin::validarLogin();
-// sino, si ese usuario tiene un valor, imprime esa información
+usuarios::validarLogin();
+
 if($_SESSION['correo']=='ok'){
-    $nombreAdmin=$_SESSION['nombreAdmin'];
+    $nombreUsuario=$_SESSION['nombreUsuario'];
     $date=$_SESSION['date'];
 }
 

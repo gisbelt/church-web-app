@@ -5,27 +5,27 @@ use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
 use content\component\footerElement as footerElement;
 
-use content\models\adminModel as admin;
+use content\models\usuariosModel as usuarios;
 
 $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-admin::validarLogout();
+usuarios::validarLogout();
 
 if(isset($_POST['login'])){
     $correo = $_POST['correo'];
-    $contrasenia = $_POST['contrasenia'];
-    if($correo=="" || $contrasenia==""){
+    $clave = $_POST['clave'];
+    if($correo=="" || $clave==""){
         $mensaje1="Por favor debe ingresar los datos";
     }
     else{
         //ejecutamos
-        $consultarAdmin=admin::login($correo); 
-        if($consultarAdmin['contrasenia']==$contrasenia && $consultarAdmin['correo']==$correo){
+        $consultarUsuario=usuarios::login($correo); 
+        if($consultarUsuario['clave']==$clave && $consultarUsuario['correo']==$correo){
             $_SESSION['correo']='ok';
-            $_SESSION['correoAdmin']=$consultarAdmin->correo;
-            $_SESSION['nombreAdmin']=$consultarAdmin->nombre;
+            $_SESSION['correoUsuario']=$consultarUsuario->correo;
+            $_SESSION['nombreUsuario']=$consultarUsuario->nombre;
             $_SESSION['date']=date('d_m_Y_H_i');
             $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
             header("location:?url=home");  
@@ -35,6 +35,6 @@ if(isset($_POST['login'])){
     }  
 }
 
-include_once("view/admin/loginView.php");   
+include_once("view/usuarios/loginView.php");   
 
 ?>

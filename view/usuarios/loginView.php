@@ -41,8 +41,8 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="contrasenia">Contraseña:</label>
-                            <input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Escribe tu contraseña">
+                            <label for="clave">Contraseña:</label>
+                            <input type="password" class="form-control" name="clave" id="clave" placeholder="Escribe tu contraseña">
                         </div>
                         <br>
                         <a href="?url=forgotPassword" class="text-info">¿Olvidaste la constraseña?</a>
