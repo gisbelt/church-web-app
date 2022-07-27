@@ -6,7 +6,8 @@
     --first-color-yellow: #f1d302ff;
     --first-color-yellow-red: #ffbf46ff;
     --first-color-light-blue: #94c5ccff;
-    --second-color: #525157;
+    --second-color: #235789ff;
+    --second-color-2: #525157;
     --white-color: #F7F6FB;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
@@ -68,6 +69,9 @@ body{
 .hidden{
     display: none;
 }
+.block{
+    display: block;
+}
 .absolute{
     position: absolute;
 }
@@ -78,6 +82,47 @@ body{
     color: #fff !important;
     font-family: Montserrat,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
+.pointer{
+    cursor: pointer;
+}
+
+/* Formularios  */
+.form-group{
+    position: relative;
+    --color: #5757577e;
+}
+.form-input{
+    color: var(--black);
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color);
+    margin-bottom: 24px;
+}
+.form-label{
+    color: var(--color);
+    cursor:text;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    transform: translateY(10px);
+    transition: transform .5s, color .3s;
+    font-size: 1rem;
+}
+.form-input:focus{
+    box-shadow: none !important;
+}
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label{
+    transform: translateY(-12px) scale(.7);
+    transform-origin: top left;
+    color: var(--first-color);
+    position: absolute;
+    bottom: 35px;
+    font-size: 1.2rem;
+}
+/* Formularios  */
+
 
 /*Menú Vertical*/
 .nav_link{
@@ -113,3 +158,80 @@ body{
     height: 72.7vh;
 }
 /* Login  */
+
+
+/* Cuenta  */
+.avatar{
+    width: 95px;
+    height: 95px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+.avatar img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+.avatar #avatar-link{
+    position: absolute;
+    display: none;
+    background-color: var(--black);
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 50%;
+    overflow: hidden;
+}
+#avatar-link #avatar-pencil{
+    z-index: 1;
+    font-size: 2rem;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.avatar:hover{
+    cursor: pointer;
+}
+/* Cuenta  */
+
+
+
+@media screen and (min-width: 768px){
+    .form-label{
+        font-size: 1rem !important;
+        /* transform: translateY(10px) !important; */
+    }
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label{
+        font-size: 1.2rem !important;
+    }    
+}
+
+@media screen and (min-width: 320px){
+    .form-label{
+        font-size: 0.8rem;
+        transform: translateY(15px);
+    }
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label{
+        font-size: 1rem;
+    }
+    
+}

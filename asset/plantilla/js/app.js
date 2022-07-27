@@ -27,7 +27,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
   
   showNavbar('header-toggle','nav-bar','body-pd','header','body')
+
+  //************************************************************
+
+  /*===== HOVER ICON =====*/
+
   
+//************************************************************
+
   /*===== LINK ACTIVE =====*/
   const linkColor = document.querySelectorAll('.nav_link')
   
@@ -39,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
   linkColor.forEach(l=> l.addEventListener('click', colorLink))
   
-  // Your code to run since DOM is loaded and ready
+//************************************************************
 
   //Show each nav_link's items
   $('.nav_link').click(function(e){

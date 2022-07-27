@@ -13,7 +13,7 @@
 
     <div class="jumbotron">
         <br><br>
-        <h1 class="display-5">Bienvenido: <i><?php echo $nombreUsuario; ?></i></h1>
+        <h1 class="display-5">Bienvenido: <i><?php echo $user[0]; ?></i></h1>
         <p class="lead">Vamos a administrar nuestra Iglesia</p>
         <hr class="my-2">
         <p class="lead mt-3">

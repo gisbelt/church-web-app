@@ -7,19 +7,16 @@ use PDO as pdo;
 class usuariosModel extends BD{
 
     public $id;
-    public $cedula;
-    public $nombre;
-    public $correo;
-    public $telefono;
-    public $direccion;  
-    public $clave;
+    public $username;
+    public $email;
+    public $password ="password";
     
     //Login
-    public static function login($correo){
+    public static function login($email){
         $conexionBD=BD::crearInstancia();
-        $sql= $conexionBD->prepare("SELECT correo,clave,nombre 
-        FROM usuarios WHERE correo=?"); 
-        $sql->execute(array($correo));
+        $sql= $conexionBD->prepare("SELECT username,email,password 
+        FROM users WHERE email=?"); 
+        $sql->execute(array($email));
         $consultarUsuario=$sql->fetch(PDO::FETCH_LAZY);
         return $consultarUsuario;
     }
@@ -30,21 +27,39 @@ class usuariosModel extends BD{
         header("Cache-control: no-cache, must-revalidate");
         header("Pragma: no-cache");
         // Si la sesion esta vacía o no hay usuario logueado, redirecciona al login
-        if(!isset($_SESSION['correo'])){
+        if(!isset($_SESSION['email'])){
             header("Location:?url=login");     
         }else{
             // sino, si ese usuario tiene un valor, imprime esa información
-            if($_SESSION['correo']=='ok'){
-                $nombreUsuario=$_SESSION['nombreUsuario'];
+            if($_SESSION['email']=='ok'){
+                $username=$_SESSION['username'];
                 $date=$_SESSION['date'];
             }
         }
+        return [$username,$date];
     }
+
+    // //Validación del login
+    // public static function validarLogin(){
+    //     header("Cache-control: private");
+    //     header("Cache-control: no-cache, must-revalidate");
+    //     header("Pragma: no-cache");
+    //     // Si la sesion esta vacía o no hay usuario logueado, redirecciona al login
+    //     if(!isset($_SESSION['email'])){
+    //         header("Location:?url=login");     
+    //     }else{
+    //         // sino, si ese usuario tiene un valor, imprime esa información
+    //         if($_SESSION['email']=='ok'){
+    //             $username=$_SESSION['username'];
+    //             $date=$_SESSION['date'];
+    //         }
+    //     }   
+    // }
 
     // Validar que esté la sesión cerrada 
     public static function validarLogout(){
         // Si existe alguien logueado, mosrar alerta de cerrar sesión
-        if(isset($_SESSION['correo'])){
+        if(isset($_SESSION['email'])){
             echo "
             <script>
             alert('Por favor cerrar sesión');

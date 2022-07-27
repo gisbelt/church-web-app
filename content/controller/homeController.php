@@ -11,12 +11,7 @@ $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-usuarios::validarLogin();
-
-if($_SESSION['correo']=='ok'){
-    $nombreUsuario=$_SESSION['nombreUsuario'];
-    $date=$_SESSION['date'];
-}
+$user=usuarios::validarLogin();
 
 include_once("view/homeView.php");
 ?>

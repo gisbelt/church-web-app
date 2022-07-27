@@ -1,28 +1,27 @@
 $(document).ready(function(){
 
-    // ************************************************ 
+    // Cuenta / perfil 
+    $('.editar_perfil').click(function(e){
+        var id = this.dataset['number'];
+        $(".show_"+id).slideToggle(250);
+        $(".show_"+id).removeClass("hidden");
+    });
 
-    // Eliminar artículo por id sin actualizar página 
-    var borrar_articulo = $('.borrar_articulo');
-    borrar_articulo.on('click',function( ){
-        // Obtenemos el id del botón quitar_carrito
-        var id = $(this).attr('id');
-        var dataString = 'id='+id;
+    $('.avatar').hover(function(){ 
+        // $('#avatar-pencil').addClass('avatar-pencil');
+        $('#avatar-link').css('display','block');
+        
+    }, function(){
+        $('#avatar-link').css('display','none'); 
+    });
+    // Cuenta / perfil 
 
-        var ajax = $.ajax({
-            // La direccion del servidor, peticion al fichecero mysql 
-            url: "?url=borrarArticulos",
-            type: 'POST',
-            data: dataString,
-            success: function(data){
-                $("#articulo" + id).remove();
-                // $('.fila_tienda').css("margin-bottom","0px");
-            },
-            // para capturar el error 
-            error: function(data, status, error){
-                alert("no encontrado");
-            }
-        })
-    })
+    // Filtro 
+    $('.filtrar').click(function(e){
+        var id = this.dataset['number'];
+        $(".filtro"+id).toggle('slow')
+        $(".filtro"+id).removeClass("hidden");
+    });
+    // Filtro 
 
 });

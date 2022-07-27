@@ -14,7 +14,7 @@
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header mb-2">
                     Login
                 </div>
                 <div class="card-body">
@@ -36,13 +36,13 @@
                     <!-- Enviamos los datos del formulario a través del método post -->
                     <form method="POST" >
                         <div class="form-group">
-                            <label for="correo">Correo:</label>
-                            <input type="text" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" placeholder="Escribe tu correo">
+                            <input type="text" class="form-control form-input mb-2" name="email" id="email" aria-describedby="emailHelp" placeholder=" ">
+                            <label for="email" class="form-label fw-bold">Correo:</label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="clave">Contraseña:</label>
-                            <input type="password" class="form-control" name="clave" id="clave" placeholder="Escribe tu contraseña">
+                            <input type="password" class="form-control form-input mb-2" name="password" id="password" placeholder=" ">
+                            <label for="password" class="form-label fw-bold">Contraseña:</label>
                         </div>
                         <br>
                         <a href="?url=forgotPassword" class="text-info">¿Olvidaste la constraseña?</a>

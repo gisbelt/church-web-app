@@ -2,14 +2,14 @@
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu text-bdazzled-blue' id="header-toggle"></i> </div>
         <div class="header_img"> <img src="asset/img/logo.png" alt=""> </div>
-        <?php if(isset($nombreUsuario)){ ?>
+        <?php if(isset($user[0])){ ?>
         <div class="dropdown ">
             <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
             </button>
             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="?url=perfil">Perfil <i class="bi bi-person text-light"></i> </a>
+                <a class="dropdown-item" href="?url=cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
                 <a class="dropdown-item" href="?url=preferencias">Preferencias</a>
                 <a class="dropdown-item" href="?url=logout">Cerrar Sesión</a> 
             </div>
@@ -27,16 +27,11 @@
                     <li> 
                         <a href="#" class="nav_link active" data-number="1">
                             <i class='bx bx-grid-alt nav_icon' data-number="1"></i> 
-                            <span class="nav_name">Home</span> 
+                            <span class="nav_name">Home</span>
                         </a>
                         <ul class="hidden item_show_1 itemShow ">
-                            <div class="dropdown-divider"></div>
                             <li><a href="#">Home</a></li>
-                            <div class="dropdown-divider"></div>
                         </ul>
-                        <span class="item_show_tip">
-                            <a href="?url=home">Home</a>
-                        </span> 
                     </li>
                     <li>
                         <a href="#" class="nav_link" data-number="2"> 
@@ -44,13 +39,8 @@
                             <span class="nav_name">Acceso</span> 
                         </a>
                         <ul class="hidden item_show_2 itemShow">
-                            <div class="dropdown-divider"></div>
                             <li><a href="?url=consultarUsuarios">Usuarios</a></li>
-                            <div class="dropdown-divider"></div>
                         </ul>
-                        <span class="item_show_tip">
-                            <a href="?url=consultarUsuarios">Acceso</a>
-                        </span>  
                     </li>
                     <li>
                         <a href="#" class="nav_link" data-number="3">
@@ -61,9 +51,6 @@
                             <li><a href="#">App Design</a></li>
                             <li><a href="#">Web Design</a></li>
                         </ul>
-                        <span class="item_show_tip">
-                            <a href="?url=consultarUsuarios">Messages</a>
-                        </span> 
                     </li>
                     <li>
                         <a href="#" class="nav_link" data-number="4"> 
@@ -73,10 +60,7 @@
                         <ul class="hidden item_show_4 itemShow">
                             <li><a href="#">App Design</a></li>
                             <li><a href="#">Web Design</a></li>
-                        </ul>
-                        <span class="item_show_tip">
-                            <a href="?url=consultarUsuarios">Bookmark</a>
-                        </span>  
+                        </ul> 
                     </li>
                     <li>
                         <a href="#" class="nav_link" data-number="5"> 
@@ -86,10 +70,7 @@
                         <ul class="hidden item_show_5 itemShow">
                             <li><a href="#">App Design</a></li>
                             <li><a href="#">Web Design</a></li>
-                        </ul>
-                        <span class="item_show_tip">
-                            <a href="?url=consultarUsuarios">Files</a>
-                        </span>  
+                        </ul> 
                     </li>
                     <li>
                         <a href="#" class="nav_link" data-number="6"> 
@@ -100,9 +81,6 @@
                             <li><a href="#">App Design</a></li>
                             <li><a href="#">Web Design</a></li>
                         </ul> 
-                        <span class="item_show_tip">
-                            <a href="?url=consultarUsuarios">Stats</a>
-                        </span> 
                     </li>
                 </div>
             </div> 

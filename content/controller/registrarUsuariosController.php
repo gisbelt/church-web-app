@@ -11,14 +11,8 @@ $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-usuarios::validarLogin();
+$user=usuarios::validarLogin();
 
-
-if($_SESSION['correo']=='ok'){
-    $nombreUsuario=$_SESSION['nombreUsuario'];
-    $date=$_SESSION['date'];
-}
-
-include_once("view/usuarios/registrarUsuariosView.php");
+include_once("view/acceso/usuarios/registrarUsuariosView.php");
 
 ?>

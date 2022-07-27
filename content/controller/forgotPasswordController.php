@@ -13,6 +13,6 @@ $footer = new footerElement();
 
 usuarios::validarLogout();
 
-include_once("view/usuarios/forgotPasswordView.php");   
+include_once("view/acceso/usuarios/forgotPasswordView.php");   
 
 ?>

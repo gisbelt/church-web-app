@@ -5,13 +5,13 @@ use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
 use content\component\footerElement as footerElement;
 
+use content\models\usuariosModel as usuarios;
+
 $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-header("Cache-control: private");
-header("Cache-control: no-cache, must-revalidate");
-header("Pragma: no-cache");
+$user=usuarios::validarLogin();
 
-include_once("view/usuarios/perfilView.php");
+include_once("view/cuentas/cuenta/cuentaView.php");
 ?>

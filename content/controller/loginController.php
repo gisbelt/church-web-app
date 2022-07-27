@@ -14,18 +14,18 @@ $footer = new footerElement();
 usuarios::validarLogout();
 
 if(isset($_POST['login'])){
-    $correo = $_POST['correo'];
-    $clave = $_POST['clave'];
-    if($correo=="" || $clave==""){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    if($email=="" || $password==""){
         $mensaje1="Por favor debe ingresar los datos";
     }
     else{
         //ejecutamos
-        $consultarUsuario=usuarios::login($correo); 
-        if($consultarUsuario['clave']==$clave && $consultarUsuario['correo']==$correo){
-            $_SESSION['correo']='ok';
-            $_SESSION['correoUsuario']=$consultarUsuario->correo;
-            $_SESSION['nombreUsuario']=$consultarUsuario->nombre;
+        $consultarUsuario=usuarios::login($email); 
+        if($consultarUsuario['password']==$password && $consultarUsuario['email']==$email){
+            $_SESSION['email']='ok';
+            $_SESSION['user_email']=$consultarUsuario->email;
+            $_SESSION['username']=$consultarUsuario->username;
             $_SESSION['date']=date('d_m_Y_H_i');
             $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
             header("location:?url=home");  
@@ -35,6 +35,6 @@ if(isset($_POST['login'])){
     }  
 }
 
-include_once("view/usuarios/loginView.php");   
+include_once("view/acceso/usuarios/loginView.php");   
 
 ?>

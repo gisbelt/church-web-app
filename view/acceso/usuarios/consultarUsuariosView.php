@@ -15,10 +15,21 @@
         <h3 class="text-center mb-4">Listado de usuarios <a href="?url=registrarUsuarios" class="btn btn-success">Nuevo</a></h3>
         <form action="" method="post">
             <div class="mb-4 input-group">
-                <input type="text" name="nombre" id="" class="form-control" placeholder="Buscar usuario...">
+                <input type="text" name="username" id="username" class="form-control" placeholder="Buscar usuario...">
                 <span class="input-group-btn">
                     <button type="submit" name="buscar_usuario" class="btn btn-success">Buscar</button>
                 </span>
+                <span class="input-group-btn">
+                    <a type="submit" name="" class="btn btn-outline-success ms-1 filtrar" data-number="1">Filtrar</a>
+                </span>
+                <div class="filtro1 derecha ms-1 hidden">
+                    <select class="form-control" name="" id="">
+                    <option>Seleccionar</option>
+                    <option>Líderes</option>
+                    <option>Supervisores</option>
+                    <option>Miembros</option>
+                    </select>
+                </div>
             </div>
         </form>     
     </div>    
@@ -31,21 +42,15 @@
             <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th class="text-center">Cedula</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Correo</th>
-                        <th class="text-center">Teléfono</th>                        
-                        <th class="text-center">Dirección</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr id="">
-                        <td name="cedula"></td>
-                        <td name="nombre"></td>
-                        <td name="correo"></td>
-                        <td name="telefono"></td>
-                        <td name="direccion"></td>
+                        <td name="username"></td>
+                        <td name="email"></td>
                         <td>
                             <form method="POST" class="center justify-content-evenly">                            
                                 <a href="" name="seleccionar" id="seleccionar" class="btn btn-info seleccionar" value="">
