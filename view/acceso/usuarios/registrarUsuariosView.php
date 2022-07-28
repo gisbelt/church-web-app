@@ -40,8 +40,8 @@
                 </div>
 
                 <div class = "form-group">
-                    <input type="text" required name="name" class="form-control form-input mb-4" id="name" value="" placeholder=" ">
-                    <label for="name" class="form-label fw-bold">Nombre:*</label>  
+                    <input type="text" required name="cargo" class="form-control form-input mb-4" id="cargo" value="" placeholder=" ">
+                    <label for="cargo" class="form-label fw-bold">Cargo:</label>  
                 </div>
 
                 <div class = "form-group">
@@ -81,10 +81,10 @@
 <script>
     function limpiar(){
         $("#form-registrarUsuarios")[0].reset();
-        $("#miembro").focus();
+        $("#cargo").focus();
     }
     $(document).ready(function(){
-        $("#miembro").focus();
+        $("#cargo").focus();
     });
 </script>
 </body>

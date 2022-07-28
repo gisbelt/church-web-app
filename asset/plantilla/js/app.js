@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
   showNavbar('header-toggle','nav-bar','body-pd','header','body')
 
-  //************************************************************
+//************************************************************
 
   /*===== HOVER ICON =====*/
 
@@ -48,21 +48,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 //************************************************************
 
-  //Show each nav_link's items
+  /*=====Show each nav_link's items=====*/
   $('.nav_link').click(function(e){
     var id = this.dataset['number'];
-    $(".item_show_"+id).toggle('slow')
+    $(".item_show_"+id).toggle('slow');
     $(".item_show_"+id).removeClass("hidden");
+    $(".dropdown_icon_"+id).css("transform","rotate(180deg)"); //Cambiar al cerrar
   });
-  //Hide itemShow when open or close the navbar
+
+//************************************************************
+
+  /*=====Hide itemShow when open or close the navbar=====*/
   $('.header_toggle').click(function(e){
     $(".itemShow").slideUp('');
   });
 
-  // Error 
-  const lnavbar = document.getElementById("nav-bar");
-  if(lnavbar.style.width == '52px;'){
-    $(".itemShow").slideUp('');
-  }
+//************************************************************
+
+  /*=====opening a sub menu close others=====*/
+  
+
+//************************************************************
+
 
 });
