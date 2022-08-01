@@ -23,10 +23,15 @@ class headElement{
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
             <link rel="stylesheet" href="asset/plantilla/css/app.css">
             <!-- Plantilla -->
-
+            
             '
         );
     }
 }
 
+
+// <!-- datepicker -->
+// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+// <link rel="stylesheet" href="asset/css/datepicker.css">
+// <!-- datepicker -->
 ?>

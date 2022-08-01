@@ -13,6 +13,6 @@ $footer = new footerElement();
 
 $user=usuarios::validarLogin();
 
-include_once("view/acceso/usuarios/registrarUsuariosView.php");
+include_once("view/acceso/usuarios/registrarView.php");
 
 ?>

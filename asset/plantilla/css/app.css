@@ -83,7 +83,7 @@ a{
     width: var(--nav-width);
     min-height: 100vh;
     max-height: 100vh;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     background-color: var(--bdazzled-blue);
     padding: .5rem 1rem 0 0;
     transition: .5s;
@@ -91,6 +91,7 @@ a{
 }
 .l-navbar::-webkit-scrollbar {
     width: 0 !important;
+    display: none;
 }
 .nav{
     min-height: 95vh;
@@ -100,10 +101,11 @@ a{
     flex-direction: column;
     justify-content: space-between;
     flex-wrap: nowrap;
-    /* overflow: hidden; */
+    scrollbar-color:  transparent transparent;
 }
 .nav::-webkit-scrollbar {
     width: 0 !important;
+    display: none;
 }
 .nav_logo, .nav_link{
     display: grid;

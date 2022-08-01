@@ -13,6 +13,10 @@ $footer = new footerElement();
 
 $user=usuarios::validarLogin();
 
-include_once("view/acceso/usuarios/consultarView.php");
+// $miembro_id = PDO::lastInsertId()
+// $miembro_id = $conexionBD->lastInsertId();
+// $miembro_id = $conexionBD->lastInsertId();
+
+include_once("view/miembros/miembros/registrarView.php");
 
 ?>

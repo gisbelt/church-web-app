@@ -51,9 +51,20 @@
                             </span>                             
                         </div>
                         <ul class="hidden item_show_3 itemShow">
-                            <li><a href="#">Registro</a></li>
+                            <li><a href="?url=registrarMiembros">Registro</a></li>
                             <li><a href="#">Listado</a></li>
-                            <li><a href="#">Amigos</a></li>
+                            <!-- submenu 2  -->
+                            <div class="nav_link" data-number="01">
+                                <span class="nav_name center">
+                                Amigos
+                                <i class='bx bx-chevron-right nav_dropdown_icon'></i>
+                                </span>   
+                            </div>
+                            <ul class="hidden item_show_01 itemShow">
+                                <li><a href="#">Registro</a></li>
+                                <li><a href="#">Listado</a></li>
+                            </ul>
+                            <!-- submenu 2  -->
                         </ul>
                     </li>
                     <li>
@@ -80,7 +91,18 @@
                         <ul class="hidden item_show_5 itemShow">
                             <li><a href="#">Registro</a></li>
                             <li><a href="#">Listado</a></li>
-                            <li><a href="#">Asistencias</a></li>
+                            <!-- submenu 2  -->
+                            <div class="nav_link" data-number="02">
+                                <span class="nav_name center">
+                                Asistencias
+                                <i class='bx bx-chevron-right nav_dropdown_icon'></i>
+                                </span>   
+                            </div>
+                            <ul class="hidden item_show_02 itemShow">
+                                <li><a href="#">Registro</a></li>
+                                <li><a href="#">Listado</a></li>
+                            </ul>
+                            <!-- submenu 2  -->
                         </ul> 
                     </li>
                     <li>
