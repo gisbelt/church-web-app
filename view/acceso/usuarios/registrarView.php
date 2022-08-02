@@ -9,14 +9,13 @@
 <?php require_once "content/component/initComponent.php"; ?>
 <!-- Menú -->
 <div class="offset-md-3 col-md-6">
-    <br>
     <div class="card">
         <div class="card-header mb-4">
             <div>
                 <p class="p-0 absolute">Datos de los usuarios</p>
             </div>
             <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                <a href="?url=consultarUsuarios" class="btn btn-success text-center">Ver usuarios</a>
+                <a href="?url=consultarUsuarios" class="btn btn-outline-success text-center">Ver usuarios</a>
             </div>
         </div>
 
@@ -34,7 +33,7 @@
                     <div class="mb-4 input-group">
                         <input type="text" name="miembro" id="miembro" class="form-control" placeholder="Buscar miembro...">
                         <span class="input-group-btn">
-                            <button type="submit" name="buscar_usuario" class="btn btn-success">Buscar</button>
+                            <button type="submit" name="" class="btn btn-secondary">Buscar</button>
                         </span>
                     </div>
                 </div>
@@ -81,10 +80,10 @@
 <script>
     function limpiar(){
         $("#form-registrarUsuarios")[0].reset();
-        $("#cargo").focus();
+        $("#miembro").focus();
     }
     $(document).ready(function(){
-        $("#cargo").focus();
+        $("#miembro").focus();
     });
 </script>
 </body>

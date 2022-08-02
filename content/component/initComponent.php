@@ -52,7 +52,7 @@
                         </div>
                         <ul class="hidden item_show_3 itemShow">
                             <li><a href="?url=registrarMiembros">Registro</a></li>
-                            <li><a href="#">Listado</a></li>
+                            <li><a href="?url=consultarMiembros">Listado</a></li>
                             <!-- submenu 2  -->
                             <div class="nav_link" data-number="01">
                                 <span class="nav_name center">

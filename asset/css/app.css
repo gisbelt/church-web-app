@@ -88,6 +88,25 @@ body{
 .pointer{
     cursor: pointer;
 }
+.btn-success{
+    color: #fff !important;
+    background-color: var(--first-color) !important;
+    border-color: var(--first-color) !important;
+}
+.btn-success:hover{
+    color: #fff;
+    background-color: var(--second-color) !important;
+    border-color: var(--second-color) !important;
+}
+.btn-outline-success {
+    color: var(--first-color) !important;
+    border-color: var(--first-color) !important;
+}
+.btn-outline-success:hover {
+    color: #fff !important;
+    background-color: var(--first-color) !important;
+    border-color: var(--first-color) !important;
+}
 
 /* Formularios  */
 .form-group{
@@ -136,6 +155,34 @@ body{
 }
 /* Formularios  */
 
+/* table  */
+.table-wrap {
+    overflow-x: scroll; 
+}
+  
+.table {
+min-width: 1000px !important;
+width: 100%;
+background: #fff; }
+.table thead.thead-primary {
+    background: var(--first-color); }
+.table thead th {
+    border: none;
+    padding: 18px 10px;
+    font-size: 14px;
+    color: #fff; }
+.table tbody tr {
+    margin-bottom: 10px; }
+.table tbody th, .table tbody td {
+    border: none;
+    padding: 18px 10px; 
+    border-bottom: 3px solid #f8f9fd;
+    font-size: 14px; 
+}
+/* table  */
+
+
+/* Filter  */
 .filter-group {
     position: absolute;
 }
@@ -149,6 +196,9 @@ body{
     font-size: 18px;
     opacity: 0.7;
 }
+/* Filter  */
+
+
 /*Menú Vertical*/
 .nav_link{
     margin-bottom: 0.5rem !important;

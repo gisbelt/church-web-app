@@ -17,7 +17,7 @@
             <h5 class="p-0 absolute text-center">Datos de los miembros</h5>
         </div>
         <div class="derecha mb-2 p-2 " role="group" aria-label="">
-            <a href="?url=consultarUsuarios" class="btn btn-success text-center">Ver listado</a>
+            <a href="?url=consultarMiembros" class="btn btn-outline-success text-center">Ver listado</a>
         </div>
     </div>
 
