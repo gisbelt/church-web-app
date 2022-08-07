@@ -14,7 +14,7 @@ class database{
             // Para notificar de errores ATTR_ERRMODE
             $opcionesPDO[PDO::ATTR_ERRMODE]=PDO::ERRMODE_EXCEPTION;
             // Creando la instancia
-            self::$instancia= new PDO('mysql:host=localhost:3307;dbname=iglesia2','root','123456',$opcionesPDO);
+            self::$instancia= new PDO('mysql:host=localhost:3307;dbname=iglesia_bd','root','123456',$opcionesPDO);
             // echo "conexion realizada";
         }
         return self::$instancia;

@@ -39,8 +39,8 @@
                 </div>
 
                 <div class = "form-group">
-                    <input type="text" required name="cargo" class="form-control form-input mb-4" id="cargo" value="" placeholder=" ">
-                    <label for="cargo" class="form-label fw-bold">Cargo:</label>  
+                    <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">
+                    <label for="nombre" class="form-label fw-bold">Nombre:</label>  
                 </div>
 
                 <div class = "form-group">
@@ -56,6 +56,9 @@
                 <div class="form-group">
                     <input type="password" required name="password" class="form-control form-input mb-4"  id="password" placeholder=" ">
                     <label for="password" class="form-label fw-bold">Contraseña:*</label>
+                    <div id="passwordHelpBlock" class="form-text text-danger">
+                        Debe tener entre 8 y 20 caracteres.
+                    </div>
                 </div>
 
                 <div class="form-group">

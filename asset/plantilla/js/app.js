@@ -15,12 +15,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   nav.classList.toggle('open')
   // change icon
   toggle.classList.toggle('bx-x')
-  // add padding to body
+  // add padding to body-pd
   bodypd.classList.toggle('body-pd')
   // add padding to header
   headerpd.classList.toggle('body-pd')
-// add padding to tag body
+  // add padding to tag body
   body[0].classList.toggle('body')
+  //change data-value
+  nav.dataset.value = "inactivo"
 
   })
   }
@@ -30,8 +32,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 //************************************************************
 
-  /*===== HOVER ICON =====*/
-
+  /*===== HOVER NAVBAR  =====*/
+  // It works, but have to disable it when click on the burger
+  // const navBar= document.getElementById("nav-bar");
+  // navBar.addEventListener("mouseenter", (event) => {
+  //   // show navbar
+  //   navBar.classList.toggle('open')
+  // });
+  // navBar.addEventListener("mouseleave", (event) => {
+  //   // show navbar
+  //   navBar.classList.toggle('open')
+  // });
   
 //************************************************************
 

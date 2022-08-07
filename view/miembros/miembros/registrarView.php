@@ -8,7 +8,7 @@
 <!-- Menú -->
 <?php require_once "content/component/initComponent.php"; ?>
 <!-- Menú -->
-<div class="row">
+<div class="row m-0">
 <div class="col-md-12">
 
 <div class="card">
@@ -22,14 +22,14 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios">
+        <form method="POST" enctype="multipart/form-data" id="form-registrarMiembros">
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" ">
-                            <label for="cedula" class="form-label fw-bold">Cedula:</label>  
+                            <label for="cedula" class="form-label fw-bold">Cedula:*</label>  
                         </div>
 
                         <div class="form-group">
@@ -44,8 +44,15 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control form-input mb-4" id="fn" value="" placeholder=" ">
-                            <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:</label>
+                            <div class="input-group input-daterange" id="datepicker">
+                                <input type="text" class="form-control form-input mb-4" id="fn" value="" placeholder=" ">
+                                <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
+                                <span class="input-group-append">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                </span>
+                            </div>                            
                         </div>
 
                         <div class="form-group">
@@ -68,7 +75,7 @@
 
                         <div class="form-group">
                             <input type="text" required name="grado_instruccion" class="form-control form-input mb-4" id="grado_instruccion" value="" placeholder=" ">
-                            <label for="grado_instruccion" class="form-label fw-bold">Grado de Instrucción:*</label>
+                            <label for="grado_instruccion" class="form-label fw-bold">Grado de Instrucción:</label>
                         </div>
                     </div>
                 </div>
@@ -110,12 +117,26 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" class="form-control form-input mb-4" id="fpf" value="" placeholder=" ">
-                    <label for="fpf" class="form-label fw-bold">Fecha de paso de Fe:</label>
+                    <div class="input-group input-daterange" id="datepicker">
+                        <input type="text" class="form-control form-input mb-4" id="fpf" value="" placeholder=" ">
+                        <label for="fpf" class="form-label fw-bold">Fecha de paso de Fe:*</label>
+                        <span class="input-group-append">
+                            <span class="input-group-text bg-transparent border-0">
+                                <i class="bi bi-calendar"></i>
+                            </span>
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-input mb-4" id="fb" value="" placeholder=" ">
-                    <label for="fb" class="form-label fw-bold">Fecha de Bautismo:</label>
+                    <div class="input-group input-daterange" id="datepicker">
+                        <input type="text" class="form-control form-input mb-4" id="fb" value="" placeholder=" ">
+                        <label for="fb" class="form-label fw-bold">Fecha de Bautismo:*</label>
+                        <span class="input-group-append">
+                            <span class="input-group-text bg-transparent border-0">
+                                <i class="bi bi-calendar"></i>
+                            </span>
+                        </span>
+                    </div>                    
                 </div>
                 <div class="mb-3">
                     <p class="">Membresía:* </p>
@@ -161,7 +182,7 @@
 <?php $bottom->Bottom(); ?>
 <script>
     function limpiar(){
-        $("#form-registrarUsuarios")[0].reset();
+        $("#form-registrarMiembros")[0].reset();
         $("#cedula").focus();
     }
     $(document).ready(function(){

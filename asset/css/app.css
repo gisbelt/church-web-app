@@ -88,6 +88,8 @@ body{
 .pointer{
     cursor: pointer;
 }
+
+/* Botones  */
 .btn-success{
     color: #fff !important;
     background-color: var(--first-color) !important;
@@ -107,6 +109,45 @@ body{
     background-color: var(--first-color) !important;
     border-color: var(--first-color) !important;
 }
+.btn-secondary{
+    color: #fff !important;
+    background-color: var(--second-color-2) !important;
+    border-color: var(--second-color-2) !important;
+}
+.btn-secondary:hover{
+    color: #fff;
+    background-color: #5c636a !important;
+    border-color: #565e64 !important;
+}
+.btn-outline-secondary {
+    color: var(--second-color-2) !important;
+    border-color: var(--second-color-2) !important;
+}
+.btn-outline-secondary:hover {
+    color: #fff !important;
+    background-color: var(--second-color-2) !important;
+    border-color: var(--second-color-2) !important;
+}
+.btn-warning{
+    color: #000 !important;
+    background-color: var(--first-color-yellow) !important;
+    border-color: var(--first-color-yellow) !important;
+}
+.btn-warning:hover{
+    color: #000;
+    background-color: #ffc720 !important;
+    border-color: #ffc720 !important;
+}
+.btn-outline-warning {
+    color: var(--first-color-yellow) !important;
+    border-color: var(--first-color-yellow) !important;
+}
+.btn-outline-warning:hover {
+    color: #000 !important;
+    background-color: var(--first-color-yellow) !important;
+    border-color: var(--first-color-yellow) !important;
+}
+/* Botones  */
 
 /* Formularios  */
 .form-group{
@@ -135,6 +176,7 @@ body{
     transform: translateY(10px);
     transition: transform .5s, color .3s;
     font-size: 1rem;
+    z-index: 9;
 }
 .form-input:focus{
     box-shadow: none !important;
@@ -158,8 +200,7 @@ body{
 /* table  */
 .table-wrap {
     overflow-x: scroll; 
-}
-  
+}  
 .table {
 min-width: 1000px !important;
 width: 100%;
@@ -178,6 +219,10 @@ background: #fff; }
     padding: 18px 10px; 
     border-bottom: 3px solid #f8f9fd;
     font-size: 14px; 
+}
+.table-modal{
+    min-width: auto !important;
+    overflow-y: auto;
 }
 /* table  */
 
@@ -226,14 +271,12 @@ background: #fff; }
 }
 /*Menú Vertical*/
 
-
 /* Login */
 .rowLogin{
     /* width: 100vw; */
     height: 72.7vh;
 }
 /* Login  */
-
 
 /* Cuenta  */
 .avatar{

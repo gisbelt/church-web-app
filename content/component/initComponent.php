@@ -1,6 +1,6 @@
 <div id="body-pd" class="">
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu text-bdazzled-blue' id="header-toggle"></i> </div>
+        <div class="header_toggle"> <i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i> </div>
         <div class="header_img"> <img src="asset/img/logo.png" alt=""> </div>
         <?php if(isset($user[0])){ ?>
         <div class="dropdown ">
@@ -16,7 +16,7 @@
         </div>
         <?php } ?>
     </header>
-    <div class="l-navbar" id="nav-bar">
+    <div class="l-navbar" id="nav-bar" data-value="">
         <nav class="nav">
             <div> 
                 <a href="#" class="nav_logo"> 
@@ -61,8 +61,8 @@
                                 </span>   
                             </div>
                             <ul class="hidden item_show_01 itemShow">
-                                <li><a href="#">Registro</a></li>
-                                <li><a href="#">Listado</a></li>
+                                <li><a href="?url=registrarAmigos">Registro</a></li>
+                                <li><a href="?url=consultarAmigos">Listado</a></li>
                             </ul>
                             <!-- submenu 2  -->
                         </ul>
@@ -76,8 +76,8 @@
                             </span>
                         </div> 
                         <ul class="hidden item_show_4 itemShow">
-                            <li><a href="#">Registro</a></li>
-                            <li><a href="#">Listado</a></li>
+                            <li><a href="?url=registrarDonacion">Registro</a></li>
+                            <li><a href="?url=consultarDonacion">Listado</a></li>
                         </ul> 
                     </li>
                     <li>
@@ -114,9 +114,9 @@
                             </span>
                         </div> 
                         <ul class="hidden item_show_6 itemShow">
+                            <li><a href="?url=registrarGrupo">Registro</a></li>
                             <li><a href="#">Celulas</a></li>
                             <li><a href="#">Zonas</a></li>
-                            <li><a href="#">Registro</a></li>
                         </ul> 
                     </li>
                     <li>

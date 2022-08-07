@@ -39,23 +39,6 @@ class usuariosModel extends BD{
         return [$username,$date];
     }
 
-    // //Validación del login
-    // public static function validarLogin(){
-    //     header("Cache-control: private");
-    //     header("Cache-control: no-cache, must-revalidate");
-    //     header("Pragma: no-cache");
-    //     // Si la sesion esta vacía o no hay usuario logueado, redirecciona al login
-    //     if(!isset($_SESSION['email'])){
-    //         header("Location:?url=login");     
-    //     }else{
-    //         // sino, si ese usuario tiene un valor, imprime esa información
-    //         if($_SESSION['email']=='ok'){
-    //             $username=$_SESSION['username'];
-    //             $date=$_SESSION['date'];
-    //         }
-    //     }   
-    // }
-
     // Validar que esté la sesión cerrada 
     public static function validarLogout(){
         // Si existe alguien logueado, mosrar alerta de cerrar sesión

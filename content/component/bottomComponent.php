@@ -15,7 +15,12 @@ class bottomComponent{
 
             <!-- Plantilla -->
             <script src="asset/plantilla/js/app.js"></script>
-    
+
+            <!-- datepicker -->
+            <script src="asset/js/datepicker.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+            <script src="asset/js/bootstrap-datepicker.es.js"></script>
+
             '
         );
     }
