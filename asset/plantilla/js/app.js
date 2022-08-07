@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var id = this.dataset['number'];
     $(".item_show_"+id).toggle('slow');
     $(".item_show_"+id).removeClass("hidden");
-    $(".dropdown_icon_"+id).css("transform","rotate(180deg)"); //Cambiar al cerrar
+    $(".dropdown_icon_"+id).css("transform","rotate(180deg)"); //Need to change when close
   });
 
 //************************************************************

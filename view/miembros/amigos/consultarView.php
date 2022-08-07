@@ -81,43 +81,7 @@
                                 </a>
                             </form>
                         </td>
-                    </tr>  
-                    <tr>
-                        <td name="cedula">22188492  </td>
-                        <td name="noombre">Gisbel Torres</td>
-                        <td name="sexo">Femenino</td>
-                        <td name="direccion">Calle 9 Santa Isabel</td>
-                        <td name="telefono">04245289570</td>
-                        <td name="fn">05/11/2019</td>
-                        <td>
-                            <form method="POST" class="center">                            
-                                <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar" value="">
-                                    <i class="bi bi-pencil text-light"></i>
-                                </a>
-                                <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                    <i class="bi bi-trash text-light"></i>
-                                </a>
-                            </form>
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td name="cedula">22188492  </td>
-                        <td name="noombre">Gisbel Torres</td>
-                        <td name="sexo">Femenino</td>
-                        <td name="direccion">Calle 9 Santa Isabel</td>
-                        <td name="telefono">04245289570</td>
-                        <td name="fn">05/11/2019</td>
-                        <td>
-                            <form method="POST" class="center">                            
-                                <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar" value="">
-                                    <i class="bi bi-pencil text-light"></i>
-                                </a>
-                                <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                    <i class="bi bi-trash text-light"></i>
-                                </a>
-                            </form>
-                        </td>
-                    </tr>                
+                    </tr>           
                 </tbody>
             </table>
         </div>

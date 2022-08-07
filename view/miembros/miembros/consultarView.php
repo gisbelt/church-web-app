@@ -37,7 +37,7 @@
     <div class="col-md-4">
         <form action="" method="post">
             <div class="input-group">
-                <input type="text" name="" id="miembro" class="form-control" placeholder="Nombre...">
+                <input type="text" name="" id="" class="form-control" placeholder="Insertar">
                 <span class="input-group-btn">
                     <button type="submit" name="" class="btn btn-secondary">Buscar</button>
                 </span> 
@@ -95,44 +95,6 @@
                             </form>
                         </td>
                     </tr>  
-                    <tr>
-                        <td name="cedula">22188492  </td>
-                        <td name="noombre">Gisbel Torres</td>
-                        <td name="telefono">04245289570</td>
-                        <td name="direccion">Calle 9 Santa Isabel</td>
-                        <td name="profesion">Captación, tratamiento y suministro de agua</td>
-                        <td name="fpf">05/11/2019</td>
-                        <td name="fb">03/20/2017</td>
-                        <td>
-                            <form method="POST" class="center">                            
-                                <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar" value="">
-                                    <i class="bi bi-pencil text-light"></i>
-                                </a>
-                                <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                    <i class="bi bi-trash text-light"></i>
-                                </a>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="cedula">22188492  </td>
-                        <td name="noombre">Gisbel Torres</td>
-                        <td name="telefono">04245289570</td>
-                        <td name="direccion">Calle 9 Santa Isabel</td>
-                        <td name="profesion">Captación, tratamiento y suministro de agua</td>
-                        <td name="fpf">05/11/2019</td>
-                        <td name="fb">03/20/2017</td>
-                        <td>
-                            <form method="POST" class="center">                            
-                                <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar" value="">
-                                    <i class="bi bi-pencil text-light"></i>
-                                </a>
-                                <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                    <i class="bi bi-trash text-light"></i>
-                                </a>
-                            </form>
-                        </td>
-                    </tr>               
                 </tbody>
             </table>
         </div>

@@ -6,7 +6,7 @@ $(document).ready(function(){
         $(".show_"+id).slideToggle(250);
         $(".show_"+id).removeClass("hidden");
     });
-
+    // Not finish yet 
     $('.avatar').hover(function(){ 
         // $('#avatar-pencil').addClass('avatar-pencil');
         $('#avatar-link').css('display','block');

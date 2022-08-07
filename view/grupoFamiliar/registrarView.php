@@ -40,11 +40,6 @@
             </div>
         </div>
 
-        <!-- <div class = "form-group">
-            <input type="text" required name="integrante1" class="form-control form-input mb-4" id="integrante1" value="" placeholder=" ">
-            <label for="integrante1" class="form-label fw-bold">Integrante:</label>  
-        </div>    -->
-
         <br>
         <div class="btn-group modal-footer" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

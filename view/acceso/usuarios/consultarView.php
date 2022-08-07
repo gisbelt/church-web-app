@@ -88,21 +88,6 @@
                             </form>
                         </td>
                     </tr> 
-                    <tr>
-                        <td name="username">Lorena</td>
-                        <td name="email">lore@gmail.com</td>
-                        <td name="cargo">Supervisor</td>
-                        <td>
-                            <form method="POST" class="center">                            
-                                <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar" value="">
-                                    <i class="bi bi-pencil text-light"></i>
-                                </a>
-                                <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                    <i class="bi bi-trash text-light"></i>
-                                </a>
-                            </form>
-                        </td>
-                    </tr>              
                 </tbody>
             </table>
         </div>
