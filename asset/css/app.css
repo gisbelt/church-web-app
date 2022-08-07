@@ -116,8 +116,8 @@ body{
 }
 .btn-secondary:hover{
     color: #fff;
-    background-color: #5c636a !important;
-    border-color: #565e64 !important;
+    background-color: #3c4146 !important;
+    border-color: #3c4146 !important;
 }
 .btn-outline-secondary {
     color: var(--second-color-2) !important;

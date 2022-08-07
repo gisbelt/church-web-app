@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" enctype="multipart/form-data" id="form-registrarDonacion">
+        <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo">
         <div class = "form-group">
             <input type="text" name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">
             <label for="nombre" class="form-label fw-bold">Nombre del Grupo Familiar:*</label>  
@@ -31,14 +31,16 @@
         <div class = "form-group">
             <div class="mb-4 input-group">
                 <span class="input-group-btn">
-                    <button type="submit" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modelId">Ver lista</i></button>
+                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modelId">Ver lista</i></button>
                 </span>
-                <input type="text" name="miembro[]" id="miembro" class="form-control" placeholder="Buscar Miembro...">
+                <input type="text" name="miembro" id="miembro" class="form-control" placeholder="Buscar Miembro...">
                 <span class="input-group-btn">
-                    <a id="add" class="btn btn-warning">Añadir <i class="bi bi-plus-circle"></i></a>
+                    <a id="add" class="btn btn-warning add">Añadir <i class="bi bi-plus-circle"></i></a>
                 </span>
             </div>
         </div>
+
+        <div class='new-miembro'></div>
 
         <br>
         <div class="btn-group modal-footer" role="group" aria-label="">
@@ -68,28 +70,26 @@
                             <table class="table table-bordered table-striped table-responsive table-hover table-modal">
                                 <thead class="thead-primary">
                                     <tr>
-                                        <th class="">Seleccionar</th>
-                                        <th class="">Cédula</th>
-                                        <th class="">Nombre</th>
+                                        <th>Cédula</th>
+                                        <th>Nombre</th>
                                         <th class="text-center">Insertar</th>
                                     </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                    <tr>
-                                        <td><input type="checkbox" class="form-control" id=""></td>
-                                        <td name="cedula">22188492  </td>
-                                        <td name="noombre">Gisbel Torres</td>
+                                    <tr id="miembro_id">
+                                        <td name="" id="">22188492  </td>
+                                        <td name="" id="miembroLista">Gisbel Torres</td>
                                         <td class="center">                                                       
-                                            <a href="" name="" id="" class="btn btn-info" value="">
+                                            <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
                                                 <i class="bi bi-plus-circle"></i>
                                             </a>                             
                                         </td>
                                     </tr>  
-                                    <tr>
-                                        <td name="cedula">22188492  </td>
-                                        <td name="noombre">Gisbel Torres</td>
+                                    <tr id="miembro_id">
+                                        <td name="" id="">22188492  </td>
+                                        <td name="" id="miembroLista">Lorena Torres</td>
                                         <td class="center">                                                       
-                                            <a href="" name="" id="" class="btn btn-info" value="">
+                                            <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
                                                 <i class="bi bi-plus-circle"></i>
                                             </a>                             
                                         </td>
@@ -121,22 +121,14 @@ $(document).ready(function(){
     // Modal 
     var modelId = document.getElementById('modelId');
     modelId.addEventListener('show.bs.modal', function (event) {
-          // Button that triggered the modal
-          let button = event.relatedTarget;
-          // Extract info from data-bs-* attributes
-          let recipient = button.getAttribute('data-bs-whatever');
+        // Button that triggered the modal
+        let button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        let recipient = button.getAttribute('data-bs-whatever');
 
         // Use above variables to manipulate the DOM
     });
 
-    // Add miembro (not finish yet)
-    var i=1;
-    $('#add').click(function(){
-        i++;
-        var div = $("<div class='form-group"+i+"'></div>")
-        var input = $("<input type='text' required name='miembro[]' class='form-control form-input mb-4' id='miembro' value='' placeholder=' '> <label for='integrante1' class='form-label fw-bold'>Integrante:</label> ")
-        div.append(input);
-    });
 });
 </script>
 </body>
