@@ -7,6 +7,9 @@ use content\component\footerElement as footerElement;
 
 use content\models\usuariosModel as usuarios;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
@@ -21,18 +24,21 @@ if(isset($_POST['login'])){
     }
     else{
         //ejecutamos
-        $consultarUsuario=usuarios::login($email); 
-        if($consultarUsuario['password']==$password && $consultarUsuario['email']==$email){
+        $consultarUsuario =  usuarios::login($email);
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__,['señor =' .$consultarUsuario['email']]);
+        if($consultarUsuario->password == $password && $consultarUsuario->email == $email){
             $_SESSION['email']='ok';
             $_SESSION['user_email']=$consultarUsuario->email;
             $_SESSION['username']=$consultarUsuario->username;
             $_SESSION['date']=date('d_m_Y_H_i');
             $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
-            header("location:?url=home");  
+            header("location:?url=home");
         }else{
             $mensaje2="Error, el correo o contraseña son incorrectos";
         }    
-    }  
+    }
 }
 
 include_once("view/acceso/usuarios/loginView.php");   
