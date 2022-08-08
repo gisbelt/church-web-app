@@ -57,9 +57,4 @@ class loginController {
        }
    }
 }
-
-
-
-//include_once("view/acceso/usuarios/loginView.php");
-
 ?>
