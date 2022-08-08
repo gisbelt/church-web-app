@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title><?php echo $data["titulo"];  ?></title>
     <?php $head->Heading(); ?>
 </head>
 <body>

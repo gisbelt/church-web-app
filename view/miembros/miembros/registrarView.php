@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title><?php echo $data["titulo"];  ?></title>
     <?php $head->Heading(); ?>
 </head>
 <body>
@@ -17,7 +17,7 @@
             <h5 class="p-0 absolute text-center">Datos de los miembros</h5>
         </div>
         <div class="derecha mb-2 p-2 " role="group" aria-label="">
-            <a href="?url=consultarMiembros" class="btn btn-outline-success text-center">Ver listado</a>
+            <a href="?url=miembros&action=consultar" class="btn btn-outline-success text-center">Ver listado</a>
         </div>
     </div>
 

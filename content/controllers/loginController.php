@@ -10,10 +10,6 @@ use content\models\usuariosModel as usuarios;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-$head = new headElement();
-$bottom = new bottomComponent();
-$footer = new footerElement();
-
 class loginController {
     public function __construct()
     {
@@ -26,7 +22,7 @@ class loginController {
         $footer = new footerElement();
         usuarios::validarLogout();
         $data['titulo'] = 'Login';
-        include_once("view/acceso/usuarios/loginView.php");
+        include_once("view/acceso/login/loginView.php");
 
    }
 
@@ -55,6 +51,30 @@ class loginController {
                }
            }
        }
-   }
+    }
+
+    public function cerrarSesion( ){
+        session_start(); 
+        session_destroy();
+        header("location:?url=login");
+    }
+
+    public function resetPassword( ){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();        
+        usuarios::validarLogout(); 
+        $data['titulo'] = 'Resetear Clave';      
+        include_once("view/acceso/login/resetPasswordView.php");  
+    }
+
+    public function forgotPassword( ){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();        
+        usuarios::validarLogout(); 
+        $data['titulo'] = 'Clave Olvidada';      
+        include_once("view/acceso/login/forgotPasswordView.php");     
+    }
 }
 ?>
