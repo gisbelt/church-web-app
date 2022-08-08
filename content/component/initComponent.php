@@ -11,7 +11,7 @@
             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
                 <a class="dropdown-item" href="?url=cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
                 <a class="dropdown-item" href="?url=preferencias">Preferencias</a>
-                <a class="dropdown-item" href="?url=logout">Cerrar Sesión</a> 
+                <a class="dropdown-item" href="?url=login&action=cerrarSesion">Cerrar Sesión</a> 
             </div>
         </div>
         <?php } ?>
@@ -39,7 +39,7 @@
                             </span>                            
                         </div>
                         <ul class="hidden item_show_2 itemShow">
-                            <li><a href="?url=consultarUsuarios">Usuarios</a></li>
+                            <li><a href="?url=usuarios&action=consultar">Usuarios</a></li>
                         </ul>
                     </li>
                     <li>
@@ -51,8 +51,8 @@
                             </span>                             
                         </div>
                         <ul class="hidden item_show_3 itemShow">
-                            <li><a href="?url=registrarMiembros">Registro</a></li>
-                            <li><a href="?url=consultarMiembros">Listado</a></li>
+                            <li><a href="?url=miembros&action=registrar">Registro</a></li>
+                            <li><a href="?url=miembros&action=consultar">Listado</a></li>
                             <!-- submenu 2  -->
                             <div class="nav_link" data-number="01">
                                 <span class="nav_name center">
@@ -61,8 +61,8 @@
                                 </span>   
                             </div>
                             <ul class="hidden item_show_01 itemShow">
-                                <li><a href="?url=registrarAmigos">Registro</a></li>
-                                <li><a href="?url=consultarAmigos">Listado</a></li>
+                                <li><a href="?url=amigos&action=registrar">Registro</a></li>
+                                <li><a href="?url=amigos&action=registrar">Listado</a></li>
                             </ul>
                             <!-- submenu 2  -->
                         </ul>
@@ -76,8 +76,8 @@
                             </span>
                         </div> 
                         <ul class="hidden item_show_4 itemShow">
-                            <li><a href="?url=registrarDonacion">Registro</a></li>
-                            <li><a href="?url=consultarDonacion">Listado</a></li>
+                            <li><a href="?url=donaciones&action=registrar">Registro</a></li>
+                            <li><a href="?url=donaciones&action=consultar">Listado</a></li>
                         </ul> 
                     </li>
                     <li>
@@ -114,7 +114,7 @@
                             </span>
                         </div> 
                         <ul class="hidden item_show_6 itemShow">
-                            <li><a href="?url=registrarGrupo">Registro</a></li>
+                            <li><a href="?url=grupoFamiliar&action=registrar">Registro</a></li>
                             <li><a href="#">Celulas</a></li>
                             <li><a href="#">Zonas</a></li>
                         </ul> 
@@ -148,7 +148,7 @@
                 </div>
             </div> 
             <div class="dropdownss">
-                <a href="?url=logout" class="nav_link" data-number="7" title="Cerrar sesión"> 
+                <a href="?url=login&action=cerrarSesion" class="nav_link" data-number="7" title="Cerrar sesión"> 
                     <i class='bx bx-log-out nav_icon'></i> 
                     <span class="nav_name">SignOut</span>
                 </a>
