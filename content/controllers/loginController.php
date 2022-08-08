@@ -35,8 +35,8 @@ class loginController {
        if(isset($_POST['login'])){
            $email = $_POST['email'];
            $password = $_POST['password'];
-           if($email=="" || $password==""){
-               $mensaje1="Por favor debe ingresar los datos";
+           if($email == "" || $password == ""){
+               $mensaje1 = "Por favor debe ingresar los datos";
            } else {
                //ejecutamos
                $consultarUsuario =  usuarios::login($email);
@@ -44,14 +44,14 @@ class loginController {
                $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
                $logger->debug(__METHOD__,['señor =' .$consultarUsuario['email']]);*/
                if($consultarUsuario->password == $password && $consultarUsuario->email == $email){
-                   $_SESSION['email']='ok';
-                   $_SESSION['user_email']=$consultarUsuario->email;
-                   $_SESSION['username']=$consultarUsuario->username;
-                   $_SESSION['date']=date('d_m_Y_H_i');
-                   $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
+                   $_SESSION['email'] = 'ok';
+                   $_SESSION['user_email'] = $consultarUsuario->email;
+                   $_SESSION['username'] = $consultarUsuario->username;
+                   $_SESSION['date'] = date('d_m_Y_H_i');
+                   $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
                    header("location:?url=home&action=index");
                }else{
-                   $mensaje2="Error, el correo o contraseña son incorrectos";
+                   $mensaje2 = "Error, el correo o contraseña son incorrectos";
                }
            }
        }
