@@ -28,34 +28,36 @@ $(document).ready(function(){
     // Add a new input field (miembro)    
     const nuevoMiembro = (addID) =>{
         const add = document.getElementById(addID),
-        newMiembro = $('.new-miembro');    
+        newMiembro = $('.new-miembro')
         newMiembro.empty;
         // Validate that all variables exist
-        if(add && newMiembro){
+        if(add, newMiembro){
+            var i=0;
             $('.add').on('click', function (e){
                 const miembro = $('#miembro').val();
-                const miembroLista = $('#miembroLista').text();
-                for (let i = 0; i < 1; i++) {
-                    var div = $("<div class='miembro-group"+i+" form-group'></div>");
-                    var input = $("<input type='text' required name='miembro"+i+"' class='form-control form-input mb-4' id='integrante"+i+"' value='"+miembro+"' placeholder=' '> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label> ");
-                    div.append(input);
-                    newMiembro.append(div);
-                }
+                i++;
+                var div = $("<div class='miembro-group"+i+" input-group'></div>");
+                var input = $("<input type='text' required name='miembro"+i+"' class='form-control form-input mb-4' id='integrante"+i+"' value='"+miembro+"' placeholder=' '> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
+                div.append(input);
+                newMiembro.append(div);
                 $('#miembro').val(''); 
             })
             $('.addLista').on('click', function (e){
                 const miembro = $(this).parents("tr").find("#miembroLista").text();
-                for (let i = 0; i < 1; i++) {
-                    var div = $("<div class='miembro-group"+i+" form-group'></div>");
-                    var input = $("<input type='text' required name='miembro"+i+"' class='form-control form-input mb-4' id='integrante"+i+"' value='"+miembro+"' placeholder=' '> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label> ");
-                    div.append(input);
-                    newMiembro.append(div);
-                }
+                i++;
+                var div = $("<div class='miembro-group"+i+" input-group'></div>");
+                var input = $("<input type='text' required name='miembro"+i+"' class='form-control form-input mb-4' id='integrante"+i+"' value='"+miembro+"' placeholder=' '> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
+                div.append(input);
+                newMiembro.append(div);
                 $('#miembro').val('');
             })
+            $(document).on('click', ".btn-remove", function(e){
+                var button_id = $(this).attr("id"); 
+                $(".miembro-group"+button_id).remove();
+            });
         }
-    }
-    nuevoMiembro('add');
+    }    
+    nuevoMiembro('add');   
     //Grupo Familiar
 
 
