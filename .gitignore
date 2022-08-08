@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 /vendor
 .idea
+=======
+/content/config/conection/*
+/content/Logger
+/vendor
+.idea
+>>>>>>> main

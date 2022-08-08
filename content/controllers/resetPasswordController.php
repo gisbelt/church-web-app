@@ -1,5 +1,5 @@
-<?php
-namespace content\controller;
+<?php 
+namespace content\controllers;
 
 use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
@@ -11,8 +11,8 @@ $head = new headElement();
 $bottom = new bottomComponent();
 $footer = new footerElement();
 
-$user=usuarios::validarLogin();
+usuarios::validarLogout();
 
-include_once("view/miembros/miembros/registrarView.php");
+include_once("view/acceso/usuarios/resetPasswordView.php");   
 
 ?>
