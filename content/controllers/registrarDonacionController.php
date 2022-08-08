@@ -1,5 +1,5 @@
 <?php
-namespace content\controller;
+namespace content\controllers;
 
 use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;

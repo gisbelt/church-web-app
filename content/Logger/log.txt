@@ -1,2 +1,0 @@
-[2022-08-07T21:57:43.397856+00:00] web.DEBUG:  ["señor =admin@gmail.com"] []
-[2022-08-07T22:04:31.987605+00:00] web.DEBUG:  ["señor =admin@gmail.com"] []
