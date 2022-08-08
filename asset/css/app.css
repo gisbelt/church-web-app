@@ -150,6 +150,10 @@ body{
 /* Botones  */
 
 /* Formularios  */
+.input-group{
+    position: relative;
+    --color: #5757577e;
+}
 .form-group{
     position: relative;
     --color: #5757577e;
