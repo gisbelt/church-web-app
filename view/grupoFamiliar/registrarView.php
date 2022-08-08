@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class='new-miembro'></div>
+        <div class='new-miembro' id="new-miembro"></div>
 
         <br>
         <div class="btn-group modal-footer" role="group" aria-label="">
