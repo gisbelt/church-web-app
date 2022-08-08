@@ -1,4 +1,5 @@
 /content/config/conection/*
+/content/config/settings/*
 /content/Logger
 /vendor
 .idea
