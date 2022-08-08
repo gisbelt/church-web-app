@@ -73,7 +73,7 @@
                             <label for="password" class="form-label fw-bold">Contraseña:</label>
                         </div>
                         <br>
-                        <a href="?url=forgotPassword" class="text-info">¿Olvidaste la constraseña?</a>
+                        <a href="?url=login&action=forgotPassword" class="text-info">¿Olvidaste la constraseña?</a>
                         <button type="submit" name="login" class="btn btn-primary w-100 mt-2">Iniciar Sesión</button>
                     </form>
 
