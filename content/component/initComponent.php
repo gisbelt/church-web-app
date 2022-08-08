@@ -9,8 +9,8 @@
                 <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
             </button>
             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="?url=cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
-                <a class="dropdown-item" href="?url=preferencias">Preferencias</a>
+                <a class="dropdown-item" href="?url=perfil">Cuenta <i class="bi bi-person text-light"></i> </a>
+                <a class="dropdown-item" href="?url=perfil&action=preferencias">Preferencias</a>
                 <a class="dropdown-item" href="?url=login&action=cerrarSesion">Cerrar Sesión</a> 
             </div>
         </div>
