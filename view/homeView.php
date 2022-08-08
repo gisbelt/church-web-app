@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title><?php echo $data["titulo"];  ?></title>
     <?php $head->Heading(); ?>
 </head>
 <body>
@@ -17,8 +17,8 @@
         <p class="lead">Vamos a administrar nuestra Iglesia</p>
         <hr class="my-2">
         <p class="lead mt-3">
-            <a class="btn btn-primary btn-lg" href="?url=registrarUsuarios" role="button">Registrar Usuarios</a>
-            <a class="btn btn-info btn-lg" href="?url=consultarUsuarios" role="button">Listado de Usuarios</a>
+            <a class="btn btn-primary btn-lg" href="?url=registrarUsuarios&action=registrar" role="button">Registrar Usuarios</a>
+            <a class="btn btn-info btn-lg" href="?url=consultarUsuarios&action=consuiltar" role="button">Listado de Usuarios</a>
         </p>
     </div> 
 

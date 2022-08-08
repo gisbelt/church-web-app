@@ -1,5 +1,5 @@
-<?php
-namespace content\controller;
+<?php 
+namespace content\controllers;
 
 use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
@@ -13,6 +13,5 @@ $footer = new footerElement();
 
 $user=usuarios::validarLogin();
 
-include_once("view/miembros/amigos/consultarView.php");
-
+include_once("view/cuentas/cuenta/cuentaView.php");
 ?>

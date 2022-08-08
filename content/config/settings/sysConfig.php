@@ -7,27 +7,28 @@ define("_THEME_" , "http://localhost/proyecto-uptaeb/asset");			/* Direccion de 
 define("_INDEX_FILE_" , "http://localhost/proyecto-uptaeb/index.php");	/* direccion del archivo index */
 
 define('_COMPONENT_', 'content/component');                     /* direccion de componentes */
-define('_DIRECTORY_', 'content/controller/'); 					/* direccion de controladores */
+define('_DIRECTORY_', 'content/controllers/'); 					/* direccion de controladores */
 define("_MODEL_" , "content/models/");                          /* direccion de los modelos */
 define("_VIEW_" , "view.php");								    /* complemento para la llamada de vistas */
-define("_CONTROLLER_" , "controller.php");						/* complemento para la llamada de controladores */
+define("_CONTROLLER_" , "Controller.php");						/* complemento para la llamada de controladores */
 
 define("_DB_SERVER_" , "http://localhost/");					/* nombre del servidor */
 
-define('_DB_MANAGER_', 	'mysql');						        /* manejador de base de datos */
-define("_DB_WEB_" , "casacarlina");								/* nombre de la base de datos */
-define('_HOST_', 		'localhost');							/* nombre del host */
+define('_DB_MANAGER_', 'mysql');						        /* manejador de base de datos */
+define("_DB_WEB_" , "iglesia_bd");								/* nombre de la base de datos */
+define('_DB_HOST_', 'localhost');							/* nombre del host */
 define("_DB_USER_", "root");									/* nombre del usuario de la base de datos */
-define("_DB_PASS_", "123456");								    /* contraseña de la base de datos  */
+define("_DB_PASS_", "");								    /* contraseña de la base de datos  */
+define("_DB_PORT_", "3306");								    /* puerto de la base de datos  */
 
 class sysConfig{
 
     public function  _int() {
-        if(file_exists("content/controller/frontController.php")){
-            require_once("content/controller/frontController.php");
+        if(file_exists("content/core/frontController.php")){
+            require_once("content/core/frontController.php");
         }
         else{
-            die("No existe el archivo: content/controller/frontController");
+            die("No existe el archivo: content/core/frontController");
         }
     }
 
