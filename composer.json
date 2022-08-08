@@ -4,5 +4,9 @@
     		"config\\" : "content/config",
     		"content\\" : "content"
     	}
+    },
+    "require": {
+        "monolog/monolog": "^2.8",
+        "rakit/validation": "^1.4"
     }
 }

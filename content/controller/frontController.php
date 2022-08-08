@@ -8,6 +8,7 @@ class frontController extends sysconfig{
     public $request = "url";
     private $url; 
 
+
     public function  __construct($request){
         if(isset($request["url"])){
             $this->url=$request["url"];
