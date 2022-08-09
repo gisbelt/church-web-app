@@ -120,10 +120,10 @@
                         </ul> 
                     </li>
                     <li>
-                        <div class="nav_link" data-number="7"> 
+                        <a href="?url=reportes" class="nav_link" data-number="7"> 
                             <i class='bx bx-bar-chart-alt-2 nav_icon' data-number="7"></i> 
                             <span class="nav_name center">Reportes</span> 
-                        </div> 
+                        </a> 
                     </li>
                     <li>
                         <div class="nav_link" data-number="8"> 

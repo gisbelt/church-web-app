@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
    
+  var shouldHover = true;
+
   const showNavbar = (toggleId, navId, bodyId, headerId, Body) =>{
   const toggle = document.getElementById(toggleId),
   nav = document.getElementById(navId),
@@ -11,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Validate that all variables exist
   if(toggle && nav && bodypd && headerpd && body){
   toggle.addEventListener('click', ()=>{
+  // turn off hover
+  shouldHover = false
   // show navbar
-  nav.classList.toggle('open')
+  nav.classList.toggle('open')  
   // change icon
   toggle.classList.toggle('bx-x')
   // add padding to body-pd
@@ -23,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   body[0].classList.toggle('body')
   //change data-value
   nav.dataset.value = "inactivo"
-
   })
   }
   }
@@ -33,16 +36,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 //************************************************************
 
   /*===== HOVER NAVBAR  =====*/
-  // It works, but have to disable it when click on the burger
-  // const navBar= document.getElementById("nav-bar");
-  // navBar.addEventListener("mouseenter", (event) => {
-  //   // show navbar
-  //   navBar.classList.toggle('open')
-  // });
-  // navBar.addEventListener("mouseleave", (event) => {
-  //   // show navbar
-  //   navBar.classList.toggle('open')
-  // });
+  // NOT FINISH YET
+  const navBar= document.getElementById("nav-bar");
+  $("#nav-bar").hover(function(){
+    if (shouldHover) {
+      // toggle navbar
+      navBar.classList.toggle('open');
+    }    
+  }) 
   
 //************************************************************
 
