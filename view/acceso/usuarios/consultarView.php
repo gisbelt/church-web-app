@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title><?php echo $data["titulo"];  ?></title>
     <?php $head->Heading(); ?>
 </head>
 <body>
@@ -9,7 +9,7 @@
 <?php require_once "content/component/initComponent.php"; ?>
 <!-- Menú -->
 <br>
-<h3 class="text-center mb-4">Listado de usuarios <a href="?url=registrarUsuarios" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
+<h3 class="text-center mb-4">Listado de usuarios <a href="?url=usuarios&action=registrar" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
 <div class="container">
 <div class="row m-0">
     <div class="col-md-3">        

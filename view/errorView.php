@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ERROR 500</title>
+    <title><?php echo $data["titulo"];  ?></title>
     <?php $head->Heading(); ?>
 </head>
 <body>
-<!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
-<!-- Menú -->
-<!-- ********************************* -->
-
+<body class="p-0 m-0">
 <div class="p-5 bg-light text-center error_500">
     <div class="container">
         <h1 class="display-3">Sistema en mantenimiento</h1>
