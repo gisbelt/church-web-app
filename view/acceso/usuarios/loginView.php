@@ -50,26 +50,14 @@
 
                     <!-- Creamos Formulario: !crt-form-login -->
                     <!-- Enviamos los datos del formulario a través del método post -->
-<<<<<<< HEAD
-                    <form method="POST">
-                        <div class="form-group">
-                            <input type="text" class="form-control form-input mb-2" name="email" id="email"
-                                   aria-describedby="emailHelp" placeholder=" ">
-=======
                     <form method="POST" action="?url=login&action=iniciar">
                         <div class="form-group">
                             <input type="text" class="form-control form-input mb-2" name="email" id="email" aria-describedby="emailHelp" placeholder=" " value="admin@gmail.com">
->>>>>>> main
                             <label for="email" class="form-label fw-bold">Correo:</label>
                         </div>
                         <br>
                         <div class="form-group">
-<<<<<<< HEAD
-                            <input type="password" class="form-control form-input mb-2" name="password" id="password"
-                                   placeholder=" ">
-=======
                             <input type="password" class="form-control form-input mb-2" name="password" id="password" placeholder=" " value="123456">
->>>>>>> main
                             <label for="password" class="form-label fw-bold">Contraseña:</label>
                         </div>
                         <br>
