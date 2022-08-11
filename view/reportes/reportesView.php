@@ -16,7 +16,7 @@
                 <div class="report-header">
                     <h4 class="">Reporte 1</h4>
                     <div class="derecha">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report1">Expandir</button>
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report1" aria-expanded="false" aria-controls="collapseExample">Expandir</button>
                     </div>                
                     <p>Set the default branch for this project. All merge requests and commits are made against this branch unless you specify a different one.</p>
                 </div>
