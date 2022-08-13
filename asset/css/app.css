@@ -59,7 +59,7 @@ body{
 .derecha{
     display: flex;
     align-items: flex-end;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .izquierda{
     display: flex;
@@ -277,6 +277,7 @@ background: #fff; }
 .rowLogin{
     /* width: 100vw; */
     height: 72.7vh;
+    margin: 0;
 }
 /* Login  */
 

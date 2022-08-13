@@ -17,6 +17,7 @@ class headElement{
             <link rel="stylesheet" href="asset/fonts/bootstrap-icons.css">
             <link rel="stylesheet" href="asset/css/app.css">
             <link rel="stylesheet" href="asset/css/error.css">
+            <link rel="stylesheet" href="asset/css/background.css">
             <!--  <link rel="stylesheet" href="asset/css/bootstrap-minty.min.css"> -->
 
             <!-- Plantilla -->

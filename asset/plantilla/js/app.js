@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if(shouldHover == true){
           shouldHover = false
         }else{
-          shouldHover = true
+          shouldHover = !shouldHover;
         }        
         // show navbar
         nav.classList.toggle('open')  
@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       body[0].classList.toggle('body')
       //change data-value
       navBar.dataset.value = "inactivo"
+      
+      $(".itemShow").slideUp('');
     }   
     }) 
   }
