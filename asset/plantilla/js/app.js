@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   nav = document.getElementById(navId),
   bodypd = document.getElementById(bodyId),
   headerpd = document.getElementById(headerId),
-  body = document.getElementsByTagName(Body);  
+  body = document.getElementsByTagName(Body);
     // Validate that all variables exist
     if(toggle && nav && bodypd && headerpd && body){
       toggle.addEventListener('click', ()=>{
         // turn off hover
-        if(shouldHover == true){
-          shouldHover = false
+        if(shouldHover){
+          shouldHover = false;
         }else{
           shouldHover = !shouldHover;
         }        
@@ -27,8 +27,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         headerpd.classList.toggle('body-pd')
         // add padding to tag body
         body[0].classList.toggle('body')
-        //change data-value
-        nav.dataset.value = "inactivo"
+        // display and hide nav_dropdown_icon
+        if(nav.classList.toggle('true')){
+          $(".nav_dropdown_icon").css("display","block"); 
+        }else{
+          $(".nav_dropdown_icon").css("display","none");
+          $(".nav_dropdown_icon").removeClass('rotate-icon');            
+        }
+        
       })
     }
   }
@@ -43,7 +49,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   toggle = document.getElementById('header-toggle'),
   bodypd = document.getElementById('body-pd'),
   headerpd = document.getElementById('header'),
-  body = document.getElementsByTagName('body');
+  body = document.getElementsByTagName('body'),
+  nav_dropdown_icon = document.querySelectorAll("nav_dropdown_icon");
   $("#nav-bar").hover(function(){
     if (shouldHover) {
       // toggle navbar
@@ -56,10 +63,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       headerpd.classList.toggle('body-pd')
       // add padding to tag body
       body[0].classList.toggle('body')
-      //change data-value
-      navBar.dataset.value = "inactivo"
-      
+      // Hide itemShow when open or close the navba 
       $(".itemShow").slideUp('');
+      // display and hide nav_dropdown_icon
+      if(navBar.classList.toggle('true')){
+        $(".nav_dropdown_icon").css("display","block"); 
+      }else{
+        $(".nav_dropdown_icon").css("display","none");
+        $(".nav_dropdown_icon").removeClass('rotate-icon');            
+      }
     }   
     }) 
   }
@@ -81,17 +93,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 //************************************************************
 
   /*=====Show each nav_link's items=====*/
-  var open = false;
   $('.nav_link').click(function(e){
     var id = this.dataset['number'];
+    var nav_dropdown_icon = document.querySelectorAll(".dropdown_icon_"+id);
     $(".item_show_"+id).toggle('slow');
     $(".item_show_"+id).removeClass("hidden");
-    if(open){
-      $(".dropdown_icon_"+id).css("transform","rotate(0deg)"); 
-    } else{
-      $(".dropdown_icon_"+id).css("transform","rotate(180deg)");
-    }
-    open = !open;
+    nav_dropdown_icon[0].classList.toggle('rotate-icon'); 
   });
 
 

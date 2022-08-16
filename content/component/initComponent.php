@@ -16,7 +16,7 @@
         </div>
         <?php } ?>
     </header>
-    <div class="l-navbar" id="nav-bar" data-value="">
+    <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> 
                 <a href="#" class="nav_logo"> 
