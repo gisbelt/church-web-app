@@ -22,14 +22,17 @@
     --black: #020100ff;
 }
 
-.bi-calendar {
+.bi-calendar-minus {
   position: absolute;
   top: 10px;
   font-size: 20px;
   color: var(--first-color) !important;
   z-index: 1000;
 }
-
+.bi-calendar-month{
+  color: var(--first-color) !important;
+  z-index: 1000;
+}
 #bi-1 {
   left: calc(100% - 25px);
 }
@@ -44,13 +47,16 @@ button:focus {
 .input-daterange input {
     text-align: left !important;
 }
-.datepicker {
+.datepicker{
   background-color: #fff;
   border-radius: 0 !important;
   align-content: center !important;
   padding: 0 !important;
 }
 
+#calendar .datepicker{
+  width: 100%;
+}
 .datepicker-dropdown {
   border-right: var(--first-color) !important;
   border-left: var(--first-color) !important;

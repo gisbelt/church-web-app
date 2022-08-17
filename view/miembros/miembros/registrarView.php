@@ -49,7 +49,7 @@
                                 <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
                                 <span class="input-group-append">
                                     <span class="input-group-text bg-transparent border-0">
-                                        <i class="bi bi-calendar"></i>
+                                        <i class="bi bi-calendar-minus"></i>
                                     </span>
                                 </span>
                             </div>                            
@@ -122,7 +122,7 @@
                         <label for="fpf" class="form-label fw-bold">Fecha de paso de Fe:*</label>
                         <span class="input-group-append">
                             <span class="input-group-text bg-transparent border-0">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-calendar-minus"></i>
                             </span>
                         </span>
                     </div>
@@ -133,7 +133,7 @@
                         <label for="fb" class="form-label fw-bold">Fecha de Bautismo:*</label>
                         <span class="input-group-append">
                             <span class="input-group-text bg-transparent border-0">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-calendar-minus"></i>
                             </span>
                         </span>
                     </div>                    

@@ -15,8 +15,11 @@ class footerElement{
                    <!-- Grid column -->
                    <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                        <!-- Links -->
-                       <h6 class="text-uppercase text-center fw-bold">Av. Los Horcones, Av. La Salle, Barquisimeto 3001, Lara</h6>
-                       <hr class="mt-0 d-inline-block mx-auto" style="width: 100%; background-color: #7c4dff; height: 2px" />
+                       <div class="background_img"> 
+                        <img src="asset/img/logo.png" alt=""> 
+                        <h6 class="text-uppercase text-center">Iglesia Evangélica La Gracia de Dios</h6>
+                       </div>
+                       <hr class="mt-0 d-inline-block mx-auto" style="width: 100%; background-color: #0191b3; height: 2px" />
                    </div>
                    <!-- Grid column -->
                </div>

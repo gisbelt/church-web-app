@@ -162,7 +162,6 @@ a{
     background: var(--first-color-light-blue);
     overflow: hidden;
 }
-
 /* add spam item_show_tip  */
 /* .item_show_tip{
     display: none;
@@ -201,6 +200,16 @@ a{
 }
 .nav_dropdown_icon{
     transition: .4s;
+    position: absolute;
+    right: 1rem;
+    top: 0.7rem;
+    display: none;
+}
+#nav-bar:hover .nav_dropdown_icon{
+    display: block;
+}
+.rotate-icon{
+    transform: rotate(180deg);
 }
 .open{
     left: 0;
