@@ -3,7 +3,7 @@
 namespace config\settings;
 
 define("_ROUTE_" , "http://localhost/proyecto-iglesia-uptaeb/");					/* direccion del proyecto */
-define("_THEME_" , "http://localhost/proyecto-iglesia-uptaeb/assets");			    /* Direccion de recursos y estilos */
+define("_THEME_" , "http://localhost/proyecto-iglesia-uptaeb/public/assets");			    /* Direccion de recursos y estilos */
 define("_INDEX_FILE_" , "http://localhost/proyecto-iglesia-uptaeb/public/index.php");	    /* direccion del archivo index */
 
 define('_COMPONENT_', 'content/component');                                 /* direccion de componentes */

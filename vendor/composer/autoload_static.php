@@ -10,6 +10,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '80723c9b8a7c60b4bd635e01744ca92b' => __DIR__ . '/../..' . '/content/core/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -437,7 +438,10 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'content\\component\\footerElement' => __DIR__ . '/../..' . '/content/component/footerElement.php',
         'content\\component\\headElement' => __DIR__ . '/../..' . '/content/component/headElement.php',
         'content\\config\\conection\\database' => __DIR__ . '/../..' . '/content/config/conection/database.php',
+        'content\\controllers\\actividadController' => __DIR__ . '/../..' . '/content/controllers/actividadController.php',
         'content\\controllers\\amigosController' => __DIR__ . '/../..' . '/content/controllers/amigosController.php',
+        'content\\controllers\\asistenciasController' => __DIR__ . '/../..' . '/content/controllers/asistenciasController.php',
+        'content\\controllers\\bitacoraController' => __DIR__ . '/../..' . '/content/controllers/bitacoraController.php',
         'content\\controllers\\donacionesController' => __DIR__ . '/../..' . '/content/controllers/donacionesController.php',
         'content\\controllers\\errorController' => __DIR__ . '/../..' . '/content/controllers/errorController.php',
         'content\\controllers\\grupoFamiliarController' => __DIR__ . '/../..' . '/content/controllers/grupoFamiliarController.php',
@@ -445,6 +449,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'content\\controllers\\loginController' => __DIR__ . '/../..' . '/content/controllers/loginController.php',
         'content\\controllers\\miembrosController' => __DIR__ . '/../..' . '/content/controllers/miembrosController.php',
         'content\\controllers\\perfilController' => __DIR__ . '/../..' . '/content/controllers/perfilController.php',
+        'content\\controllers\\reportesController' => __DIR__ . '/../..' . '/content/controllers/reportesController.php',
         'content\\controllers\\usuariosController' => __DIR__ . '/../..' . '/content/controllers/usuariosController.php',
         'content\\models\\homeModel' => __DIR__ . '/../..' . '/content/models/homeModel.php',
         'content\\models\\usuariosModel' => __DIR__ . '/../..' . '/content/models/usuariosModel.php',
