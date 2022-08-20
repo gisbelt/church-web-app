@@ -21,6 +21,7 @@ if (file_exists("./../vendor/autoload.php")) {
     die('<title>Mantenimiento</title>' . $html500);
 }
 session_start();
+
 use content\models\usuariosModel;
 
 $globalConfig = new sysConfig();
@@ -33,10 +34,8 @@ $context->fromRequest($request);
 
 $rutas = rutas();
 $routes = new RouteCollection();
-$logger = new Logger("web");
-$logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
 foreach ($rutas as $key => $ruta) {
-    if(empty($ruta->subRutas)){
+    if (empty($ruta->subRutas)) {
         $routes->add($ruta->text, new Route($ruta->route, [
             'controller' => $ruta->controller,
             'method' => $ruta->method,
@@ -44,9 +43,9 @@ foreach ($rutas as $key => $ruta) {
     } else {
         foreach ($ruta->subRutas as $subruta) {
             $routes->add($subruta->text, new Route($subruta->route, [
-                    'controller' => $ruta->controller,
-                    'method' => $subruta->method,
-                ]));
+                'controller' => $ruta->controller,
+                'method' => $subruta->method,
+            ]));
         }
     }
 
@@ -55,15 +54,13 @@ foreach ($rutas as $key => $ruta) {
 try {
     $matcher = new UrlMatcher($routes, $context);
     $route = $matcher->match($context->getPathInfo());
-    $logger->debug(__METHOD__,[$route]);
     $controller = new $route['controller'];
     $method = $route['method'];
     $response = $controller->$method($request);
-    $logger->debug(__METHOD__,[$response]);
 } catch (ResourceNotFoundException $exception) {
-    $response = new Response('Not Found'. $exception, 404);
+    $response = new Response('Not Found' . $exception, 404);
 } catch (\Exception $ex) {
-    $response = new Response('An error occurred:'. $ex, 500);
+    $response = new Response('An error occurred:' . $ex, 500);
 }
 http_response_code($response->getStatusCode());
 echo $response->getContent();

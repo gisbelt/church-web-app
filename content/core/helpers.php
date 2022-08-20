@@ -12,8 +12,8 @@ use content\controllers\homeController;
 use content\controllers\miembrosController;
 use  \content\controllers\reportesController;
 
-if (!function_exists("routas")){
-    
+if (!function_exists("routas")) {
+
     function rutas()
     {
         $rutas = [
@@ -48,7 +48,7 @@ if (!function_exists("routas")){
 
 
             'home' => [
-                'controller' =>  homeController::class,
+                'controller' => homeController::class,
                 'subRutas' => [
                     'homeView' => [
                         'text' => 'home',
@@ -59,7 +59,7 @@ if (!function_exists("routas")){
             ],
 
             'miembros' => [
-                'controller' =>  miembrosController::class,
+                'controller' => miembrosController::class,
                 'subRutas' => [
                     'listaMiembros' => [
                         'text' => 'lista',

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo $data["titulo"];  ?></title>
+    <title><?php echo $data["titulo"]; ?></title>
     <?php \content\component\headElement::Heading(); ?>
 </head>
 <body>
@@ -20,9 +20,9 @@
             <a class="btn btn-primary btn-lg" href="?url=usuarios&action=registrar" role="button">Registrar Usuarios</a>
             <a class="btn btn-info btn-lg" href="?url=usuarios&action=consultar" role="button">Listado de Usuarios</a>
         </p>
-    </div> 
+    </div>
 
-</div>            
+</div>
 <!-- ********************************* -->
 
 <?php \content\component\bottomComponent::Bottom(); ?>

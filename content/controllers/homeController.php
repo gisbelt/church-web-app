@@ -9,12 +9,20 @@ use content\component\footerElement as footerElement;
 use content\models\usuariosModel as usuarios;
 use Symfony\Component\HttpFoundation\Response;
 
-class homeController{
-    public function index(){
-        $user=usuarios::validarLogin();
+class homeController
+{
+    public function __construct()
+    {
+
+    }
+
+    public function index()
+    {
+        $user = usuarios::validarLogin();
         $data["titulo"] = "Home";
-        return  new Response(require_once (realpath(dirname(__FILE__) .'./../../views/homeView.php')), 200);
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);
     }
 
 }
+
 ?>

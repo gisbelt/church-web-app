@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo $data["titulo"];  ?></title>
+    <title><?php echo $data["titulo"]; ?></title>
     <?php \content\component\headElement::Heading(); ?>
 </head>
 <body class="p-0">
@@ -52,12 +52,14 @@
                     <!-- Enviamos los datos del formulario a través del método post -->
                     <form method="POST" action="/login">
                         <div class="form-group">
-                            <input type="text" class="form-control form-input mb-2" name="email" id="email" aria-describedby="emailHelp" placeholder=" " value="admin@gmail.com">
+                            <input type="text" class="form-control form-input mb-2" name="email" id="email"
+                                   aria-describedby="emailHelp" placeholder=" " value="admin@gmail.com">
                             <label for="email" class="form-label fw-bold">Correo:</label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="password" class="form-control form-input mb-2" name="password" id="password" placeholder=" " value="123456">
+                            <input type="password" class="form-control form-input mb-2" name="password" id="password"
+                                   placeholder=" " value="123456">
                             <label for="password" class="form-label fw-bold">Contraseña:</label>
                         </div>
                         <br>

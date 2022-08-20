@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace content\controllers;
 
 use content\component\headElement as headElement;
@@ -10,29 +11,33 @@ use content\models\usuariosModel as usuarios;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class perfilController {
+class perfilController
+{
     public function __construct()
     {
-        
+
     }
 
-    public function index(){
+    public function index()
+    {
         $head = new headElement();
         $bottom = new bottomComponent();
         $footer = new footerElement();
-        $user=usuarios::validarLogin();
+        $user = usuarios::validarLogin();
         $data['titulo'] = 'Mi Cuenta';
         include_once("view/perfil/cuenta/cuentaView.php");
-   }
+    }
 
-    public function preferencias( ){
+    public function preferencias()
+    {
         $head = new headElement();
         $bottom = new bottomComponent();
-        $footer = new footerElement();        
-        $user=usuarios::validarLogin(); 
-        $data['titulo'] = 'Preferencias';       
+        $footer = new footerElement();
+        $user = usuarios::validarLogin();
+        $data['titulo'] = 'Preferencias';
         include_once("view/perfil/preferencias/preferenciasView.php");
-   }
+    }
 
 }
+
 ?>

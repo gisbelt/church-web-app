@@ -12,7 +12,8 @@ class reportesController
 
     }
 
-    public function index(){
+    public function index()
+    {
         $data['titulo'] = 'Bitacora';
         return new RedirectResponse('/home', 302);
         //include_once("view/miembros/amigos/consultarView.php");

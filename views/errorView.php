@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo $data["titulo"];  ?></title>
-    <?php $head->Heading(); ?>
+    <title><?php echo $data["titulo"]; ?></title>
+    <?php \content\component\headElement::Heading(); ?>
 </head>
 <body>
 <body class="p-0 m-0">
@@ -12,10 +12,11 @@
         <hr class="my-2">
         <p>Por favor sea paciente</p>
         <p class="lead">
-            <h1 class="bi bi-emoji-frown"></h1>
+        <h1 class="bi bi-emoji-frown"></h1>
         </p>
     </div>
 </div>
 <!-- ********************************* -->
+<?php \content\component\bottomComponent::Bottom(); ?>
 </body>
 </html>
