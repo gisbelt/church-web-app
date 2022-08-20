@@ -15,6 +15,7 @@ class database{
             $opcionesPDO[PDO::ATTR_ERRMODE]=PDO::ERRMODE_EXCEPTION;
             // Creando la instancia
 
+            
             self::$instancia= new PDO(_DB_MANAGER_.':host='._DB_HOST_.':'._DB_PORT_.';dbname='._DB_WEB_,_DB_USER_,_DB_PASS_,$opcionesPDO);
             // echo "conexion realizada";
         }
