@@ -37,6 +37,12 @@ if (!function_exists("routas")){
                         'route' => '/logout',
                         'method' => 'cerrarSesion',
                     ],
+
+                    'recuperarContrasena' => [
+                        'text' => 'recuperar-contrasena',
+                        'route' => '/recuperar-contrasena',
+                        'method' => 'recuperarContrasena',
+                    ],
                 ],
             ],
 

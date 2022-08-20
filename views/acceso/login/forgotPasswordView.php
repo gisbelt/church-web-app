@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title><?php echo $data["titulo"];  ?></title>
-    <?php $head->Heading(); ?>
+    <?php \content\component\headElement::Heading(); ?>
 </head>
 <body class="p-0">
 <div id="body-pd" class="">
@@ -52,9 +52,9 @@
 
 <!-- ********************************* -->
 
-<?php $bottom->Bottom(); ?>
+<?php \content\component\bottomComponent::Bottom(); ?>
 </body>
 <footer>
-<?php $footer->Footer(); ?>
+    <?php \content\component\footerElement::Footer(); ?>
 </footer>
 </html>

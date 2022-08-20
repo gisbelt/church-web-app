@@ -64,10 +64,10 @@ class AutenticacionController {
         include_once("view/acceso/login/resetPasswordView.php");  
     }
 
-    public function forgotPassword( ){
+    public function recuperarContrasena( ){
         usuarios::validarLogout(); 
         $data['titulo'] = 'Clave Olvidada';      
-        include_once("view/acceso/login/forgotPasswordView.php");     
+        return  new Response(require_once (realpath(dirname(__FILE__) .'./../../views/acceso/login/forgotPasswordView.php')), 200); 
     }
 }
 ?>
