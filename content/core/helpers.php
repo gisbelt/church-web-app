@@ -1,4 +1,7 @@
 <?php
+
+
+use content\controllers\AutenticacionController;
 use content\controllers\actividadController;
 use content\controllers\amigosController;
 use content\controllers\asistenciasController;
@@ -6,7 +9,6 @@ use content\controllers\bitacoraController;
 use content\controllers\donacionesController;
 use content\controllers\grupoFamiliarController;
 use content\controllers\homeController;
-use content\controllers\loginController;
 use content\controllers\miembrosController;
 use  \content\controllers\reportesController;
 
@@ -16,7 +18,7 @@ if (!function_exists("routas")){
     {
         $rutas = [
             'login' => [
-                'controller' => loginController::class,
+                'controller' => AutenticacionController::class,
                 'subRutas' => [
                     'loginView' => [
                         'text' => 'index',

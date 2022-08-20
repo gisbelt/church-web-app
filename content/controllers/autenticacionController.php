@@ -9,7 +9,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class loginController {
+class AutenticacionController {
+    
     public function __construct()
     {
 
