@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <title><?php echo $data["titulo"];  ?></title>
-    <?php $head->Heading(); ?>
+    <?php \content\component\headElement::Heading(); ?>
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php" ?>
 <!-- Menú -->
 
 <div class="flex-row center">
@@ -25,6 +25,6 @@
 </div>            
 <!-- ********************************* -->
 
-<?php $bottom->Bottom(); ?>
+<?php \content\component\bottomComponent::Bottom(); ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
-/content/config/conection
+/content/config/conection/
 /content/config/settings
 /content/Logger
-/vendor
+/vendor/
 .idea
 composer.lock

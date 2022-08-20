@@ -4,10 +4,60 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e1c546c-d69e-4b7c-81e3-b67934417710" name="Changes" comment="">
+    <list default="true" id="6a0341ef-70ee-4173-aa6e-fe2d22c7f90b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/proyecto-iglesia-uptaeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proyecto-iglesia-uptaeb.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/css/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/css/bootstrap-minty.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/css/datepicker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/css/error.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/fonts/bootstrap-icons.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/fonts/bootstrap-icons.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/fonts/bootstrap-icons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/fonts/fonts/bootstrap-icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/fonts/fonts/bootstrap-icons.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/fonts/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/imagen1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/bootstrap-datepicker.es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/datepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/jquery-3.6.0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/js/popper.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/plantilla/css/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/plantilla/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/plantilla/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/bottomComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/bottomComponent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/headElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/headElement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/initComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/initComponent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/config/conection/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/config/conection/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/config/settings/sysConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/config/settings/sysConfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/models/usuariosModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/models/usuariosModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gitignore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/platform_check.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/platform_check.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/acceso/login/loginView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/acceso/login/loginView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/homeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/homeView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,13 +76,18 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/rakit/validation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
-  <component name="ProjectId" id="2D2pJwMAELJ8RONovO5giCWGSy1" />
+  <component name="ProjectId" id="2DSvoYsad0i2muJZglWWQe7KLiu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,28 +98,25 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/laragon/www/proyecto-iglesia-uptaeb&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5e1c546c-d69e-4b7c-81e3-b67934417710" name="Changes" comment="" />
-      <created>1659906965948</created>
+      <changelist id="6a0341ef-70ee-4173-aa6e-fe2d22c7f90b" name="Changes" comment="" />
+      <created>1660705476216</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1659906965948</updated>
-      <workItem from="1659906968220" duration="8457000" />
-      <workItem from="1659916027473" duration="271000" />
-      <workItem from="1659916324446" duration="1449000" />
-      <workItem from="1659992336478" duration="1743000" />
-      <workItem from="1660151757511" duration="1855000" />
+      <updated>1660705476216</updated>
+      <workItem from="1660705479921" duration="1528000" />
+      <workItem from="1660707034972" duration="3160000" />
     </task>
     <servers />
   </component>

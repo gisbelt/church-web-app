@@ -28,7 +28,7 @@ class usuariosModel extends BD{
         header("Pragma: no-cache");
         // Si la sesion esta vacía o no hay usuario logueado, redirecciona al login
         if(!isset($_SESSION['email'])){
-            header("Location:?url=login");     
+            header("Location: /index");
         }else{
             // sino, si ese usuario tiene un valor, imprime esa información
             if($_SESSION['email']=='ok'){
@@ -46,7 +46,7 @@ class usuariosModel extends BD{
             echo "
             <script>
             alert('Por favor cerrar sesión');
-            window.location.href = '?url=home';
+            window.location.href = '/home';
             </script>";
         }
     }

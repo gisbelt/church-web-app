@@ -2,24 +2,24 @@
 
 namespace config\settings;
 
-define("_ROUTE_" , "http://localhost/proyecto-uptaeb/");					/* direccion del proyecto */
-define("_THEME_" , "http://localhost/proyecto-uptaeb/asset");			/* Direccion de recursos y estilos */
-define("_INDEX_FILE_" , "http://localhost/proyecto-uptaeb/index.php");	/* direccion del archivo index */
+define("_ROUTE_" , "http://localhost/proyecto-iglesia-uptaeb/");					/* direccion del proyecto */
+define("_THEME_" , "http://localhost/proyecto-iglesia-uptaeb/assets");			    /* Direccion de recursos y estilos */
+define("_INDEX_FILE_" , "http://localhost/proyecto-iglesia-uptaeb/public/index.php");	    /* direccion del archivo index */
 
-define('_COMPONENT_', 'content/component');                     /* direccion de componentes */
-define('_DIRECTORY_', 'content/controllers/'); 					/* direccion de controladores */
-define("_MODEL_" , "content/models/");                          /* direccion de los modelos */
-define("_VIEW_" , "view.php");								    /* complemento para la llamada de vistas */
-define("_CONTROLLER_" , "Controller.php");						/* complemento para la llamada de controladores */
+define('_COMPONENT_', 'content/component');                                 /* direccion de componentes */
+define('_DIRECTORY_', 'content/controllers/'); 					            /* direccion de controladores */
+define("_MODEL_" , "content/models/");                                      /* direccion de los modelos */
+define("_VIEW_" , 'view.php');								                /* complemento para la llamada de vistas */
+define("_CONTROLLER_" , 'Controller.php');						            /* complemento para la llamada de controladores */
 
-define("_DB_SERVER_" , "http://localhost/");					/* nombre del servidor */
+define("_DB_SERVER_" , 'http://localhost/');					            /* nombre del servidor */
 
-define('_DB_MANAGER_', 'mysql');						        /* manejador de base de datos */
-define("_DB_WEB_" , "iglesia_bd");								/* nombre de la base de datos */
-define('_DB_HOST_', 'localhost');							/* nombre del host */
-define("_DB_USER_", "root");									/* nombre del usuario de la base de datos */
-define("_DB_PASS_", "");								    /* contraseña de la base de datos  */
-define("_DB_PORT_", "3306");								    /* puerto de la base de datos  */
+define('_DB_MANAGER_', 'mysql');						                    /* manejador de base de datos */
+define("_DB_WEB_" , 'iglesia_bd');								            /* nombre de la base de datos */
+define('_DB_HOST_', 'localhost');							                /* nombre del host */
+define("_DB_USER_", 'root');									            /* nombre del usuario de la base de datos */
+define("_DB_PASS_", '');								                    /* contraseña de la base de datos  */
+define("_DB_PORT_", '3306');								                /* puerto de la base de datos  */
 
 class sysConfig{
 
@@ -65,7 +65,7 @@ class sysConfig{
         return _DB_WEB_;
     }
     protected function _HOST_(){
-        return _HOST_;
+        return _DB_HOST_;
     }
     protected function _DB_USER_(){
         return _DB_USER_;

@@ -1,7 +1,7 @@
 <div id="body-pd" class="">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i> </div>
-        <div class="header_img"> <img src="asset/img/logo.png" alt=""> </div>
+        <div class="header_img"> <img src="https://www.uptaebvirtual.edu.ve/web/img/c-liogo2.png" alt=""> </div>
         <?php if(isset($user[0])){ ?>
         <div class="dropdown ">
             <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -11,7 +11,7 @@
             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
                 <a class="dropdown-item" href="?url=perfil">Cuenta <i class="bi bi-person text-light"></i> </a>
                 <a class="dropdown-item" href="?url=perfil&action=preferencias">Preferencias</a>
-                <a class="dropdown-item" href="?url=login&action=cerrarSesion">Cerrar Sesión</a> 
+                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
             </div>
         </div>
         <?php } ?>
@@ -148,7 +148,7 @@
                 </div>
             </div> 
             <div class="dropdownss">
-                <a href="?url=login&action=cerrarSesion" class="nav_link" data-number="7" title="Cerrar sesión"> 
+                <a href="/logout" class="nav_link" data-number="7" title="Cerrar sesión">
                     <i class='bx bx-log-out nav_icon'></i> 
                     <span class="nav_name">SignOut</span>
                 </a>

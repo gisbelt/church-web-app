@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title><?php echo $data["titulo"];  ?></title>
-    <?php $head->Heading(); ?>
+    <?php \content\component\headElement::Heading(); ?>
 </head>
 <body class="p-0">
 <div id="body-pd" class="">
@@ -50,7 +50,7 @@
 
                     <!-- Creamos Formulario: !crt-form-login -->
                     <!-- Enviamos los datos del formulario a través del método post -->
-                    <form method="POST" action="?url=login&action=iniciar">
+                    <form method="POST" action="/login">
                         <div class="form-group">
                             <input type="text" class="form-control form-input mb-2" name="email" id="email" aria-describedby="emailHelp" placeholder=" " value="admin@gmail.com">
                             <label for="email" class="form-label fw-bold">Correo:</label>
@@ -73,9 +73,9 @@
 
 <!-- ********************************* -->
 
-<?php $bottom->Bottom(); ?>
+<?php \content\component\bottomComponent::Bottom(); ?>
 </body>
 <footer>
-    <?php $footer->Footer(); ?>
+    <?php \content\component\footerElement::Footer(); ?>
 </footer>
 </html>
