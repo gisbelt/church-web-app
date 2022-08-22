@@ -1,22 +1,30 @@
 <?php
-
 namespace content\controllers;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
+use content\component\headElement as headElement;
+use content\component\bottomComponent as bottomComponent;
+use content\component\footerElement as footerElement;
 
-class reportesController
-{
+use content\models\usuariosModel as usuarios;
+
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
+class reportesController {
     public function __construct()
     {
-
+    
     }
 
-    public function index()
-    {
-        $data['titulo'] = 'Bitacora';
-        return new RedirectResponse('/home', 302);
-        //include_once("view/miembros/amigos/consultarView.php");
-    }
+    public function index(){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();
+        $user=usuarios::validarLogin();
+        $data['titulo'] = 'Reportes';
+        include_once("view/reportes/reportesView.php");
+   }
+
 
 }
+?>
