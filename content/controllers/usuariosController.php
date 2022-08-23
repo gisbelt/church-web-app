@@ -34,15 +34,8 @@ class usuariosController
 
     public function consultar()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Usuarios';
         include_once("view/acceso/usuarios/consultarView.php");
     }
-
-
 }
-
-?>

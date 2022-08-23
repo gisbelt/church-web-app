@@ -20,9 +20,6 @@ class grupoFamiliarController
 
     public function index()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $data['titulo'] = 'Grupo Familiar';
         include_once("view/grupoFamiliar/consultarView.php");
 
