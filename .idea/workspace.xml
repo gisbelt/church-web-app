@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="92c8f861-37c5-4e7b-830d-906d1b6063d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logger/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logger/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logger/log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/bottomComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/bottomComponent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/headElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/headElement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/usuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/usuariosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/core/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/core/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/acceso/usuarios/consultarView.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/acceso/usuarios/consultarView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/acceso/usuarios/registrarView.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/acceso/usuarios/registrarView.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/homeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homeView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +110,7 @@
       <updated>1659968469112</updated>
       <workItem from="1659968470616" duration="334000" />
       <workItem from="1659985113491" duration="1309000" />
-      <workItem from="1661213137375" duration="276000" />
+      <workItem from="1661213137375" duration="2086000" />
     </task>
     <servers />
   </component>
@@ -144,5 +150,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

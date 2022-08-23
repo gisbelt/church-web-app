@@ -17,8 +17,8 @@
             <p class="lead">Vamos a administrar nuestra Iglesia</p>
             <hr class="my-2">
             <p class="lead mt-3">
-                <a class="btn btn-primary btn-lg mb-2" href="?url=usuarios&action=registrar" role="button">Registrar Usuarios</a>
-                <a class="btn btn-info btn-lg mb-2" href="?url=usuarios&action=consultar" role="button">Listado de Usuarios</a>
+                <a class="btn btn-primary btn-lg mb-2" href="/usuarios/create" role="button">Registrar Usuarios</a>
+                <a class="btn btn-info btn-lg mb-2" href="/usuarios" role="button">Listado de Usuarios</a>
             </p>
         </div>
     </div>

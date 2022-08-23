@@ -10,6 +10,7 @@ use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Symfony\Component\HttpFoundation\Response;
 
 class usuariosController
 {
@@ -20,21 +21,15 @@ class usuariosController
 
     public function index()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $data['titulo'] = 'Usuarios';
-        include_once("view/acceso/usuarios/consultarView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
     }
 
-    public function registrar()
+    public function create()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Usuarios';
-        include_once("view/acceso/usuarios/registrarView.php");
+        $data['titulo'] = 'Registrar usuarios';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/registrarView.php')), 200);
     }
 
     public function consultar()
