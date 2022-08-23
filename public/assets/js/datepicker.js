@@ -9,4 +9,14 @@ $(document).ready(function(){
         language: 'es'
     });
 
+    // The Calender
+    $('#calendar').datepicker({
+        format: 'dd/mm/yyyy',
+        inline: true,
+        calendarWeeks : true,
+        firstDay: 1,
+        disableTouchKeyboard: true,
+        language: 'es'
+    }).datepicker("setDate", new Date());
+
 });
