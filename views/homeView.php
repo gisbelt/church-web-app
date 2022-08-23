@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
     <title><?php echo $data["titulo"];  ?></title>
-    <?php \content\component\footerElement::Footer(); ?>
+    <?php \content\component\headElement::Heading(); ?>
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 
 <div class="container">
-
-<?php \content\component\bottomComponent::Bottom(); ?>
-
     <div class="row jumbotron mb-2 center">
         <div class="col-md-6">
             <br><br>
