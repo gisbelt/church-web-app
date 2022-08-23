@@ -29,6 +29,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2D4pyvSRPkybZYFyVcqwbGQGdGo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -96,7 +97,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10000" />
+    <option name="totallyTimeSpent" value="870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
