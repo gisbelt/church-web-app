@@ -21,30 +21,21 @@ class amigosController
 
     public function index()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $data['titulo'] = 'Amigos';
         include_once("view/miembros/amigos/consultarView.php");
     }
 
     public function registrar()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Amigos';
+        $data['titulo'] = 'Registra amigos';
         include_once("view/miembros/amigos/registrarView.php");
     }
 
     public function consultar()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Amigos';
+        $data['titulo'] = 'Consultar amigos';
         include_once("view/miembros/amigos/consultarView.php");
     }
 }

@@ -10,7 +10,9 @@ use content\controllers\donacionesController;
 use content\controllers\grupoFamiliarController;
 use content\controllers\homeController;
 use content\controllers\miembrosController;
-use  \content\controllers\reportesController;
+use content\controllers\reportesController;
+use content\controllers\usuariosController;
+
 
 if (!function_exists("routas")) {
 
@@ -131,7 +133,7 @@ if (!function_exists("routas")) {
                 'subRutas' => [
                     'listaAsitencias' => [
                         'text' => 'lista',
-                        'route' => '/asitencias/',
+                        'route' => '/asitencias',
                         'method' => 'index',
                     ],
 
@@ -154,7 +156,24 @@ if (!function_exists("routas")) {
 
                     'crearGrupoFamiliares' => [
                         'text' => 'registrar',
-                        'route' => 'grupo-familiares/create',
+                        'route' => '/grupo-familiares/create',
+                        'method' => 'create',
+                    ],
+                ]
+            ],
+
+            'usuarios' => [
+                'controller' => usuariosController::class,
+                'subRutas' => [
+                    'listaUsuarios' => [
+                        'text' => 'usuarios',
+                        'route' => '/usuarios',
+                        'method' => 'index',
+                    ],
+
+                    'crearUsuarios' => [
+                        'text' => 'registrar',
+                        'route' => '/usuarios/create',
                         'method' => 'create',
                     ],
                 ]

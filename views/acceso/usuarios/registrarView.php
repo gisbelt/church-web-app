@@ -6,7 +6,7 @@
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <div class="offset-md-3 col-md-6">
     <div class="card">
@@ -15,7 +15,7 @@
                 <p class="p-0 absolute">Datos de los usuarios</p>
             </div>
             <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                <a href="?url=usuarios&action=consultar" class="btn btn-outline-success text-center">Ver usuarios</a>
+                <a href="/usuarios" class="btn btn-outline-success text-center">Ver usuarios</a>
             </div>
         </div>
 

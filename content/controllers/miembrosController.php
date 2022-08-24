@@ -20,18 +20,12 @@ class miembrosController
 
     public function index()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $data['titulo'] = 'Miembros';
         include_once("view/miembros/miembros/consultarView.php");
     }
 
     public function registrar()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Miembros';
         include_once("view/miembros/miembros/registrarView.php");
@@ -39,9 +33,6 @@ class miembrosController
 
     public function consultar()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Miembros';
         include_once("view/miembros/miembros/consultarView.php");
