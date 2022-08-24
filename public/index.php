@@ -63,7 +63,7 @@ try {
     $response = new Response('An error occurred:' . $ex, 500);
 }
 http_response_code($response->getStatusCode());
-$logger = new Logger("web");
+/*$logger = new Logger("web");
 $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
-$logger->debug(__METHOD__,[$response]);
+$logger->debug(__METHOD__,[$response]);*/
 echo $response->getContent();
