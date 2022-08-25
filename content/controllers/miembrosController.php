@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace content\controllers;
 
 use content\component\headElement as headElement;
@@ -11,32 +10,36 @@ use content\models\usuariosModel as usuarios;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class miembrosController
-{
+class miembrosController {
     public function __construct()
     {
-
+        
     }
 
-    public function index()
-    {
+    public function index(){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();
         $data['titulo'] = 'Miembros';
         include_once("view/miembros/miembros/consultarView.php");
-    }
+   }
 
-    public function registrar()
-    {
-        $user = usuarios::validarLogin();
-        $data['titulo'] = 'Miembros';
+    public function registrar( ){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();        
+        $user=usuarios::validarLogin(); 
+        $data['titulo'] = 'Miembros';       
         include_once("view/miembros/miembros/registrarView.php");
-    }
+   }
 
-    public function consultar()
-    {
-        $user = usuarios::validarLogin();
-        $data['titulo'] = 'Miembros';
+    public function consultar( ){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();        
+        $user=usuarios::validarLogin(); 
+        $data['titulo'] = 'Miembros';       
         include_once("view/miembros/miembros/consultarView.php");
     }
 }
-
 ?>

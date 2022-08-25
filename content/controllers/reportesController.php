@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace content\controllers;
 
 use content\component\headElement as headElement;
@@ -13,10 +13,13 @@ use Monolog\Logger;
 class reportesController {
     public function __construct()
     {
-    
+        
     }
 
     public function index(){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();
         $user=usuarios::validarLogin();
         $data['titulo'] = 'Reportes';
         include_once("view/reportes/reportesView.php");

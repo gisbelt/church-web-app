@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace content\controllers;
 
 use content\component\headElement as headElement;
@@ -10,32 +9,39 @@ use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Symfony\Component\HttpFoundation\Response;
 
-class usuariosController
-{
+class usuariosController {
     public function __construct()
-    {
-
+    {   
+        
     }
 
-    public function index()
-    {
-        $data['titulo'] = 'Usuarios';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
-    }
-
-    public function create()
-    {
-        $user = usuarios::validarLogin();
-        $data['titulo'] = 'Registrar usuarios';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/registrarView.php')), 200);
-    }
-
-    public function consultar()
-    {
-        $user = usuarios::validarLogin();
+    public function index(){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();
         $data['titulo'] = 'Usuarios';
         include_once("view/acceso/usuarios/consultarView.php");
+   }
+
+    public function registrar( ){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();        
+        $user=usuarios::validarLogin();
+        $data['titulo'] = 'Usuarios';        
+        include_once("view/acceso/usuarios/registrarView.php");
+   }
+
+    public function consultar( ){
+        $head = new headElement();
+        $bottom = new bottomComponent();
+        $footer = new footerElement();        
+        $user=usuarios::validarLogin();  
+        $data['titulo'] = 'Usuarios';      
+        include_once("view/acceso/usuarios/consultarView.php");
     }
+
+    
 }
+?>
