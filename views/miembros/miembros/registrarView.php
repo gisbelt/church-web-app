@@ -28,47 +28,40 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" required name="cedula" class="form-control form-input mb-4"
-                                               id="cedula" value="" placeholder=" ">
+                                        <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" ">
                                         <label for="cedula" class="form-label fw-bold">Cedula:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="nombre" class="form-control form-input mb-4"
-                                               id="nombre" value="" placeholder=" ">
+                                        <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">
                                         <label for="nombre" class="form-label fw-bold">Nombre:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="apellido" class="form-control form-input mb-4"
-                                               id="apellido" value="" placeholder=" ">
+                                        <input type="text" required name="apellido" class="form-control form-input mb-4" id="apellido" value="" placeholder=" ">
                                         <label for="apellido" class="form-label fw-bold">Apellido:*</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group input-daterange" id="datepicker">
-                                            <input type="text" class="form-control form-input mb-4" id="fn" value=""
-                                                   placeholder=" ">
+                                            <input type="text" class="form-control form-input mb-4" id="fn" value="" placeholder=" ">
                                             <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
                                             <span class="input-group-append">
                                     <span class="input-group-text bg-transparent border-0">
-                                        <i class="bi bi-calendar"></i>
+                                        <i class="bi bi-calendar-minus"></i>
                                     </span>
                                 </span>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="telefono" class="form-control form-input mb-4"
-                                               id="telefono" value="" placeholder=" ">
+                                        <input type="text" required name="telefono" class="form-control form-input mb-4" id="telefono" value="" placeholder=" ">
                                         <label for="telefono" class="form-label fw-bold">Teléfono:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="disponibilidad"
-                                               class="form-control form-input mb-4" id="disponibilidad" value=""
-                                               placeholder=" ">
+                                        <input type="text" required name="disponibilidad" class="form-control form-input mb-4" id="disponibilidad" value="" placeholder=" ">
                                         <label for="disponibilidad" class="form-label fw-bold">Disponibilidad:*</label>
                                     </div>
                                 </div>
@@ -76,18 +69,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" required name="direccion"
-                                               class="form-control form-input mb-4" id="direccion" value=""
-                                               placeholder=" ">
+                                        <input type="text" required name="direccion" class="form-control form-input mb-4" id="direccion" value="" placeholder=" ">
                                         <label for="direccion" class="form-label fw-bold">Dirección:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="grado_instruccion"
-                                               class="form-control form-input mb-4" id="grado_instruccion" value=""
-                                               placeholder=" ">
-                                        <label for="grado_instruccion" class="form-label fw-bold">Grado de
-                                            Instrucción:</label>
+                                        <input type="text" required name="grado_instruccion" class="form-control form-input mb-4" id="grado_instruccion" value="" placeholder=" ">
+                                        <label for="grado_instruccion" class="form-label fw-bold">Grado de Instrucción:</label>
                                     </div>
                                 </div>
                             </div>
@@ -130,24 +118,22 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fpf" value=""
-                                           placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fpf" value="" placeholder=" ">
                                     <label for="fpf" class="form-label fw-bold">Fecha de paso de Fe:*</label>
                                     <span class="input-group-append">
                             <span class="input-group-text bg-transparent border-0">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-calendar-minus"></i>
                             </span>
                         </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fb" value=""
-                                           placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fb" value="" placeholder=" ">
                                     <label for="fb" class="form-label fw-bold">Fecha de Bautismo:*</label>
                                     <span class="input-group-append">
                             <span class="input-group-text bg-transparent border-0">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-calendar-minus"></i>
                             </span>
                         </span>
                                 </div>
