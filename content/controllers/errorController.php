@@ -8,15 +8,18 @@ use content\component\footerElement as footerElement;
 
 use content\models\usuariosModel as usuarios;
 
-class errorController{
-    public function index(){
+class errorController
+{
+    public function index()
+    {
         $head = new headElement();
         $bottom = new bottomComponent();
         $footer = new footerElement();
-        $user=usuarios::validarLogout();
+        $user = usuarios::validarLogout();
         $data["titulo"] = "ERROR 500";
         require_once("view/errorView.php");
     }
 
 }
+
 ?>

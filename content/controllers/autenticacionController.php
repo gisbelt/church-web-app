@@ -20,7 +20,7 @@ class AutenticacionController
 
     public function index()
     {
-        // usuarios::validarLogout(); 
+        usuarios::validarLogout();
         $data['titulo'] = 'Login';
         return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/loginView.php')), 200);
 
@@ -34,7 +34,7 @@ class AutenticacionController
         $logger = new Logger("web");
         $logger->pushHandler(new StreamHandler(__DIR__."../../../Logger/log.txt", Logger::DEBUG));
 
-        usuarios::validarLogout(); 
+        usuarios::validarLogout();
 
         if ($email == "" || $password == "") {
             $mensaje1 = "Por favor debe ingresar los datos";
