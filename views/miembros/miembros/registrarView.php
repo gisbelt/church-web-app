@@ -52,7 +52,7 @@
                                         <i class="bi bi-calendar-minus"></i>
                                     </span>
                                 </span>
-                            </div>                            
+                            </div>  
                         </div>
 
                         <div class="form-group">
