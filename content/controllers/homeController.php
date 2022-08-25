@@ -7,16 +7,22 @@ use content\component\bottomComponent as bottomComponent;
 use content\component\footerElement as footerElement;
 
 use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Response;
 
-class homeController{
-    public function index(){
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
-        $user=usuarios::validarLogin();
+class homeController
+{
+    public function __construct()
+    {
+
+    }
+
+    public function index()
+    {
+        $user = usuarios::validarLogin();
         $data["titulo"] = "Home";
-        include_once("view/homeView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);
     }
 
 }
+
 ?>
