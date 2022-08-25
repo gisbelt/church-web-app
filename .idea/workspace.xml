@@ -5,11 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92c8f861-37c5-4e7b-830d-906d1b6063d6" name="Default Changelist" comment="">
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/bd/iglesia_bd.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logger/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logger/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/bottomComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/bottomComponent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/headElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/headElement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/component/initComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/component/initComponent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/amigosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/amigosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/donacionesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/donacionesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/grupoFamiliarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/grupoFamiliarController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/miembrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/miembrosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/reportesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/reportesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/controllers/usuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/usuariosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/core/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/core/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/acceso/usuarios/consultarView.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/acceso/usuarios/consultarView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/acceso/usuarios/registrarView.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/acceso/usuarios/registrarView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homeView.php" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logger/log.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bd/iglesia_bd.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/content/controllers/autenticacionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/content/controllers/autenticacionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+>>>>>>> 3871a5e74b71d096f23ba9da84e45e7ebf57437a
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,11 +116,14 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< HEAD
+=======
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\proyecto-iglesia-uptaeb\content\config\conection" />
     </key>
   </component>
+>>>>>>> 3871a5e74b71d096f23ba9da84e45e7ebf57437a
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
