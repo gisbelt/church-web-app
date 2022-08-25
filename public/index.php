@@ -28,7 +28,6 @@ $globalConfig = new sysConfig();
 //$globalConfig->_int();
 
 $request = Request::createFromGlobals();
-
 $context = new RequestContext();
 $context->fromRequest($request);
 
