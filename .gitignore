@@ -1,11 +1,7 @@
-/content/config/conection/*
-/content/config/settings/*
+/content/config/conection/
+/content/config/settings
 /content/Logger
 /vendor
-<<<<<<< HEAD
-.idea
-=======
 /.idea
 composer.lock
 .idea/workspace.xml
->>>>>>> e098cee98d19b308efad86774dd6f6e71269bd62
