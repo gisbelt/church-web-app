@@ -16,7 +16,7 @@ class footerElement{
                    <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                        <!-- Links -->
                        <div class="background_img"> 
-                        <img src="asset/img/logo.png" alt=""> 
+                        <img src="public/assets/img/logo.png" alt=""> 
                         <h6 class="text-uppercase text-center">Iglesia Evangélica La Gracia de Dios</h6>
                        </div>
                        <hr class="mt-0 d-inline-block mx-auto" style="width: 100%; background-color: #0191b3; height: 2px" />
