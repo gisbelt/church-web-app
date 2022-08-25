@@ -1,6 +1,7 @@
-/content/config/conection/
-/content/config/settings
-/content/Logger
-/vendor/
-.idea
+/vendor
+/.idea
+/.vscode
+/.vagrant
+/.sass-cache
 composer.lock
+.idea/workspace.xml
