@@ -88,6 +88,12 @@ body{
 .pointer{
     cursor: pointer;
 }
+.pointer-hover:hover{
+    cursor: pointer;
+}
+.underline-hover:hover{
+    text-decoration: underline;
+}
 
 /* Botones  */
 .btn-success{
