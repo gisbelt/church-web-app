@@ -31,8 +31,6 @@ class AutenticacionController
         $email = $request->request->get('email');
         $password = $request->request->get('password');
         //$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__."../../../Logger/log.txt", Logger::DEBUG));
 
         usuarios::validarLogout();
 

@@ -1,6 +1,5 @@
 <?php
 
-
 use content\controllers\AutenticacionController;
 use content\controllers\actividadController;
 use content\controllers\amigosController;
@@ -115,7 +114,7 @@ if (!function_exists("routas")) {
                 'controller' => actividadController::class,
                 'subRutas' => [
                     'listaActividades' => [
-                        'text' => 'ista',
+                        'text' => 'actividades',
                         'route' => '/actividades',
                         'method' => 'index',
                     ],

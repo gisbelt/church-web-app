@@ -7,7 +7,6 @@ use PDO as pdo;
 
 class usuariosModel extends BD
 {
-
     public $id;
     public $username;
     public $email;
@@ -17,8 +16,7 @@ class usuariosModel extends BD
     public static function login($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT username,email,password 
-        FROM users WHERE email=?");
+        $sql = $conexionBD->prepare("SELECT username,email,password FROM users WHERE email = ?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_LAZY);
         return $consultarUsuario;
@@ -32,7 +30,7 @@ class usuariosModel extends BD
         header("Pragma: no-cache");
         // Si la sesion esta vacía o no hay usuario logueado, redirecciona al login
         if (!isset($_SESSION['email'])) {
-            header("Location: /index");
+            header("Location: /");
         } else {
             // sino, si ese usuario tiene un valor, imprime esa información
             if ($_SESSION['email'] == 'ok') {
