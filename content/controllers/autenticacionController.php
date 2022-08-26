@@ -30,7 +30,7 @@ class AutenticacionController
     {
         $email = $request->request->get('email');
         $password = $request->request->get('password');
-        //$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
+        // $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]); 
         $logger = new Logger("web");
         $logger->pushHandler(new StreamHandler(__DIR__."../../../Logger/log.txt", Logger::DEBUG));
 
@@ -41,8 +41,7 @@ class AutenticacionController
         } else {
             //ejecutamos
             $consultarUsuario = usuarios::login($email);
-
-            if ($consultarUsuario && password_verify($password, $consultarUsuario->password)) {
+            if ($consultarUsuario && password_verify($password, $consultarUsuario['password'])) {
                 $_SESSION['email'] = 'ok';
                 $_SESSION['user_email'] = $consultarUsuario->email;
                 $_SESSION['username'] = $consultarUsuario->username;

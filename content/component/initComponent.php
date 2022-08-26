@@ -2,7 +2,7 @@
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
         <div class="header_img"><img src="https://www.uptaebvirtual.edu.ve/web/img/c-liogo2.png" alt=""></div>
-        <?php if (isset($user[0])) { ?>
+        <?php // if (isset($user[0])) { ?>
             <div class="dropdown ">
                 <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId"
                         data-bs-toggle="dropdown" aria-haspopup="true"
@@ -15,7 +15,7 @@
                     <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                 </div>
             </div>
-        <?php } ?>
+        <?php // } ?>
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">

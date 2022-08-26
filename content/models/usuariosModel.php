@@ -20,7 +20,7 @@ class usuariosModel extends BD
         $sql = $conexionBD->prepare("SELECT username,email,password 
         FROM users WHERE email=?");
         $sql->execute(array($email));
-        $consultarUsuario = $sql->fetch(PDO::FETCH_LAZY);
+        $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);        
         return $consultarUsuario;
     }
 
@@ -32,7 +32,7 @@ class usuariosModel extends BD
         header("Pragma: no-cache");
         // Si la sesion esta vacía o no hay usuario logueado, redirecciona al login
         if (!isset($_SESSION['email'])) {
-            header("Location: /index");
+            header("Location: /");
         } else {
             // sino, si ese usuario tiene un valor, imprime esa información
             if ($_SESSION['email'] == 'ok') {

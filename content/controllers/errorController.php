@@ -10,14 +10,16 @@ use content\models\usuariosModel as usuarios;
 
 class errorController
 {
+    public function __construct()
+    {
+
+    }
+    
     public function index()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogout();
         $data["titulo"] = "ERROR 500";
-        require_once("view/errorView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/errorView.php')), 200);
     }
 
 }

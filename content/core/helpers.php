@@ -23,7 +23,7 @@ if (!function_exists("routas")) {
                 'controller' => AutenticacionController::class,
                 'subRutas' => [
                     'loginView' => [
-                        'text' => 'index',
+                        'text' => '',
                         'route' => '/',
                         'method' => 'index',
                     ],
@@ -55,6 +55,17 @@ if (!function_exists("routas")) {
                     'homeView' => [
                         'text' => 'home',
                         'route' => '/home',
+                        'method' => 'index'
+                    ]
+                ]
+            ],
+
+            'error' => [
+                'controller' => errorController::class,
+                'subRutas' => [
+                    'errorView' => [
+                        'text' => 'error',
+                        'route' => '/error',
                         'method' => 'index'
                     ]
                 ]

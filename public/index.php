@@ -55,6 +55,9 @@ try {
     $route = $matcher->match($context->getPathInfo());
     $controller = new $route['controller'];
     $method = $route['method'];
+    $logger = new Logger("web");
+    $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
+    $logger->debug(_METHOD_,['routes' => $context->getPathInfo()]);
     $response = $controller->$method($request);
 } catch (ResourceNotFoundException $exception) {
     $response = new Response('Not Found' . $exception, 404);
@@ -62,7 +65,8 @@ try {
     $response = new Response('An error occurred:' . $ex, 500);
 }
 http_response_code($response->getStatusCode());
-/*$logger = new Logger("web");
-$logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
-$logger->debug(__METHOD__,[$response]);*/
+// $logger->debug(_METHOD_,[$response->getStatusCode()]); 
+// $logger->debug(__METHOD__,[$response]); 
+// $logger->debug(_METHOD_,['routes' => $routes, 'method' => $method]);
+// $logger->debug(_METHOD_,['routes' => $context->getPathInfo()]); 
 echo $response->getContent();
