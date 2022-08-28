@@ -194,7 +194,7 @@ if (!function_exists("routas")) {
 
             'reportes' => [
                 'controller' => reportesController::class,
-                'text' => 'lista',
+                'text' => 'reportes',
                 'route' => '/reportes',
                 'method' => 'index',
             ],

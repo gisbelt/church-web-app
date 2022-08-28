@@ -13,7 +13,7 @@
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">
-        <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Cargo:</label>
                 <select class="form-control ms-2" id="location"">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Estado:</label>
                 <select class="form-control ms-2" id="status"">
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
             <form action="" method="post">
                 <div class="input-group">
                     <input type="text" name="" id="miembro" class="form-control" placeholder="Nombre...">
@@ -47,10 +47,10 @@
             </form>
         </div>
 
-        <div class="col-md-2">
-            <div class="center">
+        <div class="col-12 col-sm-12 col-md-2 mb-2 mb-md-0">
+            <div class="center izquierda">
                 <label>Mostrar:</label>
-                <select class="form-control ms-2" id="per_page">
+                <select class="form-control ms-2 w-auto" id="per_page">
                     <option>5</option>
                     <option>10</option>
                     <option selected="">15</option>
@@ -67,17 +67,14 @@
             <table class="table table-bordered table-striped table-responsive table-hover">
                 <thead class="thead-primary">
                 <tr>
+                    <th class="text-center">Acciones</th>
                     <th class="">Nombre</th>
                     <th class="">Correo</th>
-                    <th class="">Cargo</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="">Cargo</th>                    
                 </tr>
                 </thead>
                 <tbody id="myTable">
                 <tr>
-                    <td name="username">Gisbel</td>
-                    <td name="email">gis@gmail.com</td>
-                    <td name="cargo">Lider</td>
                     <td>
                         <form method="POST" class="center">
                             <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
@@ -89,6 +86,9 @@
                             </a>
                         </form>
                     </td>
+                    <td name="username">Gisbel</td>
+                    <td name="email">gis@gmail.com</td>
+                    <td name="cargo">Lider</td>                    
                 </tr>
                 </tbody>
             </table>

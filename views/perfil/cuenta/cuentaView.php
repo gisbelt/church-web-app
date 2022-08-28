@@ -132,7 +132,4 @@
     });
 </script>
 </body>
-<footer>
-    <?php \content\component\footerElement::Footer(); ?>
-</footer>
 </html>
