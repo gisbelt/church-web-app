@@ -15,8 +15,8 @@ use Monolog\Logger;
 if (file_exists("./../vendor/autoload.php")) {
     require_once "./../vendor/autoload.php";
 } else {
-    if (file_exists("content/component/error500.php")) {
-        require_once("content/component/error500.php");
+    if (file_exists("./../content/component/error500.php")) {
+        require_once("./../content/component/error500.php");
     }
     die('<title>Mantenimiento</title>' . $html500);
 }
@@ -65,8 +65,4 @@ try {
     $response = new Response('An error occurred:' . $ex, 500);
 }
 http_response_code($response->getStatusCode());
-// $logger->debug(_METHOD_,[$response->getStatusCode()]); 
-// $logger->debug(__METHOD__,[$response]); 
-// $logger->debug(_METHOD_,['routes' => $routes, 'method' => $method]);
-// $logger->debug(_METHOD_,['routes' => $context->getPathInfo()]); 
 echo $response->getContent();

@@ -2,11 +2,10 @@
 
 namespace content\controllers;
 
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
 use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -20,30 +19,19 @@ class grupoFamiliarController
 
     public function index()
     {
-        $data['titulo'] = 'Grupo Familiar';
-        include_once("view/grupoFamiliar/consultarView.php");
-
-    }
-
-    public function registrar()
-    {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Grupo Familiar';
-        include_once("view/grupoFamiliar/registrarView.php");
+        $data['titulo'] = 'Grupos Familiares';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/consultarView.php')), 200);
+
     }
 
-    public function consultar()
+    public function create()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Grupo Familiar';
-        include_once("view/grupoFamiliar/consultarView.php");
+        $data['titulo'] = 'Registrar Grupos Familiares';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
     }
+
 }
 
 ?>

@@ -6,11 +6,10 @@
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <br>
-<h3 class="text-center mb-4">Listado de amigos <a href="?url=amigos&action=registrar" class="btn btn-success"><i
-                class="bi bi-person-plus"></i></a></h3>
+<h3 class="text-center mb-4">Listado de amigos <a href="/amigos/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">
         <div class="col-md-3">

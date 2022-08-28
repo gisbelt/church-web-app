@@ -12,6 +12,8 @@ use content\controllers\homeController;
 use content\controllers\miembrosController;
 use content\controllers\reportesController;
 use content\controllers\usuariosController;
+use content\controllers\perfilController;
+use content\controllers\errorController;
 
 
 if (!function_exists("routas")) {
@@ -75,13 +77,13 @@ if (!function_exists("routas")) {
                 'controller' => miembrosController::class,
                 'subRutas' => [
                     'listaMiembros' => [
-                        'text' => 'lista',
+                        'text' => 'listaMiembros',
                         'route' => '/miembros',
                         'method' => 'index'
                     ],
 
                     'crearMiembros' => [
-                        'text' => 'registrar',
+                        'text' => 'crearMiembros',
                         'route' => '/miembros/create',
                         'method' => 'create',
                     ],
@@ -92,13 +94,13 @@ if (!function_exists("routas")) {
                 'controller' => amigosController::class,
                 'subRutas' => [
                     'listaAmigos' => [
-                        'text' => 'lista',
+                        'text' => 'listaAmigos',
                         'route' => '/amigos',
                         'method' => 'index',
                     ],
 
                     'crearAmigos' => [
-                        'text' => 'registrar',
+                        'text' => 'crearAmigos',
                         'route' => '/amigos/create',
                         'method' => 'create',
                     ],
@@ -109,13 +111,13 @@ if (!function_exists("routas")) {
                 'controller' => donacionesController::class,
                 'subRutas' => [
                     'listaDonaciones' => [
-                        'text' => 'lista',
+                        'text' => 'listaDonaciones',
                         'route' => '/donaciones',
                         'method' => 'index'
                     ],
 
                     'crearDonaciones' => [
-                        'text' => 'registrar',
+                        'text' => 'crearDonaciones',
                         'route' => '/donaciones/create',
                         'method' => 'create',
                     ],
@@ -160,13 +162,13 @@ if (!function_exists("routas")) {
                 'controller' => grupoFamiliarController::class,
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
-                        'text' => 'lista',
+                        'text' => 'listaGrupoFamiliares',
                         'route' => '/grupo-familiares',
                         'method' => 'index',
                     ],
 
                     'crearGrupoFamiliares' => [
-                        'text' => 'registrar',
+                        'text' => 'crearGrupoFamiliares',
                         'route' => '/grupo-familiares/create',
                         'method' => 'create',
                     ],
@@ -196,11 +198,29 @@ if (!function_exists("routas")) {
                 'route' => '/reportes',
                 'method' => 'index',
             ],
+
             'Bitacora' => [
-                'controller' => reportesController::class,
+                'controller' => bitacoreController::class,
                 'text' => 'lista',
                 'route' => '/Bitacora',
                 'method' => 'index',
+            ],
+
+            'perfil' => [
+                'controller' => perfilController::class,
+                'subRutas' => [
+                    'cuenta' => [
+                        'text' => 'cuenta',
+                        'route' => '/cuenta',
+                        'method' => 'index',
+                    ],
+
+                    'preferencias' => [
+                        'text' => 'preferencias',
+                        'route' => '/preferencias',
+                        'method' => 'preferencias',
+                    ],
+                ]
             ],
         ];
         return json_decode(json_encode($rutas));
