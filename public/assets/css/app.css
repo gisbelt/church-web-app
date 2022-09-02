@@ -3,11 +3,13 @@
     --header-height: 3rem;
     --nav-width: 68px;
     --first-color: #0191b3;
+    --first-color-2: #00819e;
     --first-color-yellow: #f1d302ff;
     --first-color-yellow-red: #ffbf46ff;
     --first-color-light-blue: #94c5ccff;
     --second-color: #235789ff;
     --second-color-2: #525157;
+    
     --white-color: #F7F6FB;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
@@ -21,6 +23,19 @@
     --safety-yellow: #f1d302ff;
     --maximum-yellow-red: #ffbf46ff;
     --black: #020100ff;
+}
+::-webkit-scrollbar{
+    width: 15px;
+}
+::-webkit-scrollbar-track{
+    background-color: var(--first-color);
+}
+::-webkit-scrollbar-thumb{
+    background: #d3d3d3;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #acacac;
 }
 * {
     box-sizing: border-box;
@@ -97,61 +112,61 @@ body{
 
 /* Botones  */
 .btn-success{
-    color: #fff !important;
-    background-color: var(--first-color) !important;
-    border-color: var(--first-color) !important;
+    color: #fff;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
 }
 .btn-success:hover{
     color: #fff;
-    background-color: var(--second-color) !important;
-    border-color: var(--second-color) !important;
+    background-color: var(--first-color-2);
+    border-color: var(--first-color-2);
 }
 .btn-outline-success {
-    color: var(--first-color) !important;
-    border-color: var(--first-color) !important;
+    color: var(--first-color);
+    border-color: var(--first-color);
 }
 .btn-outline-success:hover {
-    color: #fff !important;
-    background-color: var(--first-color) !important;
-    border-color: var(--first-color) !important;
+    color: #fff;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
 }
 .btn-secondary{
-    color: #fff !important;
-    background-color: var(--second-color-2) !important;
-    border-color: var(--second-color-2) !important;
+    color: #fff;
+    background-color: var(--second-color-2);
+    border-color: var(--second-color-2);
 }
 .btn-secondary:hover{
     color: #fff;
-    background-color: #3c4146 !important;
-    border-color: #3c4146 !important;
+    background-color: #3c4146;
+    border-color: #3c4146;
 }
 .btn-outline-secondary {
-    color: var(--second-color-2) !important;
-    border-color: var(--second-color-2) !important;
+    color: var(--second-color-2);
+    border-color: var(--second-color-2);
 }
 .btn-outline-secondary:hover {
-    color: #fff !important;
-    background-color: var(--second-color-2) !important;
-    border-color: var(--second-color-2) !important;
+    color: #fff;
+    background-color: var(--second-color-2);
+    border-color: var(--second-color-2);
 }
 .btn-warning{
-    color: #000 !important;
-    background-color: var(--first-color-yellow) !important;
-    border-color: var(--first-color-yellow) !important;
+    color: #000;
+    background-color: var(--first-color-yellow);
+    border-color: var(--first-color-yellow);
 }
 .btn-warning:hover{
     color: #000;
-    background-color: #ffc720 !important;
-    border-color: #ffc720 !important;
+    background-color: #ffc720;
+    border-color: #ffc720;
 }
 .btn-outline-warning {
-    color: var(--first-color-yellow) !important;
-    border-color: var(--first-color-yellow) !important;
+    color: var(--first-color-yellow);
+    border-color: var(--first-color-yellow);
 }
 .btn-outline-warning:hover {
-    color: #000 !important;
-    background-color: var(--first-color-yellow) !important;
-    border-color: var(--first-color-yellow) !important;
+    color: #000;
+    background-color: var(--first-color-yellow);
+    border-color: var(--first-color-yellow);
 }
 /* Botones  */
 
