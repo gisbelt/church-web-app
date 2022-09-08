@@ -2,11 +2,10 @@
 
 namespace content\controllers;
 
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
 use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -21,23 +20,18 @@ class amigosController
 
     public function index()
     {
+        $user = usuarios::validarLogin();
         $data['titulo'] = 'Amigos';
-        include_once("view/miembros/amigos/consultarView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/amigos/consultarView.php')), 200);
     }
 
-    public function registrar()
+    public function create()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Registra amigos';
-        include_once("view/miembros/amigos/registrarView.php");
+        $data['titulo'] = 'Registrar amigos';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/amigos/registrarView.php')), 200);
     }
 
-    public function consultar()
-    {
-        $user = usuarios::validarLogin();
-        $data['titulo'] = 'Consultar amigos';
-        include_once("view/miembros/amigos/consultarView.php");
-    }
 }
 
 ?>

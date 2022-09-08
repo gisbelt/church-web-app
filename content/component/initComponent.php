@@ -1,8 +1,8 @@
 <div id="body-pd" class="">
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
-        <div class="header_img"><img src="https://www.uptaebvirtual.edu.ve/web/img/c-liogo2.png" alt=""></div>
-        <?php if (isset($user[0])) { ?>
+        <div class="header_img"><img src="../assets/img/logo.png" alt=""></div>
+        <?php // if (isset($user[0])) { ?>
             <div class="dropdown ">
                 <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId"
                         data-bs-toggle="dropdown" aria-haspopup="true"
@@ -10,12 +10,12 @@
                     <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
                 </button>
                 <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
-                    <a class="dropdown-item" href="?url=perfil">Cuenta <i class="bi bi-person text-light"></i> </a>
-                    <a class="dropdown-item" href="?url=perfil&action=preferencias">Preferencias</a>
+                    <a class="dropdown-item" href="/cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
+                    <a class="dropdown-item" href="/preferencias">Preferencias</a>
                     <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                 </div>
             </div>
-        <?php } ?>
+        <?php // } ?>
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
@@ -46,8 +46,8 @@
                             </span>
                         </div>
                         <ul class="hidden item_show_3 itemShow">
-                            <li><a href="?url=miembros&action=registrar">Registro</a></li>
-                            <li><a href="?url=miembros&action=consultar">Listado</a></li>
+                            <li><a href="/miembros/create">Registro</a></li>
+                            <li><a href="/miembros">Listado</a></li>
                             <!-- submenu 2  -->
                             <div class="nav_link" data-number="01">
                                 <span class="nav_name center">
@@ -56,8 +56,8 @@
                                 </span>
                             </div>
                             <ul class="hidden item_show_01 itemShow">
-                                <li><a href="?url=amigos&action=registrar">Registro</a></li>
-                                <li><a href="?url=amigos&action=registrar">Listado</a></li>
+                                <li><a href="/amigos/create">Registro</a></li>
+                                <li><a href="/amigos">Listado</a></li>
                             </ul>
                             <!-- submenu 2  -->
                         </ul>
@@ -71,8 +71,8 @@
                             </span>
                         </div>
                         <ul class="hidden item_show_4 itemShow">
-                            <li><a href="?url=donaciones&action=registrar">Registro</a></li>
-                            <li><a href="?url=donaciones&action=consultar">Listado</a></li>
+                            <li><a href="/donaciones/create">Registro</a></li>
+                            <li><a href="/donaciones">Listado</a></li>
                         </ul>
                     </li>
                     <li>
@@ -84,8 +84,8 @@
                             </span>
                         </div>
                         <ul class="hidden item_show_5 itemShow">
-                            <li><a href="#">Registro</a></li>
-                            <li><a href="#">Listado</a></li>
+                            <li><a href="/actividades/create">Registro</a></li>
+                            <li><a href="/actividades">Listado</a></li>
                             <!-- submenu 2  -->
                             <div class="nav_link" data-number="02">
                                 <span class="nav_name center">
@@ -94,8 +94,8 @@
                                 </span>
                             </div>
                             <ul class="hidden item_show_02 itemShow">
-                                <li><a href="#">Registro</a></li>
-                                <li><a href="#">Listado</a></li>
+                                <li><a href="/asistencias/create">Registro</a></li>
+                                <li><a href="/asistencias">Listado</a></li>
                             </ul>
                             <!-- submenu 2  -->
                         </ul>
@@ -109,22 +109,22 @@
                             </span>
                         </div>
                         <ul class="hidden item_show_6 itemShow">
-                            <li><a href="?url=grupoFamiliar&action=registrar">Registro</a></li>
+                            <li><a href="/grupo-familiares/create">Registro</a></li>
                             <li><a href="#">Celulas</a></li>
                             <li><a href="#">Zonas</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="?url=reportes" class="nav_link" data-number="7">
+                        <a href="/reportes" class="nav_link" data-number="7">
                             <i class='bx bx-bar-chart-alt-2 nav_icon' data-number="7"></i>
                             <span class="nav_name center">Reportes</span>
                         </a>
                     </li>
                     <li>
-                        <div class="nav_link" data-number="8">
+                        <a href="/bitacora" class="nav_link" data-number="8">
                             <i class='bx bx-log-in-circle nav_icon' data-number="8"></i>
                             <span class="nav_name center">Bitacora</span>
-                        </div>
+                        </a>
                     </li>
                     <li>
                         <div class="nav_link" data-number="9">
@@ -135,9 +135,9 @@
                             </span>
                         </div>
                         <ul class="hidden item_show_9 itemShow">
-                            <li><a href="#">Manual</a></li>
-                            <li><a href="#">Mapa</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="/manual">Manual</a></li>
+                            <li><a href="/mapa">Mapa</a></li>
+                            <li><a href="/preguntas-frecuentes">FAQ</a></li>
                         </ul>
                     </li>
                 </div>
@@ -145,7 +145,7 @@
             <div class="dropdownss">
                 <a href="/logout" class="nav_link" data-number="7" title="Cerrar sesión">
                     <i class='bx bx-log-out nav_icon'></i>
-                    <span class="nav_name">SignOut</span>
+                    <span class="nav_name">Cerrar Sesión</span>
                 </a>
             </div>
         </nav>

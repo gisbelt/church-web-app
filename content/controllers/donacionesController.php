@@ -2,11 +2,10 @@
 
 namespace content\controllers;
 
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
 use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -20,23 +19,18 @@ class donacionesController
 
     public function index()
     {
-        $data['titulo'] = 'Donaciones';
-        include_once("view/donaciones/consultarView.php");
-    }
-
-    public function registrar()
-    {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Donaciones';
-        include_once("view/donaciones/registrarView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donaciones/consultarView.php')), 200);
     }
 
-    public function consultar()
+    public function create()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Donaciones';
-        include_once("view/donaciones/consultarView.php");
+        $data['titulo'] = 'Registrar Donaciones';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donaciones/registrarView.php')), 200);
     }
+
 }
 
 ?>

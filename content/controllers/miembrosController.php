@@ -2,11 +2,10 @@
 
 namespace content\controllers;
 
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
 use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -20,22 +19,16 @@ class miembrosController
 
     public function index()
     {
-        $data['titulo'] = 'Miembros';
-        include_once("view/miembros/miembros/consultarView.php");
-    }
-
-    public function registrar()
-    {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Miembros';
-        include_once("view/miembros/miembros/registrarView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/miembros/consultarView.php')), 200);
     }
 
-    public function consultar()
+    public function create()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Miembros';
-        include_once("view/miembros/miembros/consultarView.php");
+        $data['titulo'] = 'Registrar Miembros';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/miembros/registrarView.php')), 200);
     }
 }
 

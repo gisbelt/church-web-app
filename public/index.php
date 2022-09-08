@@ -15,8 +15,8 @@ use Monolog\Logger;
 if (file_exists("./../vendor/autoload.php")) {
     require_once "./../vendor/autoload.php";
 } else {
-    if (file_exists("content/component/error500.php")) {
-        require_once("content/component/error500.php");
+    if (file_exists("./../content/component/error500.php")) {
+        require_once("./../content/component/error500.php");
     }
     die('<title>Mantenimiento</title>' . $html500);
 }
@@ -57,7 +57,7 @@ try {
     $method = $route['method'];
     $logger = new Logger("web");
     $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
-    $logger->debug(__METHOD__,['routes' => $context->getPathInfo()]);
+    $logger->debug(_METHOD_,['routes' => $context->getPathInfo()]);
     $response = $controller->$method($request);
 } catch (ResourceNotFoundException $exception) {
     $response = new Response('Not Found' . $exception, 404);

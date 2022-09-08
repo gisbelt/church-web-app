@@ -6,7 +6,7 @@
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <div class="row m-0 center">
     <div class="col-md-6">
@@ -17,7 +17,7 @@
                     <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
                 </div>
                 <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                    <a href="?url=grupoFamiliar&action=consultar" class="btn btn-outline-success text-center">Ver
+                    <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver
                         listado</a>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <div class="offset-md-3 col-md-6">
     <form method="POST" enctype="multipart/form-data" id="form-cuenta">
@@ -46,13 +46,7 @@
                     </p>
                     <div class="row mt-2">
                         <div class="col-md-3 show_2 hidden">
-                            <select class="form-control mb-2" name="" id="">
-                                <option>0424</option>
-                                <option value="1" name="">0416</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 show_2 hidden">
-                            <input type="text" required class="form-control mb-2" value="5529755" id="" name=""
+                            <input type="text" required class="form-control mb-2" value="04245529755" id="" name=""
                                    placeholder="Teléfono">
                         </div>
                         <div class="col-md-3 show_2 hidden">
@@ -138,7 +132,4 @@
     });
 </script>
 </body>
-<footer>
-    <?php \content\component\footerElement::Footer(); ?>
-</footer>
 </html>

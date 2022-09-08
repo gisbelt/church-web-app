@@ -18,7 +18,7 @@ class usuariosModel extends BD
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("SELECT username,email,password FROM users WHERE email = ?");
         $sql->execute(array($email));
-        $consultarUsuario = $sql->fetch(PDO::FETCH_LAZY);
+        $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);        
         return $consultarUsuario;
     }
 

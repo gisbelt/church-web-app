@@ -6,7 +6,7 @@
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <div class="row m-0">
     <div class="col-md-12">
@@ -17,7 +17,7 @@
                     <h5 class="p-0 absolute text-center">Datos de los amigos</h5>
                 </div>
                 <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                    <a href="?url=amigos&action=consultar" class="btn btn-outline-success text-center">Ver listado</a>
+                    <a href="/amigos" class="btn btn-outline-success text-center">Ver listado</a>
                 </div>
             </div>
 
@@ -120,7 +120,4 @@
     });
 </script>
 </body>
-<footer>
-    <?php \content\component\footerElement::Footer(); ?>
-</footer>
 </html>

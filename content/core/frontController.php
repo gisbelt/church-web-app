@@ -52,12 +52,12 @@ class frontController extends sysconfig
                 return $control->$action();
             } else {
                 /* si no existe redireccionaremos a la pagina de error */
-                die("<script>location='?url=error'</script>");
+                die("<script>location='/error'</script>");
             }
 
         } else {
             /* si no existe redireccionaremos a la pagina de error */
-            die("<script>location='?url=error'</script>");
+            die("<script>location='/error'</script>");
         }
     }
 }
