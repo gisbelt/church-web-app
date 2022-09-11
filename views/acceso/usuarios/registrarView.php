@@ -27,21 +27,19 @@
                 </div>
             <?php } ?>
 
-            <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios">
-
+            <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios" action="">
                 <div class="form-group">
                     <div class="mb-4 input-group">
-                        <input type="text" name="miembro" id="miembro" class="form-control"
-                               placeholder="Buscar miembro...">
+                        <input type="text" name="miembros" id="miembros" class="form-control" placeholder="Buscar miembros...">
                         <span class="input-group-btn">
                             <button type="submit" name="" class="btn btn-secondary">Buscar</button>
                         </span>
                     </div>
+                    <div id="tabla_resultado" class="pointer"></div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value=""
-                           placeholder=" ">
+                    <input type="text" required name="nombreMiembro" class="form-control form-input mb-4" id="nombreMiembro" value="" placeholder=" ">
                     <label for="nombre" class="form-label fw-bold">Nombre:</label>
                 </div>
 
@@ -78,11 +76,9 @@
                     <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                 </div>
             </form>
-        </div>
-
-    </div>
-    <br>
-</div>
+        </div><!--card-body-->
+    </div> <!--card-->
+</div><!--col-->
 <!-- ********************************* -->
 
 <?php \content\component\bottomComponent::Bottom(); ?>

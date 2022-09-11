@@ -47,6 +47,12 @@ if (!function_exists("routas")) {
                         'route' => '/recuperar-contrasena',
                         'method' => 'recuperarContrasena',
                     ],
+
+                    'cambiarContrasena' => [
+                        'text' => 'cambiar-contrasena',
+                        'route' => '/cambiar-contrasena',
+                        'method' => 'cambiarContrasena',
+                    ],
                 ],
             ],
 
@@ -171,6 +177,18 @@ if (!function_exists("routas")) {
                         'text' => 'crearGrupoFamiliares',
                         'route' => '/grupo-familiares/create',
                         'method' => 'create',
+                    ],
+
+                    'buscarMiembro' => [
+                        'text' => 'buscarMiembro',
+                        'route' => '/grupo-familiares/buscar-miembro',
+                        'method' => 'buscarMiembro',
+                    ],
+
+                    'registrarGrupoFamiliar' => [
+                        'text' => 'registrarGrupoFamiliar',
+                        'route' => '/grupo-familiares/registrar-grupoFamiliar',
+                        'method' => 'registrarGrupoFamiliar',
                     ],
                 ]
             ],

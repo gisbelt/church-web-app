@@ -65,11 +65,11 @@ class AutenticacionController
         return new RedirectResponse('/', 302);
     }
 
-    public function resetPassword()
+    public function cambiarContrasena()
     {
         usuarios::validarLogout();
-        $data['titulo'] = 'Resetear Clave';
-        include_once("view/acceso/login/resetPasswordView.php");
+        $data['titulo'] = 'Resetea tu clave';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/resetPasswordView.php')), 200);
     }
 
     public function recuperarContrasena()

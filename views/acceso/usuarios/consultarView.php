@@ -11,8 +11,8 @@
 <br>
 <h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
-<div class="container">
-    <div class="row m-0">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Cargo:</label>
@@ -61,8 +61,8 @@
     </div>
 </div><!--container-->
 
-<div class="mt-4"> <!--container-->
-    <div class="row m-0">
+<div class="container-fluid mt-4"> <!--container-->
+    <div class="row">
         <div class="col-md-12 table-wrap">
             <table class="table table-bordered table-striped table-responsive table-hover">
                 <thead class="thead-primary">

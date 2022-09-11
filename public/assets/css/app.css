@@ -294,6 +294,29 @@ background: #fff; }
 }
 /*Menú Vertical*/
 
+/*Home*/
+/* To do list  */
+.todo-list > li{
+    border-radius: 2px;
+    background-color: #f8f9fa;
+    border-left: 2px solid #e9ecef;
+    color: #495057;
+    margin-bottom: 2px;
+    padding: 10px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+}
+.todo-list .handle{
+    cursor: move;
+    display: inline-block;
+    margin: 0 5px;
+}
+.todoCheck{
+    margin-right: 12px;
+}
+/*Home*/
+
 /* Login */
 .rowLogin{
     /* width: 100vw; */
@@ -353,6 +376,28 @@ background: #fff; }
 }
 /* Cuenta  */
 
+/* Grupo Familiar  */
+.tabla_resultado{
+    position: relative;
+    bottom: 23.5px;
+    border-radius: 2px;
+    list-style: none;
+}
+.tabla_resultado:hover{
+    background-color: var(--first-color-light-blue);
+}
+#tabla_exito{
+    position: relative;
+    bottom: 23px;
+    color: var(--white-color);    
+    width: 100%;
+    padding: 10px; 
+    margin: 0;
+    background-color: var(--first-color-2);
+    border-radius: 2px;
+}
+/* Grupo Familiar  */
+
 /* Reportes  */
 .report{
     border-bottom: 1px solid #5757577e;
@@ -392,6 +437,5 @@ background: #fff; }
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label{
         font-size: 1rem;
-    }
-    
+    }    
 }

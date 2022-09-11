@@ -48,8 +48,8 @@
     </div>
 </div><!--container-->
 
-<div class="mt-4"> <!--container-->
-    <div class="row m-0">
+<div class="container-fluid mt-4"> <!--container-->
+    <div class="row">
         <div class="col-md-12 table-wrap">
             <table class="table table-bordered table-striped table-responsive table-hover">
                 <thead class="thead-primary">
