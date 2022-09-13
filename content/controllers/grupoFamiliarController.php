@@ -29,6 +29,7 @@ class grupoFamiliarController
     public function create()
     {
         $user = usuarios::validarLogin();
+        $consultarMiembroLista = gf::buscarMiembroLista();
         $data['titulo'] = 'Registrar Grupos Familiares';
         return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
     }

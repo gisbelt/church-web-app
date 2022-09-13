@@ -78,24 +78,17 @@
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                <tr class="miembro_id" data-id="1">
-                                    <td name="" id="">22188492</td>
-                                    <td name="" id="miembroLista">Gisbel Torres</td>
+                                <?php foreach($consultarMiembroLista as $m) { ?>
+                                <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
+                                    <td name="" id=""><?php echo $m['cedula']; ?></td>
+                                    <td name="" id="miembroLista"><?php echo $m['nombre'].' '; echo $m['apellido'];?></td>
                                     <td class="center">
                                         <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr class="miembro_id" data-id="2">
-                                    <td name="" id="">22188492</td>
-                                    <td name="" id="miembroLista">Lorena Torres</td>
-                                    <td class="center">
-                                        <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
-                                            <i class="bi bi-plus-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>

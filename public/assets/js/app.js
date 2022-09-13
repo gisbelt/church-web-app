@@ -48,15 +48,29 @@ $(document).ready(function(){
                 type: 'POST',
                 dataType: 'json',
                 success: function(data){
-                    for (const i of Object.keys(data)) {
-                        const campoMiembro = document.getElementById('miembro'); 
-                        const lista = document.querySelector('#tabla_resultado');
-                        campoMiembro.setAttribute('data-id', data[i].id);
-                        lista.innerHTML += `<li class='list-group-item bi bi-chevron-right pointer tabla_resultado'>${data[i].nombre} ${data[i].apellido}</li>`  
-                    }
-                    $('.tabla_resultado').click(function () {
+                    const lista = document.querySelector('#tabla_resultado');
+                    const campoMiembro = document.getElementById('miembro'); 
+
+                    //Filtramos los resultados según el valor que ha insertado el usuario
+                    const datos = data.filter (results => {
+                       return [results]
+                    });                    
+                    
+                    // Recorremos con el map los resultados filtrados para crear cada elemento
+                    lista.innerHTML = datos
+                    .map((result, index) => {
+                        const isSelected = index === 1;
+                        return `<li class='list-group-item bi bi-chevron-right pointer tabla_resultado' data-id='${result.id }'>${result.nombre} ${result.apellido}</li>`                        
+                    })
+                    .join("");
+
+                    // Rellenar campo al hacer click en el elemento creado 
+                    $('.tabla_resultado').click(function (e) {                        
+                        const id = $(this).attr("data-id");
+                        const texto = $(this).text();
+                        campoMiembro.setAttribute('data-id', id);
+                        campoMiembro.value = texto;
                         document.getElementById('add-miembro').classList.remove("disabled"); 
-                        $('#miembro').val($(this).text());                        
                         $('.tabla_resultado').fadeOut(100);
                     });
                 },
@@ -90,7 +104,7 @@ $(document).ready(function(){
                 const miembroID = $(this).parents("tr").attr("data-id");
                 i++;
                 var div = $("<div class='miembro-group"+i+" input-group'></div>");
-                var input = $("<input type='text' required name='miembroId' class='form-control form-input mb-4' id='integrante"+i+"' value='"+miembro+"' placeholder=' ' data-id='"+miembroID+"'> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
+                var input = $("<input type='text' required name='miembroId' class='form-control form-input mb-4 miembroId' id='integrante"+i+"' value='"+miembro+"' placeholder=' ' data-id='"+miembroID+"'> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
                 div.append(input);
                 newMiembro.append(div);
                 $('#miembro').val('');

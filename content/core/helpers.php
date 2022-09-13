@@ -134,13 +134,13 @@ if (!function_exists("routas")) {
                 'controller' => actividadController::class,
                 'subRutas' => [
                     'listaActividades' => [
-                        'text' => 'ista',
+                        'text' => 'listaActividades',
                         'route' => '/actividades',
                         'method' => 'index',
                     ],
 
                     'crearActividades' => [
-                        'text' => 'registrar',
+                        'text' => 'crearActividades',
                         'route' => '/actividades/create',
                         'method' => 'create',
                     ],

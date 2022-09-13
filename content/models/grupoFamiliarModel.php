@@ -22,6 +22,20 @@ class grupoFamiliarModel extends BD
         $this->id_cliente=$id_cliente;
     }
 
+    //Buscar miembro que no tenga grupo familiar (PARA LA LISTA)
+    public static function buscarMiembroLista()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare('SELECT p.nombre, p.apellido,  p.cedula, m.id as idMiembro
+        FROM miembros  m
+        INNER JOIN perfiles as p ON p.miembro_id=m.id
+        WHERE m.id
+        not IN (select gfm.miembro_id from grupo_familiare_miembro as gfm)');
+        $sql->execute();
+        $buscarMiembro = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $buscarMiembro;
+    }
+
     //Buscar miembro que no tenga grupo familiar 
     public static function buscarMiembro($nombreMiembro)
     {
@@ -41,6 +55,7 @@ class grupoFamiliarModel extends BD
                 'id' => $key['idMiembro'], 
                 'nombre' =>  $key['nombreMiembro'], 
                 'apellido' =>  $key['apellidoMiembro'], 
+                'cedula' =>  $key['cedulaMiembro'],
             );
         }
 

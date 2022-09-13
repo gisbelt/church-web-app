@@ -242,7 +242,7 @@ background: #fff; }
 .table tbody th, .table tbody td {
     border: none;
     padding: 18px 10px; 
-    border-bottom: 3px solid #f8f9fd;
+    border-bottom: 0px solid #f8f9fd;
     font-size: 14px; 
 }
 .table-modal{
