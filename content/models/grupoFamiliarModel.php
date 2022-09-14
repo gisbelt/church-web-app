@@ -40,7 +40,7 @@ class grupoFamiliarModel extends BD
     public static function buscarMiembro($nombreMiembro)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare('SELECT p.nombre as nombreMiembro, p.apellido as apellidoMiembro, m.id as idMiembro
+        $sql = $conexionBD->prepare('SELECT p.nombre as nombreMiembro, p.apellido as apellidoMiembro, p.cedula as cedulaMiembro, m.id as idMiembro
         FROM miembros  m
         INNER JOIN perfiles as p ON p.miembro_id=m.id
         WHERE m.id

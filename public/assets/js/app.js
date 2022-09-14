@@ -60,7 +60,13 @@ $(document).ready(function(){
                     lista.innerHTML = datos
                     .map((result, index) => {
                         const isSelected = index === 1;
-                        return `<li class='list-group-item bi bi-chevron-right pointer tabla_resultado' data-id='${result.id }'>${result.nombre} ${result.apellido}</li>`                        
+                        return `
+                        <li 
+                        class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
+                        data-id='${result.id }'
+                        >${result.cedula} - ${result.nombre} ${result.apellido}
+                        </li>
+                        `                        
                     })
                     .join("");
 
