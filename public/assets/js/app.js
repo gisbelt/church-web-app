@@ -26,6 +26,70 @@ $(document).ready(function(){
 
 // ********************************************************************************************************************
 
+    //Usuarios
+    // Buscar miembro
+    const buscarUsuario = () =>{       
+        $("#buscarMiembro").keyup(function () {
+            const valorBusqueda = this.value;
+            var v = $(this).val().length;
+            if (v > 0) {
+                obtener_registros(valorBusqueda);
+            } else {
+                $(".tabla_resultado").fadeOut(100);
+            }
+        });              
+        const obtener_registros = (miembros) => {
+            const buscarMiembro = document.getElementById('buscarMiembro').value;
+            $.ajax({
+                url: '/usuarios/buscar-usuario',
+                data:{
+                    'buscarMiembro':buscarMiembro
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    const lista = document.querySelector('#tabla_resultado_usuarios');
+                    const campoMiembro = document.getElementById('nombreMiembro'); 
+                    const buscarMiembro = document.getElementById('buscarMiembro');
+
+                    //Filtramos los resultados según el valor que ha insertado el usuario
+                    const datos = data.filter (results => {
+                       return [results]
+                    });                    
+                    
+                    // Recorremos con el map los resultados filtrados para crear cada elemento
+                    lista.innerHTML = datos
+                    .map((result, index) => {
+                        const isSelected = index === 1;
+                        return `
+                        <li 
+                        class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
+                        data-id='${result.id }'
+                        >${result.nombre} ${result.apellido}</li>
+                        `                        
+                    })
+                    .join("");
+
+                    // Rellenar campo al hacer click en el elemento creado 
+                    $('.tabla_resultado').click(function (e) {                        
+                        const id = $(this).attr("data-id");
+                        const texto = $(this).text();
+                        campoMiembro.setAttribute('data-id', id);
+                        campoMiembro.value = texto;
+                        campoMiembro.focus();
+                        buscarMiembro.value = '';
+                        $('.tabla_resultado').fadeOut(100);
+                    });
+                },
+                error: function(){} 
+            })
+        }        
+    }
+    buscarUsuario();
+    //Usuarios
+
+// ********************************************************************************************************************
+
     //Grupo Familiar
     // Buscar miembro que no tenga grupo familiar 
     const buscarMiembroGrupoFamiliar = () =>{       
@@ -37,7 +101,7 @@ $(document).ready(function(){
             } else {
                 $(".tabla_resultado").fadeOut(100);
             }
-        });        
+        });              
         const obtener_registros = (miembros) => {
             const nombreMiembro = document.getElementById('miembro').value;
             $.ajax({
@@ -64,8 +128,7 @@ $(document).ready(function(){
                         <li 
                         class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
                         data-id='${result.id }'
-                        >${result.cedula} - ${result.nombre} ${result.apellido}
-                        </li>
+                        >${result.cedula} - ${result.nombre} ${result.apellido}</li>
                         `                        
                     })
                     .join("");
@@ -76,6 +139,7 @@ $(document).ready(function(){
                         const texto = $(this).text();
                         campoMiembro.setAttribute('data-id', id);
                         campoMiembro.value = texto;
+                        campoMiembro.focus();
                         document.getElementById('add-miembro').classList.remove("disabled"); 
                         $('.tabla_resultado').fadeOut(100);
                     });
@@ -86,7 +150,7 @@ $(document).ready(function(){
     }
     buscarMiembroGrupoFamiliar();
 
-    // Agregar miembro a grupo familiar   
+    // Agregar item de miembro a grupo familiar   
     const nuevoMiembro = (addID, NewMiembro) =>{
         const add = document.getElementById(addID), 
         newMiembro = $(NewMiembro);

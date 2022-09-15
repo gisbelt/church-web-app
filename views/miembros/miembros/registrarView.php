@@ -45,7 +45,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group input-daterange" id="datepicker">
-                                            <input type="text" class="form-control form-input mb-4" id="fn" value="" placeholder=" ">
+                                            <input type="text" class="form-control form-input mb-4" id="fn" value="dd/mm/aaaa" placeholder=" ">
                                             <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
                                             <span class="input-group-append">
                                                 <span class="input-group-text bg-transparent border-0">
@@ -118,7 +118,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fpf" value="" placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fpf" value="dd/mm/aaaa" placeholder=" ">
                                     <label for="fpf" class="form-label fw-bold">Fecha de paso de Fe:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
@@ -129,7 +129,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fb" value="" placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fb" value="dd/mm/aaaa" placeholder=" ">
                                     <label for="fb" class="form-label fw-bold">Fecha de Bautismo:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">

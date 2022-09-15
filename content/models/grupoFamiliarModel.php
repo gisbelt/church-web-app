@@ -45,7 +45,7 @@ class grupoFamiliarModel extends BD
         INNER JOIN perfiles as p ON p.miembro_id=m.id
         WHERE m.id
         not IN (select gfm.miembro_id from grupo_familiare_miembro as gfm)
-        AND (p.nombre LIKE ? or p.apellido LIKE ?) LIMIT 5');
+        AND (p.nombre LIKE ? or p.apellido LIKE ?)');
         $sql->execute(array("%".$nombreMiembro."%","%".$nombreMiembro."%"));
         $buscarMiembro = $sql->fetchAll(PDO::FETCH_ASSOC); 
 

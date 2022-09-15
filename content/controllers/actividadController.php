@@ -22,7 +22,7 @@ class actividadController
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Actividades';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donacactividadesiones/consultarView.php')), 200);
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/consultarView.php')), 200);
     }
 
     public function create()

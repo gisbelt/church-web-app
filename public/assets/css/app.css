@@ -171,6 +171,9 @@ body{
 /* Botones  */
 
 /* Formularios  */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
 .input-group{
     position: relative;
     --color: #5757577e;

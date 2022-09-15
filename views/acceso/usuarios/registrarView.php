@@ -30,12 +30,12 @@
             <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios" action="">
                 <div class="form-group">
                     <div class="mb-4 input-group">
-                        <input type="text" name="miembros" id="miembros" class="form-control" placeholder="Buscar miembros...">
+                        <input type="text" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Buscar miembros...">
                         <span class="input-group-btn">
                             <button type="submit" name="" class="btn btn-secondary">Buscar</button>
                         </span>
                     </div>
-                    <div id="tabla_resultado" class="pointer"></div>
+                    <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                 </div>
 
                 <div class="form-group">

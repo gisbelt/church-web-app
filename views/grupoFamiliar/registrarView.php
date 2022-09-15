@@ -34,7 +34,7 @@
                                 <span class="input-group-btn">
                                     <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modelId">Ver lista</i></button>
                                 </span>
-                                <input type="text" name="nombreMiembro" id="miembro" class="form-control" placeholder="Buscar Miembro..." value="">
+                                <input type="search" name="nombreMiembro" id="miembro" class="form-control" placeholder="Buscar Miembro..." value="">
                                 <span class="input-group-btn">
                                     <a id="add-miembro" class="btn btn-warning add disabled">Añadir <i class="bi bi-plus-circle"></i></a>
                                 </span>

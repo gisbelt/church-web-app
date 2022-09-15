@@ -150,15 +150,15 @@ if (!function_exists("routas")) {
             'asitencias' => [
                 'controller' => asistenciasController::class,
                 'subRutas' => [
-                    'listaAsitencias' => [
-                        'text' => 'lista',
-                        'route' => '/asitencias',
+                    'listaAsistencias' => [
+                        'text' => 'listaAsistencias',
+                        'route' => '/asistencias',
                         'method' => 'index',
                     ],
 
-                    'crearAsitencias' => [
-                        'text' => 'Registrar',
-                        'route' => '/asitencias/create',
+                    'crearAsistencias' => [
+                        'text' => 'crearAsistencias',
+                        'route' => '/asistencias/create',
                         'method' => 'create',
                     ],
                 ]
@@ -206,6 +206,12 @@ if (!function_exists("routas")) {
                         'text' => 'registrar',
                         'route' => '/usuarios/create',
                         'method' => 'create',
+                    ],
+
+                    'buscarUsuario' => [
+                        'text' => 'buscarUsuario',
+                        'route' => '/usuarios/buscar-usuario',
+                        'method' => 'buscarUsuario',
                     ],
                 ]
             ],

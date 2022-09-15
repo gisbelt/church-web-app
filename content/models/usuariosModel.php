@@ -12,6 +12,7 @@ class usuariosModel extends BD
     public $username;
     public $email;
     public $password = "password";
+    public $nombreMiembro;
 
     //Login
     public static function login($email)
@@ -60,14 +61,23 @@ class usuariosModel extends BD
     public static function buscarMiembro($nombreMiembro)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT p.nombre as nombreMiembro, m.id as idMiembro
+        $sql = $conexionBD->prepare("SELECT p.nombre as nombreMiembro, p.apellido as apellidoMiembro, p.cedula as cedulaMiembro, m.id as idMiembro
         FROM miembros as m
         INNER JOIN perfiles as p ON p.miembro_id=m.id
-        WHERE p.nombre LIKE '%".$nombreMiembro."%'");  
-        $sql->execute(array($nombreMiembro));
-        $buscarMiembro = $sql->fetch(PDO::FETCH_ASSOC); 
-        $return = array (id => $buscarMiembro['idMiembro'], nombre => $buscarMiembro['nombreMiembro']);
-        die(json_encode($return));
+        WHERE p.nombre LIKE ? or p.apellido LIKE ?");  
+        $sql->execute(array("%".$nombreMiembro."%","%".$nombreMiembro."%"));
+        $buscarMiembro = $sql->fetchAll(PDO::FETCH_ASSOC); 
+        $result = [];
+        foreach($buscarMiembro as $key){
+            $result[] = array (
+                'id' => $key['idMiembro'], 
+                'nombre' =>  $key['nombreMiembro'], 
+                'apellido' =>  $key['apellidoMiembro'], 
+                'cedula' =>  $key['cedulaMiembro'],
+            );
+        }
+
+        echo json_encode($result);
     }
 
 }
