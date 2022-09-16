@@ -8,6 +8,7 @@ $(document).ready(function () {
             url: $(this).attr('action'),
             data: $(this).serialize(),
         }).done(function (json) {
+            console.log(json);
             let response = JSON.parse(json);
             if (response.code == 422) {
                 let html = '<ul>';

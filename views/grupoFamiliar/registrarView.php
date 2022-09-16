@@ -98,7 +98,6 @@ $this->title = 'Registrar grupo familiar'
     </div>
 </div>
 <!-- Modal  -->
-
 <script>
     $(document).ready(function () {
         $("#nombreGrupoFamiliar").focus();

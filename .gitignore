@@ -1,5 +1,5 @@
 /content/config/conection/
-/content/config/settings
+/content/config/settings/sysConfig.php
 /content/Logger
 vendor
 .idea
