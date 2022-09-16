@@ -17,8 +17,18 @@ $this->title = 'Home'
             </p>
         </div>
     </div>
-    <section class="row">
-        <div class="col-md-">
-        </div>
-    </section>
+    <div class="row">
+        <!-- left col -->
+        <section class="col-lg-6">
+            <!-- NOT FINISHED YET -->
+        </section>
+        <!-- left col -->
+
+
+        <!-- right col -->
+        <section class="col-lg-6"">
+            <!-- NOT FINISHED YET -->
+        </section>
+        <!-- right col -->
+    </div>
 </div>
