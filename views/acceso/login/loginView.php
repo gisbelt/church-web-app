@@ -4,6 +4,7 @@
 
 $this->title = 'Iniciar session'
 ?>
+<div class="container">
 <div class="row rowLogin center">
     <div class="col-md-4">
         <div class="card">
@@ -27,26 +28,29 @@ $this->title = 'Iniciar session'
                 <!-- Creamos Formulario: !crt-form-login -->
                 <!-- Enviamos los datos del formulario a través del método post -->
                 <form method="post" action="/login" id="login-form" name="login-form">
-                    <div class="form-group p-1">
-                        <input type="text" class="form-control form-input mb-2" name="email" id="email"
-                               aria-describedby="emailHelp" placeholder=" " value="" autocomplete="off">
-                        <label for="email" class="form-label fw-bold mx-auto">Correo:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control form-input mb-2" name="email" id="email" aria-describedby="emailHelp" placeholder=" " value="admin@gmail.com" autocomplete="off">
+                        <label for="email" class="form-label fw-bold">Correo:</label>
                     </div>
-                    <div class="form-group p-1">
-                        <input type="password" class="form-control form-input mb-2" name="password" id="password"
-                               placeholder=" " value="" autocomplete="off">
-                        <label for="password" class="form-label fw-bold  mx-auto">Contraseña:</label>
+                    <br>
+                    <div class="form-group">
+                        <input type="password" class="form-control form-input mb-2" name="password" id="password" placeholder=" " value="123456" autocomplete="off">
+                        <label for="password" class="form-label fw-bold">Contraseña:</label>
                     </div>
-                    <a href="/recuperar-contrasena" class="text-info text-decoration-underline">¿Olvidaste la
-                        constraseña?</a>
-                    <button type="submit" id="login" name="login" class="btn btn-primary w-100 mt-2">Iniciar Sesión
+                    <button type="submit" id="login" name="login" class="btn btn-primary w-100 mt-3">Iniciar Sesión
                     </button>
                 </form>
+                <div class="position-relative mb-2 mt-4">
+                    <hr class="position-absolute top-0 start-0" width="43%"> 
+                    <i class="bi bi-circle lh-lg"></i>
+                    <hr class="position-absolute top-0 end-0" width="43%">
+                </div> 
+                <a href="/recuperar-contrasena" class="text-info underline-hover">¿Olvidaste la constraseña?</a>    
             </div>
         </div>
     </div>
 </div>
-
+</div>
 <!--Waves Container-->
 <div>
     <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
