@@ -59,11 +59,9 @@ class AutenticacionController extends Controller
                 } else {
                     if (!$consultarUsuario) {
                         $usuarioModel->addError("email", "El email es incorrecto");
-                        return false;
                     }
                     if (!password_verify($password, $consultarUsuario['password'])) {
                         $usuarioModel->addError("password", "La clave es incorrecta");
-                        return false;
                     }
                     $data = [
                         'title' => 'Verifique sus datos',
