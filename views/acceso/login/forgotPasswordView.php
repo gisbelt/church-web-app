@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body class="p-0 m-0">
 <div class="containerBackground">
     <div class="container">
         <div class="row rowLogin center">
@@ -26,7 +19,7 @@
                 </div>
 
             </div>
-        </div> 
+        </div>
     </div>
     <!--Waves Container-->
     <div>
@@ -44,12 +37,5 @@
         </svg>
     </div>
     <!--Waves end-->
-</div><!-- containerBackground -->
-<!-- ********************************* -->
 
-<?php \content\component\bottomComponent::Bottom(); ?>
-</body>
-<footer>
-    <?php \content\component\footerElement::Footer(); ?>
-</footer>
-</html>
+</div>

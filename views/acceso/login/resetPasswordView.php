@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body class="p-0 m-0">
-<div class="containerBackground">
-    <div class="container">
-        <div class="row rowLogin center">
+    <div class="row rowLogin center">
 
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header mb-2">
-                        Resetea tu clave
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" >
-                            <div class="form-group">
-                                <input type="password" class="form-control form-input mb-2" name="" id="clave" placeholder=" ">
-                                <label for="clave" class="form-label">Escribe tu contraseña:</label>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <input type="password" class="form-control form-input" name="" id="clave" placeholder=" ">
-                                <label for="clave" class="form-label">Confirmar contraseña:</label>
-                            </div>
-                            <button type="submit" name="" class="btn btn-primary w-100 mt-3">Resetear clave</button>
-                        </form>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header mb-2">
+                    Resetea tu clave
+                </div>
+                <div class="card-body">
+                    <form method="POST" >
+                        <div class="form-group">
+                            <input type="password" class="form-control form-input mb-2" name="clave" id="clave" placeholder=" " autocomplete="off">
+                            <label for="clave" class="form-label">Escribe tu contraseña:</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="password" class="form-control form-input" name="clave" id="clave" placeholder=" " autocomplete="off">
+                            <label for="clave" class="form-label">Confirmar contraseña:</label>
+                        </div>
+                        <button type="submit" name="" class="btn btn-primary w-100 mt-3">Resetear clave</button>
+                    </form>
 
                     </div>
                 </div>
 
             </div>
-        </div>   
+        </div>
     </div>
     <!--Waves Container-->
     <div>
@@ -49,12 +40,3 @@
             </g>
         </svg>
     </div>
-    <!--Waves end-->
-</div><!-- containerBackground -->
-<!-- ********************************* -->
-<?php \content\component\bottomComponent::Bottom(); ?>
-</body>
-<footer>
-    <?php \content\component\footerElement::Footer(); ?>
-</footer>
-</html>

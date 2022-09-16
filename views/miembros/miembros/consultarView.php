@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+$this->title = 'miembros';
+?>
 <br>
 <h3 class="text-center mb-4">Listado de miembros <a href="/miembros/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
@@ -73,7 +66,7 @@
                     <th class="">Dirección</th>
                     <th class="">Profesión</th>
                     <th class="">Paso de Fe</th>
-                    <th class="">Bautismo</th>                    
+                    <th class="">Bautismo</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">
@@ -95,7 +88,7 @@
                     <td name="direccion">Calle 9 Santa Isabel</td>
                     <td name="profesion">Captación, tratamiento y suministro de agua</td>
                     <td name="fpf">05/11/2019</td>
-                    <td name="fb">03/20/2017</td>                    
+                    <td name="fb">03/20/2017</td>
                 </tr>
                 </tbody>
             </table>

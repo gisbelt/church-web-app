@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"];  ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-    <!-- Menú -->
-    <?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
-<div class="container pt-4">
     <h3 class="text-center mb-4">Reportes</h3>
     <div class="row">
         <div class="col-md-12">
@@ -54,10 +43,3 @@
             </section>         
         </div>            
     </div>
-</div>
-
-<!-- ********************************* -->
-
-<?php \content\component\bottomComponent::Bottom(); ?>
-</body>
-</html>

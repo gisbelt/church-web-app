@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '08eec7690c502ce40ed688b97a7033e0273a4d23',
+    'reference' => '66f240b39418b038e21e7a0fa0f574ddb71da79d',
     'name' => 'sistema/gestion',
   ),
   'versions' => 
@@ -52,7 +52,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '08eec7690c502ce40ed688b97a7033e0273a4d23',
+      'reference' => '66f240b39418b038e21e7a0fa0f574ddb71da79d',
     ),
     'symfony/deprecation-contracts' => 
     array (
@@ -65,12 +65,12 @@
     ),
     'symfony/http-foundation' => 
     array (
-      'pretty_version' => 'v5.4.11',
-      'version' => '5.4.11.0',
+      'pretty_version' => 'v5.4.12',
+      'version' => '5.4.12.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0a5868e0999e9d47859ba3d918548ff6943e6389',
+      'reference' => 'f4bfe9611b113b15d98a43da68ec9b5a00d56791',
     ),
     'symfony/polyfill-mbstring' => 
     array (
