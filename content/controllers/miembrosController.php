@@ -32,14 +32,14 @@ class miembrosController extends Controller
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Miembros';
-        include_once("view/miembros/miembros/registrarView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/miembros/consultarView.php')), 200);
     }
 
-    public function consultar()
+    public function create()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Miembros';
-        include_once("view/miembros/miembros/consultarView.php");
+        $data['titulo'] = 'Registrar Miembros';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/miembros/registrarView.php')), 200);
     }
 }
 

@@ -2,8 +2,13 @@
 
 namespace content\controllers;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class asistenciasController
 {
@@ -14,8 +19,15 @@ class asistenciasController
 
     public function index()
     {
-        $data['titulo'] = 'Bitacora';
-        return new RedirectResponse('/home', 302);
-        //include_once("view/miembros/amigos/consultarView.php");
+        $user = usuarios::validarLogin();
+        $data['titulo'] = 'Asistencias';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/asistencias/consultarView.php')), 200);
+    }
+
+    public function create()
+    {
+        $user = usuarios::validarLogin();
+        $data['titulo'] = 'Registrar Asistencias';
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/asistencias/registrarView.php')), 200);
     }
 }

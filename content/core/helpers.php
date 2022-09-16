@@ -12,6 +12,8 @@ use content\controllers\homeController;
 use content\controllers\miembrosController;
 use content\controllers\reportesController;
 use content\controllers\usuariosController;
+use content\controllers\perfilController;
+use content\controllers\errorController;
 
 
 if (!function_exists("routas")) {
@@ -19,7 +21,6 @@ if (!function_exists("routas")) {
     function rutas()
     {
         $rutas = [
-
             'login' => [
                 'controller' => AutenticacionController::class,
                 'subRutas' => [
@@ -50,6 +51,13 @@ if (!function_exists("routas")) {
                         'method' => 'recuperarContrasena',
                         'action' => 'get'
                     ],
+
+                    'cambiarContrasena' => [
+                        'text' => 'cambiar-contrasena',
+                        'route' => '/cambiar-contrasena',
+                        'method' => 'cambiarContrasena',
+                        'action' => 'get'
+                    ],
                 ],
             ],
 
@@ -65,11 +73,23 @@ if (!function_exists("routas")) {
                 ]
             ],
 
+            'error' => [
+                'controller' => errorController::class,
+                'subRutas' => [
+                    'errorView' => [
+                        'text' => 'error',
+                        'route' => '/error',
+                        'method' => 'index',
+                        'action' => 'get'
+                    ]
+                ]
+            ],
+
             'miembros' => [
                 'controller' => miembrosController::class,
                 'subRutas' => [
                     'listaMiembros' => [
-                        'text' => 'miembros',
+                        'text' => 'lista-miembros',
                         'route' => '/miembros',
                         'method' => 'index',
                         'action' => 'get'
@@ -88,7 +108,7 @@ if (!function_exists("routas")) {
                 'controller' => amigosController::class,
                 'subRutas' => [
                     'listaAmigos' => [
-                        'text' => 'amigos',
+                        'text' => 'lista-amigos',
                         'route' => '/amigos',
                         'method' => 'index',
                         'action' => 'get'
@@ -107,7 +127,7 @@ if (!function_exists("routas")) {
                 'controller' => donacionesController::class,
                 'subRutas' => [
                     'listaDonaciones' => [
-                        'text' => 'donaciones',
+                        'text' => 'lista-donaciones',
                         'route' => '/donaciones',
                         'method' => 'index',
                         'action' => 'get'
@@ -144,18 +164,18 @@ if (!function_exists("routas")) {
             'asitencias' => [
                 'controller' => asistenciasController::class,
                 'subRutas' => [
-                    'listaAsitencias' => [
-                        'text' => 'actividades-create',
-                        'route' => '/asitencias',
+                    'listaAsistencias' => [
+                        'text' => 'listaAsistencias',
+                        'route' => '/asistencias',
                         'method' => 'index',
                         'action' => 'get'
                     ],
 
-                    'crearAsitencias' => [
-                        'text' => 'actividades-create',
-                        'route' => '/asitencias/create',
+                    'crearAsistencias' => [
+                        'text' => 'crearAsistencias',
+                        'route' => '/asistencias/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
                     ],
                 ]
             ],
@@ -164,16 +184,30 @@ if (!function_exists("routas")) {
                 'controller' => grupoFamiliarController::class,
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
-                        'text' => 'grupos-create',
+                        'text' => 'listaGrupoFamiliares',
                         'route' => '/grupo-familiares',
                         'method' => 'index',
                         'action' => 'get'
                     ],
 
                     'crearGrupoFamiliares' => [
-                        'text' => 'grupos-create',
+                        'text' => 'crearGrupoFamiliares',
                         'route' => '/grupo-familiares/create',
                         'method' => 'create',
+                        'action' => 'get'
+                    ],
+
+                    'buscarMiembro' => [
+                        'text' => 'buscarMiembro',
+                        'route' => '/grupo-familiares/buscar-miembro',
+                        'method' => 'buscarMiembro',
+                        'action' => 'get'
+                    ],
+
+                    'registrarGrupoFamiliar' => [
+                        'text' => 'registrarGrupoFamiliar',
+                        'route' => '/grupo-familiares/registrar-grupoFamiliar',
+                        'method' => 'registrarGrupoFamiliar',
                         'action' => 'get'
                     ],
                 ]
@@ -195,6 +229,13 @@ if (!function_exists("routas")) {
                         'method' => 'create',
                         'action' => 'get'
                     ],
+
+                    'buscarUsuario' => [
+                        'text' => 'buscarUsuario',
+                        'route' => '/usuarios/buscar-usuario',
+                        'method' => 'buscarUsuario',
+                        'action' => 'get'
+                    ],
                 ]
             ],
 
@@ -205,12 +246,32 @@ if (!function_exists("routas")) {
                 'method' => 'index',
                 'action' => 'get'
             ],
+
             'Bitacora' => [
-                'text' => 'bitacora',
-                'controller' => reportesController::class,
+                'controller' => bitacoreController::class,
+                'text' => 'lista',
                 'route' => '/Bitacora',
                 'method' => 'index',
                 'action' => 'get'
+            ],
+
+            'perfil' => [
+                'controller' => perfilController::class,
+                'subRutas' => [
+                    'cuenta' => [
+                        'text' => 'cuenta',
+                        'route' => '/cuenta',
+                        'method' => 'index',
+                        'action' => 'get'
+                    ],
+
+                    'preferencias' => [
+                        'text' => 'preferencias',
+                        'route' => '/preferencias',
+                        'method' => 'preferencias',
+                        'action' => 'get'
+                    ],
+                ]
             ],
         ];
         return json_decode(json_encode($rutas));

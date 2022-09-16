@@ -25,5 +25,4 @@ class database
         return self::$instancia;
     }
 }
-
 ?>

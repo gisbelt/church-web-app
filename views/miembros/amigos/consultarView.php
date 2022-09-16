@@ -6,14 +6,13 @@
 </head>
 <body>
 <!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
+<?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <br>
-<h3 class="text-center mb-4">Listado de amigos <a href="?url=amigos&action=registrar" class="btn btn-success"><i
-                class="bi bi-person-plus"></i></a></h3>
+<h3 class="text-center mb-4">Listado de amigos <a href="/amigos/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">
-        <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Sexo:</label>
                 <select class="form-control ms-2" id="sexo">
@@ -24,7 +23,7 @@
             </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-12 col-sm-12 col-md-7 mb-2 mb-md-0">
             <form action="" method="post">
                 <div class="input-group">
                     <input type="text" name="" id="miembro" class="form-control" placeholder="Nombre...">
@@ -35,10 +34,10 @@
             </form>
         </div>
 
-        <div class="col-md-2">
-            <div class="center">
+        <div class="col-12 col-sm-12 col-md-2 mb-2 mb-md-0">
+            <div class="center izquierda">
                 <label>Mostrar:</label>
-                <select class="form-control ms-2" id="per_page">
+                <select class="form-control ms-2 w-auto" id="per_page">
                     <option>5</option>
                     <option>10</option>
                     <option selected="">15</option>
@@ -49,29 +48,23 @@
     </div>
 </div><!--container-->
 
-<div class="mt-4"> <!--container-->
-    <div class="row m-0">
+<div class="container-fluid mt-4"> <!--container-->
+    <div class="row">
         <div class="col-md-12 table-wrap">
             <table class="table table-bordered table-striped table-responsive table-hover">
                 <thead class="thead-primary">
                 <tr>
+                    <th class="text-center">Acciones</th>
                     <th class="">Cédula</th>
                     <th class="">Nombre</th>
                     <th class="">Sexo</th>
                     <th class="">Dirección</th>
                     <th class="">Teléfono</th>
-                    <th class="">Fecha de Nacimiento</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="">Fecha de Nacimiento</th>                    
                 </tr>
                 </thead>
                 <tbody id="myTable">
                 <tr>
-                    <td name="cedula">22188492</td>
-                    <td name="noombre">Gisbel Torres</td>
-                    <td name="sexo">Femenino</td>
-                    <td name="direccion">Calle 9 Santa Isabel</td>
-                    <td name="telefono">04245289570</td>
-                    <td name="fn">05/11/2019</td>
                     <td>
                         <form method="POST" class="center">
                             <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
@@ -83,6 +76,12 @@
                             </a>
                         </form>
                     </td>
+                    <td name="cedula">22188492</td>
+                    <td name="noombre">Gisbel Torres</td>
+                    <td name="sexo">Femenino</td>
+                    <td name="direccion">Calle 9 Santa Isabel</td>
+                    <td name="telefono">04245289570</td>
+                    <td name="fn">05/11/2019</td>                    
                 </tr>
                 </tbody>
             </table>

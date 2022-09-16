@@ -9,7 +9,6 @@ use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Symfony\Component\HttpFoundation\Response;
 
 class AutenticacionController extends Controller
 {
@@ -116,14 +115,14 @@ class AutenticacionController extends Controller
         Aplicacion::$app->response->redirect('/');
     }
 
-    public function resetPassword()
+    public function cambiarContrasena()
     {
         /*usuarios::validarLogout();
         $data['titulo'] = 'Resetear Clave';
         include_once("view/acceso/login/resetPasswordView.php");*/
         usuarios::validarLogout();
         $data = [
-            'name' => 'Reset password'
+            'name' => 'Resetea tu clave'
         ];
         $this->setLayout('auth');
         return $this->render('acceso/login/resetPasswordView', $data);
