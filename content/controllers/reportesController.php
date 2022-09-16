@@ -17,7 +17,7 @@ class reportesController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AutenticacionMiddleware());
+        $this->registerMiddleware(new AutenticacionMiddleware(['index']));
     }
 
     public function index()

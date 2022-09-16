@@ -18,6 +18,8 @@ class miembrosController extends Controller
     public function __construct()
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['registrar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
     public function index()

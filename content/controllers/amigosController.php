@@ -2,6 +2,8 @@
 
 namespace content\controllers;
 
+use content\core\Controller;
+use content\core\middlewares\AutenticacionMiddleware;
 use content\models\usuariosModel as usuarios;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,12 +12,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class amigosController
+class amigosController extends Controller
 {
 
     public function __construct()
     {
-
+        $this->registerMiddleware(new AutenticacionMiddleware(['index']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
     public function index()

@@ -7,7 +7,7 @@ use content\core\Aplicacion;
     <title><?php echo $this->title;?></title>
     <?php \content\component\headElement::Heading(); ?>
 </head>
-<body>
+<body style="width:100vw;">
 <!-- Menú -->
 <?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
