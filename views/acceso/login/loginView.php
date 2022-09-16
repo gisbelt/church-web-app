@@ -30,12 +30,12 @@ $this->title = 'Home'
                 <form method="post" action="/login" id="login-form" name="login-form">
                     <div class="form-group p-1">
                         <input type="text" class="form-control form-input mb-2" name="email" id="email"
-                               aria-describedby="emailHelp" placeholder=" " value="" autocomplete="off">
+                               aria-describedby="emailHelp" placeholder=" " value="admin@gmail.com" autocomplete="off">
                         <label for="email" class="form-label fw-bold mx-auto">Correo:</label>
                     </div>
                     <div class="form-group p-1">
                         <input type="password" class="form-control form-input mb-2" name="password" id="password"
-                               placeholder=" " value="" autocomplete="off">
+                               placeholder=" " value="123456" autocomplete="off">
                         <label for="password" class="form-label fw-bold  mx-auto">Contraseña:</label>
                     </div>
                     <button type="submit" id="login" name="login" class="btn btn-primary w-100 mt-3">Iniciar Sesión
