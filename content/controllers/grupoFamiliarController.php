@@ -32,7 +32,7 @@ class grupoFamiliarController extends Controller
         $consultarMiembroLista = gf::buscarMiembroLista();
         $data['titulo'] = 'Registrar Grupos Familiares';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
-        return $this->render('grupoFamiliar/consultarView');
+        return $this->render('grupoFamiliar/registrarView');
     }
 
     public function buscarMiembro(){

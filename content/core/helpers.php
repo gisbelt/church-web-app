@@ -201,14 +201,14 @@ if (!function_exists("routas")) {
                         'text' => 'buscarMiembro',
                         'route' => '/grupo-familiares/buscar-miembro',
                         'method' => 'buscarMiembro',
-                        'action' => 'get'
+                        'action' => 'post'
                     ],
 
                     'registrarGrupoFamiliar' => [
                         'text' => 'registrarGrupoFamiliar',
                         'route' => '/grupo-familiares/registrar-grupoFamiliar',
                         'method' => 'registrarGrupoFamiliar',
-                        'action' => 'get'
+                        'action' => 'post'
                     ],
                 ]
             ],
@@ -234,7 +234,7 @@ if (!function_exists("routas")) {
                         'text' => 'buscarUsuario',
                         'route' => '/usuarios/buscar-usuario',
                         'method' => 'buscarUsuario',
-                        'action' => 'get'
+                        'action' => 'post'
                     ],
                 ]
             ],

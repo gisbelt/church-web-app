@@ -99,24 +99,24 @@ $this->title = 'Registrar grupo familiar'
 </div>
 <!-- Modal  -->
 <script>
-    $(document).ready(function () {
-        $("#nombreGrupoFamiliar").focus();
+    // $(document).ready(function () {
+    //     $("#nombreGrupoFamiliar").focus();
 
-        function limpiar() {
-            $("#form-registrarGrupo")[0].reset();
-            $("#nombreGrupoFamiliar").focus();
-        }
+    //     function limpiar() {
+    //         $("#form-registrarGrupo")[0].reset();
+    //         $("#nombreGrupoFamiliar").focus();
+    //     }
 
-        // Modal
-        var modelId = document.getElementById('modelId');
-        modelId.addEventListener('show.bs.modal', function (event) {
-            // Button that triggered the modal
-            let button = event.relatedTarget;
-            // Extract info from data-bs-* attributes
-            let recipient = button.getAttribute('data-bs-whatever');
+    //     // Modal
+    //     var modelId = document.getElementById('modelId');
+    //     modelId.addEventListener('show.bs.modal', function (event) {
+    //         // Button that triggered the modal
+    //         let button = event.relatedTarget;
+    //         // Extract info from data-bs-* attributes
+    //         let recipient = button.getAttribute('data-bs-whatever');
 
-            // Use above variables to manipulate the DOM
-        });
+    //         // Use above variables to manipulate the DOM
+    //     });
 
-    });
+    // });
 </script>

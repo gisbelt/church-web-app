@@ -7,9 +7,9 @@ $(document).ready(function () {
             type: "POST",
             url: $(this).attr('action'),
             data: $(this).serialize(),
-        }).done(function (json) {
-            console.log(json);
-            let response = JSON.parse(json);
+            dataType: 'json',
+        }).done(function (response) {
+            // let response = JSON.parse(json);
             if (response.code == 422) {
                 let html = '<ul>';
                 $.each(response.messages, function (index, value) {
@@ -18,7 +18,7 @@ $(document).ready(function () {
                 html += '</ul>';
 
                 swal.fire({
-                    title: response.title,
+                    title: response.titulo,
                     html: html,
                     icon: 'error',
                     showConfirmButton: false,
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 $button.disabled = false;
             } else {
                 swal.fire({
-                    title: response.title,
+                    title: response.titulo,
                     html: response.messages,
                     icon: 'success',
                     showConfirmButton: false,
