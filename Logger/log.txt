@@ -1,3 +1,3 @@
-[2022-08-26T03:38:28.524170+00:00] web.DEBUG: content\controllers\AutenticacionController::iniciar {"consulta":{"PDORow":{"queryString":"SELECT username,email,password \r\n        FROM users WHERE email=?","username":"admin","email":"admin@gmail.com","password":"$2y$10$v6dJcwa7D6C15ISZYTNly.weAgUB/arNcdUdMdlfG6K.Ghu7mBmT6"}}} []
-[2022-08-26T03:50:30.177096+00:00] web.DEBUG: content\controllers\AutenticacionController::iniciar ["$2y$10$v6dJcwa7D6C15ISZYTNly.weAgUB/arNcdUdMdlfG6K.Ghu7mBmT6","$2y$10$6NPvdhDdE3sk5wBuQLXFWe8bA7aFZKetgxS/ZD3zMicsSm6PYZnNy"] []
-[2022-08-26T03:52:18.461269+00:00] web.DEBUG: content\controllers\AutenticacionController::iniciar ["$2y$10$6NPvdhDdE3sk5wBuQLXFWe8bA7aFZKetgxS/ZD3zMicsSm6PYZnNy","$2y$10$umCkNi6mPZJuTSsswcvopu306b7yD.5iGuXOkGFYuoe5c2kNwENQG"] []
+[2022-09-15T22:22:11.267290+00:00] web.DEBUG: content\core\View::layoutContent ["sin session"] []
+[2022-09-15T22:22:20.196088+00:00] web.DEBUG: content\core\View::layoutContent ["con session"] []
+[2022-09-15T22:22:21.829819+00:00] web.DEBUG: content\core\View::layoutContent ["con session"] []

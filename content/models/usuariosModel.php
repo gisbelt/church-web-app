@@ -2,12 +2,14 @@
 
 namespace content\models;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use content\core\Model;
 use content\config\conection\database as BD;
 use PDO as pdo;
 
-class usuariosModel extends BD
+class usuariosModel extends Model //BD
 {
-
     public $id;
     public $username;
     public $email;
@@ -17,7 +19,7 @@ class usuariosModel extends BD
     public static function login($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT username,email,password 
+        $sql = $conexionBD->prepare("SELECT id,username,email,password 
         FROM users WHERE email=?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_LAZY);
@@ -47,6 +49,12 @@ class usuariosModel extends BD
     public static function validarLogout()
     {
         // Si existe alguien logueado, mosrar alerta de cerrar sesión
+        if(isset($_SESSION['email'])){
+
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$_SESSION['email']]);
+        }
         if (isset($_SESSION['email'])) {
             echo "
             <script>
@@ -56,6 +64,16 @@ class usuariosModel extends BD
         }
     }
 
-}
+    /**
+     * @return array[]
+     */
+    public function rules(): array
+    {
+        return [
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]]
+            //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
+        ];
+    }
 
-?>
+}

@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+$this->title = 'miembros';
+?>
 <br>
 <h3 class="text-center mb-4">Listado de miembros <a href="?url=miembros&action=registrar" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
@@ -102,18 +95,3 @@
         </div>
     </div>
 </div>
-
-<!-- ********************************* -->
-<?php \content\component\bottomComponent::Bottom(); ?>
-<script>
-    $(document).ready(function () {
-        $("#miembro").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
-</body>
-</html>

@@ -19,6 +19,7 @@ if (!function_exists("routas")) {
     function rutas()
     {
         $rutas = [
+
             'login' => [
                 'controller' => AutenticacionController::class,
                 'subRutas' => [
@@ -26,28 +27,31 @@ if (!function_exists("routas")) {
                         'text' => 'index',
                         'route' => '/',
                         'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'loginPost' => [
                         'text' => 'login',
                         'route' => '/login',
                         'method' => 'iniciar',
+                        'action' => 'post'
                     ],
 
                     'logout' => [
                         'text' => 'logout',
                         'route' => '/logout',
                         'method' => 'cerrarSesion',
+                        'action' => 'get'
                     ],
 
                     'recuperarContrasena' => [
                         'text' => 'recuperar-contrasena',
                         'route' => '/recuperar-contrasena',
                         'method' => 'recuperarContrasena',
+                        'action' => 'get'
                     ],
                 ],
             ],
-
 
             'home' => [
                 'controller' => homeController::class,
@@ -55,7 +59,8 @@ if (!function_exists("routas")) {
                     'homeView' => [
                         'text' => 'home',
                         'route' => '/home',
-                        'method' => 'index'
+                        'method' => 'index',
+                        'action' => 'get'
                     ]
                 ]
             ],
@@ -64,15 +69,17 @@ if (!function_exists("routas")) {
                 'controller' => miembrosController::class,
                 'subRutas' => [
                     'listaMiembros' => [
-                        'text' => 'lista',
+                        'text' => 'miembros',
                         'route' => '/miembros',
-                        'method' => 'index'
+                        'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearMiembros' => [
-                        'text' => 'registrar',
+                        'text' => 'miembros-create',
                         'route' => '/miembros/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
@@ -81,15 +88,17 @@ if (!function_exists("routas")) {
                 'controller' => amigosController::class,
                 'subRutas' => [
                     'listaAmigos' => [
-                        'text' => 'lista',
+                        'text' => 'amigos',
                         'route' => '/amigos',
                         'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearAmigos' => [
-                        'text' => 'registrar',
+                        'text' => 'amigos-create',
                         'route' => '/amigos/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
@@ -98,15 +107,17 @@ if (!function_exists("routas")) {
                 'controller' => donacionesController::class,
                 'subRutas' => [
                     'listaDonaciones' => [
-                        'text' => 'lista',
+                        'text' => 'donaciones',
                         'route' => '/donaciones',
-                        'method' => 'index'
+                        'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearDonaciones' => [
-                        'text' => 'registrar',
+                        'text' => 'donaciones-create',
                         'route' => '/donaciones/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
@@ -115,15 +126,17 @@ if (!function_exists("routas")) {
                 'controller' => actividadController::class,
                 'subRutas' => [
                     'listaActividades' => [
-                        'text' => 'ista',
+                        'text' => 'actividades',
                         'route' => '/actividades',
                         'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearActividades' => [
-                        'text' => 'registrar',
+                        'text' => 'actividades-create',
                         'route' => '/actividades/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
@@ -132,15 +145,17 @@ if (!function_exists("routas")) {
                 'controller' => asistenciasController::class,
                 'subRutas' => [
                     'listaAsitencias' => [
-                        'text' => 'lista',
+                        'text' => 'actividades-create',
                         'route' => '/asitencias',
                         'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearAsitencias' => [
-                        'text' => 'Registrar',
+                        'text' => 'actividades-create',
                         'route' => '/asitencias/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
@@ -149,15 +164,17 @@ if (!function_exists("routas")) {
                 'controller' => grupoFamiliarController::class,
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
-                        'text' => 'lista',
+                        'text' => 'grupos-create',
                         'route' => '/grupo-familiares',
                         'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearGrupoFamiliares' => [
-                        'text' => 'registrar',
+                        'text' => 'grupos-create',
                         'route' => '/grupo-familiares/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
@@ -166,30 +183,34 @@ if (!function_exists("routas")) {
                 'controller' => usuariosController::class,
                 'subRutas' => [
                     'listaUsuarios' => [
-                        'text' => 'usuarios',
+                        'text' => 'usuarios-lista',
                         'route' => '/usuarios',
                         'method' => 'index',
+                        'action' => 'get'
                     ],
 
                     'crearUsuarios' => [
-                        'text' => 'registrar',
+                        'text' => 'usuarios-create',
                         'route' => '/usuarios/create',
                         'method' => 'create',
+                        'action' => 'get'
                     ],
                 ]
             ],
 
             'reportes' => [
+                'text' => 'reportes',
                 'controller' => reportesController::class,
-                'text' => 'lista',
                 'route' => '/reportes',
                 'method' => 'index',
+                'action' => 'get'
             ],
             'Bitacora' => [
+                'text' => 'bitacora',
                 'controller' => reportesController::class,
-                'text' => 'lista',
                 'route' => '/Bitacora',
                 'method' => 'index',
+                'action' => 'get'
             ],
         ];
         return json_decode(json_encode($rutas));
