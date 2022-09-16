@@ -1,67 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body class="p-0">
-<div id="body-pd" class="">
-    <header class="header p-4" id="header">
-        <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue' id="header-toggle"></i></div>
-        <div class="header_img"><img src="asset/img/logo.png" alt=""></div>
-        <?php if (isset($user[0])) { ?>
-            <div class="dropdown ">
-                <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId"
-                        data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                    <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
-                </button>
-                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
-                    <a class="dropdown-item" href="?url=cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
-                    <a class="dropdown-item" href="?url=preferencias">Preferencias</a>
-                    <a class="dropdown-item" href="?url=logout">Cerrar Sesión</a>
-                </div>
-            </div>
-        <?php } ?>
-    </header>
-</div>
-<div class="container">
     <div class="row rowLogin center">
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header mb-2">
                     Resetea tu clave
                 </div>
                 <div class="card-body">
-                    <!-- Creamos Formulario: !crt-form-login -->
-                    <!-- Enviamos los datos del formulario a través del método post -->
-                    <form method="POST">
+                    <form method="POST" >
                         <div class="form-group">
-                            <label for="clave">Contraseña:</label>
-                            <input type="password" class="form-control" name="" id=""
-                                   placeholder="Escribe tu contraseña">
+                            <input type="password" class="form-control form-input mb-2" name="clave" id="clave" placeholder=" " autocomplete="off">
+                            <label for="clave" class="form-label">Escribe tu contraseña:</label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="clave">Confirmar contraseña:</label>
-                            <input type="password" class="form-control" name="" id=""
-                                   placeholder="Confirma tu contraseña">
+                            <input type="password" class="form-control form-input" name="clave" id="clave" placeholder=" " autocomplete="off">
+                            <label for="clave" class="form-label">Confirmar contraseña:</label>
                         </div>
                         <button type="submit" name="" class="btn btn-primary w-100 mt-3">Resetear clave</button>
                     </form>
 
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
-
-<!-- ********************************* -->
-<?php \content\component\bottomComponent::Bottom(); ?>
-</body>
-<footer>
-    <?php \content\component\footerElement::Footer(); ?>
-</footer>
-</html>
+    <!--Waves Container-->
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>

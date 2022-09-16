@@ -2,11 +2,10 @@
 
 namespace content\controllers;
 
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
 use content\models\usuariosModel as usuarios;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -20,22 +19,16 @@ class perfilController
 
     public function index()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Mi Cuenta';
-        include_once("view/perfil/cuenta/cuentaView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/cuenta/cuentaView.php')), 200);
     }
 
     public function preferencias()
     {
-        $head = new headElement();
-        $bottom = new bottomComponent();
-        $footer = new footerElement();
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Preferencias';
-        include_once("view/perfil/preferencias/preferenciasView.php");
+        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/preferencias/preferenciasView.php')), 200);
     }
 
 }

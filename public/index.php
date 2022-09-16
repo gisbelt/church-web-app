@@ -1,5 +1,5 @@
 <?php
-
+/*
 use config\settings\sysConfig as sysConfig;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +15,8 @@ use Monolog\Logger;
 if (file_exists("./../vendor/autoload.php")) {
     require_once "./../vendor/autoload.php";
 } else {
-    if (file_exists("content/component/error500.php")) {
-        require_once("content/component/error500.php");
+    if (file_exists("./../content/component/error500.php")) {
+        require_once("./../content/component/error500.php");
     }
     die('<title>Mantenimiento</title>' . $html500);
 }
@@ -28,7 +28,6 @@ $globalConfig = new sysConfig();
 //$globalConfig->_int();
 
 $request = Request::createFromGlobals();
-
 $context = new RequestContext();
 $context->fromRequest($request);
 
@@ -56,6 +55,9 @@ try {
     $route = $matcher->match($context->getPathInfo());
     $controller = new $route['controller'];
     $method = $route['method'];
+    $logger = new Logger("web");
+    $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
+    $logger->debug(_METHOD_,['routes' => $context->getPathInfo()]);
     $response = $controller->$method($request);
 } catch (ResourceNotFoundException $exception) {
     $response = new Response('Not Found' . $exception, 404);
@@ -63,7 +65,35 @@ try {
     $response = new Response('An error occurred:' . $ex, 500);
 }
 http_response_code($response->getStatusCode());
-$logger = new Logger("web");
-$logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
-$logger->debug(__METHOD__,[$response]);
 echo $response->getContent();
+ob_start();
+$response->send();
+return ob_get_clean();*/
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
+use content\controllers\AutenticacionController;
+use content\controllers\homeController;
+use content\core\Aplicacion;
+use content\models\usuariosModel as usuarios;
+use config\settings\sysConfig as sysConfig;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
+session_start();
+$globalConfig = new sysConfig();
+$app = new Aplicacion(dirname(__DIR__));
+$rutas = rutas();
+foreach ($rutas as $key => $ruta) {
+    if (empty($ruta->subRutas)) {
+        $action = $ruta->action;
+        $app->router->$action($ruta->route, [$ruta->controller, $ruta->method]);
+    } else {
+        foreach ($ruta->subRutas as $subRuta) {
+            $action = $subRuta->action;
+            $app->router->$action($subRuta->route, [$ruta->controller, $subRuta->method]);
+        }
+    }
+}
+
+$app->run();

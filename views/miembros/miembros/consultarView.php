@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+$this->title = 'miembros';
+?>
 <br>
-<h3 class="text-center mb-4">Listado de miembros <a href="?url=miembros&action=registrar" class="btn btn-success"><i
+<h3 class="text-center mb-4">Listado de miembros <a href="/miembros/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">
-        <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Sexo:</label>
                 <select class="form-control ms-2" id="sexo"">
@@ -24,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Fecha:</label>
                 <select class="form-control ms-2" id="status"">
@@ -35,7 +28,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
             <form action="" method="post">
                 <div class="input-group">
                     <input type="text" name="" id="" class="form-control" placeholder="Insertar">
@@ -46,10 +39,10 @@
             </form>
         </div>
 
-        <div class="col-md-2">
-            <div class="center">
+        <div class="col-12 col-sm-12 col-md-2 mb-2 mb-md-0">
+            <div class="center izquierda">
                 <label>Mostrar:</label>
-                <select class="form-control ms-2" id="per_page">
+                <select class="form-control ms-2 w-auto" id="per_page">
                     <option>5</option>
                     <option>10</option>
                     <option selected="">15</option>
@@ -60,12 +53,13 @@
     </div>
 </div><!--container-->
 
-<div class="mt-4"> <!--container-->
-    <div class="row m-0">
+<div class="container-fluid mt-4"> <!--container-->
+    <div class="row">
         <div class="col-md-12 table-wrap">
             <table class="table table-bordered table-striped table-responsive table-hover">
                 <thead class="thead-primary">
                 <tr>
+                    <th class="text-center">Acciones</th>
                     <th class="">Cédula</th>
                     <th class="">Nombre</th>
                     <th class="">Teléfono</th>
@@ -73,18 +67,10 @@
                     <th class="">Profesión</th>
                     <th class="">Paso de Fe</th>
                     <th class="">Bautismo</th>
-                    <th class="text-center">Acciones</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">
                 <tr>
-                    <td name="cedula">22188492</td>
-                    <td name="noombre">Gisbel Torres</td>
-                    <td name="telefono">04245289570</td>
-                    <td name="direccion">Calle 9 Santa Isabel</td>
-                    <td name="profesion">Captación, tratamiento y suministro de agua</td>
-                    <td name="fpf">05/11/2019</td>
-                    <td name="fb">03/20/2017</td>
                     <td>
                         <form method="POST" class="center">
                             <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
@@ -96,6 +82,13 @@
                             </a>
                         </form>
                     </td>
+                    <td name="cedula">22188492</td>
+                    <td name="noombre">Gisbel Torres</td>
+                    <td name="telefono">04245289570</td>
+                    <td name="direccion">Calle 9 Santa Isabel</td>
+                    <td name="profesion">Captación, tratamiento y suministro de agua</td>
+                    <td name="fpf">05/11/2019</td>
+                    <td name="fb">03/20/2017</td>
                 </tr>
                 </tbody>
             </table>
