@@ -22,9 +22,9 @@ class AutenticacionController extends Controller
     public function index()
     {
         usuarios::validarLogout();
-       $this->setLayout('auth');
+        $this->setLayout('auth');
         return $this->render('acceso/login/loginView');
-       // return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/loginView.php')), 200);
+        // return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/loginView.php')), 200);
     }
 
     public function iniciar(Request $request)
