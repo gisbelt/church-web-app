@@ -19,7 +19,7 @@ class usuariosModel extends BD
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("SELECT username,email,password FROM users WHERE email = ?");
         $sql->execute(array($email));
-        $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);        
+        $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);
         return $consultarUsuario;
     }
 
@@ -62,16 +62,16 @@ class usuariosModel extends BD
         $sql = $conexionBD->prepare("SELECT p.nombre as nombreMiembro, p.apellido as apellidoMiembro, p.cedula as cedulaMiembro, m.id as idMiembro
         FROM miembros as m
         INNER JOIN perfiles as p ON p.miembro_id=m.id
-        WHERE p.nombre LIKE ? or p.apellido LIKE ?");  
-        $sql->execute(array("%".$nombreMiembro."%","%".$nombreMiembro."%"));
-        $buscarMiembro = $sql->fetchAll(PDO::FETCH_ASSOC); 
+        WHERE p.nombre LIKE ? or p.apellido LIKE ?");
+        $sql->execute(array("%" . $nombreMiembro . "%", "%" . $nombreMiembro . "%"));
+        $buscarMiembro = $sql->fetchAll(PDO::FETCH_ASSOC);
         $result = [];
-        foreach($buscarMiembro as $key){
-            $result[] = array (
-                'id' => $key['idMiembro'], 
-                'nombre' =>  $key['nombreMiembro'], 
-                'apellido' =>  $key['apellidoMiembro'], 
-                'cedula' =>  $key['cedulaMiembro'],
+        foreach ($buscarMiembro as $key) {
+            $result[] = array(
+                'id' => $key['idMiembro'],
+                'nombre' => $key['nombreMiembro'],
+                'apellido' => $key['apellidoMiembro'],
+                'cedula' => $key['cedulaMiembro'],
             );
         }
 
