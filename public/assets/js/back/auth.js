@@ -18,7 +18,7 @@ $(document).ready(function () {
                 html += '</ul>';
 
                 swal.fire({
-                    title: response.titulo,
+                    title: response.title,
                     html: html,
                     icon: 'error',
                     showConfirmButton: false,
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 $button.disabled = false;
             } else {
                 swal.fire({
-                    title: response.titulo,
+                    title: response.title,
                     html: response.messages,
                     icon: 'success',
                     showConfirmButton: false,
