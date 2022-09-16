@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Registrar amigos';
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -95,9 +90,7 @@
         </div> <!--col-md-12-->
     </div><!--row-->
 </div><!--container-->
-<!-- ********************************* -->
 
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     function limpiar() {
         $("#form-registrarAmigos")[0].reset();
@@ -108,5 +101,3 @@
         $("#cedula").focus();
     });
 </script>
-</body>
-</html>

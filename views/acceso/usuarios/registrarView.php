@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Registrar usuario'
+?>
 <div class="offset-md-3 col-md-6">
     <div class="card">
         <div class="card-header mb-4">
@@ -80,8 +75,6 @@
     </div> <!--card-->
 </div><!--col-->
 <!-- ********************************* -->
-
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     function limpiar() {
         $("#form-registrarUsuarios")[0].reset();
@@ -92,5 +85,3 @@
         $("#miembro").focus();
     });
 </script>
-</body>
-</html>

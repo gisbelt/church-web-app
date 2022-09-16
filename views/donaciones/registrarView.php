@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Registrar donaciones'
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -88,7 +83,6 @@
 </div><!--container-->
 <!-- ********************************* -->
 
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     function limpiar() {
         $("#form-registrarDonacion")[0].reset();
@@ -99,5 +93,3 @@
         $("#miembro").focus();
     });
 </script>
-</body>
-</html>

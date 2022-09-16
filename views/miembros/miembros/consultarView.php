@@ -96,8 +96,6 @@ $this->title = 'miembros';
     </div>
 </div>
 
-<!-- ********************************* -->
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     $(document).ready(function () {
         $("#miembro").on("keyup", function () {
@@ -108,5 +106,3 @@ $this->title = 'miembros';
         });
     });
 </script>
-</body>
-</html>

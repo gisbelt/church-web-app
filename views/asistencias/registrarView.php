@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Registrar asistencia';
+?>
 <div class="container-fluid">
     <div class="row center">
         <div class="col-md-12">
@@ -72,8 +67,6 @@
     </div><!--row-->
 </div><!--container-->
 <!-- ********************************* -->
-
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     function limpiar() {
         $("#form-registrarAsistencias")[0].reset();
@@ -84,5 +77,3 @@
         $("#nombreActividad").focus();
     });
 </script>
-</body>
-</html>

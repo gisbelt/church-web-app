@@ -2,28 +2,28 @@
 
 namespace content\controllers;
 
+use content\core\Controller;
+use content\core\middlewares\AutenticacionMiddleware;
 use content\models\usuariosModel as usuarios;
 use content\models\grupoFamiliarModel as gf;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class grupoFamiliarController
+class grupoFamiliarController extends Controller
 {
     public function __construct()
     {
-
+        $this->registerMiddleware(new AutenticacionMiddleware(['index']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
     public function index()
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Grupos Familiares';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/consultarView.php')), 200);
-
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/consultarView.php')), 200);
+        return $this->render('grupoFamiliar/consultarView');
     }
 
     public function create()
@@ -31,7 +31,8 @@ class grupoFamiliarController
         $user = usuarios::validarLogin();
         $consultarMiembroLista = gf::buscarMiembroLista();
         $data['titulo'] = 'Registrar Grupos Familiares';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
+        return $this->render('grupoFamiliar/consultarView');
     }
 
     public function buscarMiembro(){

@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Mi Cuenta';
+?>
 <!-- Menú -->
 <div class="offset-md-3 col-md-6">
     
@@ -111,9 +107,7 @@
             </div><!--card-footer-->
         </div><!--card-->    
 </div><!--col-->
-<!-- ********************************* -->
 
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     function limpiar() {
         $("#form-cuenta")[0].reset();
@@ -124,5 +118,3 @@
         $("#username").focus();
     });
 </script>
-</body>
-</html>
