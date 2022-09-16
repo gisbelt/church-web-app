@@ -38,4 +38,10 @@ class usuariosController
         $data['titulo'] = 'Usuarios';
         include_once("view/acceso/usuarios/consultarView.php");
     }
+
+    public function buscarUsuario(){
+        $nombreMiembro = $_POST['buscarMiembro'];
+        $consultarMiembro = usuarios::buscarMiembro($nombreMiembro);
+        die ($consultarMiembro);
+    }
 }

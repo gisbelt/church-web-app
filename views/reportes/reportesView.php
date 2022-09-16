@@ -10,7 +10,7 @@
 <!-- Menú -->
 <div class="container pt-4">
     <h3 class="text-center mb-4">Reportes</h3>
-    <div class="row m-0">
+    <div class="row">
         <div class="col-md-12">
             <section class="report">
                 <div class="report-header">

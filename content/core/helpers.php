@@ -46,6 +46,12 @@ if (!function_exists("routas")) {
                         'route' => '/recuperar-contrasena',
                         'method' => 'recuperarContrasena',
                     ],
+
+                    'cambiarContrasena' => [
+                        'text' => 'cambiar-contrasena',
+                        'route' => '/cambiar-contrasena',
+                        'method' => 'cambiarContrasena',
+                    ],
                 ],
             ],
 
@@ -127,13 +133,14 @@ if (!function_exists("routas")) {
                 'controller' => actividadController::class,
                 'subRutas' => [
                     'listaActividades' => [
+
                         'text' => 'actividades',
                         'route' => '/actividades',
                         'method' => 'index',
                     ],
 
                     'crearActividades' => [
-                        'text' => 'registrar',
+                        'text' => 'crearActividades',
                         'route' => '/actividades/create',
                         'method' => 'create',
                     ],
@@ -143,15 +150,15 @@ if (!function_exists("routas")) {
             'asitencias' => [
                 'controller' => asistenciasController::class,
                 'subRutas' => [
-                    'listaAsitencias' => [
-                        'text' => 'lista',
-                        'route' => '/asitencias',
+                    'listaAsistencias' => [
+                        'text' => 'listaAsistencias',
+                        'route' => '/asistencias',
                         'method' => 'index',
                     ],
 
-                    'crearAsitencias' => [
-                        'text' => 'Registrar',
-                        'route' => '/asitencias/create',
+                    'crearAsistencias' => [
+                        'text' => 'crearAsistencias',
+                        'route' => '/asistencias/create',
                         'method' => 'create',
                     ],
                 ]
@@ -171,6 +178,18 @@ if (!function_exists("routas")) {
                         'route' => '/grupo-familiares/create',
                         'method' => 'create',
                     ],
+
+                    'buscarMiembro' => [
+                        'text' => 'buscarMiembro',
+                        'route' => '/grupo-familiares/buscar-miembro',
+                        'method' => 'buscarMiembro',
+                    ],
+
+                    'registrarGrupoFamiliar' => [
+                        'text' => 'registrarGrupoFamiliar',
+                        'route' => '/grupo-familiares/registrar-grupoFamiliar',
+                        'method' => 'registrarGrupoFamiliar',
+                    ],
                 ]
             ],
 
@@ -187,6 +206,12 @@ if (!function_exists("routas")) {
                         'text' => 'registrar',
                         'route' => '/usuarios/create',
                         'method' => 'create',
+                    ],
+
+                    'buscarUsuario' => [
+                        'text' => 'buscarUsuario',
+                        'route' => '/usuarios/buscar-usuario',
+                        'method' => 'buscarUsuario',
                     ],
                 ]
             ],

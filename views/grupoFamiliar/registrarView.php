@@ -8,55 +8,53 @@
 <!-- Menú -->
 <?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
-<div class="row m-0 center">
-    <div class="col-md-6">
-
-        <div class="card">
-            <div class="card-header mb-4">
-                <div>
-                    <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
-                </div>
-                <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                    <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver
-                        listado</a>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo">
-                    <div class="form-group">
-                        <input type="text" name="nombre" class="form-control form-input mb-4" id="nombre" value=""
-                               placeholder=" ">
-                        <label for="nombre" class="form-label fw-bold">Nombre del Grupo Familiar:*</label>
+<div class="container-fluid">
+    <div class="row center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header mb-4">
+                    <div>
+                        <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
                     </div>
+                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
+                        <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver
+                            listado</a>
+                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <div class="mb-4 input-group">
-                <span class="input-group-btn">
-                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal"
-                            data-bs-target="#modelId">Ver lista</i></button>
-                </span>
-                            <input type="text" name="miembro" id="miembro" class="form-control"
-                                   placeholder="Buscar Miembro...">
-                            <span class="input-group-btn">
-                    <a id="add" class="btn btn-warning add">Añadir <i class="bi bi-plus-circle"></i></a>
-                </span>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo" action="">
+                        <div class="form-group">
+                            <input type="text" name="nombreGrupoFamiliar" class="form-control form-input mb-4" id="nombreGrupoFamiliar" value="" placeholder=" ">
+                            <label for="nombreGrupoFamiliar" class="form-label fw-bold">Nombre del Grupo Familiar:*</label>
                         </div>
-                    </div>
 
-                    <div class='new-miembro' id="new-miembro"></div>
-
-                    <br>
-                    <div class="btn-group modal-footer" role="group" aria-label="">
-                        <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
-                        <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <br>
-    </div> <!--col-md-12-->
-</div><!--row-->
+                        <div class="form-group">
+                            <div class="mb-4 input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modelId">Ver lista</i></button>
+                                </span>
+                                <input type="search" name="nombreMiembro" id="miembro" class="form-control" placeholder="Buscar Miembro..." value="">
+                                <span class="input-group-btn">
+                                    <a id="add-miembro" class="btn btn-warning add disabled">Añadir <i class="bi bi-plus-circle"></i></a>
+                                </span>
+                            </div>
+                            <ul class="list-group" id="tabla_resultado"></ul>
+                        </div>                        
+                        <div class='new-miembro' id="new-miembro"></div>
+                        
+                        <br>
+                        <div id="tabla_exito" class="hidden"></div>    
+                        <div class="btn-group modal-footer" role="group" aria-label="">
+                            <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar" class="btn btn-success">Agregar</button>
+                            <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
+                        </div>
+                    </form>
+                </div><!--card-body-->
+            </div><!--card-->
+        </div> <!--col-md-6-->
+    </div><!--row-->
+</div><!--container-->
 <!-- ********************************* -->
 
 <!-- Modal  -->
@@ -80,24 +78,17 @@
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                <tr id="miembro_id">
-                                    <td name="" id="">22188492</td>
-                                    <td name="" id="miembroLista">Gisbel Torres</td>
+                                <?php foreach($consultarMiembroLista as $m) { ?>
+                                <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
+                                    <td name="" id=""><?php echo $m['cedula']; ?></td>
+                                    <td name="" id="miembroLista"><?php echo $m['nombre'].' '; echo $m['apellido'];?></td>
                                     <td class="center">
                                         <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr id="miembro_id">
-                                    <td name="" id="">22188492</td>
-                                    <td name="" id="miembroLista">Lorena Torres</td>
-                                    <td class="center">
-                                        <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
-                                            <i class="bi bi-plus-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -116,11 +107,11 @@
 <?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     $(document).ready(function () {
-        $("#nombre").focus();
+        $("#nombreGrupoFamiliar").focus();
 
         function limpiar() {
             $("#form-registrarGrupo")[0].reset();
-            $("#nombre").focus();
+            $("#nombreGrupoFamiliar").focus();
         }
 
         // Modal

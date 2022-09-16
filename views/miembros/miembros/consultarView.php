@@ -9,7 +9,7 @@
 <?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
 <br>
-<h3 class="text-center mb-4">Listado de miembros <a href="/miembros" class="btn btn-success"><i
+<h3 class="text-center mb-4">Listado de miembros <a href="/miembros/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">
@@ -60,8 +60,8 @@
     </div>
 </div><!--container-->
 
-<div class="mt-4"> <!--container-->
-    <div class="row m-0">
+<div class="container-fluid mt-4"> <!--container-->
+    <div class="row">
         <div class="col-md-12 table-wrap">
             <table class="table table-bordered table-striped table-responsive table-hover">
                 <thead class="thead-primary">
