@@ -25,14 +25,16 @@ class actividadController extends Controller
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Actividades';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/consultarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/consultarView.php')), 200);
+        return $this->render('actividades/consultarView');
     }
 
     public function create()
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar Actividades';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/registrarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/registrarView.php')), 200);
+        return $this->render('actividades/registrarView');
     }
 
 }

@@ -1,3 +1,9 @@
+<?php
+
+/**  @var $this \content\core\View */
+
+$this->title = 'Olvido la contrasena'
+?>
 <div class="containerBackground">
     <div class="container">
         <div class="row rowLogin center">

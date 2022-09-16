@@ -24,14 +24,16 @@ class perfilController extends Controller
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Mi Cuenta';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/cuenta/cuentaView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/cuenta/cuentaView.php')), 200);
+        return $this->render('/perfil/cuenta/cuentaView');
     }
 
     public function preferencias()
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Preferencias';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/preferencias/preferenciasView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/preferencias/preferenciasView.php')), 200);
+        return $this->render('/perfil/preferencias/preferenciasView');
     }
 
 }

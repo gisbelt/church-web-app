@@ -25,14 +25,16 @@ class amigosController extends Controller
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Amigos';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/amigos/consultarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/amigos/consultarView.php')), 200);
+        return $this->render('/miembros/amigos/consultarView');
     }
 
     public function create()
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar amigos';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/amigos/registrarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/amigos/registrarView.php')), 200);
+        return $this->render('/miembros/amigos/registrarView');
     }
 
 }

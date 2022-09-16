@@ -2,7 +2,7 @@
 
 /**  @var $this \content\core\View */
 
-$this->title = 'Home'
+$this->title = 'Iniciar session'
 ?>
 <div class="row rowLogin center">
     <div class="col-md-4">

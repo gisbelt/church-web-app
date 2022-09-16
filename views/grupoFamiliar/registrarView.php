@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Registrar grupo familiar'
+?>
 <!-- Menú -->
 <div class="container-fluid">
     <div class="row center">
@@ -103,8 +99,6 @@
 </div>
 <!-- Modal  -->
 
-<!-- ********************************* -->
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     $(document).ready(function () {
         $("#nombreGrupoFamiliar").focus();
@@ -127,5 +121,3 @@
 
     });
 </script>
-</body>
-</html>

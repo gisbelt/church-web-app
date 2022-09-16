@@ -1,12 +1,12 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Donaciones'
+$this->title = 'Actividades'
 ?>
 
 <div class="container-fluid">
     <div class="row">
-        <h1>Consultar donaciones</h1>
+        <h1>Consultar actividades</h1>
     </div><!--row-->
 </div><!--container-->
 <!-- ********************************* -->

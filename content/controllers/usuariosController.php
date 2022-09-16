@@ -27,21 +27,22 @@ class usuariosController extends Controller
     public function index()
     {
         $data['titulo'] = 'Usuarios';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
+        $user = usuarios::validarLogin();
+        return $this->render('/acceso/usuarios/consultarView');
     }
 
     public function create()
     {
+        /*$data["titulo"] = "Home";*/
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Registrar usuarios';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/registrarView.php')), 200);
+        return $this->render('/acceso/usuarios/registrarView');
     }
 
     public function consultar()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Usuarios';
-        include_once("view/acceso/usuarios/consultarView.php");
+        return $this->render('/acceso/usuarios/consultarView');
     }
 
     public function buscarUsuario(){

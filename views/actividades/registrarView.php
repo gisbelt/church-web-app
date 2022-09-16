@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Actividades'
+?>
 <div class="container-fluid">
     <div class="row center">
         <div class="col-md-6">
@@ -82,9 +77,7 @@
         </div> <!--col-md-12-->
     </div><!--row-->
 </div><!--container-->
-<!-- ********************************* -->
 
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     function limpiar() {
         $("#form-registrarActividades")[0].reset();
@@ -95,5 +88,3 @@
         $("#nombreActividad").focus();
     });
 </script>
-</body>
-</html>

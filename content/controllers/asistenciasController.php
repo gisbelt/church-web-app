@@ -24,13 +24,15 @@ class asistenciasController extends Controller
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Asistencias';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/asistencias/consultarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/asistencias/consultarView.php')), 200);
+        return $this->render('asistencias/consultarView');
     }
 
     public function create()
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar Asistencias';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/asistencias/registrarView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/asistencias/registrarView.php')), 200);
+        return $this->render('asistencias/registrarView');
     }
 }

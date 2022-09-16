@@ -1,3 +1,9 @@
+<?php
+
+/**  @var $this \content\core\View */
+
+$this->title = 'Restablecer contraseña'
+?>
     <div class="row rowLogin center">
 
         <div class="col-md-4">

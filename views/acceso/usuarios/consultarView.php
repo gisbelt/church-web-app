@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $data["titulo"]; ?></title>
-    <?php \content\component\headElement::Heading(); ?>
-</head>
-<body>
-<!-- Menú -->
-<?php require_once "./../content/component/initComponent.php"; ?>
-<!-- Menú -->
-<br>
+<?php
+/**  @var $this \content\core\View */
+
+$this->title = 'Usuarios';
+?>
 <h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container-fluid">
@@ -70,7 +64,7 @@
                     <th class="text-center">Acciones</th>
                     <th class="">Nombre</th>
                     <th class="">Correo</th>
-                    <th class="">Cargo</th>                    
+                    <th class="">Cargo</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">
@@ -88,7 +82,7 @@
                     </td>
                     <td name="username">Gisbel</td>
                     <td name="email">gis@gmail.com</td>
-                    <td name="cargo">Lider</td>                    
+                    <td name="cargo">Lider</td>
                 </tr>
                 </tbody>
             </table>
@@ -96,8 +90,6 @@
     </div>
 </div>
 
-<!-- ********************************* -->
-<?php \content\component\bottomComponent::Bottom(); ?>
 <script>
     $(document).ready(function () {
         $("#username").on("keyup", function () {
@@ -108,5 +100,3 @@
         });
     });
 </script>
-</body>
-</html>
