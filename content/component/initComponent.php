@@ -1,5 +1,5 @@
 <div id="body-pd" class="">
-    <header class="header mb-5" id="header">
+    <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
         <div class="header_img"><img src="../assets/img/logo.png" alt=""></div>
         <div class="dropdown ">

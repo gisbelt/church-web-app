@@ -28,7 +28,7 @@ class bottomComponent
             <script src="../assets/js/sweetalert2@11.js"></script>
             <script src="../assets/js/back/auth.js"></script>
 
-            <!-- bluid -->
+            <!-- build -->
             <script src="../assets/js/build/grupoFamiliar.js"></script>
             <script src="../assets/js/build/usuarios.js"></script>
             '
