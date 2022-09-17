@@ -38,6 +38,7 @@ class helperMenu
             if ($key !== 'login' && $key !== 'home' && $key !== 'error') {
                 if (!isset($item->permisos) || in_array($item->permisos, $_SESSION['user_permisos'])) {
                     if (empty($item->subRutas)) {
+                        $logger->debug(__METHOD__, [$item->route]);
                         if (isset($item->route)) {
                             if (empty($item->parametros)) {
                                 $route = $item->route;
@@ -51,10 +52,12 @@ class helperMenu
                         $html .= sprintf(
                             '<li>'
                         );
-
                         $html .= sprintf(
-                            '<div class="nav_link">',
+                            '<a class="nav_link" data-number="%s" href="%s">',
+                            $key,
+                            $route
                         );
+
                     } else {
                         $html .= sprintf(
                             '<li>'
@@ -70,10 +73,20 @@ class helperMenu
                         '<i class="%s nav-ico"></i>',
                         $item->icon
                     );
-                    $html .= sprintf(
-                        '<span class="nav_name center">%s</span>',
-                        $item->text
-                    );
+                    if(!empty($item->subRutas)){
+                        $html .= sprintf(
+                            '<span class="nav_name center">%s <i class="bx bx-chevron-down nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
+                            $item->text,
+                            $key,
+                            $key
+                        );
+                    } else {
+
+                        $html .= sprintf(
+                            '<span class="nav_name center">%s</span>',
+                            $item->text,
+                        );
+                    }
                     $html .= '</span>';
 
                     $html .= '</a>';
@@ -86,7 +99,7 @@ class helperMenu
                              $html .= self::menuItems($item->subRutas);
                         $html .= '</ul>';
                     }
-                    $html .= '</div>';
+                    $html .= '</a>';
                     $html .= '</li>';
                 }
             }
