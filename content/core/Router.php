@@ -2,6 +2,7 @@
 
 namespace content\core;
 
+use content\core\exception\ForbiddenException;
 use content\core\exception\NotFoundException;
 use content\core\Request;
 use content\core\Response;
@@ -62,6 +63,8 @@ class Router
      */
     public function resolve()
     {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
@@ -81,6 +84,7 @@ class Router
             $controller->action = $callback[1];
             $callback[0] = $controller;
 
+            $logger->debug(__METHOD__, [$controller]);
             foreach ($controller->getMiddlewares() as $middleware) {
                 $middleware->execute();
             }

@@ -74,14 +74,14 @@ class helperMenu
                     );
                     if(!empty($item->subRutas)){
                         $html .= sprintf(
-                            '<span class="nav_name center">%s <i class="bx bx-chevron-right nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
+                            '<span class="nav_name center">%s <i class="bx bx-chevron-up nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
                             $item->text,
                             $key,
                             $key
                         );
                     } else {
                         $html .= sprintf(
-                            '<span class="nav_name center">%s</span>',
+                            '<span class="nav_name">%s</span>',
                             $item->text,
                         );
                     }
