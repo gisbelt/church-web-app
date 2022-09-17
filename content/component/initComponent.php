@@ -24,7 +24,7 @@
                     <span class="nav_logo-name">Sistema</span>
                 </a>
                 <div class="nav_list">
-                    <?php \content\core\helperMenu::buildMenu() ?>
+                    <?php echo \content\core\helperMenu::buildMenu() ?>
                     <!--<li>
                         <div class="nav_link" data-number="2">
                             <i class='bx bx-user nav_icon' data-number="2"></i>
@@ -142,12 +142,12 @@
                 </li>-->
             </div>
         </div>
-        <div class="dropdownss">
-            <a href="/logout" class="nav_link" data-number="7" title="Cerrar sesión">
-                <i class='bx bx-log-out nav_icon'></i>
-                <span class="nav_name">Cerrar Sesión</span>
-            </a>
-        </div>
+            <!--<div class="dropdownss">
+                <a href="/logout" class="nav_link" data-number="7" title="Cerrar sesión">
+                    <i class='bx bx-log-out nav_icon'></i>
+                    <span class="nav_name">Cerrar Sesión</span>
+                </a>
+            </div>-->
     </nav>
 </div>
 </div>

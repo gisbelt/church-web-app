@@ -19,4 +19,6 @@ class permisos
     public static $seguridad_permisos = 5;
 
     public static $home = 6;
+
+    public static $permiso = 7;
 }
