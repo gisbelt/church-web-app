@@ -9,7 +9,9 @@ use content\core\Aplicacion;
 </head>
 <body class="p-0 m-0" style="width:100vw;">
 <div class="containerBackground">
-    {{content}}
+    <div class="pt-4">
+        {{content}}
+    </div>
 </div>
 
 <!-- ********************************* -->

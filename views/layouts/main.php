@@ -11,7 +11,9 @@ use content\core\Aplicacion;
 <!-- Menú -->
 <?php require_once "./../content/component/initComponent.php"; ?>
 <!-- Menú -->
+<div class="pt-4">
     {{content}}
+</div>
 <?php \content\component\bottomComponent::Bottom(); ?>
 </body>
 </html>

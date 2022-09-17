@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '66f240b39418b038e21e7a0fa0f574ddb71da79d',
+    'reference' => '6b53eda873d77a4b30c77f9b4117caaa280d91e3',
     'name' => 'sistema/gestion',
   ),
   'versions' => 
@@ -52,7 +52,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '66f240b39418b038e21e7a0fa0f574ddb71da79d',
+      'reference' => '6b53eda873d77a4b30c77f9b4117caaa280d91e3',
     ),
     'symfony/deprecation-contracts' => 
     array (
