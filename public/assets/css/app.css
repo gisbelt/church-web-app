@@ -49,6 +49,9 @@ body{
     font-family: var(--body-font) !important;
     font-size: var(--normal-font-size) !important;
 }
+.text-first-color{
+    color: var(--first-color);
+}
 .flex-row{
     display: flex;
     flex-direction: row;
@@ -99,6 +102,9 @@ body{
 .default{
     color: #fff !important;
     font-family: Montserrat,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+.cursor-default{
+    cursor: default;
 }
 .pointer{
     cursor: pointer;

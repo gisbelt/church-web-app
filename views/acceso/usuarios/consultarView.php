@@ -3,8 +3,8 @@
 
 $this->title = 'Usuarios';
 ?>
-<h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
-                class="bi bi-person-plus"></i></a></h3>
+<br>
+<h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
@@ -36,7 +36,7 @@ $this->title = 'Usuarios';
                     <input type="text" name="" id="miembro" class="form-control" placeholder="Nombre...">
                     <span class="input-group-btn">
                     <button type="submit" name="" class="btn btn-secondary">Buscar</button>
-                </span>
+                    </span>
                 </div>
             </form>
         </div>

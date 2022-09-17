@@ -27,11 +27,13 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer editar_perfil" data-number="1"><i class="bi bi-pencil"></i></a>
                     </h4>
                     <div class="show_1 hidden">
-                        <input type="text" class="form-control mb-2" value="Admin" id="username" name="username" placeholder="Nombre de usuario:">
+                        <input type="text" class="form-control mb-2" value="<?php echo $_SESSION['username'] ?>" id="username" name="username" placeholder="Nombre de usuario:">
                         <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
                     </div>
                 </div>
+
                 <hr>
+                
                 <div class="form-group">
                     <h4 class="mb-2">Detalles</h4>
                     <label for="telefono" class="fw-bold mb-1">Teléfono: </label>
@@ -72,7 +74,7 @@ $this->title = 'Mi Cuenta';
                 </form>
             </div><!--card-body-->
 
-            <div class="card-footer bg-transparent">
+            <div class="card-footer bg-light">
                 <form method="POST" enctype="multipart/form-data" action="">
                 <p class="p-0 text-center fw-bold">Seguridad</p>
                 <label for="password" class="fw-bold mb-1">Contraseña: </label>

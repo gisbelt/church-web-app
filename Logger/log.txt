@@ -1,1 +1,2 @@
 [2022-09-16T05:10:26.508583+02:00] web.DEBUG: content\models\usuariosModel::validarLogout ["ok"] []
+[2022-09-17T03:10:26.527064+02:00] web.DEBUG: content\models\usuariosModel::validarLogout ["ok"] []

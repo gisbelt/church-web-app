@@ -1,5 +1,6 @@
 <?php
 /** @var $exception \Exception */
+$this->title = 'Error 403'
 ?>
 <div class="p-5 bg-light text-center error_500">
     <div class="container">

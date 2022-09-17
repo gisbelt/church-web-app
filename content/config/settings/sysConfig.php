@@ -25,10 +25,10 @@ class sysConfig
 {
     public function _int()
     {
-        if (file_exists("content/core/frontController.php")) {
-            require_once("content/core/frontController.php");
+        if (file_exists("./../content/core/aplicacion.php")) {
+            require_once("./../content/core/aplicacion.php");
         } else {
-            die("No existe el archivo: content/core/frontController");
+            die("./../content/core/aplicacion");
         }
     }
 

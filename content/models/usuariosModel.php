@@ -83,8 +83,8 @@ class usuariosModel extends Model //BD
         $sql = $conexionBD->prepare("SELECT p.nombre as nombreMiembro, p.apellido as apellidoMiembro, p.cedula as cedulaMiembro, m.id as idMiembro
         FROM miembros as m
         INNER JOIN perfiles as p ON p.miembro_id=m.id
-        WHERE p.nombre LIKE ? or p.apellido LIKE ?");
-        $sql->execute(array("%" . $nombreMiembro . "%", "%" . $nombreMiembro . "%"));
+        WHERE p.nombre LIKE ? or p.apellido LIKE ? or p.cedula LIKE ?");
+        $sql->execute(array("%" . $nombreMiembro . "%", "%" . $nombreMiembro . "%", "%" . $nombreMiembro . "%"));
         $buscarMiembro = $sql->fetchAll(PDO::FETCH_ASSOC);
         $result = [];
         foreach ($buscarMiembro as $key) {

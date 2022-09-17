@@ -5,8 +5,8 @@
 $this->title = 'Restablecer contraseña'
 ?>
 <div class="containerBackground">
-    <div class="container">
-        <div class="row rowLogin center">
+<div class="container">
+    <div class="row rowLogin center">
 
         <div class="col-md-4">
             <div class="card">
@@ -17,21 +17,31 @@ $this->title = 'Restablecer contraseña'
                     <form method="POST" >
                         <div class="form-group">
                             <input type="password" class="form-control form-input mb-2" name="clave" id="clave" placeholder=" " autocomplete="off">
-                            <label for="clave" class="form-label">Escribe tu contraseña:</label>
+                            <label for="clave" class="form-label">
+                                Escribe tu contraseña:
+                                <span class="bi bi-lock"></span>
+                            </label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="password" class="form-control form-input" name="clave" id="clave" placeholder=" " autocomplete="off">
-                            <label for="clave" class="form-label">Confirmar contraseña:</label>
+                            <input type="password" class="form-control form-input" name="clave" id="clave2" placeholder=" " autocomplete="off">
+                            <label for="clave2" class="form-label">
+                                Confirmar contraseña:
+                                <span class="bi bi-lock"></span>
+                            </label>
                         </div>
                         <button type="submit" name="" class="btn btn-primary w-100 mt-3">Resetear clave</button>
                     </form>
-
-                    </div>
+                    <div class="position-relative mb-2 mt-4">
+                        <hr class="position-absolute top-0 start-0" width="43%"> 
+                        <i class="bi bi-circle lh-lg"></i>
+                        <hr class="position-absolute top-0 end-0" width="43%">
+                    </div> 
+                    <a href="/" class="text-info underline-hover">Iniciar Sesión</a>
                 </div>
-
             </div>
         </div>
+
     </div>
 </div>
 
