@@ -25,9 +25,9 @@ $this->title = 'Registrar usuario'
             <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios" action="">
                 <div class="form-group">
                     <div class="mb-4 input-group">
-                        <input type="text" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Buscar miembros...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="" class="btn btn-secondary">Buscar</button>
+                        <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Buscar miembros..." autofocus>
+                        <span class="input-group-text">
+                            <i class="bi bi-search text-first-color"></i>
                         </span>
                     </div>
                     <ul class="list-group" id="tabla_resultado_usuarios"></ul>
@@ -78,10 +78,6 @@ $this->title = 'Registrar usuario'
 <script>
     function limpiar() {
         $("#form-registrarUsuarios")[0].reset();
-        $("#miembro").focus();
+        $("#buscarMiembro").focus();
     }
-
-    $(document).ready(function () {
-        $("#miembro").focus();
-    });
 </script>

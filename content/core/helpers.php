@@ -87,6 +87,7 @@ if (!function_exists("routas")) {
 
             'miembros' => [
                 'controller' => miembrosController::class,
+                'icon' => 'bx bx-user-check',
                 'subRutas' => [
                     'listaMiembros' => [
                         'text' => 'lista-miembros',
@@ -125,6 +126,7 @@ if (!function_exists("routas")) {
 
             'donaciones' => [
                 'controller' => donacionesController::class,
+                'icon' => 'bx bx-donate-heart',
                 'subRutas' => [
                     'listaDonaciones' => [
                         'text' => 'lista-donaciones',
@@ -144,6 +146,7 @@ if (!function_exists("routas")) {
 
             'actividades' => [
                 'controller' => actividadController::class,
+                'icon' => 'bx bx-briefcase-alt',
                 'subRutas' => [
                     'listaActividades' => [
                         'text' => 'actividades',
@@ -182,6 +185,7 @@ if (!function_exists("routas")) {
 
             'grupoFamiliares' => [
                 'controller' => grupoFamiliarController::class,
+                'icon' => 'bx bx-group',
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
                         'text' => 'listaGrupoFamiliares',
@@ -215,6 +219,7 @@ if (!function_exists("routas")) {
 
             'usuarios' => [
                 'controller' => usuariosController::class,
+                'icon' => 'bx bx-user',
                 'subRutas' => [
                     'listaUsuarios' => [
                         'text' => 'usuarios-lista',
@@ -242,6 +247,7 @@ if (!function_exists("routas")) {
             'reportes' => [
                 'text' => 'reportes',
                 'controller' => reportesController::class,
+                'icon' => 'bx bx-bar-chart-alt-2',
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get'
@@ -249,8 +255,18 @@ if (!function_exists("routas")) {
 
             'Bitacora' => [
                 'controller' => bitacoreController::class,
+                'icon' => 'bx bx-log-in-circle',
                 'text' => 'lista',
                 'route' => '/Bitacora',
+                'method' => 'index',
+                'action' => 'get'
+            ],
+
+            'Ayuda' => [
+                'controller' => ayudaController::class,
+                'icon' => 'bx bx-help-circle',
+                'text' => 'lista',
+                'route' => '/Ayuda',
                 'method' => 'index',
                 'action' => 'get'
             ],
