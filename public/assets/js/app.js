@@ -190,47 +190,49 @@ $(document).ready(function(){
     // Registrar GrupoFamiliar
     const registrarGrupoFamiliar = () =>{  
         const agregarGrupoFamiliar = document.getElementById('agregarGrupoFamiliar');
-        agregarGrupoFamiliar.addEventListener('click', (ev) => {
-            // Registramos el nombre del grupo 
-            const nombreGrupoFamiliar = document.getElementById('nombreGrupoFamiliar').value;
-            $.ajax({
-                url: '/grupo-familiares/registrar-grupoFamiliar',
-                data:{
-                    'nombreGrupoFamiliar':nombreGrupoFamiliar
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: function(data){
-                    if(data.msj1) exito()                                                        
-                },
-                error: function(){} 
-            })
-            // Registramos cada miembro al nuevo grupo
-            const exito = () => {
-                const miembroId = document.getElementsByClassName('miembroId');
-                const newMiembro = document.getElementById('new-miembro');    
-                for (i = 0; i < miembroId.length; i++) {
-                    $.ajax({
-                        url: '/grupo-familiares/registrar-grupoFamiliar',
-                        data:{
-                            'miembroId': miembroId[i].getAttribute('data-id')
-                        },
-                        type: 'POST',
-                        dataType: 'json',
-                        success: function(data){
-                            $("#tabla_exito").html("Registrado exitosamente").fadeIn(100);                                                       
-                            setTimeout(function() {
-                                $("#tabla_exito").html("Registrado exitosamente").slideUp('slow');
-                                newMiembro.remove('slow');
-                                $("#nombreGrupoFamiliar").val(''); 
-                                $("#nombreGrupoFamiliar").focus(); 
-                            },1000); 
-                        },
-                        error: function(){} 
-                    })
+        if(agregarGrupoFamiliar !== null){
+            agregarGrupoFamiliar.addEventListener('click', (ev) => {
+                // Registramos el nombre del grupo
+                const nombreGrupoFamiliar = document.getElementById('nombreGrupoFamiliar').value;
+                $.ajax({
+                    url: '/grupo-familiares/registrar-grupoFamiliar',
+                    data:{
+                        'nombreGrupoFamiliar':nombreGrupoFamiliar
+                    },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data){
+                        if(data.msj1) exito()
+                    },
+                    error: function(){}
+                })
+                // Registramos cada miembro al nuevo grupo
+                const exito = () => {
+                    const miembroId = document.getElementsByClassName('miembroId');
+                    const newMiembro = document.getElementById('new-miembro');
+                    for (i = 0; i < miembroId.length; i++) {
+                        $.ajax({
+                            url: '/grupo-familiares/registrar-grupoFamiliar',
+                            data:{
+                                'miembroId': miembroId[i].getAttribute('data-id')
+                            },
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function(data){
+                                $("#tabla_exito").html("Registrado exitosamente").fadeIn(100);
+                                setTimeout(function() {
+                                    $("#tabla_exito").html("Registrado exitosamente").slideUp('slow');
+                                    newMiembro.remove('slow');
+                                    $("#nombreGrupoFamiliar").val('');
+                                    $("#nombreGrupoFamiliar").focus();
+                                },1000);
+                            },
+                            error: function(){}
+                        })
+                    }
                 }
-            }
-        }, false);
+            }, false);
+        }
     }      
     registrarGrupoFamiliar();
     //Grupo Familiar

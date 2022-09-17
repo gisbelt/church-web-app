@@ -21,28 +21,35 @@ $this->title = 'Registrar grupo familiar'
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo" action="">
                         <div class="form-group">
-                            <input type="text" name="nombreGrupoFamiliar" class="form-control form-input mb-4" id="nombreGrupoFamiliar" value="" placeholder=" ">
-                            <label for="nombreGrupoFamiliar" class="form-label fw-bold">Nombre del Grupo Familiar:*</label>
+                            <input type="text" name="nombreGrupoFamiliar" class="form-control form-input mb-4"
+                                   id="nombreGrupoFamiliar" value="" placeholder=" ">
+                            <label for="nombreGrupoFamiliar" class="form-label fw-bold">Nombre del Grupo
+                                Familiar:*</label>
                         </div>
 
                         <div class="form-group">
                             <div class="mb-4 input-group">
                                 <span class="input-group-btn">
-                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modelId">Ver lista</i></button>
+                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal"
+                                            data-bs-target="#modelId">Ver lista</i></button>
                                 </span>
-                                <input type="search" name="nombreMiembro" id="miembro" class="form-control" placeholder="Buscar Miembro..." value="">
+                                <input type="search" name="nombreMiembro" id="miembro" class="form-control"
+                                       placeholder="Buscar Miembro..." value="">
                                 <span class="input-group-btn">
-                                    <a id="add-miembro" class="btn btn-warning add disabled">Añadir <i class="bi bi-plus-circle"></i></a>
+                                    <a id="add-miembro" class="btn btn-warning add disabled">Añadir <i
+                                                class="bi bi-plus-circle"></i></a>
                                 </span>
                             </div>
                             <ul class="list-group" id="tabla_resultado"></ul>
-                        </div>                        
+                        </div>
                         <div class='new-miembro' id="new-miembro"></div>
-                        
+
                         <br>
-                        <div id="tabla_exito" class="hidden"></div>    
+                        <div id="tabla_exito" class="hidden"></div>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar" class="btn btn-success">Agregar</button>
+                            <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
+                                    class="btn btn-success">Agregar
+                            </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
                     </form>
@@ -74,16 +81,18 @@ $this->title = 'Registrar grupo familiar'
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                <?php foreach($consultarMiembroLista as $m) { ?>
-                                <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
-                                    <td name="" id=""><?php echo $m['cedula']; ?></td>
-                                    <td name="" id="miembroLista"><?php echo $m['nombre'].' '; echo $m['apellido'];?></td>
-                                    <td class="center">
-                                        <a id="add" class="btn btn-warning addLista" value="" data-bs-dismiss="modal">
-                                            <i class="bi bi-plus-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php foreach ($consultarMiembroLista as $m) { ?>
+                                    <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
+                                        <td name="" id=""><?php echo $m['cedula']; ?></td>
+                                        <td name="" id="miembroLista"><?php echo $m['nombre'] . ' ';
+                                            echo $m['apellido']; ?></td>
+                                        <td class="center">
+                                            <a id="add" class="btn btn-warning addLista" value=""
+                                               data-bs-dismiss="modal">
+                                                <i class="bi bi-plus-circle"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                                 </tbody>
                             </table>
@@ -98,25 +107,26 @@ $this->title = 'Registrar grupo familiar'
     </div>
 </div>
 <!-- Modal  -->
+
 <script>
-    // $(document).ready(function () {
-    //     $("#nombreGrupoFamiliar").focus();
+    $(document).ready(function () {
+        $("#nombreGrupoFamiliar").focus();
 
-    //     function limpiar() {
-    //         $("#form-registrarGrupo")[0].reset();
-    //         $("#nombreGrupoFamiliar").focus();
-    //     }
+        function limpiar() {
+            $("#form-registrarGrupo")[0].reset();
+            $("#nombreGrupoFamiliar").focus();
+        }
 
-    //     // Modal
-    //     var modelId = document.getElementById('modelId');
-    //     modelId.addEventListener('show.bs.modal', function (event) {
-    //         // Button that triggered the modal
-    //         let button = event.relatedTarget;
-    //         // Extract info from data-bs-* attributes
-    //         let recipient = button.getAttribute('data-bs-whatever');
+        // Modal
+        var modelId = document.getElementById('modelId');
+        modelId.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            let button = event.relatedTarget;
+            // Extract info from data-bs-* attributes
+            let recipient = button.getAttribute('data-bs-whatever');
 
-    //         // Use above variables to manipulate the DOM
-    //     });
+            // Use above variables to manipulate the DOM
+        });
 
-    // });
+    });
 </script>

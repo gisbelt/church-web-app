@@ -11,9 +11,11 @@ use content\controllers\grupoFamiliarController;
 use content\controllers\homeController;
 use content\controllers\miembrosController;
 use content\controllers\reportesController;
+use content\controllers\seguridadController;
 use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
+use content\enums\permisos;
 
 
 if (!function_exists("routas")) {
@@ -65,6 +67,7 @@ if (!function_exists("routas")) {
                 'controller' => homeController::class,
                 'subRutas' => [
                     'homeView' => [
+                        'permisos' => permisos::$home,
                         'text' => 'home',
                         'route' => '/home',
                         'method' => 'index',
@@ -217,6 +220,7 @@ if (!function_exists("routas")) {
                 'controller' => usuariosController::class,
                 'subRutas' => [
                     'listaUsuarios' => [
+                        'permisos' => permisos::$usuarios,
                         'text' => 'usuarios-lista',
                         'route' => '/usuarios',
                         'method' => 'index',
@@ -224,6 +228,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearUsuarios' => [
+                        'permisos' => permisos::$usuarios_crear,
                         'text' => 'usuarios-create',
                         'route' => '/usuarios/create',
                         'method' => 'create',
@@ -242,6 +247,14 @@ if (!function_exists("routas")) {
             'reportes' => [
                 'text' => 'reportes',
                 'controller' => reportesController::class,
+                'route' => '/reportes',
+                'method' => 'index',
+                'action' => 'get'
+            ],
+
+            'seguridad' => [
+                'text' => 'seguridad',
+                'controller' => seguridadController::class,
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get'

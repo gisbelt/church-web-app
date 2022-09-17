@@ -22,19 +22,7 @@ class View
      */
     public function renderView($view, $data = [])
     {
-
         $viewContent = $this->renderOnlyView($view, $data);
-        $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    /**
-     *  Render Content
-     * @param $viewContent
-     * @return array|false|string|string[]
-     */
-    public function renderContent($viewContent)
-    {
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
@@ -75,4 +63,5 @@ class View
         include_once Aplicacion::$ROOT_DIR . "/views/$view.php";
         return ob_get_clean();
     }
+
 }

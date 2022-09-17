@@ -14,13 +14,14 @@ class usuariosModel extends Model //BD
     public $username;
     public $email;
     public $password = "password";
+    public $role_id;
     public $nombreMiembro;
 
     //Login
     public static function login($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT id,username,email,password 
+        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id
         FROM users WHERE email=?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);
