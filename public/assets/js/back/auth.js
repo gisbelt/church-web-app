@@ -10,7 +10,6 @@ $(document).ready(function () {
             dataType: 'json',
         }).done(function (response) {
             // let response = JSON.parse(json);
-            console.log(response)
             if (response.code == 422) {
                 let html = '<ul>';
                 $.each(response.messages, function (index, value) {

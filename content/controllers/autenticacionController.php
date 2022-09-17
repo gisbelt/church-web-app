@@ -65,7 +65,7 @@ class AutenticacionController extends Controller
                     $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
                     $userPermisos = [];
                     foreach ($permisos as $permiso) {
-                        $userPermisos[] = $permiso['permiso'];
+                        $userPermisos[] = (int)$permiso['permiso'];
                     }
 
                     $_SESSION['user_permisos'] = $userPermisos;
@@ -123,9 +123,6 @@ class AutenticacionController extends Controller
 
     public function cerrarSesion()
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$_SESSION['user_permisos']]);
         unset($_SESSION['email']);
         unset($_SESSION['user_email']);
         unset($_SESSION['username']);
