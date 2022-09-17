@@ -18,9 +18,9 @@ $this->title = 'Mi Cuenta';
                 </div>
 
                 <div class="form-group">
-                    <div class="avatar mb-3">
-                        <img src="https://i.imgur.com/hczKIze.jpg" alt="">
-                        <a class="pointer editar_perfil" data-number="1" id="avatar-link"><i class="bi bi-pencil" id="avatar-pencil"></i></a>
+                    <div class="avatar mb-3" id="avatar">
+                        <a class="editar_perfil" data-number="1" id="avatar-link"><i class="bi bi-pencil" id="avatar-pencil"></i></a>
+                        <img src="https://i.imgur.com/hczKIze.jpg" alt="">                        
                     </div>
                     <h4 class="mb-2">
                         Nombre de usuario
@@ -43,7 +43,7 @@ $this->title = 'Mi Cuenta';
                     </p>
                     <div class="row mt-2">
                         <div class="col-md-3 show_2 hidden">
-                            <input type="text" required class="form-control mb-2" value="04245529755" id="" name="" placeholder="Teléfono">
+                            <input type="text" required class="form-control mb-2" value="04245529755" id="telefono" name="telefono" placeholder="Teléfono">
                         </div>
                         <div class="col-md-3 show_2 hidden">
                             <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
@@ -53,7 +53,7 @@ $this->title = 'Mi Cuenta';
 
                 <div class="form-group">
                     <label for="correo" class="fw-bold mb-1">Correo: </label>
-                    <input type="text" disabled class="form-control mb-2" value="" id="" name="" placeholder="Correo">
+                    <input type="text" disabled class="form-control mb-2" value="" id="email" name="email" placeholder="Correo">
                 </div>
 
                 <div class="form-group">
@@ -64,7 +64,7 @@ $this->title = 'Mi Cuenta';
                     </p>
                     <div class="row mt-2">
                         <div class="col-md-8 show_3 hidden">
-                            <textarea class="form-control mb-2" name="" id="" rows="1">Av. Venezuela con calle 34</textarea>
+                            <textarea class="form-control mb-2" name="direccion" id="direccion" rows="1">Av. Venezuela con calle 34</textarea>
                         </div>
                         <div class="col-md-2 show_3 hidden">
                             <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
@@ -111,12 +111,12 @@ $this->title = 'Mi Cuenta';
 </div><!--col-->
 
 <script>
-    function limpiar() {
-        $("#form-cuenta")[0].reset();
-        $("#username").focus();
-    }
+    // function limpiar() {
+    //     $("#form-cuenta")[0].reset();
+    //     $("#username").focus();
+    // }
 
-    $(document).ready(function () {
-        $("#username").focus();
-    });
+    // $(document).ready(function () {
+    //     $("#username").focus();
+    // });
 </script>

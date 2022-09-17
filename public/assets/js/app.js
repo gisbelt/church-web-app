@@ -6,14 +6,15 @@ $(document).ready(function(){
         $(".show_"+id).slideToggle(250);
         $(".show_"+id).removeClass("hidden");
     });
-    // Not finish yet 
-    $('.avatar').hover(function(){ 
-        // $('#avatar-pencil').addClass('avatar-pencil');
-        $('#avatar-link').css('display','block');
-        
-    }, function(){
-        $('#avatar-link').css('display','none'); 
+    
+    const avatar = document.getElementById('avatar');
+    const avatarLink = document.getElementById('avatar-link');
+    avatar.addEventListener('mouseenter', (ev) => {
+        avatarLink.style.display='block';
     });
+    avatar.addEventListener('mouseleave', (ev) => {
+        avatarLink.style.display='none';
+    })
     // Cuenta / perfil 
 
     // Filtro 
