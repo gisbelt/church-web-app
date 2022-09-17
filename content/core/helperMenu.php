@@ -38,7 +38,6 @@ class helperMenu
             if ($key !== 'login' && $key !== 'home' && $key !== 'error') {
                 if (!isset($item->permisos) || in_array($item->permisos, $_SESSION['user_permisos'])) {
                     if (empty($item->subRutas)) {
-                        $logger->debug(__METHOD__, [$item->route]);
                         if (isset($item->route)) {
                             if (empty($item->parametros)) {
                                 $route = $item->route;
