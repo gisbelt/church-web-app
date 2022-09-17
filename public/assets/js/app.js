@@ -9,12 +9,14 @@ $(document).ready(function(){
     
     const avatar = document.getElementById('avatar');
     const avatarLink = document.getElementById('avatar-link');
-    avatar.addEventListener('mouseenter', (ev) => {
-        avatarLink.style.display='block';
-    });
-    avatar.addEventListener('mouseleave', (ev) => {
-        avatarLink.style.display='none';
-    })
+    if(avatar){
+        avatar.addEventListener('mouseenter', (ev) => {
+            avatarLink.style.display='block';
+        });
+        avatar.addEventListener('mouseleave', (ev) => {
+            avatarLink.style.display='none';
+        })
+    }
     // Cuenta / perfil 
 
     // Filtro 

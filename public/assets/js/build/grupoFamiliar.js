@@ -99,6 +99,7 @@ $(document).ready(function(){
     // Registrar GrupoFamiliar
     const registrarGrupoFamiliar = () =>{  
         const agregarGrupoFamiliar = document.getElementById('agregarGrupoFamiliar');
+        if(agregarGrupoFamiliar !== null){
         agregarGrupoFamiliar.addEventListener('click', (ev) => {
             // Registramos el nombre del grupo 
             const nombreGrupoFamiliar = document.getElementById('nombreGrupoFamiliar').value;
@@ -140,6 +141,7 @@ $(document).ready(function(){
                 }
             }
         }, false);
+        }
     }      
     registrarGrupoFamiliar();
     //Grupo Familiar
