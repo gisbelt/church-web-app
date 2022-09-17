@@ -34,7 +34,6 @@ class usuariosController extends Controller
 
     public function create()
     {
-        /*$data["titulo"] = "Home";*/
         $user = usuarios::validarLogin();
         return $this->render('/acceso/usuarios/registrarView');
     }

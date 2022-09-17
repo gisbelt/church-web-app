@@ -2,10 +2,7 @@
 
 namespace content\core;
 
-
 use content\core\middlewares\BaseMiddleware;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
 
 /**
  * Class Controller

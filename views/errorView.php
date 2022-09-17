@@ -2,7 +2,7 @@
 /** @var $exception \Exception */
 $this->title = 'Error 403'
 ?>
-<div class="p-5 bg-light text-center error_500">
+<div class="p-0 bg-light text-center error_500">
     <div class="container">
         <h1 class="display-3">Sistema en mantenimiento</h1>
         <hr class="my-2">

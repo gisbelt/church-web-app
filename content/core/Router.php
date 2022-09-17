@@ -63,8 +63,6 @@ class Router
      */
     public function resolve()
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
@@ -84,12 +82,10 @@ class Router
             $controller->action = $callback[1];
             $callback[0] = $controller;
 
-            $logger->debug(__METHOD__, [$controller]);
             foreach ($controller->getMiddlewares() as $middleware) {
                 $middleware->execute();
             }
         }
-
         return call_user_func($callback, $this->request);
     }
 }
