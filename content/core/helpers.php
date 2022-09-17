@@ -130,8 +130,8 @@ if (!function_exists("routas")) {
                 'controller' => miembrosController::class,
                 'permisos' => null,
                 'parametros' => [],
-                'icon' => '',
                 'text' => 'miembros',
+                'icon' => 'bx bx-user-check',
                 'subRutas' => [
                     'listaMiembros' => [
                         'permisos' => null,
@@ -192,8 +192,8 @@ if (!function_exists("routas")) {
                 'controller' => donacionesController::class,
                 'permisos' => null,
                 'parametros' => [],
-                'icon' => '',
                 'text' => 'donaciones',
+                'icon' => 'bx bx-donate-heart',
                 'subRutas' => [
                     'listaDonaciones' => [
                         'permisos' => null,
@@ -223,8 +223,8 @@ if (!function_exists("routas")) {
                 'controller' => actividadController::class,
                 'permisos' => null,
                 'parametros' => [],
-                'icon' => '',
                 'text' => 'actividades',
+                'icon' => 'bx bx-briefcase-alt',
                 'subRutas' => [
                     'listaActividades' => [
                         'permisos' => null,
@@ -285,8 +285,8 @@ if (!function_exists("routas")) {
                 'controller' => grupoFamiliarController::class,
                 'permisos' => null,
                 'parametros' => [],
-                'icon' => '',
                 'text' => 'grupo familiares',
+                'icon' => 'bx bx-group',
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
                         'permisos' => null,
@@ -335,9 +335,9 @@ if (!function_exists("routas")) {
 
             'usuarios' => [
                 'controller' => usuariosController::class,
+                'icon' => 'bx bx-user',
                 'permisos' => permisos::$usuarios,
                 'parametros' => [],
-                'icon' => 'bx bx-user',
                 'text' => 'usuarios',
                 'subRutas' => [
                     'listaUsuarios' => [
@@ -381,6 +381,7 @@ if (!function_exists("routas")) {
                 'icon' => '',
                 'text' => 'reportes',
                 'controller' => reportesController::class,
+                'icon' => 'bx bx-bar-chart-alt-2',
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get',
@@ -402,14 +403,22 @@ if (!function_exists("routas")) {
             'Bitacora' => [
                 'permisos' => null,
                 'parametros' => [],
-                'icon' => '',
                 'controller' => bitacoreController::class,
+                'icon' => 'bx bx-log-in-circle',
                 'text' => 'lista',
-                'icon' => '',
                 'route' => '/Bitacora',
                 'method' => 'index',
                 'action' => 'get',
                 'subRutas' => []
+            ],
+
+            'Ayuda' => [
+                'controller' => ayudaController::class,
+                'icon' => 'bx bx-help-circle',
+                'text' => 'lista',
+                'route' => '/Ayuda',
+                'method' => 'index',
+                'action' => 'get'
             ],
 
             'perfil' => [

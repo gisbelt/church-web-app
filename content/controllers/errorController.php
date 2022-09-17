@@ -22,8 +22,9 @@ class errorController extends Controller
     public function index()
     {
         $user = usuarios::validarLogout();
-        $data["titulo"] = "ERROR 500";
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/errorView.php')), 200);
+        // $data["titulo"] = "ERROR 500";
+        // return new Response(require_once(realpath(dirname(__FILE__) . './../../views/errorView.php')), 200);
+        return $this->render('errorView');
     }
 
 }

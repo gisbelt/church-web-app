@@ -30,11 +30,14 @@ $this->title = 'miembros';
 
         <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
             <form action="" method="post">
-                <div class="input-group">
-                    <input type="text" name="" id="" class="form-control" placeholder="Insertar">
+                <div class="input-group input-daterange" id="datepicker">
+                    <span class="input-group-text">                        
+                        <i class="bi bi-calendar-date text-first-color"></i>
+                    </span>
+                    <input type="text" name="" id="" class="form-control" placeholder="Insertar" value="dd/mm/aaaa">
                     <span class="input-group-btn">
-                    <button type="submit" name="" class="btn btn-secondary">Buscar</button>
-                </span>
+                        <button type="submit" name="" class="btn btn-secondary">Buscar</button>
+                    </span>
                 </div>
             </form>
         </div>
