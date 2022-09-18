@@ -317,10 +317,10 @@ if (!function_exists("routas")) {
                     ],
 
                     'buscarMiembro' => [
-                        'text' => 'Buscar miembro',
                         'permisos' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'parametros' => [],
+                        'text' => 'Buscar miembro',
                         'route' => '/grupo-familiares/buscar-miembro',
                         'method' => 'buscarMiembro',
                         'action' => 'post',

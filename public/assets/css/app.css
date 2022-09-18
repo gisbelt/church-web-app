@@ -301,23 +301,6 @@ background: #fff; }
     color: #99abb4;
     background-color: transparent;
 }
-.nav_link{
-    margin-bottom: 0.5rem !important;
-}
-.itemShow{
-    margin-left: 24px;
-}
-.itemShow li{
-    list-style: none;
-    color: #fff;
-}
-.itemShow a{
-    color: #fff;
-}
-.itemShow a:hover{
-    color: rgb(192, 185, 185);
-    cursor: pointer;
-}
 .dropdown-menu{
     background-color: var(--first-color);
     /* opacity: 0.8; */
