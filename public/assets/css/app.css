@@ -52,6 +52,9 @@ body{
     font-size: var(--normal-font-size) !important;
     background-color: var(--white-color-2);
 }
+footer{
+    background-color: var(--white);
+}
 .text-first-color{
     color: var(--first-color);
 }
