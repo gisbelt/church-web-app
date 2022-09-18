@@ -10,7 +10,9 @@
     --second-color: #235789ff;
     --second-color-2: #525157;
     
+    --white: white;
     --white-color: #F7F6FB;
+    --white-color-2: #eef5f9;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100;
@@ -48,6 +50,7 @@ body{
     background-position:50vh; */
     font-family: var(--body-font) !important;
     font-size: var(--normal-font-size) !important;
+    background-color: var(--white-color-2);
 }
 .text-first-color{
     color: var(--first-color);
@@ -277,6 +280,24 @@ background: #fff; }
 /* Filter  */
 
 /*Menú Vertical*/
+.page-breadcrumb .breadcrumb .breadcrumb-item a {
+    color: #1e88e5;
+    font-size: 14px;
+}
+.page-breadcrumb .breadcrumb{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.breadcrumb-item-icon{
+    font-size: inherit;
+    color: #99abb4;
+    line-height: 1.3 !important;
+}
+.breadcrumb-item.active{
+    color: #99abb4;
+    background-color: transparent;
+}
 .nav_link{
     margin-bottom: 0.5rem !important;
 }

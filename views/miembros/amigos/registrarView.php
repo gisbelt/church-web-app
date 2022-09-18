@@ -1,7 +1,7 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Registrar amigos';
+$this->title = 'Registrar Amigos';
 ?>
 <div class="container-fluid">
     <div class="row">
