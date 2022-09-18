@@ -7,6 +7,7 @@ use content\core\exception\NotFoundException;
 use content\core\Request;
 use content\core\Response;
 
+use content\enums\permisos;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -81,7 +82,6 @@ class Router
             Aplicacion::$app->controller = $controller;
             $controller->action = $callback[1];
             $callback[0] = $controller;
-
             foreach ($controller->getMiddlewares() as $middleware) {
                 $middleware->execute();
             }
