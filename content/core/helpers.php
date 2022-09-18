@@ -314,29 +314,7 @@ if (!function_exists("routas")) {
                         'method' => 'create',
                         'action' => 'get',
                         'subRutas' => []
-                    ],
-
-                    'buscarMiembro' => [
-                        'text' => 'Buscar miembro',
-                        'permisos' => permisos::$permiso,
-                        'icon' => 'bx bx-search-alt-2',
-                        'parametros' => [],
-                        'route' => '/grupo-familiares/buscar-miembro',
-                        'method' => 'buscarMiembro',
-                        'action' => 'post',
-                        'subRutas' => []
-                    ],
-
-                    'registrarGrupoFamiliar' => [
-                        'permisos' => permisos::$permiso,
-                        'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => 'Registrar grupo familiar',
-                        'route' => '/grupo-familiares/registrar-grupoFamiliar',
-                        'method' => 'registrarGrupoFamiliar',
-                        'action' => 'post',
-                        'subRutas' => []
-                    ],
+                    ]
                 ]
             ],
 
