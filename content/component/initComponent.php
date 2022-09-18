@@ -2,7 +2,7 @@
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
         <div class="header_img"><img src="../assets/img/logo.png" alt=""></div>
-        <div class="dropdown ">
+        <div class="dropdown">
             <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId"
                     data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
@@ -16,6 +16,7 @@
         </div>
     </header>
 
+    <!-- menu  -->
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
@@ -155,4 +156,20 @@
     </div>
 </div>
 
+ <!-- breadcrumb -->
+ <div class="page-breadcrumb ps-4 pt-4">
+    <h3 class="page-title mb-0 p-0 text-first-color"><?php echo $this->title; ?></h3>
+    <div class="d-flex align-items-center">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home">Sistema</a></li>
+        <i class="breadcrumb-item-icon bx bx-chevron-right"></i>
+        <li class="breadcrumb-item active" aria-current="page"><?php echo $this->title; ?></li>
+        </ol>
+    </nav>
+    </div>
+</div>
+<!-- breadcrumb -->
+
 <!-- https://azmind.com/demo/bootstrap-4-sidebar-menu/  -->
+<!-- https://bbbootstrap.com/snippets/bootstrap-5-sidebar-menu-toggle-button-34132202 -->

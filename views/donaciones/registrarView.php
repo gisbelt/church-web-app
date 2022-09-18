@@ -22,18 +22,18 @@ $this->title = 'Registrar donaciones'
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="mb-4 input-group">
-                                    <input type="text" name="miembro" id="miembro" class="form-control"
-                                        placeholder="Buscar Donante...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" name="" class="btn btn-secondary">Buscar</button>
+                                    <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control"
+                                        placeholder="Buscar Donante..." autofocus>
+                                    <span class="input-group-text">
+                                        <i class="bi bi-search text-first-color"></i>
                                     </span>
                                 </div>
+                                <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" required name="miembro" class="form-control form-input mb-4"
-                                    id="miembro" value="" placeholder=" ">
-                                <label for="miembro" class="form-label fw-bold">Donante:*</label>
+                                <input type="text" required name="nombreMiembro" class="form-control form-input mb-4" id="nombreMiembro" value="" placeholder=" ">
+                                <label for="nombreMiembro" class="form-label fw-bold">Donante:*</label>
                             </div>
 
                             <div class="form-group">
@@ -86,10 +86,6 @@ $this->title = 'Registrar donaciones'
 <script>
     function limpiar() {
         $("#form-registrarDonacion")[0].reset();
-        $("#miembro").focus();
+        $("#buscarMiembro").focus();
     }
-
-    $(document).ready(function () {
-        $("#miembro").focus();
-    });
 </script>

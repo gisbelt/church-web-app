@@ -3,7 +3,6 @@
 
 $this->title = 'Amigos';
 ?>
-<br>
 <h3 class="text-center mb-4">Listado de amigos <a href="/amigos/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">

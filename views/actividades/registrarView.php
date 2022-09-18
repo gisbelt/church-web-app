@@ -6,7 +6,7 @@ $this->title = 'Actividades'
 <div class="container-fluid">
     <div class="row center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header mb-4">
                     <div>
                         <h5 class="p-0 absolute text-center">Datos de la actividad</h5>
@@ -75,7 +75,24 @@ $this->title = 'Actividades'
                             </div>
                         </div>
                     </div>
-
+                    <hr>
+                    <h5 class="mb-4 text-danger">Opcional:</h5>
+                    <div class="form-group">
+                        <div class="mb-4 input-group">
+                            <input type="search" name="buscarAmigo" id="buscarAmigo" class="form-control" placeholder="Amigo a participar" autofocus>
+                            <span class="input-group-text">
+                                <i class="bi bi-search text-first-color"></i>
+                            </span>
+                        </div>
+                        <ul class="list-group" id="tabla_resultado_usuarios"></ul>
+                    </div>  
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <p class="">Observación:</p>
+                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <!--Botones-->
                     <div class="btn-group modal-footer" role="group" aria-label="">
                         <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
                         <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>

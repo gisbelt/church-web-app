@@ -1,7 +1,7 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Registrar grupo familiar'
+$this->title = 'Registrar Grupo Familiar'
 ?>
 <!-- Menú -->
 <div class="container-fluid">

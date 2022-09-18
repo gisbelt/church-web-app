@@ -9,6 +9,7 @@ $(document).ready(function(){
                 obtener_registros(valorBusqueda);
             } else {
                 $(".tabla_resultado").fadeOut(100);
+                document.getElementById('add-miembro').classList.add("disabled"); 
             }
         });              
         const obtener_registros = (miembros) => {

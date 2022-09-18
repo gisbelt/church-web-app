@@ -1,7 +1,6 @@
 <?php
-$this->title = 'miembros';
+$this->title = 'Miembros';
 ?>
-<br>
 <h3 class="text-center mb-4">Listado de miembros <a href="/miembros/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container">
