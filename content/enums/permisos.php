@@ -21,4 +21,6 @@ class permisos
     public static $home = 6;
 
     public static $permiso = 7;
+
+    public static $donaciones = 8;
 }

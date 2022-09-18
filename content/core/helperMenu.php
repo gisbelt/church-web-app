@@ -35,7 +35,7 @@ class helperMenu
         $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $html = null;
         foreach ($menu as $key => $item) {
-            if ($key !== 'login' && $key !== 'home' && $key !== 'error') {
+            if ($key !== 'login' && $key !== 'home' && $key !== 'error'  && $key !== 'perfil') {
                 if (!isset($item->permisos) || in_array($item->permisos, $_SESSION['user_permisos'])) {
                     if (empty($item->subRutas)) {
                         if (isset($item->route)) {
@@ -74,7 +74,7 @@ class helperMenu
                     );
                     if(!empty($item->subRutas)){
                         $html .= sprintf(
-                            '<span class="nav_name center">%s <i class="bx bx-chevron-up nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
+                            '<span class="nav_name center">%s <i class="bx bx-chevron-down nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
                             $item->text,
                             $key,
                             $key

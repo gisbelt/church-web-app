@@ -145,12 +145,12 @@
                     </li>-->
                 </div>
             </div>
-            <!--<div class="dropdownss">
+            <div class="dropdownss">
                 <a href="/logout" class="nav_link" data-number="7" title="Cerrar sesión">
                     <i class='bx bx-log-out nav_icon'></i>
                     <span class="nav_name">Cerrar Sesión</span>
                 </a>
-            </div>-->
+            </div>
         </nav>
     </div>
 </div>
