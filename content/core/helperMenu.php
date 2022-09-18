@@ -48,14 +48,26 @@ class helperMenu
                             $target = '_self';
                         }
 
-                        $html .= sprintf(
-                            '<li>'
-                        );
-                        $html .= sprintf(
-                            '<a class="nav_link" data-number="%s" href="%s">',
-                            $key,
-                            $route
-                        );
+                        if(isset($item->sinSubRutas)){
+                            $html .= sprintf(
+                                '<li>'
+                            );
+                            $html .= sprintf(
+                                '<a class="nav_link" data-number="%s" href="%s">',
+                                $key,
+                                $route
+                            );
+                        }
+                        else {
+                            $html .= sprintf(
+                                '<li>'
+                            );
+                            $html .= sprintf(
+                                '<a class="sub_nav_link" data-number="%s" href="%s">',
+                                $key,
+                                $route
+                            );
+                        }
 
                     } else {
                         $html .= sprintf(
@@ -69,7 +81,7 @@ class helperMenu
                     }
 
                     $html .= sprintf(
-                        '<i class="%s nav-ico"></i>',
+                        '<i class="%s nav_icon"></i>',
                         $item->icon
                     );
                     if(!empty($item->subRutas)){
@@ -80,11 +92,22 @@ class helperMenu
                             $key
                         );
                     } else {
-                        $html .= sprintf(
-                            '<span class="nav_name">%s</span>',
-                            $item->text,
-                        );
-                    }
+                        if (!isset($item->sinSubRutas)){
+                            $html .= sprintf(
+                                '<span class="sub_nav_name">%s</span>',
+                                $item->text,
+                            );
+                        }
+                        else{
+                            $html .= sprintf(
+                                '<span class="nav_name center">%s </span>',
+                                $item->text,
+                                $key,
+                                $key
+                            );
+                        }
+                    }                    
+                    
                     $html .= '</span>';
 
                     $html .= '</a>';
