@@ -427,6 +427,7 @@ if (!function_exists("routas")) {
                 'method' => 'index',
                 'action' => 'get',
                 'permisos' => permisos::$permiso,
+                'subRutas' => []
             ],
 
             'perfil' => [
