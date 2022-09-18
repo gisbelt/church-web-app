@@ -73,9 +73,15 @@ $this->title = 'Registrar amigos';
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-input mb-4" id="fn" value=""
-                                        placeholder=" ">
-                                    <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
+                                    <div class="input-group input-daterange" id="datepicker">
+                                        <input type="text" class="form-control form-input mb-4" id="fn" value="dd/mm/aaaa" placeholder=" ">
+                                        <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
+                                        <span class="input-group-append">
+                                            <span class="input-group-text bg-transparent border-0">
+                                                <i class="bi bi-calendar-minus"></i>
+                                            </span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
