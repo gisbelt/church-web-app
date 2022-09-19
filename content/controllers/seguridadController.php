@@ -3,6 +3,7 @@
 namespace content\controllers;
 
 use Carbon\Carbon;
+use content\collections\seguridadCollection;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
@@ -32,9 +33,26 @@ class seguridadController extends Controller
         if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        /*$data["titulo"] = "Home";
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);*/
         return $this->render('seguridad/consultarView');
+    }
+
+    public function obtenerPermisos()
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $permisos = seguridadModel::obtener_permisos();
+
+        if($permisos){
+            $seguridaCollection = new seguridadCollection();
+            $permisosFormat = $seguridaCollection->formatPermisos($permisos);
+        }
+        $data = [
+            'permisos' => $permisosFormat,
+        ];
+        return json_encode($data);
+
     }
 
     public function create()

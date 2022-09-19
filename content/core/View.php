@@ -2,6 +2,7 @@
 
 namespace content\core;
 
+use content\core\exception\PageMaintenance;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -56,6 +57,10 @@ class View
      */
     protected function renderOnlyView($view, $data)
     {
+        if(!file_exists(Aplicacion::$ROOT_DIR . "/views/$view.php")){
+            Aplicacion::$app->response->setStatusCode(403);
+            throw new PageMaintenance();
+        }
         foreach ($data as $key => $value) {
             $$key = $value;
         }

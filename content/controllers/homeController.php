@@ -18,8 +18,6 @@ class homeController extends Controller
     public function index()
     {
         $user = usuarios::validarLogin();
-        /*$data["titulo"] = "Home";
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);*/
         return $this->render('homeView');
     }
 

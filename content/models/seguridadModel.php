@@ -44,11 +44,22 @@ class seguridadModel extends Model
     }
 
     // Agregar permiso
-    public static function agregar_permiso($nombre, $fecha){
-        $conexionBD=BD::crearInstancia();
-        $sql= $conexionBD->prepare("INSERT INTO permisos (nombre, fecha_creado, fecha_actualizado, fecha_eliminado) 
+    public static function agregar_permiso($nombre, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO permisos (nombre, fecha_creado, fecha_actualizado, fecha_eliminado) 
         VALUES (?,?,?,?)");
         return $sql->execute([$nombre, $fecha, $fecha, $fecha]);
+    }
+
+    // obtener permisos
+    public static function obtener_permisos()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT permisos.id as permiso, permisos.nombre as permiso_nombre FROM permisos");
+        $sql->execute();
+        $permisos = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $permisos;
     }
 
     /**

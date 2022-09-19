@@ -2,11 +2,13 @@
 
 namespace content\component;
 
-class headElement{
+class headElement
+{
 
-    static public function Heading(){
-        echo (
-            ' <!-- Required meta tags -->
+    static public function Heading()
+    {
+        echo(
+        ' <!-- Required meta tags -->
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="author" content="Uptaeb">
@@ -33,6 +35,10 @@ class headElement{
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
             <link rel="stylesheet" href="../assets/css/datepicker.css">
             <!-- datepicker -->
+             <!-- datable
+            <link rel="stylesheet" href="../assets/css/dataTables.bootstrap.min.css">
+            <link rel="stylesheet" href="../assets/css/buttons.bootstrap.min.css">
+            datable -->
             '
         );
     }

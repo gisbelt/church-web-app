@@ -414,6 +414,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'dataPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de permisos',
+                        'route' => '/seguridad/permisos-data',
+                        'method' => 'obtenerPermisos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'crearPermisos' => [
                         'permisos' => permisos::$seguridad,
                         'parametros' => [],

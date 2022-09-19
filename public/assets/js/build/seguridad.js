@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    listaPermisos();
+
+
     // Registrar rol o permisos
     $('#form-registrar-permisos').submit(function (e) {
         e.preventDefault();
@@ -42,4 +45,18 @@ $(document).ready(function () {
             console.log(JSON.parse(json));
         });
     });
-})
+});
+
+const listaPermisos = function (){
+    let $table = $("#permisos-table");
+    $table.DataTable({
+        "ajax": {
+            "url": $table.data("route"),
+            "dataSrc": "permisos"
+        },
+        "columns": [
+            {"data": "permiso_nombre"},
+            {"data": "actions", "className": "text-right"},
+        ]
+    })
+}

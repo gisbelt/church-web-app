@@ -23,6 +23,19 @@ class bottomComponent
             <script src="../assets/js/datepicker.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
             <script src="../assets/js/bootstrap-datepicker.es.js"></script>
+            
+            <script src="../assets/js/jquery.dataTables.min.js"></script>
+            <script src="../assets/js/dataTables.bootstrap.js"></script>
+            <!--botones DataTables-->
+            <script src="../assets/js/dataTables.buttons.min.js"></script>
+            <script src="../assets/js/buttons.bootstrap.min.js"></script>
+            <!--Libreria para exportar Excel-->
+            <!--<script src="../assets/js/jszip.min.js"></script>
+            Librerias para exportar PDF-->
+            <script src="../assets/js/pdfmake.min.js"></script>
+            <!--<script src="../assets/js/vfs_fonts.js"></script>
+            Librerias para botones de exportación-->
+            <script src="../assets/js/buttons.html5.min.js"></script>
 
             <!-- auth -->
             <script src="../assets/js/sweetalert2@11.js"></script>

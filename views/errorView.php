@@ -1,6 +1,6 @@
 <?php
 /** @var $exception \Exception */
-$this->title = 'Error 403'
+$this->title = 'Error' . ' - ' . $exception->getCode()
 ?>
 <div class="p-0 bg-light text-center error_500">
     <div class="container">
@@ -9,7 +9,7 @@ $this->title = 'Error 403'
         <p>Por favor sea paciente</p>
         <p class="lead">
         <h1 class="bi bi-emoji-frown"></h1>
-         <h3><?php echo $exception->getCode() ?> - <?php echo $exception->getMessage() ?> </h3>
+        <h3><?php echo $exception->getCode() ?> - <?php echo $exception->getMessage() ?> </h3>
         </p>
     </div>
 </div>

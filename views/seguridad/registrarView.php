@@ -5,7 +5,7 @@ $this->title = 'Registrar permisos';
 ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="offset-md-3  col-md-6">
+        <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header mb-4">
                     <div>
