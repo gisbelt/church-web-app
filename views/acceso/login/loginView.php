@@ -12,19 +12,6 @@ $this->title = 'Iniciar sesion'
                 Iniciar session
             </div>
             <div class="card-body">
-
-                <!-- Mensaje de error si el usuario o passwd están vacíos  -->
-                <?php if (isset($mensaje1)) { ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $mensaje1; ?>
-                    </div>
-                <?php } ?>
-
-                <?php if (isset($mensaje2)) { ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $mensaje2; ?>
-                    </div>
-                <?php } ?>
                 <!-- Creamos Formulario: !crt-form-login -->
                 <!-- Enviamos los datos del formulario a través del método post -->
                 <form method="post" action="/login" id="login-form" name="login-form">

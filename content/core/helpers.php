@@ -363,7 +363,7 @@ if (!function_exists("routas")) {
                         'permisos' => permisos::$usuarios_crear,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
-                        'text' => 'Registrar usarios',
+                        'text' => 'Registrar usuarios',
                         'route' => '/usuarios/create',
                         'method' => 'create',
                         'action' => 'get',
@@ -401,10 +401,41 @@ if (!function_exists("routas")) {
                 'icon' => 'bx bx-bar-chart-alt-2',
                 'text' => 'Seguridad',
                 'controller' => seguridadController::class,
-                'route' => '/seguridad',
-                'method' => 'index',
-                'action' => 'get',
-                'subRutas' => []
+                'route' => null,
+                'subRutas' => [
+                    'listaPermisos' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de permisos',
+                        'route' => '/seguridad',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'crearPermisos' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar permisos',
+                        'route' => '/seguridad/crear',
+                        'method' => 'create',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'gaurdarPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => null,
+                        'route' => '/seguridad/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+                ]
             ],
 
             'Bitacora' => [

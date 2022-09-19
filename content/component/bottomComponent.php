@@ -31,6 +31,7 @@ class bottomComponent
             <!-- build -->
             <script src="../assets/js/build/grupoFamiliar.js"></script>
             <script src="../assets/js/build/usuarios.js"></script>
+            <script src="../assets/js/build/seguridad.js"></script>
             '
         );
     }
