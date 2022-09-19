@@ -16,20 +16,19 @@ $this->title = 'Registrar permisos';
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrar-permisos" action="/seguridad/guardar">
+                    <form method="post" id="form-registrar-permisos" action="/seguridad/guardar">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <input type="text" required name="nombre_permisos" class="form-control form-input mb-4"
-                                        id="nombre_permisos" value="" placeholder="" autocomplete="off">
+                                    <input type="text" name="nombre" class="form-control form-input mb-4"
+                                        id="nombre" autocomplete="off">
                                     <label for="nombre_permisos" class="form-label fw-bold">Nombre:*</label>
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="submit" name="agregar-permisos" id="agregar-permisos-rol" class="btn btn-success">Agregar</button>
-                            <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
+                            <button type="submit" name="agregar-permisos-rol" id="agregar-permisos-rol" class="btn btn-success">Agregar</button>
                         </div>
                     </form>
                 </div><!--card-body-->

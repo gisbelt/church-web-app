@@ -95,7 +95,7 @@ class AutenticacionController extends Controller
                 'messages' => $usuarioModel->errors,
                 'code' => 422
             ];
-            return json_encode($data, 200);
+            return json_encode($data, 422);
         }
         /*$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
         $logger = new Logger("web");

@@ -2,11 +2,13 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\seguridadModel;
 use content\models\usuariosModel as usuarios;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -21,6 +23,7 @@ class seguridadController extends Controller
     public function __construct()
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
     }
 
     public function index()
@@ -46,12 +49,36 @@ class seguridadController extends Controller
     {
         $user = usuarios::validarLogin();
         if ($request->isPost()) {
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$request->getBody(), $request->isPost()]);
+            $seguridad = new seguridadModel();
+            $seguridad->loadData($request->getBody());
+            $nombre = $request->getBody()['nombre'];
+
+            if($seguridad->validate()){
+                $fecha =  Carbon::now();
+                $seguridad = seguridadModel::agregar_permiso($nombre, $fecha);
+                if($seguridad){
+                    $data = [
+                        'title' => 'Datos registrado',
+                        'messages' => 'El permiso se ha registrado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El permiso no se ha registrado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            }
         }
-        /*$data["titulo"] = "Home";
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);*/
-        //return $this->render('seguridad/registrarView');
+        if(count($seguridad->errors) > 0){
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $seguridad->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
     }
 }

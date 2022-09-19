@@ -43,6 +43,14 @@ class seguridadModel extends Model
         return $userRolPermiso;
     }
 
+    // Agregar permiso
+    public static function agregar_permiso($nombre, $fecha){
+        $conexionBD=BD::crearInstancia();
+        $sql= $conexionBD->prepare("INSERT INTO permisos (nombre, fecha_creado, fecha_actualizado, fecha_eliminado) 
+        VALUES (?,?,?,?)");
+        return $sql->execute([$nombre, $fecha, $fecha, $fecha]);
+    }
+
     /**
      * @return array[]
      */
