@@ -55,6 +55,9 @@ body{
 footer{
     background-color: var(--white);
 }
+.bg-first-color{
+    background-color: var(--first-color);
+}
 .text-first-color{
     color: var(--first-color);
 }

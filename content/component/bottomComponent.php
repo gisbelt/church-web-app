@@ -31,6 +31,10 @@ class bottomComponent
             <!-- build -->
             <script src="../assets/js/build/grupoFamiliar.js"></script>
             <script src="../assets/js/build/usuarios.js"></script>
+
+            <!-- Charts -->
+            <script src="../assets/js/Chart.bundle.min.js"></script>
+
             '
         );
     }

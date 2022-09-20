@@ -48,6 +48,7 @@ $(document).ready(function(){
                         const id = $(this).attr("data-id");
                         const texto = $(this).children().text();
                         campoMiembro.setAttribute('data-id', id);
+                        campoMiembro.id = id;
                         campoMiembro.value = texto;
                         campoMiembro.focus();
                         buscarMiembro.value = '';

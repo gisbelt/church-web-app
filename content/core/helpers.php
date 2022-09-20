@@ -199,7 +199,7 @@ if (!function_exists("routas")) {
                 'icon' => 'bx bx-donate-heart',
                 'subRutas' => [
                     'listaDonaciones' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$donaciones,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de Donaciones',
@@ -210,13 +210,24 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearDonaciones' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$donaciones,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar Donación',
                         'route' => '/donaciones/create',
                         'method' => 'create',
                         'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'obtenerDonaciones' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Obtener Donaciones',
+                        'route' => '/donaciones/obtener-donaciones',
+                        'method' => 'obtenerDonaciones',
+                        'action' => 'post',
                         'subRutas' => []
                     ],
                 ]
