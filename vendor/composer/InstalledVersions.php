@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'fba590647dafd09c9413de6b09768d305208e7a0',
+    'reference' => '760dc6c43c329ee957fc2419831f7959ec74bf3f',
     'name' => 'sistema/gestion',
   ),
   'versions' => 
@@ -76,7 +76,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'fba590647dafd09c9413de6b09768d305208e7a0',
+      'reference' => '760dc6c43c329ee957fc2419831f7959ec74bf3f',
     ),
     'symfony/deprecation-contracts' => 
     array (

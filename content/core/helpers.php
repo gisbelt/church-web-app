@@ -436,7 +436,7 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
-                    'gaurdarPermisos' => [
+                    'guardarPermisos' => [
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
@@ -444,6 +444,17 @@ if (!function_exists("routas")) {
                         'route' => '/seguridad/guardar',
                         'method' => 'guardar',
                         'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'borraPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => null,
+                        'route' => '/seguridad/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
                         'subRutas' => []
                     ],
                 ]

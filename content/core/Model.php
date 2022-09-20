@@ -17,6 +17,9 @@ abstract class Model
     public const RULE_MAX = 'max';
     public const RULE_MACTH = 'match';
 
+    public const ACTIVE = 1;
+    public const INACTIVE = 0;
+
     /**
      * Load data
      * @param $data

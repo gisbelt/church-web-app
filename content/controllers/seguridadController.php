@@ -47,6 +47,8 @@ class seguridadController extends Controller
         if($permisos){
             $seguridaCollection = new seguridadCollection();
             $permisosFormat = $seguridaCollection->formatPermisos($permisos);
+        } else {
+            $permisosFormat = [];
         }
         $data = [
             'permisos' => $permisosFormat,
@@ -98,5 +100,37 @@ class seguridadController extends Controller
             ];
             return json_encode($data, 422);
         }
+    }
+
+    public function eliminar(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $id = $request->getRouteParam('id');
+        if(!is_null($id)){
+            $permiso = seguridadModel::eliminar($id);
+            if($permiso){
+                $data = [
+                    'title' => 'Dato eliminado',
+                    'messages' => 'El permiso se ha eliminado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'El permiso no se ha eliminado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        $data = [
+            'title' => 'Error',
+            'messages' => 'Algo salio mal intente mas tardes',
+            'code' => 422
+        ];
+        return json_encode('hola', 422);
     }
 }

@@ -19,8 +19,9 @@ class seguridadCollection
             );
 
             $permiso['actions'] .= sprintf(
-                '<a href="/seguridad/crear" name="borrar" id="borrar" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
-                          </a>'
+                '<button type="button" data-route="%s" name="eliminar-permiso" id="eliminar-permiso" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
+                          </button>',
+                $route = '/seguridad/eliminar/'.$permiso['permiso'],
             );
             $data[] = $permiso;
         }
