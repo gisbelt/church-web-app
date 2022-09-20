@@ -102,6 +102,30 @@ class seguridadController extends Controller
         }
     }
 
+    /**
+     * Editar permisos vista
+     * @param Request $request
+     * @return false|string
+     * @throws ForbiddenException
+     *
+     */
+    public function editar(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $id = $request->getRouteParam('id');
+        return $this->render('seguridad/editarView');
+    }
+
+    /**
+     * Eliminaar permisos vista
+     * @param Request $request
+     * @return false|string
+     * @throws ForbiddenException
+     *
+     */
     public function eliminar(Request $request)
     {
         $user = usuarios::validarLogin();
@@ -131,6 +155,6 @@ class seguridadController extends Controller
             'messages' => 'Algo salio mal intente mas tardes',
             'code' => 422
         ];
-        return json_encode('hola', 422);
+        return json_encode($data, 422);
     }
 }

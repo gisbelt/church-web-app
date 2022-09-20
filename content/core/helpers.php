@@ -457,6 +457,17 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+
+                    'editarPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => null,
+                        'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 

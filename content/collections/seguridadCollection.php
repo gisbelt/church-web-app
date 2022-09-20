@@ -14,8 +14,9 @@ class seguridadCollection
         foreach ($permisos as $permiso)
         {
             $permiso['actions'] = sprintf(
-                '<a href="/seguridad/crear" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar">
-                            <i class="bi bi-pencil text-light"></i></a>'
+                '<a href="%s" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar">
+                            <i class="bi bi-pencil text-light"></i></a>',
+                $route = '/seguridad/editar/'.$permiso['permiso'],
             );
 
             $permiso['actions'] .= sprintf(
