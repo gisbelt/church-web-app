@@ -219,17 +219,6 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
-
-                    'obtenerDonaciones' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => 'Obtener Donaciones',
-                        'route' => '/donaciones/obtener-donaciones',
-                        'method' => 'obtenerDonaciones',
-                        'action' => 'post',
-                        'subRutas' => []
-                    ],
                 ]
             ],
 
