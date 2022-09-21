@@ -37,6 +37,7 @@ class grupoFamiliarController extends Controller
         return $this->render('grupoFamiliar/registrarView');
     }
 
+    //Buscar miembro que no tenga grupo familiar (autocompletado)
     public function buscarMiembro(Request $request){
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
@@ -48,6 +49,7 @@ class grupoFamiliarController extends Controller
         $consultarMiembro = grupoFamiliarModel::buscarMiembro($nombreMiembro);
     }
 
+    //Registrar miembro a grupo familiar
     public static function registrarGrupoFamiliar(Request $request){
         $user = usuarios::validarLogin();
 
