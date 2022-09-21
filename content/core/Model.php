@@ -14,6 +14,9 @@ abstract class Model
     public const RULE_MAX = 'max';
     public const RULE_MACTH = 'match';
 
+    public const ACTIVE = 1;
+    public const INACTIVE = 0;
+
     /**
      * Load data
      * @param $data
@@ -90,9 +93,14 @@ abstract class Model
     private function addErrorForRule(string $attribute, string $rule, $params = [])
     {
         $message = $this->errosMessages()[$rule] ?? '';
-        foreach ($params as $key => $item) {
-            $message = str_replace("{{$key}}", $item, $message);
+        if(!empty($params)){
+            foreach ($params as $key => $item) {
+                $message = str_replace("{{$key}}", $item, $message);
+            }
+        } else {
+            $message = str_replace('{attribute}', $attribute, $message);
         }
+
         $this->errors[$attribute][] = $message;
     }
 
@@ -115,13 +123,14 @@ abstract class Model
     public function errosMessages()
     {
          return [
-             self::RULE_REQUIRED => 'El campo es requerido',
-             self::RULE_EMAIL => 'este campo debe ser una dirección de correo electrónico válida',
+             self::RULE_REQUIRED => 'El campo {attribute} es requerido',
+             self::RULE_EMAIL => 'Este campo debe ser una dirección de correo electrónico válida',
              self::RULE_MIN => 'La longitud mínima debe ser {min}',
              self::RULE_MAX => 'La longitud maxima debe ser {max}',
              self::RULE_MACTH => 'este campo debe ser el mismo que  {match}'
          ];
     }
+
 
     /**
      *  Has error

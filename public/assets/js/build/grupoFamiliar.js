@@ -72,7 +72,7 @@ $(document).ready(function(){
                 const miembro = document.getElementById('miembro').value;
                 const miembroID = document.getElementById('miembro').getAttribute('data-id');
                 i++;
-                var div = $("<div class='miembro-group"+i+" input-group'></div>");
+                var div = $("<div class='miembro-numero"+i+" input-group'></div>");
                 var input = $("<input type='text' required name='miembroId' class='form-control form-input mb-4 miembroId' id='integrante"+i+"' value='"+miembro+"' placeholder=' ' data-id='"+miembroID+"'> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
                 div.append(input);
                 newMiembro.append(div);
@@ -83,7 +83,7 @@ $(document).ready(function(){
                 const miembro = $(this).parents("tr").find("#miembroLista").text();
                 const miembroID = $(this).parents("tr").attr("data-id");
                 i++;
-                var div = $("<div class='miembro-group"+i+" input-group'></div>");
+                var div = $("<div class='miembro-numero"+i+" input-group'></div>");
                 var input = $("<input type='text' required name='miembroId' class='form-control form-input mb-4 miembroId' id='integrante"+i+"' value='"+miembro+"' placeholder=' ' data-id='"+miembroID+"'> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
                 div.append(input);
                 newMiembro.append(div);
@@ -91,7 +91,7 @@ $(document).ready(function(){
             })
             $(document).on('click', ".btn-remove", function(e){
                 var button_id = $(this).attr("id"); 
-                $(".miembro-group"+button_id).remove();
+                $(".miembro-numero"+button_id).remove();
             });
         }
     }    
@@ -107,12 +107,29 @@ $(document).ready(function(){
             $.ajax({
                 url: '/grupo-familiares/registrar-grupoFamiliar',
                 data:{
-                    'nombreGrupoFamiliar':nombreGrupoFamiliar
+                    'nombreGrupoFamiliar':nombreGrupoFamiliar,
                 },
                 type: 'POST',
                 dataType: 'json',
-                success: function(data){
-                    if(data.msj1) exito()                                                        
+                success: function(response){
+                    if (response.code == 422) {
+                        let html = '<ul class="list-group list-group-flush">';
+                        $.each(response.messages, function (index, value) {
+                            html += '<li class="list-group-item">' + value + '</li>';
+                        });
+                        html += '</ul>';
+        
+                        swal.fire({
+                            title: response.title,
+                            html: html,
+                            icon: 'error',
+                            showConfirmButton: false,
+                            showCancelButton: true,
+                            cancelButtonText: 'close'
+                        });
+                    } else {
+                        exito();
+                    }
                 },
                 error: function(){} 
             })
@@ -128,11 +145,19 @@ $(document).ready(function(){
                         },
                         type: 'POST',
                         dataType: 'json',
-                        success: function(data){
-                            $("#tabla_exito").html("Registrado exitosamente").fadeIn(100);                                                       
+                        success: function(response){
+                            swal.fire({
+                                title: response[1].title,
+                                html: response[1].messages,
+                                icon: 'success',
+                                showConfirmButton: false,
+                                showCancelButton: true,
+                                cancelButtonText: 'close'
+                            });
+                            $("#form-registrarGrupo")[0].reset();
+                            $("#nombreGrupoFamiliar").focus(); 
                             setTimeout(function() {
-                                $("#tabla_exito").html("Registrado exitosamente").slideUp('slow');
-                                newMiembro.remove('slow');
+                                newMiembro.innerHTML = "";
                                 $("#nombreGrupoFamiliar").val(''); 
                                 $("#nombreGrupoFamiliar").focus(); 
                             },1000); 

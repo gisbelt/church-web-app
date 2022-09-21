@@ -2,11 +2,13 @@
 
 namespace content\controllers;
 
+use content\core\exception\ForbiddenException;
+use content\core\Request;
+use content\enums\permisos;
 use content\core\Controller;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\models\usuariosModel as usuarios;
-use content\models\grupoFamiliarModel as gf;
-
+use content\models\grupoFamiliarModel;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -29,22 +31,46 @@ class grupoFamiliarController extends Controller
     public function create()
     {
         $user = usuarios::validarLogin();
-        $consultarMiembroLista = gf::buscarMiembroLista();
+        $consultarMiembroLista = grupoFamiliarModel::buscarMiembroLista();
         $data['titulo'] = 'Registrar Grupos Familiares';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
         return $this->render('grupoFamiliar/registrarView');
     }
 
-    public function buscarMiembro(){
-        $nombreMiembro = $_POST['nombreMiembro'];
-        $consultarMiembro = gf::buscarMiembro($nombreMiembro);
-        die ($consultarMiembro);
+    public function buscarMiembro(Request $request){
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $consultarMiembro = new grupoFamiliarModel();
+        $consultarMiembro->loadData($request->getBody());
+        $nombreMiembro = $request->getBody()['nombreMiembro'];
+        $consultarMiembro = grupoFamiliarModel::buscarMiembro($nombreMiembro);
     }
 
-    public function registrarGrupoFamiliar(){
-        $nombreGrupoFamiliar = $_POST['nombreGrupoFamiliar'];
-        $miembroId = $_POST['miembroId'];
-        gf::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);
+    public static function registrarGrupoFamiliar(Request $request){
+        $user = usuarios::validarLogin();
+
+        $gf = new grupoFamiliarModel();
+        $gf->loadData($request->getBody());
+        $nombreGrupoFamiliar = $request->getBody()['nombreGrupoFamiliar'];
+        $miembroId = $request->getBody()['miembroId'];
+
+        if(isset($nombreGrupoFamiliar)){
+            if($gf->validate()){
+                $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     
+            }
+            if(count($gf->errors) > 0){
+                $data = [
+                    'title' => 'Datos invalidos',
+                    'messages' => $gf->errors,
+                    'code' => 422
+                ];
+                return json_encode($data, 422);
+            } 
+        }
+
+        $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     
     }
 }
 

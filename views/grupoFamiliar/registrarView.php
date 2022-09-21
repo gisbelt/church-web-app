@@ -45,7 +45,6 @@ $this->title = 'Registrar Grupo Familiar'
                         <div class='new-miembro' id="new-miembro"></div>
 
                         <br>
-                        <div id="tabla_exito" class="hidden"></div>
                         <div class="btn-group modal-footer" role="group" aria-label="">
                             <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
                                     class="btn btn-success">Agregar
@@ -109,24 +108,13 @@ $this->title = 'Registrar Grupo Familiar'
 <!-- Modal  -->
 
 <script>
-    $(document).ready(function () {
-        $("#nombreGrupoFamiliar").focus();
+    // $(document).ready(function () {
+    //     $("#nombreGrupoFamiliar").focus();
 
-        function limpiar() {
-            $("#form-registrarGrupo")[0].reset();
-            $("#nombreGrupoFamiliar").focus();
-        }
+    //     function limpiar() {
+    //         $("#form-registrarGrupo")[0].reset();
+    //         $("#nombreGrupoFamiliar").focus();
+    //     }      
 
-        // Modal
-        var modelId = document.getElementById('modelId');
-        modelId.addEventListener('show.bs.modal', function (event) {
-            // Button that triggered the modal
-            let button = event.relatedTarget;
-            // Extract info from data-bs-* attributes
-            let recipient = button.getAttribute('data-bs-whatever');
-
-            // Use above variables to manipulate the DOM
-        });
-
-    });
+    // });
 </script>

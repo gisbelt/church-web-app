@@ -21,13 +21,13 @@ $this->title = 'Reportes'
             <div class="report-content collapse" id="report1">
                 <div class="card bg-transparent">
                     <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Donaciones recibidas por mes</h5>
+                        <h5 class="card-title text-white m-0">Donaciones</h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                    </div>
-                </div><!-- /.card-body -->
-            </div><!-- /.card -->
+
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
         </section>
        
         <!-- 2 -->
@@ -37,10 +37,19 @@ $this->title = 'Reportes'
                 <div class="derecha">
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report2">Expandir</button>
                 </div>                
-                <p>Set the default branch for this project. All merge requests and commits are made against this branch unless you specify a different one.</p>
+                <p>reportes</p>
             </div>
             <!-- put view here  -->
-            <div class="report-content collapse" id="report2"><p>hola</p></div>
+            <div class="report-content collapse" id="report2">
+                <div class="card bg-transparent">
+                    <div class="card-header bg-first-color">
+                        <h5 class="card-title text-white m-0">Donaciones</h5>
+                    </div>
+                    <div class="card-body">
+
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
         </section>
        
         <!-- 3 -->
@@ -48,12 +57,21 @@ $this->title = 'Reportes'
             <div class="report-header">
                 <h4 class="">Reporte 3</h4>
                 <div class="derecha">
-                    <button type="button" class="btn btn-outline-success">Expandir</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report3">Expandir</button>
                 </div>                
-                <p>Set the default branch for this project. All merge requests and commits are made against this branch unless you specify a different one.</p>
+                <p>reportes</p>
             </div>
             <!-- put view here  -->
-            <div class="report-content"></div>
+            <div class="report-content collapse" id="report3">
+                <div class="card bg-transparent">
+                    <div class="card-header bg-first-color">
+                        <h5 class="card-title text-white m-0">Donaciones</h5>
+                    </div>
+                    <div class="card-body">
+
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
         </section>
        
         <!-- 4 -->
@@ -61,12 +79,21 @@ $this->title = 'Reportes'
             <div class="report-header">
                 <h4 class="">Reporte 4</h4>
                 <div class="derecha">
-                    <button type="button" class="btn btn-outline-success">Expandir</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report4">Expandir</button>
                 </div>                
-                <p>Set the default branch for this project. All merge requests and commits are made against this branch unless you specify a different one.</p>
+                <p>reportes</p>
             </div>
             <!-- put view here  -->
-            <div class="report-content"></div>
+            <div class="report-content collapse" id="report4">
+                <div class="card bg-transparent">
+                    <div class="card-header bg-first-color">
+                        <h5 class="card-title text-white m-0">Donaciones</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
         </section>         
     </div>            
 </div>

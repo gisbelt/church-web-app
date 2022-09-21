@@ -4,11 +4,11 @@ namespace content\models;
 
 use content\config\conection\database as BD;
 use PDO as pdo;
-
+use content\core\Model;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class grupoFamiliarModel extends BD
+class grupoFamiliarModel extends Model
 {
 
     public $id;
@@ -18,8 +18,8 @@ class grupoFamiliarModel extends BD
     public $gruposFamiliaresId;
     public $miembroId;
 
-    public function  __construct($nombreMiembro,$apellidoMiembro){
-        $this->id_cliente=$id_cliente;
+    public function  __construct(){
+        
     }
 
     //Buscar miembro que no tenga grupo familiar (PARA LA LISTA)
@@ -36,7 +36,7 @@ class grupoFamiliarModel extends BD
         return $buscarMiembro;
     }
 
-    //Buscar miembro que no tenga grupo familiar 
+    //Buscar miembro que no tenga grupo familiar (autocompletado)
     public static function buscarMiembro($nombreMiembro)
     {
         $conexionBD = BD::crearInstancia();
@@ -62,7 +62,7 @@ class grupoFamiliarModel extends BD
         echo json_encode($result);
     }
 
-    //Registrar grupo familiar
+    //Registrar miembro a grupo familiar
     public static function registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId){
         $conexionBD=BD::crearInstancia();   
         if(isset($nombreGrupoFamiliar)){        
@@ -82,9 +82,27 @@ class grupoFamiliarModel extends BD
         $sql3->bindParam(":grupos_familiares_id", $lastID['id']);
         $sql3->bindParam(":miembro_id", $miembroId);
         $sql3->execute();
-        $result = [msj2 => json_encode($sql3)];
-        die(json_encode($result));
+        $result2 = [msj2 => json_encode($sql3)];
+
+        $data = [
+            'title' => 'Datos registrados',
+            'messages' => 'El Grupo Familiar se ha registrado con exito',
+            'code' => 200
+        ];
+
+        die(json_encode([$result2, $data]));
     }
+
+    /**
+     * @return array[]
+     */
+    public function rules(): array
+    {
+        return [
+            'nombreGrupoFamiliar' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6]],
+        ];
+    }
+
 
 
 }

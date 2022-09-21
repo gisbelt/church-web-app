@@ -33,7 +33,7 @@ class bottomComponent
             <script src="../assets/js/build/usuarios.js"></script>
 
             <!-- Charts -->
-            <script src="../assets/js/Chart.bundle.min.js"></script>
+            <script src="../assets/js/chart.bundle.min.js"></script>
 
             '
         );
