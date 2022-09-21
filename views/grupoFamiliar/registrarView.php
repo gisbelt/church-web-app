@@ -22,7 +22,7 @@ $this->title = 'Registrar Grupo Familiar'
                     <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo" action="">
                         <div class="form-group">
                             <input type="text" name="nombreGrupoFamiliar" class="form-control form-input mb-4"
-                                   id="nombreGrupoFamiliar" value="" placeholder=" ">
+                                   id="nombreGrupoFamiliar" value="" placeholder=" " autofocus>
                             <label for="nombreGrupoFamiliar" class="form-label fw-bold">Nombre del Grupo
                                 Familiar:*</label>
                         </div>
@@ -47,7 +47,7 @@ $this->title = 'Registrar Grupo Familiar'
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
                             <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
-                                    class="btn btn-success">Agregar
+                                    class="btn btn-success" disabled>Agregar
                             </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
@@ -108,13 +108,8 @@ $this->title = 'Registrar Grupo Familiar'
 <!-- Modal  -->
 
 <script>
-    // $(document).ready(function () {
-    //     $("#nombreGrupoFamiliar").focus();
-
-    //     function limpiar() {
-    //         $("#form-registrarGrupo")[0].reset();
-    //         $("#nombreGrupoFamiliar").focus();
-    //     }      
-
-    // });
+    function limpiar() {
+        $("#form-registrarGrupo")[0].reset();
+        $("#nombreGrupoFamiliar").focus();
+    }      
 </script>

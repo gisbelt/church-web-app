@@ -101,11 +101,7 @@ $(document).ready(function(){
 
     // Registrar GrupoFamiliar
     const registrarGrupoFamiliar = () =>{  
-        const newMiembro = document.getElementById('new-miembro');      
-        if(newMiembro.innerHTML == ""){
-            button.disabled = true;
-        }        
-        
+        const newMiembro = document.getElementById('new-miembro');  
         if(button !== null){
         button.addEventListener('click', (ev) => {
             // Registramos el nombre del grupo 
@@ -160,7 +156,6 @@ $(document).ready(function(){
                                 cancelButtonText: 'close'
                             });
                             $("#form-registrarGrupo")[0].reset();
-                            $("#nombreGrupoFamiliar").focus();
                             button.disabled = true; 
                             setTimeout(function() {
                                 newMiembro.innerHTML = "";

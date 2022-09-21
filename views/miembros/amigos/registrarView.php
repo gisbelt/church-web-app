@@ -22,7 +22,7 @@ $this->title = 'Registrar Amigos';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" required name="cedula" class="form-control form-input mb-4"
-                                        id="cedula" value="" placeholder=" ">
+                                        id="cedula" value="" placeholder=" " autofocus>
                                     <label for="cedula" class="form-label fw-bold">Cedula:*</label>
                                 </div>
 
@@ -102,8 +102,4 @@ $this->title = 'Registrar Amigos';
         $("#form-registrarAmigos")[0].reset();
         $("#cedula").focus();
     }
-
-    $(document).ready(function () {
-        $("#cedula").focus();
-    });
 </script>
