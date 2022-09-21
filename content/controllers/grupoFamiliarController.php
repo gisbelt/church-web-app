@@ -71,7 +71,7 @@ class grupoFamiliarController extends Controller
                 return json_encode($data, 422);
             } 
         }
-
+        
         $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     
     }
 }

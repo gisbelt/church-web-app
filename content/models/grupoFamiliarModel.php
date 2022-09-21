@@ -89,7 +89,7 @@ class grupoFamiliarModel extends Model
             'messages' => 'El Grupo Familiar se ha registrado con exito',
             'code' => 200
         ];
-
+        
         die(json_encode([$result2, $data]));
     }
 

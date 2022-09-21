@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    //Grupo Familiar
+    const button = document.getElementById('agregarGrupoFamiliar');
+
     // Buscar miembro que no tenga grupo familiar 
     const buscarMiembroGrupoFamiliar = () =>{       
         $("#miembro").keyup(function () {
@@ -24,12 +25,10 @@ $(document).ready(function(){
                 success: function(data){
                     const lista = document.querySelector('#tabla_resultado');
                     const campoMiembro = document.getElementById('miembro'); 
-
                     //Filtramos los resultados según el valor que ha insertado el usuario
                     const datos = data.filter (results => {
                        return [results]
-                    });                    
-                    
+                    });                                        
                     // Recorremos con el map los resultados filtrados para crear cada elemento
                     lista.innerHTML = datos
                     .map((result, index) => {
@@ -64,10 +63,10 @@ $(document).ready(function(){
     const nuevoMiembro = (addID, NewMiembro) =>{
         const add = document.getElementById(addID), 
         newMiembro = $(NewMiembro);
-        newMiembro.empty;
         if(add, newMiembro){
             var i=0;
             $('.add').on('click', function (e){
+                button.disabled = false;
                 this.classList.add("disabled");
                 const miembro = document.getElementById('miembro').value;
                 const miembroID = document.getElementById('miembro').getAttribute('data-id');
@@ -92,6 +91,9 @@ $(document).ready(function(){
             $(document).on('click', ".btn-remove", function(e){
                 var button_id = $(this).attr("id"); 
                 $(".miembro-numero"+button_id).remove();
+                if(newMiembro.html() == ""){
+                    button.disabled = true;
+                }
             });
         }
     }    
@@ -99,9 +101,13 @@ $(document).ready(function(){
 
     // Registrar GrupoFamiliar
     const registrarGrupoFamiliar = () =>{  
-        const agregarGrupoFamiliar = document.getElementById('agregarGrupoFamiliar');
-        if(agregarGrupoFamiliar !== null){
-        agregarGrupoFamiliar.addEventListener('click', (ev) => {
+        const newMiembro = document.getElementById('new-miembro');      
+        if(newMiembro.innerHTML == ""){
+            button.disabled = true;
+        }        
+        
+        if(button !== null){
+        button.addEventListener('click', (ev) => {
             // Registramos el nombre del grupo 
             const nombreGrupoFamiliar = document.getElementById('nombreGrupoFamiliar').value;
             $.ajax({
@@ -136,7 +142,6 @@ $(document).ready(function(){
             // Registramos cada miembro al nuevo grupo
             const exito = () => {
                 const miembroId = document.getElementsByClassName('miembroId');
-                const newMiembro = document.getElementById('new-miembro');    
                 for (i = 0; i < miembroId.length; i++) {
                     $.ajax({
                         url: '/grupo-familiares/registrar-grupoFamiliar',
@@ -155,7 +160,8 @@ $(document).ready(function(){
                                 cancelButtonText: 'close'
                             });
                             $("#form-registrarGrupo")[0].reset();
-                            $("#nombreGrupoFamiliar").focus(); 
+                            $("#nombreGrupoFamiliar").focus();
+                            button.disabled = true; 
                             setTimeout(function() {
                                 newMiembro.innerHTML = "";
                                 $("#nombreGrupoFamiliar").val(''); 
@@ -170,5 +176,4 @@ $(document).ready(function(){
         }
     }      
     registrarGrupoFamiliar();
-    //Grupo Familiar
 });

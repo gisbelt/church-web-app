@@ -136,6 +136,11 @@ footer{
     background-color: var(--first-color-2);
     border-color: var(--first-color-2);
 }
+.btn-success:disabled{
+    color: #fff;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
+}
 .btn-outline-success {
     color: var(--first-color);
     border-color: var(--first-color);
