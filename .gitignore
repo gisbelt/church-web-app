@@ -1,6 +1,7 @@
 /content/config/conection/
 /content/config/settings/sysConfig.php
 /content/Logger
+/Logger
 /vendor
 .idea
 composer.lock
