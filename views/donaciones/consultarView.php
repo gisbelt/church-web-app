@@ -10,14 +10,3 @@ $this->title = 'Donaciones'
     </div><!--row-->
 </div><!--container-->
 <!-- ********************************* -->
-
-<script>
-    function limpiar() {
-        $("#form-registrarDonacion")[0].reset();
-        $("#miembro").focus();
-    }
-
-    $(document).ready(function () {
-        $("#miembro").focus();
-    });
-</script>

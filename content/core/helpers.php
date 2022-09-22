@@ -163,7 +163,7 @@ if (!function_exists("routas")) {
                 'permisos' => permisos::$permiso,
                 'parametros' => [],
                 'route' => null,
-                'icon' => 'bx bx-user',
+                'icon' => 'bx bx-smile',
                 'text' => 'Amigos',
                 'subRutas' => [
                     'listaAmigos' => [
@@ -398,7 +398,7 @@ if (!function_exists("routas")) {
             'Seguridad' => [
                 'permisos' => permisos::$seguridad,
                 'parametros' => [],
-                'icon' => 'bx bx-bar-chart-alt-2',
+                'icon' => 'bx bx-lock',
                 'text' => 'Seguridad',
                 'controller' => seguridadController::class,
                 'route' => null,

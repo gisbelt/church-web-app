@@ -45,6 +45,10 @@ class bottomComponent
             <script src="../../assets/js/build/grupoFamiliar.js"></script>
             <script src="../../assets/js/build/usuarios.js"></script>
             <script src="../../assets/js/build/seguridad.js"></script>
+
+            <!-- Charts -->
+            <script src="../../assets/js/chart.bundle.min.js"></script>
+
             '
         );
     }

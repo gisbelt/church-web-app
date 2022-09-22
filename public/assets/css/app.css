@@ -55,6 +55,9 @@ body{
 footer{
     background-color: var(--white);
 }
+.bg-first-color{
+    background-color: var(--first-color);
+}
 .text-first-color{
     color: var(--first-color);
 }
@@ -132,6 +135,11 @@ footer{
     color: #fff;
     background-color: var(--first-color-2);
     border-color: var(--first-color-2);
+}
+.btn-success:disabled{
+    color: #fff;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
 }
 .btn-outline-success {
     color: var(--first-color);
