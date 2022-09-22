@@ -392,7 +392,8 @@ if (!function_exists("routas")) {
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get',
-                'subRutas' => []
+                'subRutas' => [],
+                'sinSubRutas' => 'ok'
             ],
 
             'Seguridad' => [
@@ -466,7 +467,7 @@ if (!function_exists("routas")) {
                         'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editar',
                         'action' => 'get',
-                        'subRutas' => []
+                        'subRutas' => [],
                     ],
                 ]
             ],
@@ -480,7 +481,8 @@ if (!function_exists("routas")) {
                 'route' => '/Bitacora',
                 'method' => 'index',
                 'action' => 'get',
-                'subRutas' => []
+                'subRutas' => [],
+                'sinSubRutas' => 'ok'
             ],
 
             'Ayuda' => [
@@ -491,7 +493,8 @@ if (!function_exists("routas")) {
                 'method' => 'index',
                 'action' => 'get',
                 'permisos' => permisos::$permiso,
-                'subRutas' => []
+                'subRutas' => [],
+                'sinSubRutas' => 'ok'
             ],
 
             'perfil' => [
