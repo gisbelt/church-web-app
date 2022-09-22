@@ -460,10 +460,10 @@ if (!function_exists("routas")) {
                     ],
 
                     'editarPermiso' => [
-                        'permisos' => [],
+                        'permisos' => permisos::$seguridad,
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
-                        'text' => 'editar',
+                        'text' => 'Editar Permisos',
                         'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editar',
                         'action' => 'get',

@@ -108,7 +108,7 @@ const listaPermisos = function (){
         },
         "columns": [
             {"data": "permiso_nombre"},
-            {"data": "actions", "className": "text-right"},
+            {"data": "actions", "className": "center"},
         ],
         "initComplete": function () {
             api = this.api();

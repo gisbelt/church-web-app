@@ -91,7 +91,7 @@ class helperMenu
                             $key
                         );
                     } else {
-                        if (empty($item->subRutas)) {
+                        if (!isset($item->sinSubRutas)) {
                             $html .= sprintf(
                                 '<span class="sub_nav_name">%s</span>',
                                 $item->text,
