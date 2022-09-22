@@ -3,7 +3,7 @@
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
         <div class="header_img"><img src="../../assets/img/logo.png" alt=""></div>
         <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId"
+            <button class="btn dropdown-toggle center" type="button" id="triggerId"
                     data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                 <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
