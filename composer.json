@@ -1,22 +1,19 @@
 {
-    "name": "sistema/gestion",
-    "type": "project",
-    "description": "Iglesia la Gracia de Dios",
-    "license": "proprietary",
-    "autoload": {
-    	"psr-4": {
-    		"config\\" : "content/config",
-    		"content\\" : "content"
-    	},
-        "files": [
-          "content/core/helpers.php"
-        ]
+  "name": "sistema/gestion",
+  "type": "project",
+  "description": "Iglesia la Gracia de Dios",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "config\\": "content/config",
+      "content\\": "content"
     },
-    "require": {
-        "monolog/monolog": "^2.8",
-        "nesbot/carbon": "^2.62",
-      "rakit/validation": "^1.4",
-      "symfony/routing": "^5.4",
-      "symfony/http-foundation": "^5.4"
-    }
+    "files": [
+      "content/core/helpers.php"
+    ]
+  },
+  "require": {
+    "monolog/monolog": "^2.8",
+    "nesbot/carbon": "^2.62"
+  }
 }

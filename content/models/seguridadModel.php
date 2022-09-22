@@ -52,6 +52,18 @@ class seguridadModel extends Model
         return $sql->execute([$nombre, $fecha, $fecha, $fecha]);
     }
 
+    // Actualziar permiso
+    public static function actualizar_permiso($id, $nombre, $fecha)
+    {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE permisos SET nombre = ?, fecha_actualizado = ? WHERE id = ?");
+        $logger->debug(__METHOD__, [$sql->execute(array($nombre, $fecha, $id))]);
+        $permiso = $sql->execute(array($nombre, $fecha, $id));
+        return $permiso;
+    }
+
     // obtener permisos
     public static function obtener_permisos()
     {
