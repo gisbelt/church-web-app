@@ -2,6 +2,9 @@
 
 namespace content\core;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 /**
  *  Class Model
  *
@@ -60,23 +63,23 @@ abstract class Model
                 }
 
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
-                    $this->addErrorForRule($attribute, self::RULE_REQUIRED);
+                    $this->addErrorForRule($attribute,self::RULE_REQUIRED);
                 }
 
                 if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                    $this->addErrorForRule($attribute, self::RULE_EMAIL);
+                    $this->addErrorForRule($attribute,self::RULE_EMAIL);
                 }
 
                 if ($ruleName === self::RULE_MIN && strlen($value) < $rule['min']){
-                    $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
+                    $this->addErrorForRule($attribute,self::RULE_MIN, $rule);
                 }
 
                 if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']){
-                    $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
+                    $this->addErrorForRule($attribute,self::RULE_MAX, $rule);
                 }
 
                 if ($ruleName === self::RULE_MACTH && $value !== $this->{$rule['match']}){
-                    $this->addErrorForRule($attribute, self::RULE_MACTH, $rule);
+                    $this->addErrorForRule($attribute,self::RULE_MACTH, $rule);
                 }
             }
         }
@@ -124,7 +127,7 @@ abstract class Model
     {
          return [
              self::RULE_REQUIRED => 'El campo {attribute} es requerido',
-             self::RULE_EMAIL => 'Este campo debe ser una dirección de correo electrónico válida',
+             self::RULE_EMAIL => 'este campo debe ser una dirección de correo electrónico válida',
              self::RULE_MIN => 'La longitud mínima debe ser {min}',
              self::RULE_MAX => 'La longitud maxima debe ser {max}',
              self::RULE_MACTH => 'este campo debe ser el mismo que  {match}'

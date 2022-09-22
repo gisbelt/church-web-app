@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '6b53eda873d77a4b30c77f9b4117caaa280d91e3',
+    'reference' => 'a80cc0130f1636eada0061fe9a03a088adce8407',
     'name' => 'sistema/gestion',
   ),
   'versions' => 
@@ -19,6 +19,15 @@
       array (
       ),
       'reference' => '720488632c590286b88b80e62aa3d3d551ad4a50',
+    ),
+    'nesbot/carbon' => 
+    array (
+      'pretty_version' => '2.62.1',
+      'version' => '2.62.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a',
     ),
     'psr/log' => 
     array (
@@ -52,7 +61,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '6b53eda873d77a4b30c77f9b4117caaa280d91e3',
+      'reference' => 'a80cc0130f1636eada0061fe9a03a088adce8407',
     ),
     'symfony/deprecation-contracts' => 
     array (
@@ -98,6 +107,31 @@
       array (
       ),
       'reference' => '3e01ccd9b2a3a4167ba2b3c53612762300300226',
+    ),
+    'symfony/translation' => 
+    array (
+      'pretty_version' => 'v5.4.12',
+      'version' => '5.4.12.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '42ecc77eb4f229ce2df702a648ec93b8478d76ae',
+    ),
+    'symfony/translation-contracts' => 
+    array (
+      'pretty_version' => 'v2.5.2',
+      'version' => '2.5.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '136b19dd05cdf0709db6537d058bcab6dd6e2dbe',
+    ),
+    'symfony/translation-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '2.3',
+      ),
     ),
   ),
 );

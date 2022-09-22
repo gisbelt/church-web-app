@@ -35,7 +35,7 @@ class helperMenu
         $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $html = null;
         foreach ($menu as $key => $item) {
-            if ($key !== 'login' && $key !== 'home' && $key !== 'error' && $key !== 'perfil') {
+            if ($key !== 'login' && $key !== 'home' && $key !== 'error'  && $key !== 'perfil') {
                 if (!isset($item->permisos) || in_array($item->permisos, $_SESSION['user_permisos'])) {
                     if (empty($item->subRutas)) {
                         if (isset($item->route)) {
@@ -48,7 +48,7 @@ class helperMenu
                             $target = '_self';
                         }
 
-                        if(isset($item->sinSubRutas)){
+                        if (isset($item->sinSubRutas)) {
                             $html .= sprintf(
                                 '<li>'
                             );
@@ -57,8 +57,7 @@ class helperMenu
                                 $key,
                                 $route
                             );
-                        }
-                        else {
+                        } else {
                             $html .= sprintf(
                                 '<li>'
                             );
@@ -81,34 +80,32 @@ class helperMenu
                     }
 
                     $html .= sprintf(
-                        '<i class="%s nav_icon"></i>',
+                        '<i class="%s nav-ico"></i>',
                         $item->icon
                     );
-                    if (!empty($item->subRutas)) {
+                    if(!empty($item->subRutas)){
                         $html .= sprintf(
-                            '<span class="nav_name center">%s <i class="bx bx-chevron-down nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
+                            '<span class="nav_name">%s <i class="bx bx-chevron-down nav_dropdown_icon dropdown_icon_%s" data-number="%s"></i></span>',
                             $item->text,
                             $key,
                             $key
                         );
                     } else {
-                        if (!isset($item->sinSubRutas)){
+                        if (!empty($item->subRutas)) {
                             $html .= sprintf(
                                 '<span class="sub_nav_name">%s</span>',
                                 $item->text,
                             );
-                        }
-                        else{
+                        } else {
                             $html .= sprintf(
                                 '<span class="nav_name center">%s </span>',
-                                $item->text,
-                                $key,
-                                $key
+                                $item->text
                             );
                         }
-                    }                    
-                    
+                    }
+
                     $html .= '</span>';
+
                     $html .= '</a>';
 
                     if (!empty($item->subRutas)) {
