@@ -27,6 +27,47 @@ class seguridadController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
     }
 
+    public function actualizar(Request $request)
+    {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+
+        $user = usuarios::validarLogin();
+        if ($request->isPost()) {
+            $seguridad = new seguridadModel();
+            $seguridad->loadData($request->getBody());
+            $nombre = $request->getBody()['nombre'];
+            $id = $request->getBody()['permiso'];
+            if($seguridad->validate()){
+                $fecha =  Carbon::now();
+                $seguridad = seguridadModel::actualizar_permiso($id, $nombre, $fecha);
+                $logger->debug(__METHOD__, [$seguridad]);
+                if($seguridad){
+                    $data = [
+                        'title' => 'Datos actualizado',
+                        'messages' => 'El permiso se ha actualizado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El permiso no se ha actualizado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            }
+        }
+        if(count($seguridad->errors) > 0){
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $seguridad->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
+    }
+
     public function index()
     {
         $user = usuarios::validarLogin();

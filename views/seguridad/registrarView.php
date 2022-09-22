@@ -28,7 +28,7 @@ $this->title = 'Registrar permisos';
                         </div>
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="submit" name="agregar-permisos-rol" id="agregar-permisos-rol" class="btn btn-success">Agregar</button>
+                            <button type="submit" name="agregar-permisos" id="agregar-permisos" class="btn btn-success">Agregar</button>
                         </div>
                     </form>
                 </div><!--card-body-->

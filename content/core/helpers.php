@@ -469,6 +469,17 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => [],
                     ],
+
+                    'guardarPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/seguridad/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 
