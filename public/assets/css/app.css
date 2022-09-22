@@ -10,7 +10,9 @@
     --second-color: #235789ff;
     --second-color-2: #525157;
     
+    --white: white;
     --white-color: #F7F6FB;
+    --white-color-2: #eef5f9;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100;
@@ -48,6 +50,16 @@ body{
     background-position:50vh; */
     font-family: var(--body-font) !important;
     font-size: var(--normal-font-size) !important;
+    background-color: var(--white-color-2);
+}
+footer{
+    background-color: var(--white);
+}
+.bg-first-color{
+    background-color: var(--first-color);
+}
+.text-first-color{
+    color: var(--first-color);
 }
 .flex-row{
     display: flex;
@@ -100,6 +112,9 @@ body{
     color: #fff !important;
     font-family: Montserrat,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
+.cursor-default{
+    cursor: default;
+}
 .pointer{
     cursor: pointer;
 }
@@ -120,6 +135,11 @@ body{
     color: #fff;
     background-color: var(--first-color-2);
     border-color: var(--first-color-2);
+}
+.btn-success:disabled{
+    color: #fff;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
 }
 .btn-outline-success {
     color: var(--first-color);
@@ -271,22 +291,23 @@ background: #fff; }
 /* Filter  */
 
 /*Menú Vertical*/
-.nav_link{
-    margin-bottom: 0.5rem !important;
+.page-breadcrumb .breadcrumb .breadcrumb-item a {
+    color: #1e88e5;
+    font-size: 14px;
 }
-.itemShow{
-    margin-left: 24px;
+.page-breadcrumb .breadcrumb{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
-.itemShow li{
-    list-style: none;
-    color: #fff;
+.breadcrumb-item-icon{
+    font-size: inherit;
+    color: #99abb4;
+    line-height: 1.3 !important;
 }
-.itemShow a{
-    color: #fff;
-}
-.itemShow a:hover{
-    color: rgb(192, 185, 185);
-    cursor: pointer;
+.breadcrumb-item.active{
+    color: #99abb4;
+    background-color: transparent;
 }
 .dropdown-menu{
     background-color: var(--first-color);
@@ -348,24 +369,24 @@ background: #fff; }
     overflow: hidden;
     position: relative;
 }
-.avatar #avatar-link{
+#avatar-link{
     position: absolute;
-    display: none;
-    background-color: var(--black);
-    opacity: 0.2;
+    background-color: rgb(0, 0, 0,0.3);
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    
-    border-radius: 50%;
+    justify-content: center; 
+    display: none;   
+    border-radius: 100%;
     overflow: hidden;
+    z-index: 1;
 }
 #avatar-link #avatar-pencil{
     z-index: 1;
     font-size: 2rem;
     position: absolute;
+    color: var(--first-color);
     width: 100%;
     height: 100%;
     display: flex;

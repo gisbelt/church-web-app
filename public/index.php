@@ -25,7 +25,7 @@ session_start();
 use content\models\usuariosModel;
 
 $globalConfig = new sysConfig();
-//$globalConfig->_int();
+$globalConfig->_int();
 
 $request = Request::createFromGlobals();
 $context = new RequestContext();
@@ -40,10 +40,10 @@ foreach ($rutas as $key => $ruta) {
             'method' => $ruta->method,
         ]));
     } else {
-        foreach ($ruta->subRutas as $subruta) {
-            $routes->add($subruta->text, new Route($subruta->route, [
+        foreach ($ruta->subRutas as $subRuta) {
+            $routes->add($subRuta->text, new Route($subRuta->route, [
                 'controller' => $ruta->controller,
-                'method' => $subruta->method,
+                'method' => $subRuta->method,
             ]));
         }
     }
@@ -52,12 +52,12 @@ foreach ($rutas as $key => $ruta) {
 
 try {
     $matcher = new UrlMatcher($routes, $context);
+    $logger = new Logger("web");
+    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+    $logger->debug(__METHOD__, [$context]);
     $route = $matcher->match($context->getPathInfo());
     $controller = new $route['controller'];
     $method = $route['method'];
-    $logger = new Logger("web");
-    $logger->pushHandler(new StreamHandler(__DIR__."../../Logger/log.txt", Logger::DEBUG));
-    $logger->debug(_METHOD_,['routes' => $context->getPathInfo()]);
     $response = $controller->$method($request);
 } catch (ResourceNotFoundException $exception) {
     $response = new Response('Not Found' . $exception, 404);
@@ -82,6 +82,7 @@ use Monolog\Logger;
 
 session_start();
 $globalConfig = new sysConfig();
+$globalConfig->_int();
 $app = new Aplicacion(dirname(__DIR__));
 $rutas = rutas();
 foreach ($rutas as $key => $ruta) {

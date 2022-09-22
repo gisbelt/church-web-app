@@ -1,7 +1,7 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Registrar amigos';
+$this->title = 'Registrar Amigos';
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -22,7 +22,7 @@ $this->title = 'Registrar amigos';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" required name="cedula" class="form-control form-input mb-4"
-                                        id="cedula" value="" placeholder=" ">
+                                        id="cedula" value="" placeholder=" " autofocus>
                                     <label for="cedula" class="form-label fw-bold">Cedula:*</label>
                                 </div>
 
@@ -73,9 +73,15 @@ $this->title = 'Registrar amigos';
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-input mb-4" id="fn" value=""
-                                        placeholder=" ">
-                                    <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
+                                    <div class="input-group input-daterange" id="datepicker">
+                                        <input type="text" class="form-control form-input mb-4" id="fn" value="dd/mm/aaaa" placeholder=" ">
+                                        <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
+                                        <span class="input-group-append">
+                                            <span class="input-group-text bg-transparent border-0">
+                                                <i class="bi bi-calendar-minus"></i>
+                                            </span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +102,4 @@ $this->title = 'Registrar amigos';
         $("#form-registrarAmigos")[0].reset();
         $("#cedula").focus();
     }
-
-    $(document).ready(function () {
-        $("#cedula").focus();
-    });
 </script>

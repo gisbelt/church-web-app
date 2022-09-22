@@ -5,14 +5,26 @@ namespace content\controllers;
 use content\core\Aplicacion;
 use content\core\Request;
 use content\core\Controller;
+use content\enums\seguridad;
+use content\models\seguridadModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
+/**
+ *  Class autenticacionController
+ *
+ *  * @package content\controllers
+ */
 class AutenticacionController extends Controller
 {
 
+    /**
+     * Autenticacion construct
+     *
+     *
+     */
     public function __construct()
     {
 
@@ -23,7 +35,7 @@ class AutenticacionController extends Controller
         usuarios::validarLogout();
         $this->setLayout('auth');
         return $this->render('acceso/login/loginView');
-        // return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/loginView.php')), 200);
+        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/loginView.php')), 200);
     }
 
     public function iniciar(Request $request)
@@ -42,12 +54,16 @@ class AutenticacionController extends Controller
                     $_SESSION['username'] = $consultarUsuario['username'];
                     $_SESSION['date'] = date('d_m_Y_H_i');
                     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-                    /*Aplicacion::$app->session->set('email', 'ok');
-                    Aplicacion::$app->session->set('user', $consultarUsuario['id']);
-                    Aplicacion::$app->session->set('user_email', $consultarUsuario['email']);
-                    Aplicacion::$app->session->set('username', $consultarUsuario['username']);
-                    Aplicacion::$app->session->set('date', $_SERVER['REMOTE_ADDR']);
-                    Aplicacion::$app->session->set('ip',  date('d_m_Y_H_i'));*/
+                    $_SESSION['rol'] = seguridad::getRolName($consultarUsuario['role_id']);
+
+                    $seguirdadModel = new seguridadModel();
+                    $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
+                    $userPermisos = [];
+                    foreach ($permisos as $permiso) {
+                        $userPermisos[] = (int)$permiso['permiso'];
+                    }
+
+                    $_SESSION['user_permisos'] = $userPermisos;
 
                     $data = [
                         'title' => 'Bienvenido',
@@ -57,14 +73,10 @@ class AutenticacionController extends Controller
                     ];
                     return json_encode($data);
                 } else {
-                    if (!$consultarUsuario) {
-                        $usuarioModel->addError("email", "El email es incorrecto");
-                        return false;
+                    if (!$consultarUsuario || !password_verify($password, $consultarUsuario['password'])) {
+                        $usuarioModel->addError("datos", "El correo o contraseña son incorrectos");
                     }
-                    if (!password_verify($password, $consultarUsuario['password'])) {
-                        $usuarioModel->addError("password", "La clave es incorrecta");
-                        return false;
-                    }
+
                     $data = [
                         'title' => 'Verifique sus datos',
                         'messages' => $usuarioModel->errors,
@@ -78,15 +90,15 @@ class AutenticacionController extends Controller
                 'messages' => $usuarioModel->errors,
                 'code' => 422
             ];
-            return json_encode($data, 200);
+            return json_encode($data, 422);
         }
-        /*$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$body]);
-        usuarios::validarLogout();
+        //$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
+        //$logger = new Logger("web");
+        //$logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        //$logger->debug(__METHOD__, [$request]);
+        //usuarios::validarLogout();
 
-        if ($email == "" || $password == "") {
+        /*if ($email == "" || $password == "") {
             $mensaje1 = "Por favor debe ingresar los datos";
         } else {
             //ejecutamos
@@ -111,6 +123,7 @@ class AutenticacionController extends Controller
         unset($_SESSION['username']);
         unset($_SESSION['date']);
         unset($_SESSION['ip']);
+        unset($_SESSION['rol']);
         session_destroy();
         Aplicacion::$app->response->redirect('/');
     }

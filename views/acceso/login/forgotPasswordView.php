@@ -15,12 +15,21 @@ $this->title = 'Olvido la contrasena'
                     </div>
                     <div class="card-body">
                         <form method="POST" action="">
-                            <div class="form-group">
+                            <div class="form-group">                               
                                 <input type="text" class="form-control form-input" name="correo" id="correo" aria-describedby="emailHelp" placeholder=" ">
-                                <label for="correo" class="form-label">Escribe tu correo:</label>
+                                <label for="correo" class="form-label">
+                                    Escribe tu correo:
+                                    <span class="bi bi-envelope"></span>
+                                </label>
                             </div>
                             <button type="submit" name="" class="btn btn-primary w-100 mt-2">Continuar</button>
                         </form>
+                        <div class="position-relative mb-2 mt-4">
+                            <hr class="position-absolute top-0 start-0" width="43%"> 
+                            <i class="bi bi-circle lh-lg"></i>
+                            <hr class="position-absolute top-0 end-0" width="43%">
+                        </div> 
+                        <a href="/" class="text-info underline-hover">Iniciar Sesión</a>
                     </div>
                 </div>
 

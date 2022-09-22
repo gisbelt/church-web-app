@@ -1,7 +1,7 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Registrar miembros'
+$this->title = 'Registrar Miembros'
 ?>
 <div class="container-fluid">
     <div class="row m-0">
@@ -23,7 +23,7 @@ $this->title = 'Registrar miembros'
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" ">
+                                        <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" " autofocus>
                                         <label for="cedula" class="form-label fw-bold">Cedula:*</label>
                                     </div>
 
@@ -75,7 +75,7 @@ $this->title = 'Registrar miembros'
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 mb-4 mb-md-0">
                                     <p class="">Sexo:* </p>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="sexo" id="femenino" checked>
@@ -90,7 +90,7 @@ $this->title = 'Registrar miembros'
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 mb-4 mb-md-0">
                                     <p class="">Vehículo:* </p>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="vehiculo" id="si" checked>
@@ -176,8 +176,4 @@ $this->title = 'Registrar miembros'
         $("#form-registrarMiembros")[0].reset();
         $("#cedula").focus();
     }
-
-    $(document).ready(function () {
-        $("#cedula").focus();
-    });
 </script>

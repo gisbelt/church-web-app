@@ -3,7 +3,9 @@
 namespace content\controllers;
 
 use content\core\Controller;
+use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\enums\permisos;
 use content\models\usuariosModel as usuarios;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +25,9 @@ class donacionesController extends Controller
     public function index()
     {
         $user = usuarios::validarLogin();
+        if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
+            throw new ForbiddenException();
+        }
         $data['titulo'] = 'Donaciones';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donaciones/consultarView.php')), 200);
         return $this->render('donaciones/consultarView');
@@ -30,6 +35,9 @@ class donacionesController extends Controller
 
     public function create()
     {
+        if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar Donaciones';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donaciones/registrarView.php')), 200);

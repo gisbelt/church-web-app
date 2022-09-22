@@ -11,9 +11,11 @@ use content\controllers\grupoFamiliarController;
 use content\controllers\homeController;
 use content\controllers\miembrosController;
 use content\controllers\reportesController;
+use content\controllers\seguridadController;
 use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
+use content\enums\permisos;
 
 
 if (!function_exists("routas")) {
@@ -23,22 +25,37 @@ if (!function_exists("routas")) {
         $rutas = [
             'login' => [
                 'controller' => AutenticacionController::class,
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'icon' => 'bx bx-bar-chart-alt-2',
+                'text' => 'login',
                 'subRutas' => [
                     'loginView' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'index',
                         'route' => '/',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'loginPost' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'login',
                         'route' => '/login',
                         'method' => 'iniciar',
-                        'action' => 'post'
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
 
                     'logout' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'logout',
                         'route' => '/logout',
                         'method' => 'cerrarSesion',
@@ -46,230 +63,465 @@ if (!function_exists("routas")) {
                     ],
 
                     'recuperarContrasena' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'recuperar-contrasena',
                         'route' => '/recuperar-contrasena',
                         'method' => 'recuperarContrasena',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'cambiarContrasena' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'cambiar-contrasena',
                         'route' => '/cambiar-contrasena',
                         'method' => 'cambiarContrasena',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
                 ],
             ],
 
             'home' => [
                 'controller' => homeController::class,
+                'permisos' => permisos::$home,
+                'parametros' => [],
+                'icon' => 'bx bx-home-circle',
+                'text' => 'home',
                 'subRutas' => [
                     'homeView' => [
+                        'permisos' => permisos::$home,
+                        'parametros' => [],
                         'text' => 'home',
+                        'icon' => 'bx bx-view-list',
                         'route' => '/home',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ]
                 ]
             ],
 
             'error' => [
                 'controller' => errorController::class,
+                'parametros' => [],
+                'icon' => 'bx bx-bar-chart-alt-2',
+                'permisos' => permisos::$permiso,
+                'text' => 'error',
                 'subRutas' => [
                     'errorView' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'error',
                         'route' => '/error',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ]
                 ]
             ],
 
             'miembros' => [
                 'controller' => miembrosController::class,
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'route' => null,
+                'text' => 'Miembros',
+                'icon' => 'bx bx-group',
                 'subRutas' => [
                     'listaMiembros' => [
-                        'text' => 'lista-miembros',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de miembros',
                         'route' => '/miembros',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearMiembros' => [
-                        'text' => 'miembros-create',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar miembros',
                         'route' => '/miembros/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'amigos' => [
                 'controller' => amigosController::class,
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'route' => null,
+                'icon' => 'bx bx-smile',
+                'text' => 'Amigos',
                 'subRutas' => [
                     'listaAmigos' => [
-                        'text' => 'lista-amigos',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de amigo',
                         'route' => '/amigos',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearAmigos' => [
-                        'text' => 'amigos-create',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registra amigo',
                         'route' => '/amigos/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'donaciones' => [
                 'controller' => donacionesController::class,
+                'permisos' => permisos::$donaciones,
+                'parametros' => [],
+                'route' => null,
+                'text' => 'Donaciones',
+                'icon' => 'bx bx-donate-heart',
                 'subRutas' => [
                     'listaDonaciones' => [
-                        'text' => 'lista-donaciones',
+                        'permisos' => permisos::$donaciones,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de donaciones',
                         'route' => '/donaciones',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearDonaciones' => [
-                        'text' => 'donaciones-create',
+                        'permisos' => permisos::$donaciones,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar donaciones',
                         'route' => '/donaciones/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'actividades' => [
                 'controller' => actividadController::class,
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'route' => null,
+                'text' => 'Actividades',
+                'icon' => 'bx bx-briefcase-alt',
                 'subRutas' => [
                     'listaActividades' => [
-                        'text' => 'actividades',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de actividades',
                         'route' => '/actividades',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearActividades' => [
-                        'text' => 'actividades-create',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar actividades',
                         'route' => '/actividades/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'asitencias' => [
                 'controller' => asistenciasController::class,
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'route' => null,
+                'icon' => 'bx bx-list-check',
+                'text' => 'Asistencias',
                 'subRutas' => [
                     'listaAsistencias' => [
-                        'text' => 'listaAsistencias',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de asistencias',
                         'route' => '/asistencias',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearAsistencias' => [
-                        'text' => 'crearAsistencias',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar asistencias',
                         'route' => '/asistencias/create',
                         'method' => 'create',
                         'action' => 'get',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'grupoFamiliares' => [
                 'controller' => grupoFamiliarController::class,
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'route' => null,
+                'text' => 'Grupo familiar',
+                'icon' => 'bx bx-group',
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
-                        'text' => 'listaGrupoFamiliares',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de grupos familiar',
                         'route' => '/grupo-familiares',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearGrupoFamiliares' => [
-                        'text' => 'crearGrupoFamiliares',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar grupo familiar',
                         'route' => '/grupo-familiares/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'buscarMiembro' => [
-                        'text' => 'buscarMiembro',
+                        'permisos' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'parametros' => [],
+                        'text' => 'Buscar miembro',
                         'route' => '/grupo-familiares/buscar-miembro',
                         'method' => 'buscarMiembro',
-                        'action' => 'get'
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
 
                     'registrarGrupoFamiliar' => [
-                        'text' => 'registrarGrupoFamiliar',
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar grupo familiar',
                         'route' => '/grupo-familiares/registrar-grupoFamiliar',
                         'method' => 'registrarGrupoFamiliar',
-                        'action' => 'get'
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'usuarios' => [
                 'controller' => usuariosController::class,
+                'icon' => 'bx bx-user',
+                'permisos' => permisos::$usuarios,
+                'parametros' => [],
+                'route' => null,
+                'text' => 'Usuarios',
                 'subRutas' => [
                     'listaUsuarios' => [
-                        'text' => 'usuarios-lista',
+                        'permisos' => permisos::$usuarios,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de usuarios',
                         'route' => '/usuarios',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'crearUsuarios' => [
-                        'text' => 'usuarios-create',
+                        'permisos' => permisos::$usuarios_crear,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar usuarios',
                         'route' => '/usuarios/create',
                         'method' => 'create',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'buscarUsuario' => [
-                        'text' => 'buscarUsuario',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'text' => 'Buscar usuarios',
                         'route' => '/usuarios/buscar-usuario',
                         'method' => 'buscarUsuario',
-                        'action' => 'get'
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
                 ]
             ],
 
             'reportes' => [
-                'text' => 'reportes',
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
+                'icon' => 'bx bxs-report',
+                'text' => 'Reportes',
                 'controller' => reportesController::class,
                 'route' => '/reportes',
                 'method' => 'index',
-                'action' => 'get'
+                'action' => 'get',
+                'subRutas' => []
+            ],
+
+            'Seguridad' => [
+                'permisos' => permisos::$seguridad,
+                'parametros' => [],
+                'icon' => 'bx bx-lock',
+                'text' => 'Seguridad',
+                'controller' => seguridadController::class,
+                'route' => null,
+                'subRutas' => [
+                    'listaPermisos' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de permisos',
+                        'route' => '/seguridad',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'dataPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de permisos',
+                        'route' => '/seguridad/permisos-data',
+                        'method' => 'obtenerPermisos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'crearPermisos' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar permisos',
+                        'route' => '/seguridad/crear',
+                        'method' => 'create',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'guardarPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/seguridad/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'borraPermisos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/seguridad/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarPermiso' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'editar',
+                        'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                ]
             ],
 
             'Bitacora' => [
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
                 'controller' => bitacoreController::class,
-                'text' => 'lista',
+                'icon' => 'bx bx-log-in-circle',
+                'text' => 'Bitacora',
                 'route' => '/Bitacora',
                 'method' => 'index',
-                'action' => 'get'
+                'action' => 'get',
+                'subRutas' => []
+            ],
+
+            'Ayuda' => [
+                'controller' => ayudaController::class,
+                'icon' => 'bx bx-help-circle',
+                'text' => 'Ayuda',
+                'route' => '/Ayuda',
+                'method' => 'index',
+                'action' => 'get',
+                'permisos' => permisos::$permiso,
+                'subRutas' => []
             ],
 
             'perfil' => [
+                'permisos' => permisos::$permiso,
+                'parametros' => [],
                 'controller' => perfilController::class,
+                'icon' => '',
+                'route' => null,
+                'text' => 'Perfil',
                 'subRutas' => [
                     'cuenta' => [
-                        'text' => 'cuenta',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
                         'route' => '/cuenta',
                         'method' => 'index',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
 
                     'preferencias' => [
-                        'text' => 'preferencias',
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => '',
+                        'text' => 'Preferencias',
                         'route' => '/preferencias',
                         'method' => 'preferencias',
-                        'action' => 'get'
+                        'action' => 'get',
+                        'subRutas' => []
                     ],
                 ]
             ],

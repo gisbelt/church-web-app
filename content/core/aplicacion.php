@@ -2,6 +2,7 @@
 
 namespace content\core;
 
+use content\core\exception\ForbiddenException;
 use content\core\Response;
 use content\core\Request;
 use content\core\Router;
@@ -45,7 +46,7 @@ class Aplicacion
         }
     }
 
-    public static function isGuest()
+    public static function isGuest(): bool
     {
         return !self::$app->user;
     }
@@ -55,13 +56,13 @@ class Aplicacion
      * @return void
      *
      */
-    public function run()
+    public function run(): void
     {
         try {
             echo $this->router->resolve();
         } catch (\Exception $ex) {
             $this->response->setStatusCode($ex->getCode());
-            echo $this->view->renderView('errorView', [
+           echo $this->view->renderView('errorView', [
                 'exception' => $ex
             ]);
         }

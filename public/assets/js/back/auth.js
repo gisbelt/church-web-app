@@ -7,8 +7,9 @@ $(document).ready(function () {
             type: "POST",
             url: $(this).attr('action'),
             data: $(this).serialize(),
-        }).done(function (json) {
-            let response = JSON.parse(json);
+            dataType: 'json',
+        }).done(function (response) {
+            // let response = JSON.parse(json);
             if (response.code == 422) {
                 let html = '<ul>';
                 $.each(response.messages, function (index, value) {

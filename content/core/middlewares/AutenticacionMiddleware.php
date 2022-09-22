@@ -4,6 +4,8 @@ namespace content\core\middlewares;
 
 use content\core\Aplicacion;
 use content\core\exception\ForbiddenException;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
  *  Class BaseMiddleware

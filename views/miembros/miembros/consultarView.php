@@ -1,7 +1,6 @@
 <?php
-$this->title = 'miembros';
+$this->title = 'Miembros';
 ?>
-<br>
 <h3 class="text-center mb-4">Listado de miembros <a href="/miembros/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container">
@@ -30,11 +29,14 @@ $this->title = 'miembros';
 
         <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
             <form action="" method="post">
-                <div class="input-group">
-                    <input type="text" name="" id="" class="form-control" placeholder="Insertar">
+                <div class="input-group input-daterange" id="datepicker">
+                    <span class="input-group-text">                        
+                        <i class="bi bi-calendar-date text-first-color"></i>
+                    </span>
+                    <input type="text" name="" id="" class="form-control" placeholder="Insertar" value="dd/mm/aaaa">
                     <span class="input-group-btn">
-                    <button type="submit" name="" class="btn btn-secondary">Buscar</button>
-                </span>
+                        <button type="submit" name="" class="btn btn-secondary">Buscar</button>
+                    </span>
                 </div>
             </form>
         </div>
@@ -97,12 +99,12 @@ $this->title = 'miembros';
 </div>
 
 <script>
-    $(document).ready(function () {
-        $("#miembro").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
+    // $(document).ready(function () {
+    //     $("#miembro").on("keyup", function () {
+    //         var value = $(this).val().toLowerCase();
+    //         $("#myTable tr").filter(function () {
+    //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //         });
+    //     });
+    // });
 </script>

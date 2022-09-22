@@ -3,7 +3,6 @@
 
 $this->title = 'Amigos';
 ?>
-<br>
 <h3 class="text-center mb-4">Listado de amigos <a href="/amigos/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
 <div class="container">
     <div class="row m-0">
@@ -85,12 +84,12 @@ $this->title = 'Amigos';
 </div>
 
 <script>
-    $(document).ready(function () {
-        $("#amigo").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
+    // $(document).ready(function () {
+    //     $("#amigo").on("keyup", function () {
+    //         var value = $(this).val().toLowerCase();
+    //         $("#myTable tr").filter(function () {
+    //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //         });
+    //     });
+    // });
 </script>

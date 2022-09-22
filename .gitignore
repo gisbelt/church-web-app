@@ -1,7 +1,8 @@
 /content/config/conection/
-/content/config/settings
+/content/config/settings/sysConfig.php
 /content/Logger
-vendor
+/Logger
+/vendor
 .idea
 composer.lock
 .idea/workspace.xml

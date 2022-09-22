@@ -2,6 +2,9 @@
 
 namespace content\core;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 /**
  *  Class Model
  *
@@ -13,6 +16,9 @@ abstract class Model
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MACTH = 'match';
+
+    public const ACTIVE = 1;
+    public const INACTIVE = 0;
 
     /**
      * Load data
@@ -57,23 +63,23 @@ abstract class Model
                 }
 
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
-                    $this->addErrorForRule($attribute, self::RULE_REQUIRED);
+                    $this->addErrorForRule($attribute,self::RULE_REQUIRED);
                 }
 
                 if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                    $this->addErrorForRule($attribute, self::RULE_EMAIL);
+                    $this->addErrorForRule($attribute,self::RULE_EMAIL);
                 }
 
                 if ($ruleName === self::RULE_MIN && strlen($value) < $rule['min']){
-                    $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
+                    $this->addErrorForRule($attribute,self::RULE_MIN, $rule);
                 }
 
                 if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']){
-                    $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
+                    $this->addErrorForRule($attribute,self::RULE_MAX, $rule);
                 }
 
                 if ($ruleName === self::RULE_MACTH && $value !== $this->{$rule['match']}){
-                    $this->addErrorForRule($attribute, self::RULE_MACTH, $rule);
+                    $this->addErrorForRule($attribute,self::RULE_MACTH, $rule);
                 }
             }
         }
@@ -90,9 +96,14 @@ abstract class Model
     private function addErrorForRule(string $attribute, string $rule, $params = [])
     {
         $message = $this->errosMessages()[$rule] ?? '';
-        foreach ($params as $key => $item) {
-            $message = str_replace("{{$key}}", $item, $message);
+        if(!empty($params)){
+            foreach ($params as $key => $item) {
+                $message = str_replace("{{$key}}", $item, $message);
+            }
+        } else {
+            $message = str_replace('{attribute}', $attribute, $message);
         }
+
         $this->errors[$attribute][] = $message;
     }
 
@@ -115,13 +126,14 @@ abstract class Model
     public function errosMessages()
     {
          return [
-             self::RULE_REQUIRED => 'El campo es requerido',
+             self::RULE_REQUIRED => 'El campo {attribute} es requerido',
              self::RULE_EMAIL => 'este campo debe ser una dirección de correo electrónico válida',
              self::RULE_MIN => 'La longitud mínima debe ser {min}',
              self::RULE_MAX => 'La longitud maxima debe ser {max}',
              self::RULE_MACTH => 'este campo debe ser el mismo que  {match}'
          ];
     }
+
 
     /**
      *  Has error
