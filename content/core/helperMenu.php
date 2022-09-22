@@ -37,7 +37,6 @@ class helperMenu
         foreach ($menu as $key => $item) {
             if ($key !== 'login' && $key !== 'home' && $key !== 'error' && $key !== 'perfil') {
                 if (!isset($item->permisos) || in_array($item->permisos, $_SESSION['user_permisos'])) {
-                    $logger->debug(__METHOD__, [empty($item->subRutas), $item->subRutas]);
                     if (empty($item->subRutas)) {
                         if (isset($item->route)) {
                             if (empty($item->parametros)) {
@@ -92,7 +91,7 @@ class helperMenu
                             $key
                         );
                     } else {
-                        if (!isset($item->sinSubRutas)) {
+                        if (!empty($item->subRutas)) {
                             $html .= sprintf(
                                 '<span class="sub_nav_name">%s</span>',
                                 $item->text,
