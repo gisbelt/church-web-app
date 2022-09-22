@@ -108,12 +108,12 @@ class seguridadController extends Controller
         //if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
         //    throw new ForbiddenException();
        // }
-        $id = $request->getBody();
-
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$id]);
-        return $this->render('seguridad/editarView');
+        $id = $request->getRouteParams();
+        $permiso = seguridadModel::id_permiso($id['id']);
+        return $this->render('seguridad/editarView', [
+            'permiso' => $permiso['permiso'],
+            'nombre_permiso' => $permiso['permiso_nombre'],
+        ]);
     }
 
     public function eliminar(Request $request)

@@ -14,6 +14,7 @@ use Monolog\Logger;
 class View
 {
     public $title = '';
+    public $data = [];
 
     /**
      *  Render view
@@ -62,8 +63,13 @@ class View
             Aplicacion::$app->response->setStatusCode(403);
             throw new PageMaintenance();
         }
+
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         foreach ($data as $key => $value) {
             $$key = $value;
+            $data[$key] = $value;
+            $logger->debug(__METHOD__, [$$key]);
         }
         ob_start();
         include_once Aplicacion::$ROOT_DIR . "/views/$view.php";

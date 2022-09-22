@@ -63,6 +63,17 @@ class seguridadModel extends Model
         return $permisos;
     }
 
+    // obtener permisos
+    public static function id_permiso($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT permisos.id as permiso, permisos.nombre as permiso_nombre FROM permisos WHERE
+                                            permisos.id = ?");
+        $sql->execute(array($id));
+        $permiso = $sql->fetch(PDO::FETCH_ASSOC);
+        return $permiso;
+    }
+
     // Eliminar permisos
     public static function eliminar($id)
     {
