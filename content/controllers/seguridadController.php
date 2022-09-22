@@ -102,30 +102,20 @@ class seguridadController extends Controller
         }
     }
 
-    /**
-     * Editar permisos vista
-     * @param Request $request
-     * @return false|string
-     * @throws ForbiddenException
-     *
-     */
     public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-        $id = $request->getRouteParam('id');
+        //if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        //    throw new ForbiddenException();
+       // }
+        $id = $request->getBody();
+
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$id]);
         return $this->render('seguridad/editarView');
     }
 
-    /**
-     * Eliminaar permisos vista
-     * @param Request $request
-     * @return false|string
-     * @throws ForbiddenException
-     *
-     */
     public function eliminar(Request $request)
     {
         $user = usuarios::validarLogin();

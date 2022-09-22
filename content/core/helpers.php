@@ -440,7 +440,7 @@ if (!function_exists("routas")) {
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
-                        'text' => null,
+                        'text' => 'index',
                         'route' => '/seguridad/guardar',
                         'method' => 'guardar',
                         'action' => 'post',
@@ -451,18 +451,18 @@ if (!function_exists("routas")) {
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
-                        'text' => null,
+                        'text' => 'index',
                         'route' => '/seguridad/eliminar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'eliminar',
                         'action' => 'get',
                         'subRutas' => []
                     ],
 
-                    'editarPermisos' => [
+                    'editarPermiso' => [
                         'permisos' => [],
                         'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => null,
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'editar',
                         'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editar',
                         'action' => 'get',

@@ -11,6 +11,7 @@ $this->title = 'Lista de Permisos';
                     </div>
                     <div class="derecha mb-2 p-2" role="group" aria-label="">
                         <a href="/seguridad/crear" class="btn btn-outline-success text-center">Registrar permisos</a>
+                        <a href="/seguridad/editar" class="btn btn-outline-success text-center">editar permisos</a>
                     </div>
                 </div>
                 <div class="card-body">

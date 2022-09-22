@@ -46,13 +46,13 @@ $this->title = 'Registrar usuario'
 
                 <div class="form-group">
                     <input type="text" required name="email" class="form-control form-input mb-4" id="email" value=""
-                           placeholder=" ">
+                           placeholder=" " autocomplete="off">
                     <label for="email" class="form-label fw-bold">Correo:*</label>
                 </div>
 
                 <div class="form-group">
                     <input type="password" required name="password" class="form-control form-input mb-4" id="password"
-                           placeholder=" ">
+                           placeholder=" "  autocomplete="off">
                     <label for="password" class="form-label fw-bold">Contraseña:*</label>
                     <div id="passwordHelpBlock" class="form-text text-danger">
                         Debe tener entre 8 y 20 caracteres.

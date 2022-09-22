@@ -1,7 +1,7 @@
 <div id="body-pd" class="">
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
-        <div class="header_img"><img src="../assets/img/logo.png" alt=""></div>
+        <div class="header_img"><img src="../../assets/img/logo.png" alt=""></div>
         <div class="dropdown">
             <button class="btn btn-light dropdown-toggle center" type="button" id="triggerId"
                     data-bs-toggle="dropdown" aria-haspopup="true"

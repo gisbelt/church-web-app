@@ -20,6 +20,7 @@ class View
      * @param $view
      * @param $data
      * @return array|false|string|string[]
+     * @throws PageMaintenance
      */
     public function renderView($view, $data = [])
     {
@@ -42,7 +43,6 @@ class View
         } else {
             $layout = 'auth';
         }
-
         ob_start();
         include_once Aplicacion::$ROOT_DIR . "/views/layouts/$layout.php";
         return ob_get_clean();
@@ -54,6 +54,7 @@ class View
      * @param $view
      * @param $data
      * @return false|string
+     * @throws PageMaintenance
      */
     protected function renderOnlyView($view, $data)
     {

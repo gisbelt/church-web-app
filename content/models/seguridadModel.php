@@ -66,9 +66,6 @@ class seguridadModel extends Model
     // Eliminar permisos
     public static function eliminar($id)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [self::INACTIVE]);
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE permisos SET status = ? WHERE id = ?");
         $permiso = $sql->execute(array(self::INACTIVE, $id));

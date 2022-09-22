@@ -19,7 +19,9 @@ class homeController extends Controller
     {
         $user = usuarios::validarLogin();
         return $this->render('homeView');
+
     }
+
 
 }
 
