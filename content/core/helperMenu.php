@@ -80,7 +80,7 @@ class helperMenu
                     }
 
                     $html .= sprintf(
-                        '<i class="%s nav-ico"></i>',
+                        '<i class="%s nav_icon"></i>',
                         $item->icon
                     );
                     if(!empty($item->subRutas)){

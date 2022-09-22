@@ -371,7 +371,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'buscarUsuario' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'text' => 'Buscar usuarios',
@@ -392,6 +392,7 @@ if (!function_exists("routas")) {
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get',
+                'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
@@ -480,6 +481,7 @@ if (!function_exists("routas")) {
                 'route' => '/Bitacora',
                 'method' => 'index',
                 'action' => 'get',
+                'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
@@ -491,6 +493,7 @@ if (!function_exists("routas")) {
                 'method' => 'index',
                 'action' => 'get',
                 'permisos' => permisos::$permiso,
+                'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
