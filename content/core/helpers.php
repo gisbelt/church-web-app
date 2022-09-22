@@ -392,6 +392,7 @@ if (!function_exists("routas")) {
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get',
+                'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
@@ -404,6 +405,7 @@ if (!function_exists("routas")) {
                 'route' => '/seguridad',
                 'method' => 'index',
                 'action' => 'get',
+                'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
@@ -416,6 +418,7 @@ if (!function_exists("routas")) {
                 'route' => '/Bitacora',
                 'method' => 'index',
                 'action' => 'get',
+                'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
@@ -428,6 +431,7 @@ if (!function_exists("routas")) {
                 'route' => '/Ayuda',
                 'method' => 'index',
                 'action' => 'get',
+                'sinSubRutas' => 'ok',
                 'subRutas' => []                
             ],
 

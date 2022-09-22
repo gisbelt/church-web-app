@@ -37,7 +37,6 @@ class helperMenu
         foreach ($menu as $key => $item) {
             if ($key !== 'login' && $key !== 'home' && $key !== 'error' && $key !== 'perfil') {
                 if (!isset($item->permisos) || in_array($item->permisos, $_SESSION['user_permisos'])) {
-                    $logger->debug(__METHOD__, [empty($item->subRutas)]);
                     if (empty($item->subRutas)) {
                         if (isset($item->route)) {
                             if (empty($item->parametros)) {
@@ -49,7 +48,7 @@ class helperMenu
                             $target = '_self';
                         }
 
-                        if(empty($item->subRutas)){
+                        if (isset($item->sinSubRutas)) {
                             $html .= sprintf(
                                 '<li>'
                             );
@@ -68,6 +67,7 @@ class helperMenu
                                 $route
                             );
                         }
+
                     } else {
                         $html .= sprintf(
                             '<li>'
@@ -91,13 +91,12 @@ class helperMenu
                             $key
                         );
                     } else {
-                        if (!isset($item->sinSubRutas)){
+                        if (!isset($item->sinSubRutas)) {
                             $html .= sprintf(
                                 '<span class="sub_nav_name">%s</span>',
                                 $item->text,
                             );
-                        }
-                        else{
+                        } else {
                             $html .= sprintf(
                                 '<span class="nav_name center">%s </span>',
                                 $item->text,
@@ -105,8 +104,8 @@ class helperMenu
                                 $key
                             );
                         }
-                    }                    
-                    
+                    }
+
                     $html .= '</span>';
                     $html .= '</a>';
 
