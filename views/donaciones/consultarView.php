@@ -65,7 +65,7 @@ $this->title = 'Donaciones'
                             </div>
                             <br>
                             <div class="btn-group modal-footer" role="group" aria-label="">
-                                <input type="hidden" required name="donacion_id" class="form-control form-input mb-4"
+                                <input type="hidden" name="donacion_id" class="form-control form-input mb-4"
                                        id="donacion_id">
                                 <button type="button" name="guardar_observacion_donacion" id="guardar_observacion_donacion" class="btn btn-success">Agregar
                                 </button>
