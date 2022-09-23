@@ -10,6 +10,7 @@ use content\core\Request;
 use content\enums\permisos;
 use content\models\donacionesModel as donacion;
 use content\models\miembrosModel as miembros;
+use content\models\observacionDonacionModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
@@ -23,6 +24,7 @@ class donacionesController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
+    // Actualizar donacion
     public function actualizar(Request $request)
     {
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
@@ -73,6 +75,7 @@ class donacionesController extends Controller
         return $this->render('donaciones/consultarView');
     }
 
+    // Vista crear donacion
     public function create()
     {
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
@@ -88,6 +91,7 @@ class donacionesController extends Controller
         ]);
     }
 
+    // Guardar donacion
     public function guardar(Request $request)
     {
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
@@ -148,7 +152,7 @@ class donacionesController extends Controller
         return json_encode($data);
     }
 
-    // Obtener donaciones
+    // Obtener donaciones por id
     public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
@@ -173,6 +177,7 @@ class donacionesController extends Controller
         ]);
     }
 
+    // Eliminar donacion
     public function eliminar(Request $request)
     {
         $user = usuarios::validarLogin();
@@ -203,6 +208,44 @@ class donacionesController extends Controller
             'code' => 422
         ];
         return json_encode($data, 422);
+    }
+
+    public function guardarObservacionDonacion(Request $request)
+    {
+        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        $observacionDonacion = new observacionDonacionModel();
+        $observacionDonacion->loadData($request->getBody());
+        if ($observacionDonacion->validate()) {
+            $cantidad = $request->getBody()['cantidad'];
+            $descripcion = $request->getBody()['descripcion'];
+            $donacion_id = $request->getBody()['donacion_id'];
+            $donacion = observacionDonacionModel::guardar($cantidad, $descripcion, $donacion_id);
+            if ($donacion) {
+                $data = [
+                    'title' => 'Datos registrado',
+                    'messages' => 'Observacion de la donacion registrada',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'La observacion no se ha registrado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        if (count($observacionDonacion->errors) > 0) {
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $observacionDonacion->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
     }
 
 }

@@ -116,6 +116,7 @@ const listaDonaciones = function () {
             api.buttons().container()
                 .appendTo($('#table-buttons'));
             eliminarDonacion();
+            observacion_donacion();
         }
     })
 }
@@ -133,7 +134,6 @@ const registrarDonacion = function () {
             data: $form.serialize(),
             dataType: 'json',
         }).done(function (response) {
-            console.log(response)
             if (response.code == 422) {
                 let html = '<ul>';
                 $.each(response.messages, function (index, value) {
@@ -159,11 +159,67 @@ const registrarDonacion = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos")[0].reset();
+                $("#form-registrar-donacion")[0].reset();
                 $button.disabled = false;
             }
         }).fail(function (json) {
             console.log(JSON.parse(json));
+        });
+    });
+}
+
+// Registrar donacion
+const observacion_donacion = function () {
+    let $button = $('#guardar_observacion_donacion');
+    let $form = $('#form-registrar-observacion-donacion');
+    let $modal = $('#observacion_donacion');
+
+    $modal.on('show.bs.modal', function(event) {
+        let $target = $(event.relatedTarget);
+        $('#donacion_id').val($target.data('donacion'));
+    })
+
+    $button.click(function () {
+        $('#guardar_observacion_donacion').disabled = true;
+        $.ajax({
+            url: $form.attr('action'),
+            method: $form.attr('method'),
+            data: $form.serialize()
+        }).done(function (response) {
+            /*if (response.code == 422) {
+                let html = '<ul>';
+                $.each(response.messages, function (index, value) {
+                    html += '<li>' + value + '</li>';
+                });
+                html += '</ul>';
+
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $('#guardar_observacion_donacion').disabled = false;
+            } else {*/
+                console.log(response.code)
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $("#form-registrar-observacion-donacion")[0].reset();
+                $('#guardar_observacion_donacion').disabled = false;
+            //}
+        }).fail(function (json) {
+
+
+        }).always(function () {
+
         });
     });
 }

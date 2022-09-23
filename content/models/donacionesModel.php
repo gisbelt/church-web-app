@@ -2,7 +2,6 @@
 
 namespace content\models;
 
-
 use content\config\conection\database as BD;
 use content\core\Model;
 use PDO as pdo;

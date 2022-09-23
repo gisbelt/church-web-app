@@ -23,6 +23,16 @@ class donacionesCollection
                 '/donaciones/eliminar/' . $donacion['donacion'],
             );
 
+            if($donacion['disponible']){
+                $donacion['actions'] .= sprintf(
+                    '<button name="donacion-modal" data-donacion="%s" class="btn btn-success ms-2" data-bs-toggle="modal"
+                                            data-bs-target="#observacion_donacion"><i class="bi bi-save text-light"> %s</i>
+                          </button>',
+                    $donacion['donacion'],
+                    'Agregar observacion'
+                );
+            }
+
             $statusClass = $donacion['disponible'] == 1 ? 'success' : 'warning';
             $statusText = $donacion['disponible'] == 1 ? 'Disponible' : 'Agotado';
             $donacion['disponible'] = sprintf(

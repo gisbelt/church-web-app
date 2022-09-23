@@ -274,6 +274,17 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => [],
                     ],
+
+                    'observacionDonacionesGuardar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'guardar observacion',
+                        'route' => '/donaciones/guardar-observacion', //{id:\d+}/{username} {id}
+                        'method' => 'guardarObservacionDonacion',
+                        'action' => 'post',
+                        'subRutas' => [],
+                    ],
                 ]
             ],
 
