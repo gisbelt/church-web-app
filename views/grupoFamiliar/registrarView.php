@@ -13,8 +13,7 @@ $this->title = 'Registrar Grupo Familiar'
                         <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
                     </div>
                     <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver
-                            listado</a>
+                        <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver listado</a>
                     </div>
                 </div>
 
@@ -46,7 +45,7 @@ $this->title = 'Registrar Grupo Familiar'
 
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
+                            <button type="button" name="agregar" id="agregar" id="agregarGrupoFamiliar"
                                     class="btn btn-success" disabled>Agregar
                             </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
