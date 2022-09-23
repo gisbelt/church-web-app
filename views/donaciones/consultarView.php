@@ -5,8 +5,7 @@ $this->title = 'Donaciones'
 ?>
 <div class="container-fluid">
     <div class="row center">
-        <div class="col-md-10">
-
+        <div class="col-md-8">
             <div class="card mb-5">
                 <div class="card-header">
                     <h3 class="text-center mt-1"><?php echo $this->title; ?>
