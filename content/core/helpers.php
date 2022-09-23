@@ -209,6 +209,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'dataDonaciones' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de donaciones',
+                        'route' => 'donaciones/data',
+                        'method' => 'obtenerDonaciones',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'crearDonaciones' => [
                         'permisos' => permisos::$donaciones,
                         'parametros' => [],
@@ -229,6 +240,39 @@ if (!function_exists("routas")) {
                         'method' => 'guardar',
                         'action' => 'post',
                         'subRutas' => []
+                    ],
+
+                    'editarDonaciones' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar donacion',
+                        'route' => '/donaciones/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarDonaciones' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/donacion/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'eliminarDonaciones' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Eliminar donacion',
+                        'route' => '/donaciones/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => [],
                     ],
                 ]
             ],

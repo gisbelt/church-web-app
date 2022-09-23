@@ -17,8 +17,10 @@ class donacionesModel extends Model
     public $id;
     public $detalles;
     public $cantidad;
-    public $donante_id;
-    public $tipo_id;
+    public $status;
+    public $disponible;
+    public $donante;
+    public $tipo_donacion;
     public $fecha_creado;
     public $fecha_actualizado;
 
@@ -32,11 +34,62 @@ class donacionesModel extends Model
         return $tipo_donacion;
     }
 
+    // Actualizar donacion
+    public static function actualizar_donacion($detalles, $cantidad, $donacion)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE donaciones SET detalles = ?, cantidad = ? WHERE id = ?");
+        $donacion = $sql->execute(array($detalles, $cantidad, $donacion));
+        return $donacion;
+    }
+
+    // Guardar donacion
+    public static function guardar($donante, $detalles, $tipo_donacion, $cantidad)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO donaciones (detalles, cantidad, donante_id, tipo_donacion_id, status, disponible) 
+        VALUES (?,?,?,?,?)");
+        return $sql->execute([$detalles, $cantidad, $donante, $tipo_donacion, self::ACTIVE, self::ACTIVE]);
+    }
+
+    // Guardar donacion
+    public static function obtener_donaciones()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT donaciones.id as donacion, donaciones.disponible, detalles, cantidad, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo FROM donaciones INNER JOIN miembros ON miembros.id = donaciones.donante_id 
+                                INNER JOIN perfiles ON perfiles.miembro_id = miembros.id WHERE donaciones.status = ?");
+        $sql->execute(array(self::ACTIVE));
+        $donaciones = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $donaciones;
+    }
+
+    // obtener donacion por id
+    public static function id_donacion($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT donaciones.id as donacion, donaciones.detalles, donaciones.cantidad, donante_id, tipo_donacion_id  FROM donaciones WHERE
+                                            id = ?");
+        $sql->execute(array($id));
+        $donacion = $sql->fetch(PDO::FETCH_ASSOC);
+        return $donacion;
+    }
+
+    // Eliminar donacion
+    public static function eliminar($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE donaciones SET status = ? WHERE id = ?");
+        $donacion = $sql->execute(array(self::INACTIVE, $id));
+        return $donacion;
+    }
+
     public function rules(): array
     {
         return [
-            'datalles' => [self::RULE_REQUIRED],
-            'cantidad' => [self::RULE_REQUIRED]
+            'detalles' => [self::RULE_REQUIRED],
+            'cantidad' => [self::RULE_REQUIRED],
+            'tipo_donacion' => [self::RULE_REQUIRED],
+            'donante' => [self::RULE_REQUIRED]
             //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
         ];
     }

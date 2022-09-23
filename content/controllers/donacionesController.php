@@ -2,6 +2,7 @@
 
 namespace content\controllers;
 
+use content\collections\donacionesCollection;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
@@ -22,10 +23,50 @@ class donacionesController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
+    public function actualizar(Request $request)
+    {
+        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        $donacion = new donacion();
+        $donacion->loadData($request->getBody());
+        if ($donacion->validate()) {
+            //$donante = $request->getBody()['donante'];
+            $detalles = $request->getBody()['detalles'];
+            $donacion = $request->getBody()['donacion'];
+            //$tipo_donacion = $request->getBody()['tipo_donacion'];
+            $cantidad = $request->getBody()['cantidad'];
+            $donacion = donacion::actualizar_donacion($detalles, $cantidad, $donacion);
+            if ($donacion) {
+                $data = [
+                    'title' => 'Datos actualizado',
+                    'messages' => 'Donacion ha actualizada',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'La donacion no se ha actualizado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        if (count($donacion->errors) > 0) {
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $donacion->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
+    }
+
     public function index()
     {
         $user = usuarios::validarLogin();
-        if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
+        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
 
@@ -34,7 +75,7 @@ class donacionesController extends Controller
 
     public function create()
     {
-        if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
+        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
@@ -49,16 +90,119 @@ class donacionesController extends Controller
 
     public function guardar(Request $request)
     {
-        if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
+        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        usuarios::validarLogin();
+        $donacion = new donacion();
+        $donacion->loadData($request->getBody());
+        if ($donacion->validate()) {
+            $donante = $request->getBody()['donante'];
+            $detalles = $request->getBody()['detalles'];
+            $tipo_donacion = $request->getBody()['tipo_donacion'];
+            $cantidad = $request->getBody()['cantidad'];
+            $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad);
+            if ($donacion) {
+                $data = [
+                    'title' => 'Datos registrado',
+                    'messages' => 'La donacion se ha registrado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'La donacion no se ha registrado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        if (count($donacion->errors) > 0) {
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $donacion->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
+    }
+
+   // Obtener donaciones
+    public function obtenerDonaciones()
+    {
         $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $donaciones = donacion::obtener_donaciones();
+
+        if($donaciones){
+            $donacionesCollection = new donacionesCollection();
+            $permisosFormat = $donacionesCollection->formatDonaciones($donaciones);
+        } else {
+            $permisosFormat = [];
+        }
+        $data = [
+            'donaciones' => $permisosFormat,
+        ];
+        return json_encode($data);
+    }
+
+    // Obtener donaciones
+    public function editar(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $id = $request->getRouteParams();
+        $donacion = donacion::id_donacion($id['id']);
+        $tipoDonacion = donacion::tipo_donaciones();
+        $miembros = miembros::obtener_miembros();
         $logger = new Logger("web");
         $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$request->getBody()]);
+        $logger->debug(__METHOD__, ['miembros' => $miembros,  'donante' => $donacion['donante_id'],]);
+        return $this->render('donaciones/editarView', [
+            'donacion' => $donacion['donacion'],
+            'detalle' => $donacion['detalles'],
+            'cantidad' => $donacion['cantidad'],
+            'donante' => $donacion['donante_id'],
+            'tipo' => $donacion['tipo_donacion_id'],
+            'tipo_donaciones' => $tipoDonacion,
+            'miembros' => $miembros
+        ]);
+    }
 
+    public function eliminar(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $id = $request->getRouteParam('id');
+        if(!is_null($id)){
+            $permiso = donacion::eliminar($id);
+            if($permiso){
+                $data = [
+                    'title' => 'Dato eliminado',
+                    'messages' => 'Donacion se ha eliminado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'La donacion no se ha eliminado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        $data = [
+            'title' => 'Error',
+            'messages' => 'Algo salio mal intente mas tardes',
+            'code' => 422
+        ];
+        return json_encode($data, 422);
     }
 
 }
-
-?>

@@ -92,7 +92,6 @@ class seguridadController extends Controller
             'permisos' => $permisosFormat,
         ];
         return json_encode($data);
-
     }
 
     public function create()
