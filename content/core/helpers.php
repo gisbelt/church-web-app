@@ -371,7 +371,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'buscarUsuario' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'text' => 'Buscar usuarios',
@@ -392,8 +392,8 @@ if (!function_exists("routas")) {
                 'route' => '/reportes',
                 'method' => 'index',
                 'action' => 'get',
-                'subRutas' => [],
-                'sinSubRutas' => 'ok'
+                'sinSubRutas' => 'ok',
+                'subRutas' => []
             ],
 
             'Seguridad' => [
@@ -463,7 +463,7 @@ if (!function_exists("routas")) {
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
-                        'text' => 'editar',
+                        'text' => 'Editar Permisos',
                         'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editar',
                         'action' => 'get',
@@ -492,8 +492,8 @@ if (!function_exists("routas")) {
                 'route' => '/Bitacora',
                 'method' => 'index',
                 'action' => 'get',
-                'subRutas' => [],
-                'sinSubRutas' => 'ok'
+                'sinSubRutas' => 'ok',
+                'subRutas' => []
             ],
 
             'Ayuda' => [
@@ -504,8 +504,8 @@ if (!function_exists("routas")) {
                 'method' => 'index',
                 'action' => 'get',
                 'permisos' => permisos::$permiso,
-                'subRutas' => [],
-                'sinSubRutas' => 'ok'
+                'sinSubRutas' => 'ok',
+                'subRutas' => []
             ],
 
             'perfil' => [

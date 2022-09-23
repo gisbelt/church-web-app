@@ -21,7 +21,7 @@ $this->title = 'Registrar permisos';
                             <div class="col">
                                 <div class="form-group">
                                     <input type="text" name="nombre" class="form-control form-input mb-4"
-                                        id="nombre" autocomplete="off">
+                                        id="nombre" placeholder=" " autocomplete="off">
                                     <label for="nombre_permisos" class="form-label fw-bold">Nombre:*</label>
                                 </div>
                             </div>

@@ -188,6 +188,24 @@ footer{
     background-color: var(--first-color-yellow);
     border-color: var(--first-color-yellow);
 }
+.paginate_button.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
+}
+.page-link{
+    color: var(--first-color);
+    background-color: #fff;
+}
+.page-link:hover{
+    color: var(--first-color-2);
+}
+.pagination .next{
+    padding: 0px !important;
+    font-size: 1rem !important;
+    opacity: 1 !important;
+}
 /* Botones  */
 
 /* Formularios  */

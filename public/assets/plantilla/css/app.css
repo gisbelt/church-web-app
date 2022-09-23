@@ -166,7 +166,7 @@ a{
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.nav_list li .nav_link.active{
+.nav_list li .nav_link.activo{
     background: var(--first-color-light-blue);
     overflow: hidden;
 }
@@ -235,10 +235,10 @@ a{
 .body-pd{
     padding-left: calc(var(--nav-width) + 1rem);
 }
-.active{
+.activo{
     color: var(--safety-yellow);
 }
-.active::before{
+.activo::before{
     content: '';
     position: absolute;
     left: 0;
