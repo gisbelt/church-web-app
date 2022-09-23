@@ -12,11 +12,11 @@ $this->title = 'Registrar permisos';
                         <h5 class="p-0 absolute text-center"><?php echo $this->title; ?></h5>
                     </div>
                     <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/seguridad" class="btn btn-outline-success text-center">Ver listado</a>
+                        <a href="/seguridad/permisos" class="btn btn-outline-success text-center">Ver listado</a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="form-registrar-permisos" action="/seguridad/guardar">
+                    <form method="post" id="form-registrar-permisos" action="/seguridad/permisos/guardar">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
