@@ -8,6 +8,10 @@ use content\core\Model;
 use content\config\conection\database as BD;
 use PDO as pdo;
 
+/**
+ *  Class usuario model
+ * @package content\models
+ */
 class usuariosModel extends Model //BD
 {
     public $id;

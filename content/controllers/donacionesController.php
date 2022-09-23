@@ -5,11 +5,11 @@ namespace content\controllers;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\core\Request;
 use content\enums\permisos;
+use content\models\donacionesModel as donacion;
+use content\models\miembrosModel as miembros;
 use content\models\usuariosModel as usuarios;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -28,8 +28,7 @@ class donacionesController extends Controller
         if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
             throw new ForbiddenException();
         }
-        $data['titulo'] = 'Donaciones';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donaciones/consultarView.php')), 200);
+
         return $this->render('donaciones/consultarView');
     }
 
@@ -39,9 +38,25 @@ class donacionesController extends Controller
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Registrar Donaciones';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/donaciones/registrarView.php')), 200);
-        return $this->render('donaciones/registrarView');
+
+        $tipoDonacion = donacion::tipo_donaciones();
+        $miembros = miembros::obtener_miembros();
+        return $this->render('donaciones/registrarView', [
+            'tipo_donaciones' => $tipoDonacion,
+            'miembros' => $miembros
+        ]);
+    }
+
+    public function guardar(Request $request)
+    {
+        if(!in_array(permisos::$donaciones, $_SESSION['user_permisos'])){
+            throw new ForbiddenException();
+        }
+        $user = usuarios::validarLogin();
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$request->getBody()]);
+
     }
 
 }
