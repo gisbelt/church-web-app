@@ -80,7 +80,7 @@ $this->title = 'Registrar Grupo Familiar'
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                <?php foreach ($consultarMiembroLista as $m) { ?>
+                                <?php foreach ($miembros_lista as $m) { ?>
                                     <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
                                         <td name="" id=""><?php echo $m['cedula']; ?></td>
                                         <td name="" id="miembroLista"><?php echo $m['nombre'] . ' ';

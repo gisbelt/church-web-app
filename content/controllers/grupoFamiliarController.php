@@ -32,9 +32,10 @@ class grupoFamiliarController extends Controller
     {
         $user = usuarios::validarLogin();
         $consultarMiembroLista = grupoFamiliarModel::buscarMiembroLista();
-        $data['titulo'] = 'Registrar Grupos Familiares';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
-        return $this->render('grupoFamiliar/registrarView');
+
+        return $this->render('grupoFamiliar/registrarView', [
+            'miembros_lista' => $consultarMiembroLista
+        ]);
     }
 
     //Buscar miembro que no tenga grupo familiar (autocompletado)
