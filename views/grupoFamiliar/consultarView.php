@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Miembros';
+$this->title = 'Grupos Familiares';
 ?>
 <h3 class="text-center mb-4">Listado de Grupos Familiares <a href="/grupo-familiares/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
