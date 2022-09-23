@@ -20,12 +20,12 @@ class observacionDonacionModel extends Model
     public $donacion_id;
 
     // Guardar observacion donacion
-    public static function guardar($cantidad, $descripcion, $donacion)
+    public static function guardar($cantidad, $descripcion, $donacion, $fecha)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("INSERT INTO observacion_donacion (descripcion, cantidad, donacion_id) 
-        VALUES (?,?,?)");
-        return $sql->execute([$descripcion, $cantidad, $donacion]);
+        $sql = $conexionBD->prepare("INSERT INTO observacion_donacion (descripcion, cantidad, donacion_id, fecha_creado) 
+        VALUES (?,?,?,?)");
+        return $sql->execute([$descripcion, $cantidad, $donacion, $fecha]);
     }
 
     public function rules(): array

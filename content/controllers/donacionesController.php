@@ -2,6 +2,7 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\collections\donacionesCollection;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
@@ -39,7 +40,8 @@ class donacionesController extends Controller
             $donacion = $request->getBody()['donacion'];
             //$tipo_donacion = $request->getBody()['tipo_donacion'];
             $cantidad = $request->getBody()['cantidad'];
-            $donacion = donacion::actualizar_donacion($detalles, $cantidad, $donacion);
+            $fecha_actualizado = Carbon::now();
+            $donacion = donacion::actualizar_donacion($detalles, $cantidad, $donacion, $fecha_actualizado);
             if ($donacion) {
                 $data = [
                     'title' => 'Datos actualizado',
@@ -105,7 +107,8 @@ class donacionesController extends Controller
             $detalles = $request->getBody()['detalles'];
             $tipo_donacion = $request->getBody()['tipo_donacion'];
             $cantidad = $request->getBody()['cantidad'];
-            $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad);
+            $fecha_crear = Carbon::now();
+            $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad, $fecha_crear);
             if ($donacion) {
                 $data = [
                     'title' => 'Datos registrado',
@@ -163,9 +166,6 @@ class donacionesController extends Controller
         $donacion = donacion::id_donacion($id['id']);
         $tipoDonacion = donacion::tipo_donaciones();
         $miembros = miembros::obtener_miembros();
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, ['miembros' => $miembros,  'donante' => $donacion['donante_id'],]);
         return $this->render('donaciones/editarView', [
             'donacion' => $donacion['donacion'],
             'detalle' => $donacion['detalles'],
@@ -222,7 +222,8 @@ class donacionesController extends Controller
             $cantidad = $request->getBody()['cantidad'];
             $descripcion = $request->getBody()['descripcion'];
             $donacion_id = $request->getBody()['donacion_id'];
-            $observacion_donacion = observacionDonacionModel::guardar($cantidad, $descripcion, $donacion_id);
+            $fecha = Carbon::now();
+            $observacion_donacion = observacionDonacionModel::guardar($cantidad, $descripcion, $donacion_id, $fecha);
             if ($observacion_donacion) {
                 $data = [
                     'title' => 'Datos registrado',

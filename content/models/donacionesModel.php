@@ -4,6 +4,8 @@ namespace content\models;
 
 use content\config\conection\database as BD;
 use content\core\Model;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use PDO as pdo;
 
 /**
@@ -34,21 +36,21 @@ class donacionesModel extends Model
     }
 
     // Actualizar donacion
-    public static function actualizar_donacion($detalles, $cantidad, $donacion)
+    public static function actualizar_donacion($detalles, $cantidad, $donacion, $fecha)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("UPDATE donaciones SET detalles = ?, cantidad = ? WHERE id = ?");
-        $donacion = $sql->execute(array($detalles, $cantidad, $donacion));
+        $sql = $conexionBD->prepare("UPDATE donaciones SET detalles = ?, cantidad = ?, fecha_actualizado = ? WHERE id = ?");
+        $donacion = $sql->execute(array($detalles, $cantidad, $fecha, $donacion));
         return $donacion;
     }
 
     // Guardar donacion
-    public static function guardar($donante, $detalles, $tipo_donacion, $cantidad)
+    public static function guardar($donante, $detalles, $tipo_donacion, $cantidad, $fecha)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("INSERT INTO donaciones (detalles, cantidad, donante_id, tipo_donacion_id, status, disponible) 
-        VALUES (?,?,?,?,?)");
-        return $sql->execute([$detalles, $cantidad, $donante, $tipo_donacion, self::ACTIVE, self::ACTIVE]);
+        $sql = $conexionBD->prepare("INSERT INTO donaciones (detalles, cantidad, donante_id, tipo_donacion_id, status, disponible, fecha_creado) 
+        VALUES (?,?,?,?,?,?,?)");
+        return $sql->execute([$detalles, $cantidad, $donante, $tipo_donacion, self::ACTIVE, self::ACTIVE, $fecha]);
     }
 
     // Guardar donacion
