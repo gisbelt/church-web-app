@@ -45,7 +45,7 @@ $this->title = 'Registrar Grupo Familiar'
 
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="button" name="agregar" id="agregar" id="agregarGrupoFamiliar"
+                            <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
                                     class="btn btn-success" disabled>Agregar
                             </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
@@ -80,7 +80,7 @@ $this->title = 'Registrar Grupo Familiar'
                                 </thead>
                                 <tbody id="myTable">
                                 <?php foreach ($miembros_lista as $m) { ?>
-                                    <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
+                                    <tr class="miembro_id"  data-id="<?php echo $m['idMiembro']; ?>">
                                         <td name="" id=""><?php echo $m['cedula']; ?></td>
                                         <td name="" id="miembroLista"><?php echo $m['nombre'] . ' ';
                                             echo $m['apellido']; ?></td>

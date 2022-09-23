@@ -102,6 +102,7 @@ $(document).ready(function(){
     // Registrar GrupoFamiliar
     const registrarGrupoFamiliar = () =>{  
         const newMiembro = document.getElementById('new-miembro');  
+        console.log('click....')
         if(button !== null){
         button.addEventListener('click', (ev) => {
             // Registramos el nombre del grupo 
@@ -109,7 +110,7 @@ $(document).ready(function(){
             $.ajax({
                 url: '/grupo-familiares/registrar-grupoFamiliar',
                 data:{
-                    'nombreGrupoFamiliar':nombreGrupoFamiliar,
+                    'nombre':nombreGrupoFamiliar,
                 },
                 type: 'POST',
                 dataType: 'json',

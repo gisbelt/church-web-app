@@ -53,12 +53,13 @@ class grupoFamiliarController extends Controller
     //Registrar miembro a grupo familiar
     public static function registrarGrupoFamiliar(Request $request){
         $user = usuarios::validarLogin();
-
         $gf = new grupoFamiliarModel();
         $gf->loadData($request->getBody());
         $nombreGrupoFamiliar = $request->getBody()['nombreGrupoFamiliar'];
         $miembroId = $request->getBody()['miembroId'];
-
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$request]);
         if(isset($nombreGrupoFamiliar)){
             if($gf->validate()){
                 $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     

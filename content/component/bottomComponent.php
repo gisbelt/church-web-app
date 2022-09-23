@@ -39,7 +39,7 @@ class bottomComponent
 
             <!-- auth -->
             <script src="../../../assets/js/sweetalert2@11.js"></script>
-            <script src="../../../assets/js/back/auth.js"></script>
+            <script src="../../../assets/js/auth/auth.js"></script>
 
             <!-- build -->
             <script src="../../../assets/js/build/grupoFamiliar.js"></script>
