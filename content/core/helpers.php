@@ -404,12 +404,13 @@ if (!function_exists("routas")) {
                 'controller' => seguridadController::class,
                 'route' => null,
                 'subRutas' => [
+                    // permisos
                     'listaPermisos' => [
                         'permisos' => permisos::$seguridad,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de permisos',
-                        'route' => '/seguridad',
+                        'route' => '/seguridad/permisos',
                         'method' => 'index',
                         'action' => 'get',
                         'subRutas' => []
@@ -420,7 +421,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de permisos',
-                        'route' => '/seguridad/permisos-data',
+                        'route' => '/seguridad/permisos/data',
                         'method' => 'obtenerPermisos',
                         'action' => 'get',
                         'subRutas' => []
@@ -431,7 +432,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar permisos',
-                        'route' => '/seguridad/crear',
+                        'route' => '/seguridad/permisos/crear',
                         'method' => 'create',
                         'action' => 'get',
                         'subRutas' => []
@@ -442,7 +443,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/guardar',
+                        'route' => '/seguridad/permisos/guardar',
                         'method' => 'guardar',
                         'action' => 'post',
                         'subRutas' => []
@@ -453,7 +454,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/permisos/eliminar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'eliminar',
                         'action' => 'get',
                         'subRutas' => []
@@ -464,19 +465,97 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
                         'text' => 'Editar Permisos',
-                        'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/permisos/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editar',
                         'action' => 'get',
                         'subRutas' => [],
                     ],
 
-                    'guardarPermisos' => [
+                    'actualizarPermisos' => [
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/actualizar',
+                        'route' => '/seguridad/permisos/actualizar',
                         'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    //roles
+                    'listaRoles' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de roles',
+                        'route' => '/seguridad/roles',
+                        'method' => 'indexRol',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'dataRoles' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de roles',
+                        'route' => '/seguridad/roles/data',
+                        'method' => 'obtenerRoles',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'crearRoles' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar roles',
+                        'route' => '/seguridad/roles/crear',
+                        'method' => 'createRol',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'guardarRoles' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/seguridad/roles/guardar',
+                        'method' => 'guardarRol',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'borraRoles' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/seguridad/roles/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminarRol',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarRoles' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Roles',
+                        'route' => '/seguridad/roles/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editarRol',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarRole' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/seguridad/roles/actualizar',
+                        'method' => 'actualizarRol',
                         'action' => 'post',
                         'subRutas' => []
                     ],
