@@ -222,8 +222,8 @@ class donacionesController extends Controller
             $cantidad = $request->getBody()['cantidad'];
             $descripcion = $request->getBody()['descripcion'];
             $donacion_id = $request->getBody()['donacion_id'];
-            $donacion = observacionDonacionModel::guardar($cantidad, $descripcion, $donacion_id);
-            if ($donacion) {
+            $observacion_donacion = observacionDonacionModel::guardar($cantidad, $descripcion, $donacion_id);
+            if ($observacion_donacion) {
                 $data = [
                     'title' => 'Datos registrado',
                     'messages' => 'Observacion de la donacion registrada',

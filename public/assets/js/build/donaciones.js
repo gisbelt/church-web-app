@@ -184,9 +184,10 @@ const observacion_donacion = function () {
         $.ajax({
             url: $form.attr('action'),
             method: $form.attr('method'),
-            data: $form.serialize()
+            data: $form.serialize(),
+            dataType: 'json',
         }).done(function (response) {
-            /*if (response.code == 422) {
+            if (response.code == 422) {
                 let html = '<ul>';
                 $.each(response.messages, function (index, value) {
                     html += '<li>' + value + '</li>';
@@ -202,8 +203,7 @@ const observacion_donacion = function () {
                     cancelButtonText: 'close'
                 });
                 $('#guardar_observacion_donacion').disabled = false;
-            } else {*/
-                console.log(response.code)
+            } else {
                 swal.fire({
                     title: response.title,
                     html: response.messages,
@@ -214,12 +214,9 @@ const observacion_donacion = function () {
                 });
                 $("#form-registrar-observacion-donacion")[0].reset();
                 $('#guardar_observacion_donacion').disabled = false;
-            //}
-        }).fail(function (json) {
-
-
-        }).always(function () {
-
-        });
+            }
+        }).fail(function (response) {
+            console.log(JSON.parse(response));
+        })
     });
 }
