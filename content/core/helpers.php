@@ -410,7 +410,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de permisos',
-                        'route' => '/seguridad',
+                        'route' => '/seguridad/permisos',
                         'method' => 'index',
                         'action' => 'get',
                         'subRutas' => []
@@ -421,7 +421,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de permisos',
-                        'route' => '/seguridad/permisos-data',
+                        'route' => '/seguridad/permisos/data',
                         'method' => 'obtenerPermisos',
                         'action' => 'get',
                         'subRutas' => []
@@ -432,7 +432,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar permisos',
-                        'route' => '/seguridad/crear',
+                        'route' => '/seguridad/permisos/crear',
                         'method' => 'create',
                         'action' => 'get',
                         'subRutas' => []
@@ -443,7 +443,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/guardar',
+                        'route' => '/seguridad/permisos/guardar',
                         'method' => 'guardar',
                         'action' => 'post',
                         'subRutas' => []
@@ -454,7 +454,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/permisos/eliminar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'eliminar',
                         'action' => 'get',
                         'subRutas' => []
@@ -465,7 +465,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
                         'text' => 'Editar Permisos',
-                        'route' => '/seguridad/editar/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/permisos/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editar',
                         'action' => 'get',
                         'subRutas' => [],
@@ -476,7 +476,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/actualizar',
+                        'route' => '/seguridad/permisos/actualizar',
                         'method' => 'actualizar',
                         'action' => 'post',
                         'subRutas' => []
@@ -499,7 +499,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de roles',
-                        'route' => '/seguridad/roles-data',
+                        'route' => '/seguridad/roles/data',
                         'method' => 'obtenerRoles',
                         'action' => 'get',
                         'subRutas' => []
@@ -510,7 +510,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar roles',
-                        'route' => '/seguridad/crear-rol',
+                        'route' => '/seguridad/roles/crear',
                         'method' => 'createRol',
                         'action' => 'get',
                         'subRutas' => []
@@ -521,7 +521,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/guardar-roles',
+                        'route' => '/seguridad/roles/guardar',
                         'method' => 'guardarRol',
                         'action' => 'post',
                         'subRutas' => []
@@ -532,7 +532,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/elimina-role/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/roles/eliminar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'eliminarRol',
                         'action' => 'get',
                         'subRutas' => []
@@ -543,7 +543,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
                         'text' => 'Editar Roles',
-                        'route' => '/seguridad/editar-role/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/roles/editar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'editarRol',
                         'action' => 'get',
                         'subRutas' => [],
@@ -554,7 +554,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/actualizar-role',
+                        'route' => '/seguridad/roles/actualizar',
                         'method' => 'actualizarRol',
                         'action' => 'post',
                         'subRutas' => []

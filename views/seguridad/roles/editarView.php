@@ -15,7 +15,7 @@ $this->title = 'Editar';
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="form-actualizar-rol" action="/seguridad/actualizar-role">
+                    <form method="post" id="form-actualizar-rol" action="/seguridad/roles/actualizar">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
