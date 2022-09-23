@@ -6,7 +6,7 @@ use content\core\Aplicacion;
 use content\core\Request;
 use content\core\Controller;
 use content\enums\seguridad;
-use content\models\seguridadModel;
+use content\models\permisosModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
@@ -56,7 +56,7 @@ class AutenticacionController extends Controller
                     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
                     $_SESSION['rol'] = seguridad::getRolName($consultarUsuario['role_id']);
 
-                    $seguirdadModel = new seguridadModel();
+                    $seguirdadModel = new permisosModel();
                     $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
                     $userPermisos = [];
                     foreach ($permisos as $permiso) {

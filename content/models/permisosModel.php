@@ -13,22 +13,13 @@ use Monolog\Logger;
  *
  * @var content\models
  */
-class seguridadModel extends Model
+class permisosModel extends Model
 {
     public $id;
     public $nombre;
     public $fecha_creado;
     public $fecha_actualizado;
     public $fecha_eliminado;
-
-    public function getRoles()
-    {
-        $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT id,nombre FROM roles");
-        $sql->execute();
-        $roles = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $roles;
-    }
 
     public function getRolePermissionUser($roleId)
     {
