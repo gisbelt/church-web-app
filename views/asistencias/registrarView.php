@@ -5,7 +5,7 @@ $this->title = 'Registrar asistencia';
 ?>
 <div class="container-fluid">
     <div class="row center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header mb-4">
                     <div>

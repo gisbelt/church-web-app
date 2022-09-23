@@ -11,14 +11,26 @@ use Monolog\Logger;
  */
 abstract class Model
 {
+    /**
+     * ALGUNAS REGLAS DE VALIDACION
+     */
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = "email";
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MACTH = 'match';
 
+    /**
+     * STATUS DE ACTIVADO ODESACTIVADO
+     */
     public const ACTIVE = 1;
     public const INACTIVE = 0;
+
+    /**
+     * STATUS PARA EL SEXO
+    */
+    public const MASCULINO = 1;
+    public const FEMENINO = 0;
 
     /**
      * Load data
