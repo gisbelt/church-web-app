@@ -532,7 +532,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'index',
-                        'route' => '/seguridad/roles/elimina/{id}', //{id:\d+}/{username} {id}
+                        'route' => '/seguridad/roles/eliminar/{id}', //{id:\d+}/{username} {id}
                         'method' => 'eliminarRol',
                         'action' => 'get',
                         'subRutas' => []

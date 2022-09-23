@@ -16,7 +16,7 @@ $this->title = 'Registrar rol';
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="form-registrar-rol" action="/seguridad/guardar-roles">
+                    <form method="post" id="form-registrar-rol" action="/seguridad/roles/guardar">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
