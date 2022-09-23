@@ -19,13 +19,13 @@ class permisosModel extends Model
     public $nombre;
     public $fecha_creado;
     public $fecha_actualizado;
-    public $fecha_eliminado;
+    public $status;
 
     public function getRolePermissionUser($roleId)
     {
         $connexionBD = BD::crearInstancia();
         $sql = $connexionBD->prepare("SELECT permisos.id as permiso, permisos.nombre as permiso_nombre FROM roles
-         INNER JOIN users ON users.role_id = roles.id 
+         INNER JOIN usuarios ON usuarios.role_id = roles.id 
          INNER JOIN permisos_roles ON permisos_roles.role_id = roles.id 
          INNER JOIN permisos ON permisos_roles.permiso_id = permisos.id
          WHERE roles.id =?");
@@ -38,19 +38,16 @@ class permisosModel extends Model
     public static function agregar_permiso($nombre, $fecha)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("INSERT INTO permisos (nombre, fecha_creado, fecha_actualizado, fecha_eliminado) 
+        $sql = $conexionBD->prepare("INSERT INTO permisos (nombre, fecha_creado, fecha_actualizado, status) 
         VALUES (?,?,?,?)");
-        return $sql->execute([$nombre, $fecha, $fecha, $fecha]);
+        return $sql->execute([$nombre, $fecha, $fecha, self::ACTIVE]);
     }
 
     // Actualziar permiso
     public static function actualizar_permiso($id, $nombre, $fecha)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE permisos SET nombre = ?, fecha_actualizado = ? WHERE id = ?");
-        $logger->debug(__METHOD__, [$sql->execute(array($nombre, $fecha, $id))]);
         $permiso = $sql->execute(array($nombre, $fecha, $id));
         return $permiso;
     }

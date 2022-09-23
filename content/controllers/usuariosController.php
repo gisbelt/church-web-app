@@ -8,6 +8,8 @@ use content\component\footerElement as footerElement;
 
 use content\core\Controller;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\models\cargosModel as cargos;
+use content\models\rolesModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
@@ -26,10 +28,12 @@ class usuariosController extends Controller
 
     public function index()
     {
-        $data['titulo'] = 'Usuarios';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
-        $user = usuarios::validarLogin();
-        return $this->render('/acceso/usuarios/consultarView');
+        usuarios::validarLogin();
+        $cargos = cargos::obtener_cargos();
+        return $this->render('/acceso/usuarios/consultarView', [
+            'cargos' => $cargos
+        ]);
     }
 
     public function create()

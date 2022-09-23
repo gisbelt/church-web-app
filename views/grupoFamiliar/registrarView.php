@@ -13,8 +13,7 @@ $this->title = 'Registrar Grupo Familiar'
                         <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
                     </div>
                     <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver
-                            listado</a>
+                        <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver listado</a>
                     </div>
                 </div>
 
@@ -80,8 +79,8 @@ $this->title = 'Registrar Grupo Familiar'
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                <?php foreach ($consultarMiembroLista as $m) { ?>
-                                    <tr class="miembro_id" data-id="<?php echo $m['idMiembro']; ?>">
+                                <?php foreach ($miembros_lista as $m) { ?>
+                                    <tr class="miembro_id"  data-id="<?php echo $m['idMiembro']; ?>">
                                         <td name="" id=""><?php echo $m['cedula']; ?></td>
                                         <td name="" id="miembroLista"><?php echo $m['nombre'] . ' ';
                                             echo $m['apellido']; ?></td>

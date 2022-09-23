@@ -34,9 +34,9 @@ class seguridadController extends Controller
         if ($request->isPost()) {
             $seguridad = new permisosModel();
             $seguridad->loadData($request->getBody());
-            $nombre = $request->getBody()['nombre'];
-            $id = $request->getBody()['permiso'];
             if($seguridad->validate()){
+                $nombre = $request->getBody()['nombre'];
+                $id = $request->getBody()['permiso'];
                 $fecha =  Carbon::now();
                 $seguridad = permisosModel::actualizar_permiso($id, $nombre, $fecha);
                 if($seguridad){
@@ -92,7 +92,6 @@ class seguridadController extends Controller
             'permisos' => $permisosFormat,
         ];
         return json_encode($data);
-
     }
 
     public function create()
@@ -109,9 +108,9 @@ class seguridadController extends Controller
         if ($request->isPost()) {
             $seguridad = new permisosModel();
             $seguridad->loadData($request->getBody());
-            $nombre = $request->getBody()['nombre'];
 
             if($seguridad->validate()){
+                $nombre = $request->getBody()['nombre'];
                 $fecha =  Carbon::now();
                 $seguridad = permisosModel::agregar_permiso($nombre, $fecha);
                 if($seguridad){
@@ -192,9 +191,9 @@ class seguridadController extends Controller
         if ($request->isPost()) {
             $seguridad = new permisosModel();
             $seguridad->loadData($request->getBody());
-            $nombre = $request->getBody()['nombre'];
-            $id = $request->getBody()['rol'];
             if($seguridad->validate()){
+                $nombre = $request->getBody()['nombre'];
+                $id = $request->getBody()['rol'];
                 $fecha =  Carbon::now();
                 $seguridad = rolesModel::actualizar_rol($id, $nombre, $fecha);
                 if($seguridad){
@@ -269,10 +268,10 @@ class seguridadController extends Controller
         if ($request->isPost()) {
             $seguridad = new permisosModel();
             $seguridad->loadData($request->getBody());
-            $nombre = $request->getBody()['nombre'];
 
             if($seguridad->validate()){
                 $fecha =  Carbon::now();
+                $nombre = $request->getBody()['nombre'];
                 $seguridad = rolesModel::agregar_rol($nombre, $fecha);
                 if($seguridad){
                     $data = [
