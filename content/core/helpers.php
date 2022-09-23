@@ -460,7 +460,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'editarPermiso' => [
-                        'permisos' => permisos::$seguridad,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
                         'text' => 'Editar Permisos',
