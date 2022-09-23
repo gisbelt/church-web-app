@@ -2,12 +2,15 @@
 
 namespace content\controllers;
 
+use content\collections\usuariosCollection;
 use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
 use content\component\footerElement as footerElement;
 
 use content\core\Controller;
+use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\enums\permisos;
 use content\models\cargosModel as cargos;
 use content\models\rolesModel;
 use content\models\usuariosModel as usuarios;
@@ -52,5 +55,24 @@ class usuariosController extends Controller
         $nombreMiembro = $_POST['buscarMiembro'];
         $consultarMiembro = usuarios::buscarMiembro($nombreMiembro);
         die ($consultarMiembro);
+    }
+
+    public function obtenerUsuarios()
+    {
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        $usuarios = usuarios::obtener_usuarios();
+        if($usuarios){
+            $usuariosCollection = new usuariosCollection();
+            $usuariosFormat = $usuariosCollection->formatUsuarios($usuarios);
+        } else {
+            $usuariosFormat = [];
+        }
+        $data = [
+            'usuarios' => $usuariosFormat,
+        ];
+        return json_encode($data);
     }
 }

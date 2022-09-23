@@ -446,6 +446,39 @@ if (!function_exists("routas")) {
                         'action' => 'post',
                         'subRutas' => []
                     ],
+
+                    'dataUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de usaurios',
+                        'route' => '/usuarios/data',
+                        'method' => 'obtenerUsuarios',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'borraUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Permisos',
+                        'route' => '/usuarios/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
                 ]
             ],
 

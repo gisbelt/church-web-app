@@ -61,4 +61,28 @@ $(document).ready(function(){
     }
     buscarUsuario();
     //Usuarios
+
+    listaUsuarios();
 });
+
+const listaUsuarios = () =>{
+    let $table = $("#usuarios-table");
+    $table.DataTable({
+        "ajax": {
+            "url": $table.data("route"),
+            "dataSrc": "usuarios"
+        },
+        "columns": [
+            {"data": "nombre_completo"},
+            {"data": "email"},
+            {"data": "nombre"},
+            {"data": "actions", "className": "center"},
+        ],
+        "initComplete": function () {
+            api = this.api();
+            api.buttons().container()
+                .appendTo($('#table-buttons'));
+            eliminarRol();
+        }
+    })
+}

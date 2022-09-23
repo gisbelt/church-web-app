@@ -40,63 +40,23 @@ $this->title = 'Usuarios';
                 </div>
             </form>
         </div>
-
-        <div class="col-12 col-sm-12 col-md-2 mb-2 mb-md-0">
-            <div class="center izquierda">
-                <label>Mostrar:</label>
-                <select class="form-control ms-2 w-auto" id="per_page">
-                    <option>5</option>
-                    <option>10</option>
-                    <option selected="">15</option>
-                    <option>20</option>
-                </select>
-            </div>
-        </div>
     </div>
 </div><!--container-->
 
 <div class="container-fluid mt-4"> <!--container-->
-    <div class="row">
-        <div class="col-md-12 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover">
+    <div class="row center">
+        <div class="col-md-10 table-wrap">
+            <table class="table table-bordered table-striped table-responsive table-hover w-100"
+                   id="usuarios-table" data-route="usuarios/data">
                 <thead class="thead-primary">
                 <tr>
-                    <th class="text-center">Acciones</th>
-                    <th class="">Nombre</th>
-                    <th class="">Correo</th>
-                    <th class="">Cargo</th>
+                    <th class="w-auto">Nombre</th>
+                    <th class="w-auto">Correo</th>
+                    <th class="w-auto">Cargo</th>
+                    <th class="text-center w-auto">Acciones</th>
                 </tr>
                 </thead>
-                <tbody id="myTable">
-                <tr>
-                    <td>
-                        <form method="POST" class="center">
-                            <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
-                               value="">
-                                <i class="bi bi-pencil text-light"></i>
-                            </a>
-                            <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                <i class="bi bi-trash text-light"></i>
-                            </a>
-                        </form>
-                    </td>
-                    <td name="username">Gisbel</td>
-                    <td name="email">gis@gmail.com</td>
-                    <td name="cargo">Lider</td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $("#username").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
