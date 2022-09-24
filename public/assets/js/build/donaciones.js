@@ -13,6 +13,7 @@ const eliminarDonacion = function () {
         //route = `${$table.data('route')}?currency=${currency}&provider=${provider}`;
         //let id = $(this).data('id');
         let route = $(this).data('route');
+        let tr = $(this).parents("tr");
         Swal.fire({
             title: '¿Estás seguro?',
             text: "No podrás revertir esto.",
@@ -46,6 +47,7 @@ const eliminarDonacion = function () {
                     result.value.messages,
                     'success'
                 )
+                tr.remove();
             }
         })
     });
@@ -64,9 +66,9 @@ const actualizarDonacion = function () {
             dataType: 'json',
         }).done(function (response) {
             if (response.code == 422) {
-                let html = '<ul>';
+                let html = '<ul class="list-group list-group-flush">';
                 $.each(response.messages, function (index, value) {
-                    html += '<li>' + value + '</li>';
+                    html += '<li class="list-group-item">' + value + '</li>';
                 });
                 html += '</ul>';
 
@@ -135,9 +137,9 @@ const registrarDonacion = function () {
             dataType: 'json',
         }).done(function (response) {
             if (response.code == 422) {
-                let html = '<ul>';
+                let html = '<ul class="list-group list-group-flush">';
                 $.each(response.messages, function (index, value) {
-                    html += '<li>' + value + '</li>';
+                    html += '<li class="list-group-item">' + value + '</li>';
                 });
                 html += '</ul>';
 
@@ -188,9 +190,9 @@ const observacion_donacion = function () {
             dataType: 'json',
         }).done(function (response) {
             if (response.code == 422) {
-                let html = '<ul>';
+                let html = '<ul class="list-group list-group-flush">';
                 $.each(response.messages, function (index, value) {
-                    html += '<li>' + value + '</li>';
+                    html += '<li class="list-group-item">' + value + '</li>';
                 });
                 html += '</ul>';
 

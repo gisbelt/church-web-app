@@ -36,7 +36,7 @@ $this->title = 'Grupos Familiares';
 <div class="container-fluid mt-4"> <!--container-->
     <div class="row">
         <div class="col-md-12 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover">
+            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100">
                 <thead class="thead-primary">
                 <tr>
                     <th class="text-center w-25">Acciones</th>
@@ -64,50 +64,6 @@ $this->title = 'Grupos Familiares';
                             <li class="list-group-item">Item 1 asdsds asdsadsa asdsadsa asdsad</li>
                             <li class="list-group-item">Item 2 asdsds asdsadsa asdsadsa asdsad</li>
                             <li class="list-group-item">Item 3 asdsds asdsadsa asdsadsa asdsad</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <form method="POST" class="center">
-                            <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
-                               value="">
-                                <i class="bi bi-pencil text-light"></i>
-                            </a>
-                            <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                <i class="bi bi-trash text-light"></i>
-                            </a>
-                        </form>
-                    </td>
-                    <td>Grupo 1</td>
-                    <td>
-                        <a class="btn btn-link p-0 mb-2 text-first-color" data-bs-toggle="collapse" data-bs-target="#grupo2" aria-expanded="false" aria-controls="collapseExample">Ver Integrantes</a>
-                        <ul class="list-group list-group-flush collapse w-50" id="grupo2"">
-                            <li class="list-group-item">Item 1</li>
-                            <li class="list-group-item">Item 2</li>
-                            <li class="list-group-item">Item 3</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <form method="POST" class="center">
-                            <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
-                               value="">
-                                <i class="bi bi-pencil text-light"></i>
-                            </a>
-                            <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                <i class="bi bi-trash text-light"></i>
-                            </a>
-                        </form>
-                    </td>
-                    <td>Grupo 1</td>
-                    <td>
-                        <a class="btn btn-link p-0 mb-2 text-first-color" data-bs-toggle="collapse" data-bs-target="#grupo3" aria-expanded="false" aria-controls="collapseExample">Ver Integrantes</a>
-                        <ul class="list-group list-group-flush collapse w-50" id="grupo3"">
-                            <li class="list-group-item">Item 1</li>
-                            <li class="list-group-item">Item 2</li>
-                            <li class="list-group-item">Item 3</li>
                         </ul>
                     </td>
                 </tr>
