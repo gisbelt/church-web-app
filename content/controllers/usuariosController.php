@@ -10,8 +10,10 @@ use content\component\footerElement as footerElement;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\core\Request;
 use content\enums\permisos;
 use content\models\cargosModel as cargos;
+use content\models\miembrosModel;
 use content\models\rolesModel;
 use content\models\usuariosModel as usuarios;
 
@@ -34,8 +36,10 @@ class usuariosController extends Controller
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
         usuarios::validarLogin();
         $cargos = cargos::obtener_cargos();
+        $miembros = miembrosModel::obtener_miembros();
         return $this->render('/acceso/usuarios/consultarView', [
-            'cargos' => $cargos
+            'cargos' => $cargos,
+            'miembros' => $miembros
         ]);
     }
 
@@ -45,34 +49,41 @@ class usuariosController extends Controller
         return $this->render('/acceso/usuarios/registrarView');
     }
 
-    public function consultar()
-    {
-        $user = usuarios::validarLogin();
-        return $this->render('/acceso/usuarios/consultarView');
-    }
-
     public function buscarUsuario(){
         $nombreMiembro = $_POST['buscarMiembro'];
         $consultarMiembro = usuarios::buscarMiembro($nombreMiembro);
         die ($consultarMiembro);
     }
 
-    public function obtenerUsuarios()
+    public function obtenerUsuarios(Request $request)
     {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
-        $usuarios = usuarios::obtener_usuarios();
-        if($usuarios){
-            $usuariosCollection = new usuariosCollection();
-            $usuariosFormat = $usuariosCollection->formatUsuarios($usuarios);
+        $cargo =  count($request->getBody()) > 1 ? $request->getBody()['cargo'] : null;
+        $status = count($request->getBody()) > 1 ? $request->getBody()['status'] : null;
+        $miembro = count($request->getBody()) > 1 ? $request->getBody()['miembro'] : null;
+        if(!is_null($cargo) || !is_null($status) || !is_null($miembro)) {
+            $usuarios = usuarios::obtener_usuarios($cargo, $status, $miembro);
+            if($usuarios){
+                $usuariosCollection = new usuariosCollection();
+                $usuariosFormat = $usuariosCollection->formatUsuarios($usuarios);
+            } else {
+                $usuariosFormat = [];
+            }
+            $data = [
+                'usuarios' => $usuariosFormat,
+            ];
         } else {
-            $usuariosFormat = [];
+            $data = [
+                'usuarios' => [],
+            ];
         }
-        $data = [
-            'usuarios' => $usuariosFormat,
-        ];
+
         return json_encode($data);
     }
 }
