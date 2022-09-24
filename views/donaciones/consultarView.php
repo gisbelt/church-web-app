@@ -13,7 +13,7 @@ $this->title = 'Donaciones'
                     </h3>
                 </div>
                 <div class="card-body center table-wrap">
-                    <table class="table table-bordered table-striped table-responsive table-hover w-100"
+                    <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
                            id="donaciones-table" data-route="donaciones/data">
                         <thead class="thead-primary">
                         <tr>

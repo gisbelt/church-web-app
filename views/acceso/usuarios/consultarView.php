@@ -46,7 +46,7 @@ $this->title = 'Usuarios';
 <div class="container-fluid mt-4"> <!--container-->
     <div class="row center">
         <div class="col-md-10 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover w-100"
+            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
                    id="usuarios-table" data-route="usuarios/data">
                 <thead class="thead-primary">
                 <tr>

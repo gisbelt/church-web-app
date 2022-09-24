@@ -382,24 +382,35 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
-                    'buscarMiembro' => [
+                    'dataAmigos' => [
                         'permisos' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'parametros' => [],
-                        'text' => 'Buscar miembro',
-                        'route' => '/grupo-familiares/buscar-miembro',
-                        'method' => 'buscarMiembro',
+                        'text' => 'Obtener Amigos',
+                        'route' => '/grupo-familiares/data',
+                        'method' => 'obtenerAmigos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'buscarAmigo' => [
+                        'permisos' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'parametros' => [],
+                        'text' => 'Buscar Amigo',
+                        'route' => '/grupo-familiares/buscar-amigo',
+                        'method' => 'buscarAmigo',
                         'action' => 'post',
                         'subRutas' => []
                     ],
 
-                    'registrarGrupoFamiliar' => [
+                    'guardarGrupoFamiliar' => [
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
-                        'text' => 'Registrar grupo familiar',
-                        'route' => '/grupo-familiares/registrar-grupoFamiliar',
-                        'method' => 'registrarGrupoFamiliar',
+                        'text' => 'index',
+                        'route' => '/grupo-familiares/guardar',
+                        'method' => 'guardar',
                         'action' => 'post',
                         'subRutas' => []
                     ],
