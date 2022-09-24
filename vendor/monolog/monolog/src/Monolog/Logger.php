@@ -415,7 +415,7 @@ class Logger implements LoggerInterface, ResettableInterface
      * Ends a log cycle and resets all handlers and processors to their initial state.
      *
      * Resetting a Handler or a Processor means flushing/cleaning all buffers, resetting internal
-     * state, and getting it back to a state in which it can receive log records again.
+     * state, and getting it auth to a state in which it can receive log records again.
      *
      * This is useful in case you want to avoid logs leaking between two requests or jobs when you
      * have a long running process like a worker or an application server serving multiple requests

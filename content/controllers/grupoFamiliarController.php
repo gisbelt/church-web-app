@@ -32,9 +32,10 @@ class grupoFamiliarController extends Controller
     {
         $user = usuarios::validarLogin();
         $consultarMiembroLista = grupoFamiliarModel::buscarMiembroLista();
-        $data['titulo'] = 'Registrar Grupos Familiares';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/registrarView.php')), 200);
-        return $this->render('grupoFamiliar/registrarView');
+
+        return $this->render('grupoFamiliar/registrarView', [
+            'miembros_lista' => $consultarMiembroLista
+        ]);
     }
 
     //Buscar miembro que no tenga grupo familiar (autocompletado)
@@ -52,12 +53,13 @@ class grupoFamiliarController extends Controller
     //Registrar miembro a grupo familiar
     public static function registrarGrupoFamiliar(Request $request){
         $user = usuarios::validarLogin();
-
         $gf = new grupoFamiliarModel();
         $gf->loadData($request->getBody());
         $nombreGrupoFamiliar = $request->getBody()['nombreGrupoFamiliar'];
         $miembroId = $request->getBody()['miembroId'];
-
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$request]);
         if(isset($nombreGrupoFamiliar)){
             if($gf->validate()){
                 $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     

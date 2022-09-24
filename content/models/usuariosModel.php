@@ -8,6 +8,10 @@ use content\core\Model;
 use content\config\conection\database as BD;
 use PDO as pdo;
 
+/**
+ *  Class usuario model
+ * @package content\models
+ */
 class usuariosModel extends Model //BD
 {
     public $id;
@@ -22,7 +26,7 @@ class usuariosModel extends Model //BD
     {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id
-        FROM users WHERE email=?");
+        FROM usuarios WHERE email=?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);
         return $consultarUsuario;
@@ -98,6 +102,18 @@ class usuariosModel extends Model //BD
         }
 
         echo json_encode($result);
+    }
+
+    public static function obtener_usuarios()
+    {
+        $connexionBD = BD::crearInstancia();
+        $sql = $connexionBD->prepare("SELECT usuarios.id, usuarios.email, usuarios.fecha_creado, cargos.nombre, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo  FROM usuarios
+            INNER JOIN miembros ON usuarios.miembro_id = miembros.id
+            INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+            INNER JOIN cargos ON miembros.cargo_id = cargos.id");
+        $sql->execute();
+        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuarios;
     }
 
 }

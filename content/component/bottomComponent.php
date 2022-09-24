@@ -39,12 +39,13 @@ class bottomComponent
 
             <!-- auth -->
             <script src="../../../assets/js/sweetalert2@11.js"></script>
-            <script src="../../../assets/js/back/auth.js"></script>
+            <script src="../../../assets/js/auth/auth.js"></script>
 
             <!-- build -->
             <script src="../../../assets/js/build/grupoFamiliar.js"></script>
             <script src="../../../assets/js/build/usuarios.js"></script>
             <script src="../../../assets/js/build/seguridad.js"></script>
+            <script src="../../../assets/js/build/donaciones.js"></script>
 
             <!-- Charts -->
             <script src="../../../assets/js/chart.bundle.min.js"></script>

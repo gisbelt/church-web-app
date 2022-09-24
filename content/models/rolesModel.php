@@ -15,7 +15,6 @@ class rolesModel extends Model
     public $status;
     public $fecha_creado;
     public $fecha_actualizado;
-    public $fecha_eliminado;
 
     public function getRoles()
     {
@@ -30,7 +29,7 @@ class rolesModel extends Model
     {
         $connexionBD = BD::crearInstancia();
         $sql = $connexionBD->prepare("SELECT roles.id as rol, roles.nombre as permiso_nombre FROM roles
-         INNER JOIN users ON users.role_id = roles.id 
+         INNER JOIN usuarios ON usuarios.role_id = roles.id 
          WHERE roles.id =?");
         $sql->execute(array($roleId));
         $userRol = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -41,9 +40,9 @@ class rolesModel extends Model
     public static function agregar_rol($nombre, $fecha)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("INSERT INTO roles (nombre, fecha_creado, fecha_actualizado, fecha_eliminado, status) 
-        VALUES (?,?,?,?,?)");
-        return $sql->execute([$nombre, $fecha, $fecha, $fecha, self::ACTIVE]);
+        $sql = $conexionBD->prepare("INSERT INTO roles (nombre, fecha_creado, fecha_actualizado, status) 
+        VALUES (?,?,?,?)");
+        return $sql->execute([$nombre, $fecha, $fecha, self::ACTIVE]);
     }
 
     // Actualizar rol
