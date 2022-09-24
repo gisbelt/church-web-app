@@ -40,8 +40,8 @@ $this->title = 'Registrar Miembros'
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group input-daterange" id="datepicker">
-                                            <input type="text" class="form-control form-input mb-4" id="fn" value="dd/mm/aaaa" placeholder=" ">
-                                            <label for="fn" class="form-label fw-bold">Fecha de Nacimiento:*</label>
+                                            <input type="text" class="form-control form-input mb-4" id="fecha_nacimiento" value="dd/mm/aaaa" placeholder=" ">
+                                            <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento:*</label>
                                             <span class="input-group-append">
                                                 <span class="input-group-text bg-transparent border-0">
                                                     <i class="bi bi-calendar-minus"></i>
@@ -71,6 +71,15 @@ $this->title = 'Registrar Miembros'
                                     <div class="form-group">
                                         <input type="text" required name="grado_instruccion" class="form-control form-input mb-4" id="grado_instruccion" value="" placeholder=" ">
                                         <label for="grado_instruccion" class="form-label fw-bold">Grado de Instrucción:</label>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <p class="">Profesión:* </p>
+                                        <select class="form-select" name="profesion" id="profesion">
+                                            <option>New Delhi</option>
+                                            <option>Istanbul</option>
+                                            <option>Jakarta</option>
+                                        </select>   
                                     </div>
                                 </div>
                             </div>
@@ -113,8 +122,8 @@ $this->title = 'Registrar Miembros'
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fpf" value="dd/mm/aaaa" placeholder=" ">
-                                    <label for="fpf" class="form-label fw-bold">Fecha de paso de Fe:*</label>
+                                    <input type="text" class="form-control form-input mb-4" id="fecha_paso_fe" value="dd/mm/aaaa" placeholder=" ">
+                                    <label for="fecha_paso_fe" class="form-label fw-bold">Fecha de paso de Fe:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
                                             <i class="bi bi-calendar-minus"></i>
@@ -124,8 +133,8 @@ $this->title = 'Registrar Miembros'
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fb" value="dd/mm/aaaa" placeholder=" ">
-                                    <label for="fb" class="form-label fw-bold">Fecha de Bautismo:*</label>
+                                    <input type="text" class="form-control form-input mb-4" id="fecha_bautismo" value="dd/mm/aaaa" placeholder=" ">
+                                    <label for="fecha_bautismo" class="form-label fw-bold">Fecha de Bautismo:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
                                             <i class="bi bi-calendar-minus"></i>
@@ -133,25 +142,17 @@ $this->title = 'Registrar Miembros'
                                     </span>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <p class="">Membresía:* </p>
-                                <select class="form-control" name="" id="">
+                                <select class="form-select" name="membresia" id="membresia">
                                     <option>New Delhi</option>
                                     <option>Istanbul</option>
                                     <option>Jakarta</option>
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <p class="">Cargo:* </p>
-                                <select class="form-control" name="" id="">
-                                    <option>New Delhi</option>
-                                    <option>Istanbul</option>
-                                    <option>Jakarta</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <p class="">Profesión:* </p>
-                                <select class="form-control" name="" id="">
+                                <select class="form-select" name="cargo" id="cargo">
                                     <option>New Delhi</option>
                                     <option>Istanbul</option>
                                     <option>Jakarta</option>

@@ -5,16 +5,15 @@ $this->title = 'Usuarios';
 ?>
 
 <div class="container-fluid">
-<div class="row">
-    <div class="offset-md-2 col-md-8">
-        <div class="card mb-5">
+<div class="row center">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+        <div class="card mb-3">
             <div class="card-header">
-                <h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
-                                class="bi bi-person-plus"></i></a></h3>
+                <h3 class="text-center mt-1">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
             </div>
-            <div class="card-block p-5">
+            <div class="card-body p-5">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 mb-2 mb-md-0">
                         <div class="form-group">
                             <label>Cargo:</label>
                             <select class="form-select" id="cargo" name="cargo">
@@ -25,7 +24,7 @@ $this->title = 'Usuarios';
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 mb-2 mb-md-0">
                         <div class="form-group">
                             <label>Estado:</label>
                             <select class="form-select" id="status" name="status">
@@ -35,11 +34,11 @@ $this->title = 'Usuarios';
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 mb-2 mb-md-0">
                         <div class="form-group">
-                            <label>Estado:</label>
+                            <label>Miembro:</label>
                             <select class="form-select" id="miembro" name="miembro">
-                                <option value="">selecione miembro</option>
+                                <option value="">Selecione Miembro</option>
                                 <?php foreach ($miembros as $miembro) {
                                     echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
                                 } ?>
@@ -63,11 +62,11 @@ $this->title = 'Usuarios';
 </div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="offset-md-2 col-md-8">
+    <div class="row center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="card mb-5">
-                <div class="card-body center">
-                    <table class="table table-bordered table-striped table-responsive table-hover w-100"
+                <div class="card-body center table-wrap">
+                    <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
                            id="usuarios-table" data-route="usuarios/data">
                         <thead class="thead-primary">
                         <tr>
