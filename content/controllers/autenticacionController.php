@@ -63,6 +63,8 @@ class AutenticacionController extends Controller
 
                     $seguirdadModel = new seguridadModel();
                     $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
+                    $logger = new Logger("web");
+                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                     $userPermisos = [];
                     foreach ($permisos as $permiso) {
                         $userPermisos[] = (int)$permiso['permiso'];
