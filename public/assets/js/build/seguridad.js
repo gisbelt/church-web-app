@@ -135,6 +135,7 @@ const eliminarPermiso = function(){
         //route = `${$table.data('route')}?currency=${currency}&provider=${provider}`;
         //let id = $(this).data('id');
         let route = $(this).data('route');
+        let tr = $(this).parents("tr");
         Swal.fire({
             title: '¿Estás seguro?',
             text: "No podrás revertir esto.",
@@ -168,6 +169,7 @@ const eliminarPermiso = function(){
                     result.value.messages,
                     'success'
                 )
+                tr.remove();                
             }
         })
     });

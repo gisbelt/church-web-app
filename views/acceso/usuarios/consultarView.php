@@ -6,11 +6,11 @@ $this->title = 'Usuarios';
 <h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
                 class="bi bi-person-plus"></i></a></h3>
 <div class="container">
-    <div class="row">
+    <div class="row center">
         <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Cargo:</label>
-                <select class="form-select ms-2" id="cargo" name="cargo">
+                <select class="form-select mx-2" id="cargo" name="cargo">
                 <option value="">Todos</option>
                     <?php foreach ($cargos as $cargoo) {
                         echo '<option value="' . $cargoo[id] . '">' . $cargoo[nombre] . '</option>';
@@ -22,7 +22,7 @@ $this->title = 'Usuarios';
         <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
             <div class="center">
                 <label>Estado:</label>
-                <select class="form-select ms-2" id="status"">
+                <select class="form-select mx-2" id="status"">
                     <option value="">Todos</option>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>

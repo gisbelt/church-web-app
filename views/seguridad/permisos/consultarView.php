@@ -3,7 +3,7 @@ $this->title = 'Lista de Permisos';
 ?>
 <div class="container-fluid">
     <div class="row center">
-        <div class="col-md-8">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
 
         <div class="card mb-5">
             <div class="card-header">
