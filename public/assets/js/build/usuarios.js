@@ -66,6 +66,9 @@ $(document).ready(function(){
 });
 
 const listaUsuarios = () =>{
+    let api;
+    let $button = $('#busqueda_usuario');
+    let $form = $('#busqueda-usuarios-form');
     let $table = $("#usuarios-table");
     $table.DataTable({
         "ajax": {
@@ -82,7 +85,20 @@ const listaUsuarios = () =>{
             api = this.api();
             api.buttons().container()
                 .appendTo($('#table-buttons'));
-            eliminarRol();
+            eliminarUsuario();
+
+            $button.click(function () {
+                $('#busqueda_usuario').disable = true;
+                let route = $form.attr('action') + '?' + $form.serialize();
+                api.ajax.url(route).load();
+                $table.on('draw.dt', function () {
+                    $('#busqueda_usuario').disable = false;
+                });
+            });
         }
     })
+}
+
+const eliminarUsuario = () =>{
+
 }
