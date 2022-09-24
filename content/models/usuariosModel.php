@@ -6,7 +6,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use content\core\Model;
 use content\config\conection\database as BD;
-use PDO as pdo;
+use PDO;
 
 /**
  *  Class usuario model
@@ -55,7 +55,7 @@ class usuariosModel extends Model //BD
     public static function validarLogout()
     {
         // Si existe alguien logueado, mosrar alerta de cerrar sesión
-        if(isset($_SESSION['email'])){
+        if (isset($_SESSION['email'])) {
 
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
@@ -81,6 +81,7 @@ class usuariosModel extends Model //BD
             //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
         ];
     }
+
     //Buscar Miembros
     public static function buscarMiembro($nombreMiembro)
     {
@@ -102,6 +103,52 @@ class usuariosModel extends Model //BD
         }
 
         echo json_encode($result);
+    }
+
+    public static function obtener_usuarios($cargo, $status, $miembro)
+    {
+        $connexionBD = BD::crearInstancia();
+        /*$sql = $connexionBD->prepare("SELECT usuarios.id, usuarios.email,usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
+            INNER JOIN miembros ON usuarios.miembro_id = miembros.id
+            INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+            INNER JOIN cargos ON miembros.cargo_id = cargos.id");
+        if(!is_null($cargo)){
+            $sql->
+            $sql->bindValue(':cargos.id', $cargo);
+        }
+        if(!is_null($status)){
+            $sql->bindValue(':status', $status);
+        }
+        if(!is_null($miembro)){
+            $sql->bindValue(':miembros.id', $miembro);
+        }
+        $usuarios = $sql->execute();
+        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuarios;*/
+
+        $query = "SELECT usuarios.id, usuarios.email, usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
+            INNER JOIN miembros ON usuarios.miembro_id = miembros.id
+            INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+            INNER JOIN cargos ON miembros.cargo_id = cargos.id";
+        $conditions = array();
+
+        if($cargo != '') {
+            $conditions[] = "cargos.id='$cargo'";
+        }
+        if($status != '') {
+            $conditions[] = "usuarios.status='$status'";
+        }
+        if($miembro != '') {
+            $conditions[] = "miembros.id='$miembro'";
+        }
+        $queryString = $query;
+        if (count($conditions) > 0) {
+            $queryString .= " WHERE " . implode(' AND ', $conditions);
+        }
+        $sql = $connexionBD->prepare($queryString);
+        $sql->execute();
+        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuarios;
     }
 
 }

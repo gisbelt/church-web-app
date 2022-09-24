@@ -2,13 +2,16 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\core\exception\ForbiddenException;
 use content\core\Request;
 use content\enums\permisos;
+use content\collections\grupoFamiliarCollection;
 use content\core\Controller;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\models\usuariosModel as usuarios;
 use content\models\grupoFamiliarModel;
+use content\models\miembrosModel as miembros;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -30,39 +33,65 @@ class grupoFamiliarController extends Controller
 
     public function create()
     {
+        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
-        $consultarMiembroLista = grupoFamiliarModel::buscarMiembroLista();
-
+        $miembros = miembros::obtener_miembros();
+        $zonas = grupoFamiliarModel::zonas();
         return $this->render('grupoFamiliar/registrarView', [
-            'miembros_lista' => $consultarMiembroLista
+            'zonas' => $zonas,
+            'miembros' => $miembros
         ]);
+
     }
 
-    //Buscar miembro que no tenga grupo familiar (autocompletado)
-    public function buscarMiembro(Request $request){
+    //Buscar amigo que no tenga grupo familiar (Lista)
+    public function obtenerAmigos(Request $request){
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $consultarMiembro = new grupoFamiliarModel();
-        $consultarMiembro->loadData($request->getBody());
-        $nombreMiembro = $request->getBody()['nombreMiembro'];
-        $consultarMiembro = grupoFamiliarModel::buscarMiembro($nombreMiembro);
+        $amigos = grupoFamiliarModel::obtenerAmigo();
+
+        if($amigos){
+            $grupoFamiliarCollection = new grupoFamiliarCollection();
+            $amigosFormat = $grupoFamiliarCollection->formatAmigosLista($amigos);
+        } else {
+            $amigosFormat = [];
+        }
+        $data = [
+            'amigos' => $amigosFormat,
+        ];
+        return json_encode($data);
     }
 
-    //Registrar miembro a grupo familiar
-    public static function registrarGrupoFamiliar(Request $request){
+    //Buscar amigo que no tenga grupo familiar (autocompletado)
+    public function buscarAmigo(Request $request){
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $consultarAmigo = new grupoFamiliarModel();
+        $consultarAmigo->loadData($request->getBody());
+        $nombreAmigo = $request->getBody()['nombreAmigo'];
+        $consultarAmigo = grupoFamiliarModel::buscarAmigo($nombreAmigo);
+    }
+
+    //Registrar amigo a grupo familiar
+    public static function guardar(Request $request){
         $user = usuarios::validarLogin();
         $gf = new grupoFamiliarModel();
         $gf->loadData($request->getBody());
-        $nombreGrupoFamiliar = $request->getBody()['nombreGrupoFamiliar'];
-        $miembroId = $request->getBody()['miembroId'];
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$request]);
-        if(isset($nombreGrupoFamiliar)){
+        $nombre = $request->getBody()['nombre'];
+        $direccion = $request->getBody()['direccion'];
+        $lider = $request->getBody()['lider'];
+        $zona = $request->getBody()['zona'];
+        $fecha_crear = Carbon::now();
+        $amigo_id = $request->getBody()['amigo_id'];
+        if(isset($nombre)){
             if($gf->validate()){
-                $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     
+                $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
             }
             if(count($gf->errors) > 0){
                 $data = [
@@ -74,7 +103,7 @@ class grupoFamiliarController extends Controller
             } 
         }
         
-        $gf = grupoFamiliarModel::registrarGrupoFamiliar($nombreGrupoFamiliar,$miembroId);     
+        $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
     }
 }
 

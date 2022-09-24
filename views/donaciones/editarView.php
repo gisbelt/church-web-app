@@ -52,7 +52,7 @@ $this->title = 'Editar donacion';
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group mt-3"">
                                     <input type="text" name="cantidad" class="form-control form-input mb-4"
                                            id="cantidad" value="<?php echo $cantidad ?>" autocomplete="off">
                                     <label for="cantidad" class="form-label fw-bold">Cantidad:*</label>
