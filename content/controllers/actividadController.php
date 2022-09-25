@@ -27,8 +27,6 @@ class actividadController extends Controller
     public function index()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Actividades';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/consultarView.php')), 200);
         return $this->render('actividades/consultarView');
     }
 
@@ -39,16 +37,17 @@ class actividadController extends Controller
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/registrarView.php')), 200);
         return $this->render('actividades/registrarView');
     }
-    
-    public function obtenerActividades(){
-        
+
+    public function obtenerActividades()
+    {
+
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $actividades = actividades::cargarActividades();
-    
-        if($actividades){
+
+        if ($actividades) {
             $actividadesCollection = new actividadesCollection();
             $permisosFormat = $actividadesCollection->formatActividades($actividades);
         } else {

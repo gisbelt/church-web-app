@@ -3,13 +3,16 @@
 namespace content\models;
 
 use content\config\conection\database as BD;
+use content\core\Model;
 use Exception;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use PDO as pdo;
 
-class actividadesModel
+class actividadesModel extends Model
 {
+    public $nombre;
+    public $descripcion;
     public static function cargarActividades()
     {
         try{
@@ -17,7 +20,7 @@ class actividadesModel
             $sql = $conexionBD->prepare("SELECT
                                                 actividades.nombre,
                                                 actividades.descripcion,
-                                                actividades.`status`,
+                                                actividades.status,
                                                 tipo_actividad.nombre as tipo,
                                                 horarios.hora,
                                                 horarios.fecha
@@ -38,9 +41,9 @@ class actividadesModel
             $sql->execute();
            
             $actividades = $sql->fetchAll(PDO::FETCH_ASSOC);
-//            $logger = new Logger("web");
-//            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-//            $logger->debug(__METHOD__, [$actividades]);
+           $logger = new Logger("web");
+           $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$actividades]);
             return $actividades;
         }catch(Exception $exception){
             return 'No disponible';
@@ -60,5 +63,16 @@ class actividadesModel
         $sql = $conexionBD->prepare("SELECT * FROM actividades WHERE actividades.id=".'$id');
         $sql->execute();
         
+    }
+
+    /**
+     * @return array[]
+     */
+    public function rules(): array
+    {
+        return [
+            'nombre' => [self::RULE_REQUIRED],
+            'descripcion' => [self::RULE_REQUIRED],
+        ];
     }
 }
