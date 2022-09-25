@@ -317,6 +317,16 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+                    'dataActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de Activdades',
+                        'route' => 'actividad/data',
+                        'method' => 'obtenerActividades',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 

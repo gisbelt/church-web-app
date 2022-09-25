@@ -2,12 +2,15 @@
 
 namespace content\controllers;
 
+use content\collections\actividadesCollection;
+use content\collections\donacionesCollection;
 use content\core\Controller;
+use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\enums\permisos;
+use content\models\donacionesModel as donacion;
 use content\models\usuariosModel as usuarios;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use content\models\actividadesModel as actividades;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -35,6 +38,29 @@ class actividadController extends Controller
         $data['titulo'] = 'Registrar Actividades';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/registrarView.php')), 200);
         return $this->render('actividades/registrarView');
+    }
+    
+    public function obtenerActividades(){
+        
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $actividades = actividades::cargarActividades();
+    
+        if($actividades){
+            $actividadesCollection = new actividadesCollection();
+            $permisosFormat = $actividadesCollection->formatActividades($actividades);
+        } else {
+            $permisosFormat = [];
+        }
+        $data = [
+            'actividades' => $permisosFormat,
+        ];
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$data]);
+        return json_encode($data);
     }
 
 }
