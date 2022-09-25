@@ -344,6 +344,17 @@ background: #fff; }
 
 /*Home*/
 /* To do list  */
+.list-integrantes > li{
+    border-radius: 2px;
+    background-color: #f8f9fa;
+    border-left: 2px solid #e9ecef;
+    color: #495057;
+    margin-bottom: 2px;
+    padding: 10px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+}
 .todo-list > li{
     border-radius: 2px;
     background-color: #f8f9fa;
@@ -354,6 +365,9 @@ background: #fff; }
     border-top: 0px;
     border-bottom: 0px;
     border-right: 0px;
+}
+.todo-list > li:hover{
+    background-color: var(--first-color-light-blue);
 }
 .todo-list .handle{
     cursor: move;

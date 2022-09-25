@@ -33,8 +33,8 @@ $this->title = 'Registrar Grupo Familiar'
                             <p class="">Lider:* </p>
                             <select class="form-select" id="lider" name="lider">
                                 <option value="">Selecione Lider</option>
-                                <?php foreach ($miembros as $miembro) {
-                                    echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
+                                <?php foreach ($lideres as $lider) {
+                                    echo '<option value="' . $lider[miembro] . '">' . $lider[nombre_completo] . '</option>';
                                 } ?>
                             </select>
                         </div>
@@ -89,7 +89,7 @@ $this->title = 'Registrar Grupo Familiar'
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100" id="amigos-table" data-route="/grupo-familiares/data">
+                            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100" id="amigos-table" data-route="/grupo-familiares/data-amigos">
                                 <thead class="thead-primary">
                                 <tr>
                                     <th class="w-auto">Cédula</th>

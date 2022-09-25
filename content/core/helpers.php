@@ -382,12 +382,23 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'dataGrupos' => [
+                        'permisos' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'parametros' => [],
+                        'text' => 'Obtener Grupos',
+                        'route' => '/grupo-familiares/data',
+                        'method' => 'obtenerGrupos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'dataAmigos' => [
                         'permisos' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'parametros' => [],
                         'text' => 'Obtener Amigos',
-                        'route' => '/grupo-familiares/data',
+                        'route' => '/grupo-familiares/data-amigos',
                         'method' => 'obtenerAmigos',
                         'action' => 'get',
                         'subRutas' => []
@@ -400,6 +411,17 @@ if (!function_exists("routas")) {
                         'text' => 'Buscar Amigo',
                         'route' => '/grupo-familiares/buscar-amigo',
                         'method' => 'buscarAmigo',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'obtenerIntegrantesGrupo' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/grupo-familiares/obtener-integrantes',
+                        'method' => 'obtenerIntegrantesGrupo',
                         'action' => 'post',
                         'subRutas' => []
                     ],

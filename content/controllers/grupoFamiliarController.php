@@ -23,10 +23,9 @@ class grupoFamiliarController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Grupos Familiares';
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/consultarView.php')), 200);
         return $this->render('grupoFamiliar/consultarView');
     }
@@ -37,11 +36,11 @@ class grupoFamiliarController extends Controller
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
-        $miembros = miembros::obtener_miembros();
+        $lider = grupoFamiliarModel::lider();
         $zonas = grupoFamiliarModel::zonas();
         return $this->render('grupoFamiliar/registrarView', [
             'zonas' => $zonas,
-            'miembros' => $miembros
+            'lideres' => $lider
         ]);
 
     }
@@ -76,6 +75,38 @@ class grupoFamiliarController extends Controller
         $consultarAmigo->loadData($request->getBody());
         $nombreAmigo = $request->getBody()['nombreAmigo'];
         $consultarAmigo = grupoFamiliarModel::buscarAmigo($nombreAmigo);
+    }
+
+    //Obtener Grupos
+    public function obtenerGrupos(Request $request){
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $grupos = grupoFamiliarModel::obtenerGrupos();
+
+        if($grupos){
+            $grupoFamiliarCollection = new grupoFamiliarCollection();
+            $gruposFormat = $grupoFamiliarCollection->formatGrupos($grupos);
+        } else {
+            $gruposFormat = [];
+        }
+        $data = [
+            'grupos' => $gruposFormat,
+        ];
+        return json_encode($data);
+    }
+
+    //Obtener Integrantes Grupo
+    public function obtenerIntegrantesGrupo(Request $request){
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $integrantes = new grupoFamiliarModel();
+        $integrantes->loadData($request->getBody());
+        $grupo_id = $request->getBody()['grupo_id'];
+        $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
     }
 
     //Registrar amigo a grupo familiar

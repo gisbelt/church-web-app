@@ -2,6 +2,8 @@ $(document).ready(function(){
     listaAmigos();
     buscarAmigo();    
     registrarGrupoFamiliar();  
+    listaGrupoFamiliar();
+    integrantes();
 });
 
 const button = document.getElementById('agregarGrupoFamiliar');
@@ -68,7 +70,6 @@ const buscarAmigo = () =>{
                     `                        
                 })
                 .join("");
-
                 // Rellenar campo al hacer click en el elemento creado 
                 $('.tabla_resultado').click(function (e) {                        
                     const id = $(this).attr("data-id");
@@ -192,4 +193,59 @@ const registrarGrupoFamiliar = () =>{
         }
     }, false);
     }
-}     
+}
+
+const listaGrupoFamiliar = function () {
+    let $table = $("#grupo-table");
+    $table.DataTable({
+        "ajax": {
+            "url": $table.data("route"),
+            "dataSrc": "grupos"
+        },
+        "columns": [
+            {"data": "nombre"},
+            {"data": "direccion"},
+            {"data": "lider"},
+            {"data": "zona"},
+            {"data": "actions", "className": "center"},
+        ],
+        "initComplete": function () {
+            api = this.api();
+            api.buttons().container().appendTo($('#table-buttons'));
+            integrantes();
+        }
+    })
+}
+const integrantes = function () {
+    let $modal = $('#integrantes');
+
+    $modal.on('show.bs.modal', function(event) {
+        let $target = $(event.relatedTarget);
+        $('#grupo_id').val($target.data('id'));
+    })
+}
+
+//Create a "delete" button and append it to each list item
+const myNodelist = document.getElementsByClassName('list-li');
+for (i = 0; i < myNodelist.length; i++) {
+    const div = document.getElementsByClassName("tools");
+    for (i = 0; i < div.length; i++) {
+        const trash = document.createElement("i");
+        trash.className = "bi bi-trash pointer text-danger close-item"; //create class
+        div[i].classList.add("position-absolute", "right-50", "end-0","me-3","hidden"); //add class
+        div[i].setAttribute("id", "tools_"+i); //add id
+        div[i].appendChild(trash);
+        myNodelist[i].setAttribute("data-number", +i); //add data-number
+        myNodelist[i].appendChild(div[i]);
+    }
+}
+// Hover a "delete" button to each list item
+$(".list-li").hover(function(){
+    const id = this.dataset['number'];
+    const div = document.getElementById("tools_"+id);
+    $(div).removeClass("hidden");
+},function(){
+    const id = this.dataset['number'];
+    const div = document.getElementById("tools_"+id);
+    $(div).addClass("hidden");
+}) 

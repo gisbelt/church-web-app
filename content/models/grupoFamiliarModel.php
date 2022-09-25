@@ -19,6 +19,7 @@ class grupoFamiliarModel extends Model
     public $lider;
     public $zona;
     public $fecha_creado;
+    public $grupo_id;
 
     public function  __construct(){
         
@@ -92,6 +93,30 @@ class grupoFamiliarModel extends Model
         die(json_encode([$result2, $data]));
     }
 
+    // Obtener grupos
+    public static function obtenerGrupos()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT gf.id as grupo, gf.nombre, gf.direccion, gf.lider_id as lider, gf.zona_id as zona
+        FROM grupos_familiares as gf");
+        $sql->execute();
+        $grupos = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $grupos;
+    }
+    // Obtener integrantes grupo
+    public static function obtenerIntegrantesGrupo($grupo_id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT CONCAT(a.cedula,' - ',a.nombre,' ',a.apellido) AS nombre_completo 
+        FROM grupos_familiares as gf
+        INNER JOIN grupo_familiare_amigo gfa on gfa.grupo_id = gf.id
+        INNER JOIN amigos a on a.id = gfa.amigo_id
+        WHERE a.status = ? and gf.id = ?");
+        $sql->execute(array(self::ACTIVE, $grupo_id));
+        $grupos = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $grupos;
+    }
+
     // Zonas
     public static function zonas()
     {
@@ -100,6 +125,19 @@ class grupoFamiliarModel extends Model
         $sql->execute(array(self::ACTIVE));
         $zonas = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $zonas;
+    }
+
+    // Lider
+    public static function lider()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.id as miembro, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo FROM miembros
+        INNER JOIN perfiles on perfiles.miembro_id = miembros.id
+        INNER JOIN cargos on cargos.id = miembros.cargo_id
+        WHERE miembros.status = ? AND miembros.cargo_id=3");
+        $sql->execute(array(self::ACTIVE));
+        $lider = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $lider;
     }
 
     /**
