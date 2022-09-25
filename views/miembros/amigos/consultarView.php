@@ -45,7 +45,7 @@ $this->title = 'Amigos';
 <div class="container-fluid mt-4"> <!--container-->
     <div class="row">
         <div class="col-md-12 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover">
+            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100">
                 <thead class="thead-primary">
                 <tr>
                     <th class="text-center">Acciones</th>

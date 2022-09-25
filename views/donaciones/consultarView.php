@@ -5,7 +5,7 @@ $this->title = 'Donaciones'
 ?>
 <div class="container-fluid">
     <div class="row center">
-        <div class="col-md-8">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="card mb-5">
                 <div class="card-header">
                     <h3 class="text-center mt-1"><?php echo $this->title; ?>
@@ -13,7 +13,7 @@ $this->title = 'Donaciones'
                     </h3>
                 </div>
                 <div class="card-body center table-wrap">
-                    <table class="table table-bordered table-striped table-responsive table-hover w-100"
+                    <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
                            id="donaciones-table" data-route="donaciones/data">
                         <thead class="thead-primary">
                         <tr>

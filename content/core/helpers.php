@@ -392,24 +392,35 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
-                    'buscarMiembro' => [
+                    'dataAmigos' => [
                         'permisos' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'parametros' => [],
-                        'text' => 'Buscar miembro',
-                        'route' => '/grupo-familiares/buscar-miembro',
-                        'method' => 'buscarMiembro',
+                        'text' => 'Obtener Amigos',
+                        'route' => '/grupo-familiares/data',
+                        'method' => 'obtenerAmigos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'buscarAmigo' => [
+                        'permisos' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'parametros' => [],
+                        'text' => 'Buscar Amigo',
+                        'route' => '/grupo-familiares/buscar-amigo',
+                        'method' => 'buscarAmigo',
                         'action' => 'post',
                         'subRutas' => []
                     ],
 
-                    'registrarGrupoFamiliar' => [
+                    'guardarGrupoFamiliar' => [
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
-                        'text' => 'Registrar grupo familiar',
-                        'route' => '/grupo-familiares/registrar-grupoFamiliar',
-                        'method' => 'registrarGrupoFamiliar',
+                        'text' => 'index',
+                        'route' => '/grupo-familiares/guardar',
+                        'method' => 'guardar',
                         'action' => 'post',
                         'subRutas' => []
                     ],
@@ -455,6 +466,39 @@ if (!function_exists("routas")) {
                         'method' => 'buscarUsuario',
                         'action' => 'post',
                         'subRutas' => []
+                    ],
+
+                    'dataUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de usaurios',
+                        'route' => '/usuarios/data',
+                        'method' => 'obtenerUsuarios',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'borraUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Permisos',
+                        'route' => '/usuarios/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
                     ],
                 ]
             ],

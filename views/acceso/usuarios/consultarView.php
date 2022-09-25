@@ -3,100 +3,84 @@
 
 $this->title = 'Usuarios';
 ?>
-<h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
-                class="bi bi-person-plus"></i></a></h3>
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-            <div class="center">
-                <label>Cargo:</label>
-                <select class="form-select ms-2" id="cargo" name="cargo">
-                <option value="">Todos</option>
-                    <?php foreach ($cargos as $cargoo) {
-                        echo '<option value="' . $cargoo[id] . '">' . $cargoo[nombre] . '</option>';
-                    } ?>
-                </select>
-            </div>
-        </div>
 
-        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-            <div class="center">
-                <label>Estado:</label>
-                <select class="form-select ms-2" id="status"">
-                    <option value="">Todos</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                </select>
+<div class="container-fluid">
+<div class="row">
+    <div class="offset-md-2 col-md-8">
+        <div class="card mb-5">
+            <div class="card-header">
+                <h3 class="text-center mb-4">Listado de usuarios <a href="/usuarios/create" class="btn btn-success"><i
+                                class="bi bi-person-plus"></i></a></h3>
             </div>
-        </div>
+            <div class="card-block p-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Cargo:</label>
+                            <select class="form-select" id="cargo" name="cargo">
+                                <option value="">Todos</option>
+                                <?php foreach ($cargos as $cargoo) {
+                                    echo '<option value="' . $cargoo[id] . '">' . $cargoo[nombre] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Estado:</label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="">Todos</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Estado:</label>
+                            <select class="form-select" id="miembro" name="miembro">
+                                <option value="">selecione miembro</option>
+                                <?php foreach ($miembros as $miembro) {
+                                    echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
 
-        <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
-            <form action="" method="post">
-                <div class="input-group">
-                    <input type="text" name="" id="miembro" class="form-control" placeholder="Nombre...">
-                    <span class="input-group-btn">
-                    <button type="submit" name="" class="btn btn-secondary">Buscar</button>
-                    </span>
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group">
+                            <button type="button" name="busqueda_usuario" id="busqueda_usuario"
+                                    class="btn btn-secondary btn-sm btn-block">
+                                <i class="bi bi-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
-
-        <div class="col-12 col-sm-12 col-md-2 mb-2 mb-md-0">
-            <div class="center izquierda">
-                <label>Mostrar:</label>
-                <select class="form-control ms-2 w-auto" id="per_page">
-                    <option>5</option>
-                    <option>10</option>
-                    <option selected="">15</option>
-                    <option>20</option>
-                </select>
             </div>
-        </div>
-    </div>
-</div><!--container-->
-
-<div class="container-fluid mt-4"> <!--container-->
-    <div class="row">
-        <div class="col-md-12 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover">
-                <thead class="thead-primary">
-                <tr>
-                    <th class="text-center">Acciones</th>
-                    <th class="">Nombre</th>
-                    <th class="">Correo</th>
-                    <th class="">Cargo</th>
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <tr>
-                    <td>
-                        <form method="POST" class="center">
-                            <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
-                               value="">
-                                <i class="bi bi-pencil text-light"></i>
-                            </a>
-                            <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                <i class="bi bi-trash text-light"></i>
-                            </a>
-                        </form>
-                    </td>
-                    <td name="username">Gisbel</td>
-                    <td name="email">gis@gmail.com</td>
-                    <td name="cargo">Lider</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
+</div>
 
-<script>
-    $(document).ready(function () {
-        $("#username").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-md-2 col-md-8">
+            <div class="card mb-5">
+                <div class="card-body center">
+                    <table class="table table-bordered table-striped table-responsive table-hover w-100"
+                           id="usuarios-table" data-route="usuarios/data">
+                        <thead class="thead-primary">
+                        <tr>
+                            <th class="w-auto">Nombre</th>
+                            <th class="w-auto">Correo</th>
+                            <th class="w-auto">Cargo</th>
+                            <th class="text-center w-auto">Acciones</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div><!--card-body-->
+            </div><!--card-->
+
+        </div><!--col-md-8-->
+    </div><!--row-->
+</div><!--container-->

@@ -7,7 +7,7 @@ $this->title = 'Registrar Grupo Familiar'
 <div class="container-fluid">
     <div class="row center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header mb-4">
                     <div>
                         <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
@@ -18,31 +18,50 @@ $this->title = 'Registrar Grupo Familiar'
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo" action="">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarGrupo" action="/grupo-familiares/guardar">
                         <div class="form-group">
-                            <input type="text" name="nombreGrupoFamiliar" class="form-control form-input mb-4"
-                                   id="nombreGrupoFamiliar" value="" placeholder=" " autofocus>
-                            <label for="nombreGrupoFamiliar" class="form-label fw-bold">Nombre del Grupo
-                                Familiar:*</label>
+                            <input type="text" name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" " autofocus>
+                            <label for="nombre" class="form-label fw-bold">Nombre del Grupo Familiar:*</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="direccion" class="form-control form-input mb-4" id="direccion" value="" placeholder=" " autofocus>
+                            <label for="direccion" class="form-label fw-bold">Dirección:*</label>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="">Lider:* </p>
+                            <select class="form-select" id="lider" name="lider">
+                                <option value="">Selecione Lider</option>
+                                <?php foreach ($miembros as $miembro) {
+                                    echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="">Zona:* </p>
+                            <select class="form-select" id="zona" name="zona">
+                                <option value="">Selecione la Zona</option>
+                                <?php foreach ($zonas as $zona) {
+                                    echo '<option value="' . $zona[id] . '">' . $zona[nombre] . '</option>';
+                                } ?>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <div class="mb-4 input-group">
                                 <span class="input-group-btn">
-                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#modelId">Ver lista</i></button>
+                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaAmigos">Ver lista</i></button>
                                 </span>
-                                <input type="search" name="nombreMiembro" id="miembro" class="form-control"
-                                       placeholder="Buscar Miembro..." value="">
+                                <input type="search" name="nombreAmigo" id="amigo" class="form-control" placeholder="Buscar Amigo..." value="">
                                 <span class="input-group-btn">
-                                    <a id="add-miembro" class="btn btn-warning add disabled">Añadir <i
-                                                class="bi bi-plus-circle"></i></a>
+                                    <a id="add-amigo" class="btn btn-warning add disabled">Añadir <i class="bi bi-plus-circle"></i></a>
                                 </span>
                             </div>
                             <ul class="list-group" id="tabla_resultado"></ul>
                         </div>
-                        <div class='new-miembro' id="new-miembro"></div>
-
+                        <div class='new-amigo' id="new-amigo"></div>
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
                             <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
@@ -59,40 +78,25 @@ $this->title = 'Registrar Grupo Familiar'
 <!-- ********************************* -->
 
 <!-- Modal  -->
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="listaAmigos" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Miembros</h5>
+                <h5 class="modal-title">Amigos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-striped table-responsive table-hover table-modal">
+                            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100" id="amigos-table" data-route="/grupo-familiares/data">
                                 <thead class="thead-primary">
                                 <tr>
-                                    <th>Cédula</th>
-                                    <th>Nombre</th>
-                                    <th class="text-center">Insertar</th>
+                                    <th class="w-auto">Cédula</th>
+                                    <th class="w-auto">Nombre</th>
+                                    <th class="text-center w-auto">Insertar</th>
                                 </tr>
                                 </thead>
-                                <tbody id="myTable">
-                                <?php foreach ($miembros_lista as $m) { ?>
-                                    <tr class="miembro_id"  data-id="<?php echo $m['idMiembro']; ?>">
-                                        <td name="" id=""><?php echo $m['cedula']; ?></td>
-                                        <td name="" id="miembroLista"><?php echo $m['nombre'] . ' ';
-                                            echo $m['apellido']; ?></td>
-                                        <td class="center">
-                                            <a id="add" class="btn btn-warning addLista" value=""
-                                               data-bs-dismiss="modal">
-                                                <i class="bi bi-plus-circle"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
                             </table>
                         </div>
                     </div>

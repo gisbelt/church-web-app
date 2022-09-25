@@ -61,4 +61,48 @@ $(document).ready(function(){
     }
     buscarUsuario();
     //Usuarios
+
+    listaUsuarios();
 });
+
+const listaUsuarios = () =>{
+    let api;
+    let $button = $('#busqueda_usuario');
+    let $form = $('#form-usuarios-table');
+    let $table = $("#usuarios-table");
+
+    $table.DataTable({
+        "ajax": {
+            "url": $table.data("route"),
+            "dataSrc": "usuarios"
+        },
+        "columns": [
+            {"data": "nombre_completo"},
+            {"data": "email"},
+            {"data": "nombre"},
+            {"data": "actions", "className": "center"},
+        ],
+        "initComplete": function () {
+            api = this.api();
+            api.buttons().container()
+                .appendTo($('#table-buttons'));
+            eliminarUsuario();
+        }
+    })
+
+    $button.click(function () {
+        $button.button('loading');
+        let cargo = $('#cargo').val();
+        let status = $('#status').val();
+        let miembro = $('#miembro').val();
+        let route = `${$table.data('route')}?cargo=${cargo}&status=${status}&miembro=${miembro}`;
+        api.ajax.url(route).load();
+        $table.on('draw.dt', function () {
+            $button.button('reset');
+        });
+    });
+}
+
+const eliminarUsuario = () =>{
+
+}
