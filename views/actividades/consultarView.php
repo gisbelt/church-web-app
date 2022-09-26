@@ -9,7 +9,7 @@
             <div class="card mb-5">
                 <div class="card-header">
                     <h3 class="text-center mt-1"><?php echo $this->title; ?>
-                        <a href="" class="btn btn-success"><i class="bi bi-plus-circle"></i></a>
+                        <a href="/actividades/create" class="btn btn-success"><i class="bi bi-plus-circle"></i></a>
                     </h3>
                 </div>
                 <div class="card-body center table-wrap">
@@ -84,14 +84,14 @@
 <!--</div>-->
 <!-- ********************************* -->
 
-<script>
+<!--<script>-->
    
-    // function limpiar() {
-    //     $("#form-registrarDonacion")[0].reset();
-    //     $("#miembro").focus();
-    // }
-
-    // $(document).ready(function () {
-    //     $("#miembro").focus();
-    // });
-</script>
+<!--    // function limpiar() {-->
+<!--    //     $("#form-registrarDonacion")[0].reset();-->
+<!--    //     $("#miembro").focus();-->
+<!--    // }-->
+<!---->
+<!--    // $(document).ready(function () {-->
+<!--    //     $("#miembro").focus();-->
+<!--    // });-->
+<!--</script>-->

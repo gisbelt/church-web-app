@@ -317,6 +317,16 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+                    'registrarActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar actividades',
+                        'route' => '/actividades/store',
+                        'method' => 'store',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
                     'dataActividades' => [
                         'permisos' => [],
                         'parametros' => [],

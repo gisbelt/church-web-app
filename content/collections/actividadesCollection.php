@@ -22,10 +22,6 @@
                 $date = $actividad['fecha'].' '.$actividad['hora'];
                 $date = new DateTime($date);
                 $actividad['fecha'] = $date->format('d/m/Y H:i:s');
-                $logger = new Logger("web");
-                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$actividad['fecha']]);
-                
                 $data[] = $actividad;
             }
             
