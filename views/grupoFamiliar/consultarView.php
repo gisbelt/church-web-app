@@ -27,7 +27,7 @@ $this->title = 'Grupos Familiares';
 </div><!--container-->
 
 <!-- Modal  -->
-<div class="modal fade" id="integrantes" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="integrantes" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" data-route="/grupo-familiares/">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,26 +39,27 @@ $this->title = 'Grupos Familiares';
                     <div class="row">
                         <div class="card p-0">
                             <div class="card-body">
-                            <input type="hidden" name="grupo_sid" class="" id="grupo_id">                               
-                            <ul class="list-group list-integrantes" id="">
+                            <?php foreach($integrantes as $integrante) { ?>   
+                            <ul class="list-group list-integrantes">
                                 <li class="list-group-item bi bi-chevron-right list-li">
-                                    Integrantes Uno
-                                    <span class="tools"></span>
-                                </li>
-                                <li class="list-group-item bi bi-chevron-right list-li">
-                                    Integrantes Dos
+                                    <?php echo $integrante['nombre_completo'];?>
                                     <span class="tools"></span>
                                 </li>
                             </ul>
+                            <?php } ?>
                             </div>
+                            <form method="POST" id="form-registrarAmigoGrupo" action="/grupo-familiares/guardar-amigo-grupo">                           
                             <div class="card-footer">
-                                <div class="input-group">
-                                    <input type="text" name="" id="" class="form-control" placeholder="Buscar Amigo...">
+                                <input type="hidden" name="grupo_id" class="" id="grupo_id"> 
+                                <div class="mb-4 input-group">
+                                    <input type="text" name="nombreAmigo" id="amigo" class="form-control" placeholder="Buscar Amigo...">
                                     <span class="input-group-btn">
-                                    <button type="button" class="btn btn-warning"><i class="bi-plus"></i> Añadir</button>
+                                    <a id="add-amigo" class="btn btn-warning"><i class="bi-plus"></i> Añadir</a>
                                     </span>
-                                </div>                
-                            </div>
+                                </div>  
+                                <ul class="list-group" id="tabla_resultado"></ul>  
+                            </div> 
+                            </form>                                       
                         </div>
                     </div>
                 </div>

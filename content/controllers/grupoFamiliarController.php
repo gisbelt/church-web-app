@@ -25,9 +25,14 @@ class grupoFamiliarController extends Controller
 
     public function index(Request $request)
     {
-        $user = usuarios::validarLogin();
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/grupoFamiliar/consultarView.php')), 200);
-        return $this->render('grupoFamiliar/consultarView');
+        $user = usuarios::validarLogin();       
+        $integrantes = new grupoFamiliarModel();
+        $integrantes->loadData($request->getBody());
+        $grupo_id = $request->getBody()['grupo_id'];
+        $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
+        return $this->render('grupoFamiliar/consultarView', [
+            'integrantes' => $integrantes
+        ]);
     }
 
     public function create()
@@ -35,14 +40,13 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $user = usuarios::validarLogin();
+        $user = usuarios::validarLogin();        
         $lider = grupoFamiliarModel::lider();
         $zonas = grupoFamiliarModel::zonas();
         return $this->render('grupoFamiliar/registrarView', [
             'zonas' => $zonas,
-            'lideres' => $lider
+            'lideres' => $lider,
         ]);
-
     }
 
     //Buscar amigo que no tenga grupo familiar (Lista)
@@ -83,8 +87,8 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $grupos = grupoFamiliarModel::obtenerGrupos();
-
+        
+        $grupos = grupoFamiliarModel::obtenerGrupos();     
         if($grupos){
             $grupoFamiliarCollection = new grupoFamiliarCollection();
             $gruposFormat = $grupoFamiliarCollection->formatGrupos($grupos);
@@ -94,6 +98,7 @@ class grupoFamiliarController extends Controller
         $data = [
             'grupos' => $gruposFormat,
         ];
+
         return json_encode($data);
     }
 
@@ -109,7 +114,7 @@ class grupoFamiliarController extends Controller
         $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
     }
 
-    //Registrar amigo a grupo familiar
+    //Registrar grupo y amigo a grupo familiar
     public static function guardar(Request $request){
         $user = usuarios::validarLogin();
         $gf = new grupoFamiliarModel();
@@ -132,8 +137,7 @@ class grupoFamiliarController extends Controller
                 ];
                 return json_encode($data, 422);
             } 
-        }
-        
+        }        
         $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
     }
 }

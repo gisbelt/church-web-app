@@ -3,10 +3,12 @@ $(document).ready(function(){
     buscarAmigo();    
     registrarGrupoFamiliar();  
     listaGrupoFamiliar();
-    integrantes();
+    // asignarAmigo()
 });
 
 const button = document.getElementById('agregarGrupoFamiliar');
+const button2 = document.getElementById('add-amigo');
+const button3 = document.getElementsByClassName('add-amigo-lista');
 
 //Lista Amigos
 const listaAmigos = function (){
@@ -23,9 +25,8 @@ const listaAmigos = function (){
         ],
         "initComplete": function () {
             api = this.api();
-            api.buttons().container()
-                .appendTo($('#table-buttons'));
-                nuevoAmigo('add-amigo','.new-amigo');
+            api.buttons().container().appendTo($('#table-buttons'));
+            nuevoAmigo('add-amigo','.new-amigo');
         }
     })
 }
@@ -39,7 +40,7 @@ const buscarAmigo = () =>{
             obtener_registros(valorBusqueda);
         } else {
             $(".tabla_resultado").fadeOut(100);
-            document.getElementById('add-amigo').classList.add("disabled"); 
+            button2.classList.add('disabled') 
         }
     });              
     const obtener_registros = (amigos) => {
@@ -55,21 +56,16 @@ const buscarAmigo = () =>{
                 const lista = document.querySelector('#tabla_resultado');
                 const campoAmigo = document.getElementById('amigo'); 
                 //Filtramos los resultados según el valor que ha insertado el usuario
-                const datos = data.filter (results => {
-                    return results
-                });                                        
+                const datos = data.filter ( results => results );                                         
                 // Recorremos con el map los resultados filtrados para crear cada elemento
-                lista.innerHTML = datos
-                .map((result, index) => {
-                    const isSelected = index === 1;
+                lista.innerHTML = datos.map((result) => {
                     return `
                     <li 
                     class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
                     data-id='${result.id }'
                     >${result.cedula} - <span>${result.nombre_completo}</span></li>
                     `                        
-                })
-                .join("");
+                }).join("");
                 // Rellenar campo al hacer click en el elemento creado 
                 $('.tabla_resultado').click(function (e) {                        
                     const id = $(this).attr("data-id");
@@ -77,7 +73,7 @@ const buscarAmigo = () =>{
                     campoAmigo.setAttribute('data-id', id);
                     campoAmigo.value = texto;
                     campoAmigo.focus();
-                    document.getElementById('add-amigo').classList.remove("disabled"); 
+                    button2.classList.remove('disabled')  
                     $('.tabla_resultado').fadeOut(100);
                 });
             },
@@ -86,13 +82,13 @@ const buscarAmigo = () =>{
     }        
 }
 
-// Agregar item buscado    
+// Agregar item de amigo    
 const nuevoAmigo = (addAmigo, nuevoAmigo) =>{
     const add = document.getElementById(addAmigo), 
     NuevoAmigo = $(nuevoAmigo);
     if(add, NuevoAmigo){
         var i=0;
-        $('#add-amigo').on('click', function (e){
+        $(button2).on('click', function (e){
             button.disabled = false;
             this.classList.add("disabled");
             const amigo = document.getElementById('amigo').value;
@@ -105,7 +101,7 @@ const nuevoAmigo = (addAmigo, nuevoAmigo) =>{
             $('#amigo').val(''); 
         })
         //Agregar de la lista
-        $('.addLista').on('click', function (e){
+        $(button3).on('click', function (e){
             button.disabled = false;
             const amigo = $(this).parents("tr").find(".nombre_completo").text();
             const amigo_id = $(this).attr("data-id");
@@ -160,7 +156,7 @@ const registrarGrupoFamiliar = () =>{
             },
             error: function(){} 
         })
-        // Registramos cada miembro al nuevo grupo
+        // Registramos cada amigo al nuevo grupo
         const exito = () => {
             const amigo_id = document.getElementsByClassName('amigo_id');
             for (i = 0; i < amigo_id.length; i++) {
@@ -200,7 +196,7 @@ const listaGrupoFamiliar = function () {
     $table.DataTable({
         "ajax": {
             "url": $table.data("route"),
-            "dataSrc": "grupos"
+            "dataSrc": "grupos",
         },
         "columns": [
             {"data": "nombre"},
@@ -212,16 +208,17 @@ const listaGrupoFamiliar = function () {
         "initComplete": function () {
             api = this.api();
             api.buttons().container().appendTo($('#table-buttons'));
-            integrantes();
+            asignarAmigo()
+            
         }
-    })
+    })   
+    
 }
-const integrantes = function () {
+const asignarAmigo = function () {
     let $modal = $('#integrantes');
-
     $modal.on('show.bs.modal', function(event) {
         let $target = $(event.relatedTarget);
-        $('#grupo_id').val($target.data('id'));
+        $('#grupo_id').val($target.data('id'));        
     })
 }
 

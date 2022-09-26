@@ -62,13 +62,13 @@ class grupoFamiliarModel extends Model
         echo json_encode($result);
     }
 
-    //Registrar amigo a grupo familiar (NOT FINISHED YET)
+    //  Registrar grupo y amigo a grupo familiar (NOT FINISHED YET)
     public static function guardar($nombre,$direccion,$lider,$zona,$fecha,$amigo_id){
         $conexionBD=BD::crearInstancia();   
         if(isset($nombre)){        
             $sql= $conexionBD->prepare("INSERT INTO grupos_familiares (`nombre`,`direccion`,`lider_id`,`zona_id`,`fecha_creado`) VALUES (?,?,?,?,?)"); 
             $sql->execute(array($nombre,$direccion,$lider,$zona,$fecha));        
-            $result = [msj1 => json_encode($sql)];
+            $result = [msj1 => $sql];
             die(json_encode($result));
         }        
 
@@ -82,7 +82,7 @@ class grupoFamiliarModel extends Model
         $sql3->bindParam(":grupo_id", $lastID['id']);
         $sql3->bindParam(":amigo_id", $amigo_id);
         $sql3->execute();
-        $result2 = [msj2 => json_encode($sql3)];
+        $result2 = [msj2 => $sql3];
 
         $data = [
             'title' => 'Datos registrados',
@@ -97,24 +97,36 @@ class grupoFamiliarModel extends Model
     public static function obtenerGrupos()
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT gf.id as grupo, gf.nombre, gf.direccion, gf.lider_id as lider, gf.zona_id as zona
-        FROM grupos_familiares as gf");
+        $sql = $conexionBD->prepare("SELECT gf.id as grupo, gf.nombre, gf.direccion, perfiles.nombre as lider, zonas.nombre as zona
+        FROM grupos_familiares as gf
+        INNER JOIN miembros on miembros.id = gf.lider_id
+        INNER JOIN perfiles on perfiles.id = miembros.id
+        INNER JOIN zonas on zonas.id = gf.zona_id
+        ");
         $sql->execute();
         $grupos = $sql->fetchAll(PDO::FETCH_ASSOC);
+        
         return $grupos;
     }
-    // Obtener integrantes grupo
-    public static function obtenerIntegrantesGrupo($grupo_id)
-    {
+
+    public static function obtenerIntegrantesGrupo($grupo_id){
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT CONCAT(a.cedula,' - ',a.nombre,' ',a.apellido) AS nombre_completo 
+        $query = "SELECT CONCAT(a.cedula,' - ',a.nombre,' ',a.apellido) AS nombre_completo 
         FROM grupos_familiares as gf
         INNER JOIN grupo_familiare_amigo gfa on gfa.grupo_id = gf.id
-        INNER JOIN amigos a on a.id = gfa.amigo_id
-        WHERE a.status = ? and gf.id = ?");
-        $sql->execute(array(self::ACTIVE, $grupo_id));
-        $grupos = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $grupos;
+        INNER JOIN amigos a on a.id = gfa.amigo_id";
+        $conditions = array();
+        if($grupo_id != '') {
+            $conditions[] = "gf.id='$grupo_id'";
+        }
+        $queryString = $query;
+        if (count($conditions) > 0) {
+            $queryString .= " WHERE " . implode(' AND ', $conditions);
+        }
+        $sql2 = $conexionBD->prepare($queryString);
+        $sql2->execute();
+        $integrantes = $sql2->fetchAll(PDO::FETCH_ASSOC);
+        return $integrantes;
     }
 
     // Zonas

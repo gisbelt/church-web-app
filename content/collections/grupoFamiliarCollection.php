@@ -13,7 +13,7 @@ class grupoFamiliarCollection
         $data = [];
         foreach ($amigos as $amigo) {
             $amigo['actions'] = sprintf(
-                '<a id="add" data-id="%s" class="btn btn-warning addLista" value="" data-bs-dismiss="modal"> <i class="bi bi-plus-circle"></i> </a>',
+                '<a data-id="%s" class="btn btn-warning add-amigo-lista" value="" data-bs-dismiss="modal"> <i class="bi bi-plus-circle"></i> </a>',
                 $amigo['amigo']
             );
             $data[] = $amigo;
@@ -37,8 +37,8 @@ class grupoFamiliarCollection
             );
 
             $grupo['actions'] .= sprintf(
-                '<button name="integrantes-modal" data-id="%s" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#integrantes">
-                 <i class="bi bi-eyes text-light">%s</i>
+                '<button data-id="%s" class="btn btn-success mx-2 integrantes-modal" data-bs-toggle="modal" data-bs-target="#integrantes">
+                 <i class="bi bi-eye text-light">%s</i>
                 </button>',
                 $grupo['grupo'],
                 'Ver Integrantes'
