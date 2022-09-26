@@ -15,6 +15,7 @@ use content\core\Request;
 use content\enums\permisos;
 use content\models\cargosModel as cargos;
 use content\models\miembrosModel;
+use content\models\miembrosModel as miembros;
 use content\models\rolesModel;
 use content\models\usuariosModel as usuarios;
 
@@ -32,23 +33,21 @@ class usuariosController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['buscarUsuario']));
     }
 
+    // Editar datos de usuario
     public function actualizar(Request $request)
     {
         usuarios::validarLogin();
         if ($request->isPost()) {
             $usuario = new usuarios();
             $usuario->loadData($request->getBody());
-            if($usuario->validate()){
+            if ($usuario->validate()) {
                 $id = $request->getBody()['id'];
-                $username= $request->getBody()['username'];
+                $username = $request->getBody()['username'];
                 $email = $request->getBody()['email'];
                 $status = $request->getBody()['status'];
-                $fecha =  Carbon::now();
+                $fecha = Carbon::now();
                 $usuario = usuarios::actualizar($id, $username, $email, $status, $fecha);
-                if($usuario){
-                    $logger = new Logger("web");
-                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                    $logger->debug(__METHOD__, [$usuario]);
+                if ($usuario) {
                     $data = [
                         'title' => 'Datos actualizado',
                         'messages' => 'El usuario se ha actualizado',
@@ -64,7 +63,7 @@ class usuariosController extends Controller
                 return json_encode($data);
             }
         }
-        if(count($usuario->errors) > 0){
+        if (count($usuario->errors) > 0) {
             $data = [
                 'title' => 'Datos invalidos',
                 'messages' => $usuario->errors,
@@ -74,6 +73,7 @@ class usuariosController extends Controller
         }
     }
 
+    // Mostrar vista lista usuario
     public function index()
     {
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
@@ -86,33 +86,31 @@ class usuariosController extends Controller
         ]);
     }
 
+    // Mostrar vista crear usuario
     public function create()
     {
-        $user = usuarios::validarLogin();
-        return $this->render('/acceso/usuarios/registrarView');
+        usuarios::validarLogin();
+        $miembros = miembros::obtener_miembros();
+        $roles = rolesModel::obtener_roles();
+        return $this->render('/acceso/usuarios/registrarView', [
+            'miembros' => $miembros,
+            'roles' => $roles
+        ]);
     }
 
-    public function buscarUsuario(){
-        $nombreMiembro = $_POST['buscarMiembro'];
-        $consultarMiembro = usuarios::buscarMiembro($nombreMiembro);
-        die ($consultarMiembro);
-    }
-
+    // Mostrar vista datos de usuario en la lista
     public function obtenerUsuarios(Request $request)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
-        $cargo =  count($request->getBody()) > 1 ? $request->getBody()['cargo'] : null;
+        $cargo = count($request->getBody()) > 1 ? $request->getBody()['cargo'] : null;
         $status = count($request->getBody()) > 1 ? $request->getBody()['status'] : null;
         $miembro = count($request->getBody()) > 1 ? $request->getBody()['miembro'] : null;
-        if(!is_null($cargo) || !is_null($status) || !is_null($miembro)) {
+        if (!is_null($cargo) || !is_null($status) || !is_null($miembro)) {
             $usuarios = usuarios::obtener_usuarios($cargo, $status, $miembro);
-            if($usuarios){
+            if ($usuarios) {
                 $usuariosCollection = new usuariosCollection();
                 $usuariosFormat = $usuariosCollection->formatUsuarios($usuarios);
             } else {
@@ -130,6 +128,7 @@ class usuariosController extends Controller
         return json_encode($data);
     }
 
+    // Mostrar vista editar usuario
     public function editar(Request $request)
     {
         $id = $request->getRouteParams();
@@ -140,5 +139,58 @@ class usuariosController extends Controller
             'status' => $usuario['status'],
             'email' => $usuario['email'],
         ]);
+    }
+
+    // Guardar datos usuario
+    public function guardar(Request $request)
+    {
+        usuarios::validarLogin();
+        $usuario = new usuarios();
+        $usuario->loadData($request->getBody());
+        if ($usuario->validate()) {
+            if ($request->getBody()['password'] == $request->getBody()['password-confirm']) {
+                if (empty($request->getBody()['miembro']) || empty($request->getBody()['rol'])) {
+                    $miembro = $request->getBody()['miembro'];
+                    $username = $request->getBody()['username'];
+                    $email = $request->getBody()['email'];
+                    $rol = $request->getBody()['rol'];
+                    $fecha = Carbon::now();
+                    $password = password_hash($request->getBody()['password'], PASSWORD_BCRYPT, ['cost' => 10]);
+                    $logger = new Logger("web");
+                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                    $logger->debug(__METHOD__, [$password]);
+                    $usuario = usuarios::crear($username, $email, $password, $rol, $miembro, $fecha);
+                    if ($usuario) {
+                        $data = [
+                            'title' => 'Datos regidtrado',
+                            'messages' => 'El usuario se ha registrado',
+                            'code' => 200
+                        ];
+                    } else {
+                        $data = [
+                            'title' => 'Error',
+                            'messages' => 'El usuario no se ha registrado',
+                            'code' => 500
+                        ];
+                    }
+                    return json_encode($data);
+                } else {
+                    if (empty($request->getBody()['miembro'])) {
+                        $usuario->addError("miembro", "El campo miembro es requerido");
+                    }
+                    if (empty($request->getBody()['rol'])) {
+                        $usuario->addError("rol", "El campo rol es requerido");
+                    }
+                }
+            } else {
+                $usuario->addError("password", "La contraseña debe ser igual a confirmar contraseña");
+            }
+        }
+        $data = [
+            'title' => 'Datos invalidos',
+            'messages' => $usuario->errors,
+            'code' => 422
+        ];
+        return json_encode($data, 422);
     }
 }

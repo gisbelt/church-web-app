@@ -64,6 +64,7 @@ $(document).ready(function(){
 
     listaUsuarios();
     actualizarUsuario();
+    registrarUsuario();
 });
 
 const listaUsuarios = () =>{
@@ -114,7 +115,6 @@ const eliminarUsuario = () =>{
 const actualizarUsuario = function () {
     let $button = $('#actualizar-usuario');
     $button.click(function (e) {
-        console.log('click...')
         e.preventDefault();
         let $form = $('#form-actualizar-usuario');
         $button.disabled = true;
@@ -151,6 +151,53 @@ const actualizarUsuario = function () {
                 });
                 $("#form-registrar-permisos")[0].reset();
                 $button.disabled = false;
+            }
+        }).fail(function (json) {
+            console.log(JSON.parse(json));
+        });
+    });
+}
+
+// Registrar usuario
+const registrarUsuario = function (){
+    let $button = $('#agregar-usuario');
+    $button.click(function (e) {
+        e.preventDefault();
+        let $form = $('#form-registrar-usuario');
+        $('#agregar-usuario').disabled = true;
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            dataType: 'json',
+        }).done(function (response) {
+            if (response.code == 422) {
+                let html = '<ul>';
+                $.each(response.messages, function (index, value) {
+                    html += '<li>' + value + '</li>';
+                });
+                html += '</ul>';
+
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $('#agregar-usuario').disabled = false;
+            } else {
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $("#form-registrar-usuario")[0].reset();
+                $('#agregar-usuario').disabled = false;
             }
         }).fail(function (json) {
             console.log(JSON.parse(json));

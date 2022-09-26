@@ -447,6 +447,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'guardarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'buscarUsuario' => [
                         'permisos' => [],
                         'parametros' => [],

@@ -15,44 +15,33 @@ $this->title = 'Registrar usuario'
         </div>
 
         <div class="card-body">
-            <!-- Mensaje de éxito  -->
-            <?php if (isset($mensaje1)) { ?>
-                <div class="alert alert-primary" role="alert">
-                    <?php echo $mensaje1; ?>
-                </div>
-            <?php } ?>
-
-            <form method="POST" enctype="multipart/form-data" id="form-registrarUsuarios" action="">
+            <form method="POST" id="form-registrar-usuario" action="/usuarios/guardar">
                 <div class="form-group">
-                    <div class="mb-4 input-group">
-                        <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Buscar miembros..." autofocus>
-                        <span class="input-group-text">
-                            <i class="bi bi-search text-first-color"></i>
-                        </span>
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <p class="">Miembros:* </p>
+                            <select class="form-select" id="miembro" name="miembro">
+                                <option value="">selecione miembro</option>
+                                <?php foreach ($miembros as $miembro) {
+                                    echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
                     </div>
-                    <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" required name="nombreMiembro" class="form-control form-input mb-4" id="nombreMiembro" value="" placeholder=" ">
-                    <label for="nombre" class="form-label fw-bold">Nombre:</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" required name="username" class="form-control form-input mb-4" id="username"
-                           value="" placeholder=" ">
+                    <input type="text" name="username" class="form-control form-input mb-4" id="username" autocomplete="off" required>
                     <label for="username" class="form-label fw-bold">Nombre de usuario:*</label>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" required name="email" class="form-control form-input mb-4" id="email" value=""
-                           placeholder=" " autocomplete="off">
+                    <input type="text" required name="email" class="form-control form-input mb-4" id="email" autocomplete="off" required>
                     <label for="email" class="form-label fw-bold">Correo:*</label>
                 </div>
 
                 <div class="form-group">
-                    <input type="password" required name="password" class="form-control form-input mb-4" id="password"
-                           placeholder=" "  autocomplete="off">
+                    <input type="password" required name="password" class="form-control form-input mb-4" id="password" autocomplete="off" required>
                     <label for="password" class="form-label fw-bold">Contraseña:*</label>
                     <div id="passwordHelpBlock" class="form-text text-danger">
                         Debe tener entre 8 y 20 caracteres.
@@ -65,10 +54,24 @@ $this->title = 'Registrar usuario'
                     <label for="password-confirm" class="form-label fw-bold">Confirmar contraseña:*</label>
                 </div>
 
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <p class="">Asignar rol:* </p>
+                            <select class="form-select" id="rol" name="rol">
+                                <option value="">selecione rol</option>
+                                <?php foreach ($roles as $rol) {
+                                    echo '<option value="' . $rol[rol] . '">' . $rol[role_nombre] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <br>
                 <div class="btn-group modal-footer" role="group" aria-label="">
-                    <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
-                    <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
+                    <button type="button" name="agregar-usuario" id="agregar-usuario" class="btn btn-success"> Agregar </button>
+                    <a value="Limpiar" class="btn btn-secondary" onclick="limpiar();"> Limpiar </a>
                 </div>
             </form>
         </div><!--card-body-->

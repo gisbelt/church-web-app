@@ -17,7 +17,7 @@ class usuariosModel extends Model //BD
     public $id;
     public $username;
     public $email;
-    public $password = "password";
+    public $password;
     public $role_id;
     public $nombreMiembro;
 
@@ -51,6 +51,15 @@ class usuariosModel extends Model //BD
         return [$username, $date];
     }
 
+    //Crear usuario
+    public static function crear($username, $email, $password, $rol, $miembro, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id status, role_id fecha_creado) 
+        VALUES (?,?,?,?)");
+        return $sql->execute([$username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha]);
+    }
+
     // Validar que esté la sesión cerrada 
     public static function validarLogout()
     {
@@ -68,18 +77,6 @@ class usuariosModel extends Model //BD
             window.location.href = '/home';
             </script>";
         }
-    }
-
-    /**
-     * @return array[]
-     */
-    public function rules(): array
-    {
-        return [
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]]
-            //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
-        ];
     }
 
     //Buscar Miembros
@@ -149,5 +146,20 @@ class usuariosModel extends Model //BD
         $sql = $conexionBD->prepare("UPDATE usuarios SET username = ?, email = ?, status = ?, fecha_actualizado = ? WHERE id = ?");
         $usuario = $sql->execute(array($username, $email, $status, $fecha, $id));
         return $usuario;
+    }
+
+
+
+    /**
+     * @return array[]
+     */
+    public function rules(): array
+    {
+        return [
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'username' => [self::RULE_REQUIRED],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MACTH, 'match' => 'password']]
+        ];
     }
 }
