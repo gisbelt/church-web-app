@@ -187,7 +187,7 @@ class seguridadController extends Controller
 
     public function actualizarRol(Request $request)
     {
-        $user = usuarios::validarLogin();
+        usuarios::validarLogin();
         if ($request->isPost()) {
             $seguridad = new permisosModel();
             $seguridad->loadData($request->getBody());

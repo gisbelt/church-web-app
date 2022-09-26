@@ -2,6 +2,7 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\collections\usuariosCollection;
 use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
@@ -29,6 +30,48 @@ class usuariosController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
         $this->registerMiddleware(new AutenticacionMiddleware(['consultar']));
         $this->registerMiddleware(new AutenticacionMiddleware(['buscarUsuario']));
+    }
+
+    public function actualizar(Request $request)
+    {
+        usuarios::validarLogin();
+        if ($request->isPost()) {
+            $usuario = new usuarios();
+            $usuario->loadData($request->getBody());
+            if($usuario->validate()){
+                $id = $request->getBody()['id'];
+                $username= $request->getBody()['username'];
+                $email = $request->getBody()['email'];
+                $status = $request->getBody()['status'];
+                $fecha =  Carbon::now();
+                $usuario = usuarios::actualizar($id, $username, $email, $status, $fecha);
+                if($usuario){
+                    $logger = new Logger("web");
+                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                    $logger->debug(__METHOD__, [$usuario]);
+                    $data = [
+                        'title' => 'Datos actualizado',
+                        'messages' => 'El usuario se ha actualizado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El usuario no se ha actualizado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            }
+        }
+        if(count($usuario->errors) > 0){
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $usuario->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
     }
 
     public function index()
@@ -85,5 +128,17 @@ class usuariosController extends Controller
         }
 
         return json_encode($data);
+    }
+
+    public function editar(Request $request)
+    {
+        $id = $request->getRouteParams();
+        $usuario = usuarios::id_usuario($id['id']);
+        return $this->render('acceso/usuarios/editarView', [
+            'id' => $usuario['id'],
+            'username' => $usuario['username'],
+            'status' => $usuario['status'],
+            'email' => $usuario['email'],
+        ]);
     }
 }

@@ -108,24 +108,6 @@ class usuariosModel extends Model //BD
     public static function obtener_usuarios($cargo, $status, $miembro)
     {
         $connexionBD = BD::crearInstancia();
-        /*$sql = $connexionBD->prepare("SELECT usuarios.id, usuarios.email,usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
-            INNER JOIN miembros ON usuarios.miembro_id = miembros.id
-            INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
-            INNER JOIN cargos ON miembros.cargo_id = cargos.id");
-        if(!is_null($cargo)){
-            $sql->
-            $sql->bindValue(':cargos.id', $cargo);
-        }
-        if(!is_null($status)){
-            $sql->bindValue(':status', $status);
-        }
-        if(!is_null($miembro)){
-            $sql->bindValue(':miembros.id', $miembro);
-        }
-        $usuarios = $sql->execute();
-        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $usuarios;*/
-
         $query = "SELECT usuarios.id, usuarios.email, usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
             INNER JOIN miembros ON usuarios.miembro_id = miembros.id
             INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
@@ -151,4 +133,22 @@ class usuariosModel extends Model //BD
         return $usuarios;
     }
 
+    public static function id_usuario($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT * FROM usuarios WHERE
+                                            id = ?");
+        $sql->execute(array($id));
+        $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+        return $usuario;
+    }
+
+    // Actualizar usuario
+    public static function actualizar($id, $username, $email, $status, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET username = ?, email = ?, status = ?, fecha_actualizado = ? WHERE id = ?");
+        $usuario = $sql->execute(array($username, $email, $status, $fecha, $id));
+        return $usuario;
+    }
 }

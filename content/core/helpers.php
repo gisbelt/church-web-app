@@ -490,6 +490,17 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => [],
                     ],
+
+                    'actualizarUsuarios' => [
+                        'permisos' => permisos::$usuarios_crear,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar usuarios',
+                        'route' => '/usuario/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 

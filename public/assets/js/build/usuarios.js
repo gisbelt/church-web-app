@@ -63,6 +63,7 @@ $(document).ready(function(){
     //Usuarios
 
     listaUsuarios();
+    actualizarUsuario();
 });
 
 const listaUsuarios = () =>{
@@ -80,6 +81,7 @@ const listaUsuarios = () =>{
             {"data": "nombre_completo"},
             {"data": "email"},
             {"data": "nombre"},
+            {"data": "status"},
             {"data": "actions", "className": "center"},
         ],
         "initComplete": function () {
@@ -103,6 +105,55 @@ const listaUsuarios = () =>{
     });
 }
 
+// Eliminar usuario
 const eliminarUsuario = () =>{
 
+}
+
+// Actualizar usuario
+const actualizarUsuario = function () {
+    let $button = $('#actualizar-usuario');
+    $button.click(function (e) {
+        console.log('click...')
+        e.preventDefault();
+        let $form = $('#form-actualizar-usuario');
+        $button.disabled = true;
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            dataType: 'json',
+        }).done(function (response) {
+            if (response.code == 422) {
+                let html = '<ul class="list-group list-group-flush">';
+                $.each(response.messages, function (index, value) {
+                    html += '<li class="list-group-item">' + value + '</li>';
+                });
+                html += '</ul>';
+
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $button.disabled = false;
+            } else {
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $("#form-registrar-permisos")[0].reset();
+                $button.disabled = false;
+            }
+        }).fail(function (json) {
+            console.log(JSON.parse(json));
+        });
+    });
 }
