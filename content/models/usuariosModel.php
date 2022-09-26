@@ -136,8 +136,7 @@ class usuariosModel extends Model //BD
     public static function id_usuario($id)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT * FROM usuarios WHERE
-                                            id = ?");
+        $sql = $conexionBD->prepare("SELECT * FROM usuarios WHERE id = ?");
         $sql->execute(array($id));
         $usuario = $sql->fetch(PDO::FETCH_ASSOC);
         return $usuario;
