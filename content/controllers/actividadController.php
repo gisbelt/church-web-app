@@ -99,13 +99,13 @@ class actividadController extends Controller
     
     public function obtenerActividades()
     {
-
+    try{
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $actividades = actividades::cargarActividades();
-
+    
         if ($actividades) {
             $actividadesCollection = new actividadesCollection();
             $permisosFormat = $actividadesCollection->formatActividades($actividades);
@@ -119,6 +119,13 @@ class actividadController extends Controller
         $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $logger->debug(__METHOD__, [$data]);
         return json_encode($data);
+    }catch(\Exception $exception){
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$exception]);
+        return  json_encode([]);
+    }
+    
     }
 
 }
