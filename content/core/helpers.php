@@ -317,6 +317,26 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+                    'registrarActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar actividades',
+                        'route' => '/actividades/store',
+                        'method' => 'store',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+                    'dataActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de Activdades',
+                        'route' => 'actividad/data',
+                        'method' => 'obtenerActividades',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 
