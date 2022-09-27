@@ -317,6 +317,56 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+                    'registrarActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar actividades',
+                        'route' => '/actividades/store',
+                        'method' => 'store',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+                    'editarActividades' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar actividades',
+                        'route' => '/actividades/edit/{id}',
+                        'method' => 'edit',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                    'actualizarActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar actividades',
+                        'route' => '/actividades/update',
+                        'method' => 'update',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+                    'dataActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de Activdades',
+                        'route' => 'actividad/data',
+                        'method' => 'obtenerActividades',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                    'tipoActividad' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'tipo de actividad',
+                        'route' => '/actividad/tipos',
+                        'method' => 'obtenerTiposActividad',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 
@@ -502,6 +552,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'guardarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'buscarUsuario' => [
                         'permisos' => [],
                         'parametros' => [],
@@ -544,6 +605,17 @@ if (!function_exists("routas")) {
                         'method' => 'editar',
                         'action' => 'get',
                         'subRutas' => [],
+                    ],
+
+                    'actualizarUsuarios' => [
+                        'permisos' => permisos::$usuarios_crear,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar usuarios',
+                        'route' => '/usuario/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
                 ]
             ],

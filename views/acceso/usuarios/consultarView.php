@@ -73,6 +73,7 @@ $this->title = 'Usuarios';
                             <th class="w-auto">Nombre</th>
                             <th class="w-auto">Correo</th>
                             <th class="w-auto">Cargo</th>
+                            <th class="w-auto">Status</th>
                             <th class="text-center w-auto">Acciones</th>
                         </tr>
                         </thead>
