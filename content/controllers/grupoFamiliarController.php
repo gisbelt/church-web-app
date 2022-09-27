@@ -101,18 +101,7 @@ class grupoFamiliarController extends Controller
 
         return json_encode($data);
     }
-
-    //Obtener Integrantes Grupo
-    public function obtenerIntegrantesGrupo(Request $request){
-        $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-        $integrantes = new grupoFamiliarModel();
-        $integrantes->loadData($request->getBody());
-        $grupo_id = $request->getBody()['grupo_id'];
-        $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
-    }
+   
 
     //Registrar grupo y amigo a grupo familiar
     public static function guardar(Request $request){
