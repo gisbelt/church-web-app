@@ -26,6 +26,7 @@ class actividadesModel extends Model
         try{
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("SELECT
+                                                actividades.id,
                                                 actividades.nombre,
                                                 actividades.descripcion,
                                                 actividades.status,
@@ -103,11 +104,20 @@ class actividadesModel extends Model
         $sql->execute();
         
     }
-        public function tipoActividad()
+        public static function tipoActividad()
         {
-            $conexionBD = BD::crearInstancia();
-            $sql = $conexionBD->prepare("SELECT tipo_actividad.nombre,tipo_actividad.id FROM tipo_actividad");
-            $sql->execute();
+            try{
+                $conexionBD = BD::crearInstancia();
+                $sql = $conexionBD->prepare("SELECT tipo_actividad.nombre,tipo_actividad.id FROM tipo_actividad");
+                $sql->execute();
+              return  $sql->fetchAll(PDO::FETCH_ASSOC);
+            }catch(Exception $exception){
+                $logger = new Logger("web");
+                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                $logger->debug(__METHOD__, [$exception]);
+                return null;
+            }
+           
         }
     
     /**

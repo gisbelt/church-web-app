@@ -13,7 +13,8 @@
             $data = [];
             foreach ($actividades as $actividad) {
                 $actividad['actions'] = sprintf(
-                    '<a href="" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                    '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                    '/actividades/editar/' . $actividad['id']
                 );
                 $actividad['actions'] .= sprintf(
                     '<button type="button"  name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
