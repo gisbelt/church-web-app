@@ -206,10 +206,10 @@ const listaGrupoFamiliar = function () {
             {"data": "actions", "className": "center"},
         ],
         "initComplete": function () {
-            api = this.api();
+            let api = this.api();
             api.buttons().container().appendTo($('#table-buttons'));
             asignarAmigo()
-            
+            observar_amigos();
         }
     })   
     
@@ -245,4 +245,34 @@ $(".list-li").hover(function(){
     const id = this.dataset['number'];
     const div = document.getElementById("tools_"+id);
     $(div).addClass("hidden");
-}) 
+})
+
+const observar_amigos = function () {
+    //let $button = $('#guardar_observacion_donacion');
+    let $table= $('#integrantes-grupo-table');
+    let $modal = $('#integrantes');
+
+    $modal.on('show.bs.modal', function(event) {
+        let $target = $(event.relatedTarget);
+
+        let grupo = $target.data('id');
+        let route = `${$table.data('route')}?grupo=${grupo}`;
+
+        $table.DataTable({
+            "ajax": {
+                "url": route,
+                "dataSrc": "amigos"
+            },
+            "columns": [
+                {"data": "nombre_completo"},
+                {"data": "email"},
+                {"data": "actions", "className": "center"},
+            ],
+            "initComplete": function () {
+                let api = this.api();
+                api.buttons().container()
+                    .appendTo($('#table-buttons'));
+            }
+        })
+    })
+}

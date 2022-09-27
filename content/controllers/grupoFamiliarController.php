@@ -23,16 +23,10 @@ class grupoFamiliarController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $user = usuarios::validarLogin();       
-        $integrantes = new grupoFamiliarModel();
-        $integrantes->loadData($request->getBody());
-        $grupo_id = $request->getBody()['grupo_id'];
-        $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
-        return $this->render('grupoFamiliar/consultarView', [
-            'integrantes' => $integrantes
-        ]);
+        $user = usuarios::validarLogin();
+        return $this->render('grupoFamiliar/consultarView');
     }
 
     public function create()
@@ -55,6 +49,9 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$request->getBody()]);
         $amigos = grupoFamiliarModel::obtenerAmigo();
 
         if($amigos){
@@ -129,6 +126,11 @@ class grupoFamiliarController extends Controller
         }        
         $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
     }
-}
 
-?>
+    public function obtenerIntegrantesGrupo(Request $request)
+    {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$request->getBody()]);
+    }
+}

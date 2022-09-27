@@ -114,7 +114,7 @@ const listaDonaciones = function () {
             {"data": "actions", "className": "center"},
         ],
         "initComplete": function () {
-            api = this.api();
+            let api = this.api();
             api.buttons().container()
                 .appendTo($('#table-buttons'));
             eliminarDonacion();

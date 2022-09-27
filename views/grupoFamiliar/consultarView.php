@@ -37,30 +37,18 @@ $this->title = 'Grupos Familiares';
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="card p-0">
-                            <div class="card-body">
-                            <?php foreach($integrantes as $integrante) { ?>   
-                            <ul class="list-group list-integrantes">
-                                <li class="list-group-item bi bi-chevron-right list-li">
-                                    <?php echo $integrante['nombre_completo'];?>
-                                    <span class="tools"></span>
-                                </li>
-                            </ul>
-                            <?php } ?>
-                            </div>
-                            <form method="POST" id="form-registrarAmigoGrupo" action="/grupo-familiares/guardar-amigo-grupo">                           
-                            <div class="card-footer">
-                                <input type="hidden" name="grupo_id" class="" id="grupo_id"> 
-                                <div class="mb-4 input-group">
-                                    <input type="text" name="nombreAmigo" id="amigo" class="form-control" placeholder="Buscar Amigo...">
-                                    <span class="input-group-btn">
-                                    <a id="add-amigo" class="btn btn-warning"><i class="bi-plus"></i> Añadir</a>
-                                    </span>
-                                </div>  
-                                <ul class="list-group" id="tabla_resultado"></ul>  
-                            </div> 
-                            </form>                                       
-                        </div>
+                        <div class="card-body center table-wrap">
+                            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
+                                   id="integrantes-grupo-table" data-route="/grupo-familiares/obtener-integrantes">
+                                <thead class="thead-primary">
+                                <tr>
+                                    <th class="w-auto">Cedula</th>
+                                    <th class="w-auto">Nombre y apellido</th>
+                                    <th class="text-center w-auto">Acciones</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div><!--card-body-->
                     </div>
                 </div>
             </div>

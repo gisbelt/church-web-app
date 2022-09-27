@@ -98,7 +98,7 @@ const listaUsuarios = () =>{
         let route = `${$table.data('route')}?cargo=${cargo}&status=${status}&miembro=${miembro}`;
         api.ajax.url(route).load();
         $table.on('draw.dt', function () {
-            $button.button('reset');
+
         });
     });
 }

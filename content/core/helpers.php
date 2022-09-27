@@ -422,7 +422,7 @@ if (!function_exists("routas")) {
                         'text' => 'index',
                         'route' => '/grupo-familiares/obtener-integrantes',
                         'method' => 'obtenerIntegrantesGrupo',
-                        'action' => 'post',
+                        'action' => 'get',
                         'subRutas' => []
                     ],
 
