@@ -38,8 +38,8 @@ $this->title = 'Actividades'
                     </div>
                     <div class="mb-3">
                         <p class="">Tipo de actividad:* </p>
-                        <select class="form-control" name="tipo_actividad" id="tipo_actividad">
-                        
+                        <select class="form-select" name="tipo_actividad" id="tipo_actividad">
+                            <option>Seleccione</option>
                         </select>
                     </div>
                     <div class="mb-3">
