@@ -46,6 +46,7 @@ class bottomComponent
             <script src="../../../assets/js/build/usuarios.js"></script>
             <script src="../../../assets/js/build/seguridad.js"></script>
             <script src="../../../assets/js/build/donaciones.js"></script>
+            <script src="../../../assets/js/build/actividades.js"></script>
 
             <!-- Charts -->
             <script src="../../../assets/js/chart.bundle.min.js"></script>

@@ -16,7 +16,7 @@ $this->title = 'Actividades'
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action=""> 
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/store">
                     <div class="form-group">
                         <div class="mb-4 input-group">
                             <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Miembro a realizar la actividad" autofocus>
@@ -27,7 +27,7 @@ $this->title = 'Actividades'
                         <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                     </div>                    
                     <div class="form-group">
-                        <input type="text" required name="nombreActividad" class="form-control form-input mb-4" id="nombreActividad" value="" placeholder=" " >
+                        <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" " >
                         <label for="nombre" class="form-label fw-bold">Nombre de la Actividad:*</label>
                     </div>
                     <div class="form-group">
@@ -38,20 +38,18 @@ $this->title = 'Actividades'
                     </div>
                     <div class="mb-3">
                         <p class="">Tipo de actividad:* </p>
-                        <select class="form-control" name="" id="">
-                            <option>Tipo 1</option>
-                            <option>Tipo 2</option>
-                            <option>Tipo 3</option>
-                            <option>Tipo 4</option>
-                            <option>Tipo 5 </option>
+                        <select class="form-control" name="tipo_actividad" id="tipo_actividad">
+                            <option value="1">1</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <p class="">Estado:* </p>
-                        <select class="form-control" name="" id="">
-                            <option>En curso</option>
-                            <option>Terminada</option>
-                            <option>Pausada</option>
+                        <select class="form-control" name="status" id="status">
+                            <option value="1">En curso</option>
+                            <option value="2">Terminada</option>
+                            <option value="3">Pausada</option>
                         </select>
                     </div>
 
@@ -89,7 +87,7 @@ $this->title = 'Actividades'
                     <div class="form-group">
                         <div class="mb-3">
                             <p class="">Observación:</p>
-                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                            <textarea class="form-control" name="observacion" id="observacion" rows="3"></textarea>
                         </div>
                     </div>
                     <!--Botones-->

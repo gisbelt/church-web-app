@@ -17,9 +17,11 @@ class usuariosModel extends Model //BD
     public $id;
     public $username;
     public $email;
-    public $password = "password";
+    public $password;
     public $role_id;
     public $nombreMiembro;
+    public $fecha_creado;
+    public $fecha_actualizado;
 
     //Login
     public static function login($email)
@@ -51,6 +53,20 @@ class usuariosModel extends Model //BD
         return [$username, $date];
     }
 
+    //Crear usuario
+    public static function crear($username, $email, $password, $rol, $miembro, $fecha)
+    {
+
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$username, $email, $password, $rol, $miembro, $fecha]);
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id, status, role_id, fecha_creado) 
+        VALUES (?,?,?,?,?,?,?)");
+        $user = $sql->execute(array($username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha));
+        return $user;
+    }
+
     // Validar que esté la sesión cerrada 
     public static function validarLogout()
     {
@@ -68,18 +84,6 @@ class usuariosModel extends Model //BD
             window.location.href = '/home';
             </script>";
         }
-    }
-
-    /**
-     * @return array[]
-     */
-    public function rules(): array
-    {
-        return [
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]]
-            //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
-        ];
     }
 
     //Buscar Miembros
@@ -108,24 +112,6 @@ class usuariosModel extends Model //BD
     public static function obtener_usuarios($cargo, $status, $miembro)
     {
         $connexionBD = BD::crearInstancia();
-        /*$sql = $connexionBD->prepare("SELECT usuarios.id, usuarios.email,usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
-            INNER JOIN miembros ON usuarios.miembro_id = miembros.id
-            INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
-            INNER JOIN cargos ON miembros.cargo_id = cargos.id");
-        if(!is_null($cargo)){
-            $sql->
-            $sql->bindValue(':cargos.id', $cargo);
-        }
-        if(!is_null($status)){
-            $sql->bindValue(':status', $status);
-        }
-        if(!is_null($miembro)){
-            $sql->bindValue(':miembros.id', $miembro);
-        }
-        $usuarios = $sql->execute();
-        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $usuarios;*/
-
         $query = "SELECT usuarios.id, usuarios.email, usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
             INNER JOIN miembros ON usuarios.miembro_id = miembros.id
             INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
@@ -151,4 +137,39 @@ class usuariosModel extends Model //BD
         return $usuarios;
     }
 
+    public static function id_usuario($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT * FROM usuarios WHERE id = ?");
+        $sql->execute(array($id));
+        $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+        return $usuario;
+    }
+
+    // Actualizar usuario
+    public static function actualizar($id, $username, $email, $status, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET username = ?, email = ?, status = ?, fecha_actualizado = ? WHERE id = ?");
+        $usuario = $sql->execute(array($username, $email, $status, $fecha, $id));
+        return $usuario;
+    }
+
+    public static  function eliminar($id) {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET status = ? WHERE id = ?");
+        $usuarios = $sql->execute(array(self::INACTIVE, $id));
+        return $usuarios;
+    }
+
+    /**
+     * @return array[]
+     */
+    public function rules(): array
+    {
+        return [
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
+        ];
+    }
 }
