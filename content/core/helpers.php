@@ -436,6 +436,39 @@ if (!function_exists("routas")) {
                         'action' => 'post',
                         'subRutas' => []
                     ],
+
+                    'editarGrupoFamiliar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Grupo Familiar',
+                        'route' => '/grupo-familiares/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editarGrupo',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarGrupoFamiliar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/grupo-familiares/actualizar',
+                        'method' => 'actualizarGrupo',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'eliminarGrupoFamiliar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Eliminar Grupo Familiar',
+                        'route' => '/grupo-familiares/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminarGrupo',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
                 ]
             ],
 

@@ -27,7 +27,7 @@ $this->title = 'Grupos Familiares';
 </div><!--container-->
 
 <!-- Modal  -->
-<div class="modal fade" id="integrantes" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" data-route="/grupo-familiares/">
+<div class="modal fade" id="integrantes" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,8 +42,7 @@ $this->title = 'Grupos Familiares';
                                    id="integrantes-grupo-table" data-route="/grupo-familiares/obtener-integrantes">
                                 <thead class="thead-primary">
                                 <tr>
-                                    <th class="w-auto">Cedula</th>
-                                    <th class="w-auto">Nombre y apellido</th>
+                                    <th class="w-auto">Amigos</th>
                                     <th class="text-center w-auto">Acciones</th>
                                 </tr>
                                 </thead>

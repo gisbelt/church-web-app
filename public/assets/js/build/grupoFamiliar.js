@@ -3,7 +3,7 @@ $(document).ready(function(){
     buscarAmigo();    
     registrarGrupoFamiliar();  
     listaGrupoFamiliar();
-    // asignarAmigo()
+    eliminarGrupo()
 });
 
 const button = document.getElementById('agregarGrupoFamiliar');
@@ -222,33 +222,7 @@ const asignarAmigo = function () {
     })
 }
 
-//Create a "delete" button and append it to each list item
-const myNodelist = document.getElementsByClassName('list-li');
-for (i = 0; i < myNodelist.length; i++) {
-    const div = document.getElementsByClassName("tools");
-    for (i = 0; i < div.length; i++) {
-        const trash = document.createElement("i");
-        trash.className = "bi bi-trash pointer text-danger close-item"; //create class
-        div[i].classList.add("position-absolute", "right-50", "end-0","me-3","hidden"); //add class
-        div[i].setAttribute("id", "tools_"+i); //add id
-        div[i].appendChild(trash);
-        myNodelist[i].setAttribute("data-number", +i); //add data-number
-        myNodelist[i].appendChild(div[i]);
-    }
-}
-// Hover a "delete" button to each list item
-$(".list-li").hover(function(){
-    const id = this.dataset['number'];
-    const div = document.getElementById("tools_"+id);
-    $(div).removeClass("hidden");
-},function(){
-    const id = this.dataset['number'];
-    const div = document.getElementById("tools_"+id);
-    $(div).addClass("hidden");
-})
-
 const observar_amigos = function () {
-    //let $button = $('#guardar_observacion_donacion');
     let $table= $('#integrantes-grupo-table');
     let $modal = $('#integrantes');
 
@@ -256,7 +230,7 @@ const observar_amigos = function () {
         let $target = $(event.relatedTarget);
 
         let grupo = $target.data('id');
-        let route = `${$table.data('route')}?grupo=${grupo}`;
+        let route = `${$table.data('route')}?grupo_id=${grupo}`;
 
         $table.DataTable({
             "ajax": {
@@ -265,9 +239,9 @@ const observar_amigos = function () {
             },
             "columns": [
                 {"data": "nombre_completo"},
-                {"data": "email"},
                 {"data": "actions", "className": "center"},
             ],
+            destroy: true,
             "initComplete": function () {
                 let api = this.api();
                 api.buttons().container()
@@ -276,3 +250,50 @@ const observar_amigos = function () {
         })
     })
 }
+
+const eliminarGrupo = function () {
+    $(document).on('click', '#eliminar-grupo', function (e) {
+        e.preventDefault();
+        let route = $(this).data('route');
+        let tr = $(this).parents("tr");
+        console.log(tr)
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            preConfirm: () => {
+                return fetch(route)
+                    .then(response => {
+                        if (!response.ok) {
+                            response.json().then(json => {
+                                swal.fire({
+                                    title: json.title,
+                                    text: json.message,
+                                    type: 'error',
+                                    showConfirmButton: false,
+                                    showCancelButton: true,
+                                    cancelButtonText: '<i class="hs-admin-close"></i> ' + json.data.close
+                                });
+                            });
+                        }
+                        return response.json();
+                    });
+            },
+        }).then((result) => {
+            if (result.value.code == 200) {
+                Swal.fire(
+                    result.value.title,
+                    result.value.messages,
+                    'success'
+                )
+                tr.remove();
+            }
+        })
+    });
+}
+
+

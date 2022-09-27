@@ -32,8 +32,9 @@ class grupoFamiliarModel extends Model
         $sql = $conexionBD->prepare('SELECT CONCAT(a.nombre," ",a.apellido) AS nombre_completo, a.cedula, a.id as amigo
         FROM amigos a
         WHERE a.id
-        not IN (select gfa.amigo_id from grupo_familiare_amigo as gfa)');
-        $sql->execute();
+        not IN (select gfa.amigo_id from grupo_familiare_amigo as gfa WHERE gfa.status=?)
+        AND (a.status=?)');
+        $sql->execute(array(self::ACTIVE,self::ACTIVE));
         $buscarAmigo = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $buscarAmigo;
     }
@@ -45,9 +46,9 @@ class grupoFamiliarModel extends Model
         $sql = $conexionBD->prepare('SELECT CONCAT(a.nombre," ",a.apellido) AS nombre_completo, a.cedula, a.id as amigo
         FROM amigos a
         WHERE a.id
-        not IN (select gfa.amigo_id from grupo_familiare_amigo as gfa)
-        AND (a.nombre LIKE ? or a.apellido LIKE ? or a.cedula LIKE ?)');
-        $sql->execute(array("%".$nombreAmigo."%","%".$nombreAmigo."%","%".$nombreAmigo."%"));
+        not IN (select gfa.amigo_id from grupo_familiare_amigo as gfa WHERE gfa.status=?)
+        AND (a.nombre LIKE ? or a.apellido LIKE ? or a.cedula LIKE ?) AND (a.status=?)');
+        $sql->execute(array(self::ACTIVE,"%".$nombreAmigo."%","%".$nombreAmigo."%","%".$nombreAmigo."%",self::ACTIVE));
         $buscarAmigo = $sql->fetchAll(PDO::FETCH_ASSOC); 
 
         $result = [];
@@ -66,8 +67,8 @@ class grupoFamiliarModel extends Model
     public static function guardar($nombre,$direccion,$lider,$zona,$fecha,$amigo_id){
         $conexionBD=BD::crearInstancia();   
         if(isset($nombre)){        
-            $sql= $conexionBD->prepare("INSERT INTO grupos_familiares (`nombre`,`direccion`,`lider_id`,`zona_id`,`fecha_creado`) VALUES (?,?,?,?,?)"); 
-            $sql->execute(array($nombre,$direccion,$lider,$zona,$fecha));        
+            $sql= $conexionBD->prepare("INSERT INTO grupos_familiares (`nombre`,`direccion`,`lider_id`,`zona_id`,`fecha_creado`,status) VALUES (?,?,?,?,?,?)"); 
+            $sql->execute(array($nombre,$direccion,$lider,$zona,$fecha,self::ACTIVE));        
             $result = [msj1 => $sql];
             die(json_encode($result));
         }        
@@ -77,13 +78,9 @@ class grupoFamiliarModel extends Model
         $sql2->execute();
         $lastID = $sql2->fetch(PDO::FETCH_ASSOC); 
         
-        $sql3= $conexionBD->prepare("INSERT INTO grupo_familiare_amigo (`grupo_id`,`amigo_id`) 
-        VALUES (:grupo_id,:amigo_id)");         
-        $sql3->bindParam(":grupo_id", $lastID['id']);
-        $sql3->bindParam(":amigo_id", $amigo_id);
-        $sql3->execute();
+        $sql3= $conexionBD->prepare("INSERT INTO grupo_familiare_amigo (`grupo_id`,`amigo_id`,status) VALUES (?,?,?)");   
+        $sql3->execute(array($lastID['id'],$amigo_id,self::ACTIVE));
         $result2 = [msj2 => $sql3];
-
         $data = [
             'title' => 'Datos registrados',
             'messages' => 'El Grupo Familiar se ha registrado con exito',
@@ -102,16 +99,17 @@ class grupoFamiliarModel extends Model
         INNER JOIN miembros on miembros.id = gf.lider_id
         INNER JOIN perfiles on perfiles.id = miembros.id
         INNER JOIN zonas on zonas.id = gf.zona_id
-        ");
-        $sql->execute();
+        WHERE gf.status=?");
+        $sql->execute(array(self::ACTIVE));
         $grupos = $sql->fetchAll(PDO::FETCH_ASSOC);
         
         return $grupos;
     }
 
+    // obtener Integrantes (Amigos) Grupo
     public static function obtenerIntegrantesGrupo($grupo_id){
         $conexionBD = BD::crearInstancia();
-        $query = "SELECT CONCAT(a.cedula,' - ',a.nombre,' ',a.apellido) AS nombre_completo 
+        $query = "SELECT CONCAT(a.cedula,' - ',a.nombre,' ',a.apellido) AS nombre_completo, a.id as amigo 
         FROM grupos_familiares as gf
         INNER JOIN grupo_familiare_amigo gfa on gfa.grupo_id = gf.id
         INNER JOIN amigos a on a.id = gfa.amigo_id";
@@ -127,6 +125,18 @@ class grupoFamiliarModel extends Model
         $sql2->execute();
         $integrantes = $sql2->fetchAll(PDO::FETCH_ASSOC);
         return $integrantes;
+    }
+
+    //Eliminar Grupo
+    public static function eliminarGrupo($grupo_id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE grupos_familiares AS gf
+        INNER JOIN grupo_familiare_amigo AS gfa ON gf.id=gfa.grupo_id
+        SET gf.status=?, gfa.status=? 
+        WHERE gf.id=?");
+        $grupos = $sql->execute(array(self::INACTIVE,self::INACTIVE,$grupo_id));
+        return $grupos;
     }
 
     // Zonas

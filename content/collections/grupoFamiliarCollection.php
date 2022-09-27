@@ -47,4 +47,18 @@ class grupoFamiliarCollection
         }
         return $data;
     }
+
+    public function formatObservarAmigos($amigos)
+    {
+        $data = [];
+        foreach ($amigos as $amigo) {
+            $amigo['actions'] .= sprintf(
+                '<button type="button" data-route="%s" name="eliminar-amigo-grupo" id="eliminar-amigo-grupo" class="btn btn-danger mx-2"><i class="bi bi-trash text-light"></i>
+                          </button>',
+                '/grupo-familiares/obtener-integrantes/' . $amigo['amigo'],
+            );
+            $data[] = $amigo;
+        }
+        return $data;
+    }
 }

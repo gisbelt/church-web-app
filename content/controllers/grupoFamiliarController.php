@@ -98,6 +98,30 @@ class grupoFamiliarController extends Controller
 
         return json_encode($data);
     }
+
+    //Obtener Integrantes Grupos
+    public function obtenerIntegrantesGrupo(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $integrantes = new grupoFamiliarModel();
+        $integrantes->loadData($request->getBody());
+        $grupo_id = $request->getBody()['grupo_id'];
+        $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
+        if($integrantes){
+            $grupoFamiliarCollection = new grupoFamiliarCollection();
+            $observarAmigosFormat = $grupoFamiliarCollection->formatObservarAmigos($integrantes);
+        } else {
+            $observarAmigosFormat = [];
+        }   
+        $data = [
+            'amigos' => $observarAmigosFormat,
+        ];
+
+        return json_encode($data);
+    }
    
 
     //Registrar grupo y amigo a grupo familiar
@@ -127,10 +151,36 @@ class grupoFamiliarController extends Controller
         $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
     }
 
-    public function obtenerIntegrantesGrupo(Request $request)
+    // Eliminar Grupo 
+    public function eliminarGrupo(Request $request)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$request->getBody()]);
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $grupo_id = $request->getRouteParam('id');
+        if(!is_null($grupo_id)){
+            $grupos = grupoFamiliarModel::eliminarGrupo($grupo_id);
+            if($grupos){
+                $data = [
+                    'title' => 'Dato eliminado',
+                    'messages' => 'Grupo Familiar se ha eliminado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'Grupo Familiar no se ha eliminado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        $data = [
+            'title' => 'Error',
+            'messages' => 'Algo salio mal intente mas tardes',
+            'code' => 422
+        ];
+        return json_encode($data, 422);
     }
 }
