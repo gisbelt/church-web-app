@@ -108,7 +108,49 @@ const listaUsuarios = () =>{
 
 // Eliminar usuario
 const eliminarUsuario = () =>{
-
+    $(document).on('click', '#eliminar-usuario', function (e) {
+        e.preventDefault();
+        //route = `${$table.data('route')}?currency=${currency}&provider=${provider}`;
+        //let id = $(this).data('id');
+        let route = $(this).data('route');
+        //let tr = $(this).parents("tr");
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            preConfirm: () => {
+                return fetch(route)
+                    .then(response => {
+                        if (!response.ok) {
+                            response.json().then(json => {
+                                swal.fire({
+                                    title: json.title,
+                                    text: json.message,
+                                    type: 'error',
+                                    showConfirmButton: false,
+                                    showCancelButton: true,
+                                    cancelButtonText: '<i class="hs-admin-close"></i> ' + json.data.close
+                                });
+                            });
+                        }
+                        return response.json();
+                    });
+            },
+        }).then((result) => {
+            if (result.value.code == 200) {
+                Swal.fire(
+                    result.value.title,
+                    result.value.messages,
+                    'success'
+                )
+                tr.remove();
+            }
+        })
+    });
 }
 
 // Actualizar usuario

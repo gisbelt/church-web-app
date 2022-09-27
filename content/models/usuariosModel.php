@@ -155,7 +155,12 @@ class usuariosModel extends Model //BD
         return $usuario;
     }
 
-
+    public static  function eliminar($id) {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET status = ? WHERE id = ?");
+        $usuarios = $sql->execute(array(self::INACTIVE, $id));
+        return $usuarios;
+    }
 
     /**
      * @return array[]

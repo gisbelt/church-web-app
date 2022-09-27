@@ -203,8 +203,27 @@ class usuariosController extends Controller
         }
         $id = $request->getRouteParam('id');
         if(!is_null($id)){
-            $usuario = new usuarios();
-
+            $usuario = usuarios::eliminar($id);
+            if($usuario){
+                $data = [
+                    'title' => 'Dato eliminado',
+                    'messages' => 'El usuario se ha eliminado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'El usuario no se ha eliminado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
         }
+        $data = [
+            'title' => 'Error',
+            'messages' => 'Algo salio mal intente mas tardes',
+            'code' => 422
+        ];
+        return json_encode($data, 422);
     }
 }
