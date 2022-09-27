@@ -148,39 +148,43 @@ class usuariosController extends Controller
         $usuario = new usuarios();
         $usuario->loadData($request->getBody());
         if ($usuario->validate()) {
-            if ($request->getBody()['password'] == $request->getBody()['password-confirm']) {
-                if ($request->getBody()['miembro'] != '' || $request->getBody()['rol'] != '') {
-                    $miembro = $request->getBody()['miembro'];
-                    $username = $request->getBody()['username'];
-                    $email = $request->getBody()['email'];
-                    $rol = $request->getBody()['rol'];
-                    $fecha = Carbon::now();
-                    $password = password_hash($request->getBody()['password'], PASSWORD_BCRYPT, ['cost' => 10]);
-                    $usuario = usuarios::crear($username, $email, $password, $rol, $miembro, $fecha);
-                    if ($usuario) {
-                        $data = [
-                            'title' => 'Datos regidtrado',
-                            'messages' => 'El usuario se ha registrado',
-                            'code' => 200
-                        ];
+            if($request->getBody()['username'] != ''){
+                if ($request->getBody()['password'] == $request->getBody()['password-confirm']) {
+                    if ($request->getBody()['miembro'] != '' || $request->getBody()['rol'] != '') {
+                        $miembro = $request->getBody()['miembro'];
+                        $username = $request->getBody()['username'];
+                        $email = $request->getBody()['email'];
+                        $rol = $request->getBody()['rol'];
+                        $fecha = Carbon::now();
+                        $password = password_hash($request->getBody()['password'], PASSWORD_BCRYPT, ['cost' => 10]);
+                        $usuario = usuarios::crear($username, $email, $password, $rol, $miembro, $fecha);
+                        if ($usuario) {
+                            $data = [
+                                'title' => 'Datos regidtrado',
+                                'messages' => 'El usuario se ha registrado',
+                                'code' => 200
+                            ];
+                        } else {
+                            $data = [
+                                'title' => 'Error',
+                                'messages' => 'El usuario no se ha registrado',
+                                'code' => 500
+                            ];
+                        }
+                        return json_encode($data);
                     } else {
-                        $data = [
-                            'title' => 'Error',
-                            'messages' => 'El usuario no se ha registrado',
-                            'code' => 500
-                        ];
+                        if (empty($request->getBody()['miembro'])) {
+                            $usuario->addError("miembro", "El campo miembro es requerido");
+                        }
+                        if (empty($request->getBody()['rol'])) {
+                            $usuario->addError("rol", "El campo rol es requerido");
+                        }
                     }
-                    return json_encode($data);
                 } else {
-                    if (empty($request->getBody()['miembro'])) {
-                        $usuario->addError("miembro", "El campo miembro es requerido");
-                    }
-                    if (empty($request->getBody()['rol'])) {
-                        $usuario->addError("rol", "El campo rol es requerido");
-                    }
+                    $usuario->addError("password", "La contraseña debe ser igual a confirmar contraseña");
                 }
             } else {
-                $usuario->addError("password", "La contraseña debe ser igual a confirmar contraseña");
+                $usuario->addError("username", "El campo usuario es requerido");
             }
         }
         $data = [
@@ -189,5 +193,18 @@ class usuariosController extends Controller
             'code' => 422
         ];
         return json_encode($data, 422);
+    }
+
+    public function eliminar(Request $request)
+    {
+        usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $id = $request->getRouteParam('id');
+        if(!is_null($id)){
+            $usuario = new usuarios();
+
+        }
     }
 }

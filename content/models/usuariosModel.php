@@ -20,6 +20,8 @@ class usuariosModel extends Model //BD
     public $password;
     public $role_id;
     public $nombreMiembro;
+    public $fecha_creado;
+    public $fecha_actualizado;
 
     //Login
     public static function login($email)
@@ -57,12 +59,11 @@ class usuariosModel extends Model //BD
 
         $logger = new Logger("web");
         $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-
+        $logger->debug(__METHOD__, [$username, $email, $password, $rol, $miembro, $fecha]);
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id status, role_id fecha_creado) 
+        $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id, status, role_id, fecha_creado) 
         VALUES (?,?,?,?,?,?,?)");
-        $user = $sql->execute([$username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha]);
-        $logger->debug(__METHOD__, [$user]);
+        $user = $sql->execute(array($username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha));
         return $user;
     }
 
@@ -163,7 +164,6 @@ class usuariosModel extends Model //BD
     {
         return [
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'username' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
         ];
     }
