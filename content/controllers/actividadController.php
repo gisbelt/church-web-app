@@ -37,7 +37,7 @@ class actividadController extends Controller
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/actividades/registrarView.php')), 200);
         return $this->render('actividades/registrarView');
     }
-    
+
     public function edit(Request $request)
     {
         $user = usuarios::validarLogin();
@@ -45,10 +45,10 @@ class actividadController extends Controller
         $data['titulo'] = 'Actualizar Actividades';
         return $this->render('actividades/editarView');
     }
-    
+
     public function store(Request $request)
     {
-        try{
+        try {
             if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
                 throw new ForbiddenException();
             }
@@ -64,10 +64,10 @@ class actividadController extends Controller
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
-                $actividades = actividades::registrarActividades($nombre,$description,$status,$tipo,$fecha);
-                $horarios = actividades::horariosCreate($hora,$fechaHora,$fecha);
-                $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'],$horarios['id'],$fecha);
-                 actividades::observacionActividad($actividades['id'],$observacion,$fecha);
+                $actividades = actividades::registrarActividades($nombre, $description, $status, $tipo, $fecha);
+                $horarios = actividades::horariosCreate($hora, $fechaHora, $fecha);
+                $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'], $horarios['id'], $fecha);
+                actividades::observacionActividad($actividades['id'], $observacion, $fecha);
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
@@ -91,10 +91,10 @@ class actividadController extends Controller
                 ];
                 return json_encode($data, 422);
             }
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$ex,'request'=> $request]);
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
             $data = [
                 'title' => 'Error',
                 'messages' => $ex,
@@ -102,9 +102,10 @@ class actividadController extends Controller
             ];
             return json_encode($data);
         }
-       
+
     }
-    
+
+
     public function update(Request $request)
     {
         try{
@@ -161,7 +162,7 @@ class actividadController extends Controller
             ];
             return json_encode($data);
         }
-        
+
     }
     public function obtenerActividades()
     {
@@ -171,7 +172,7 @@ class actividadController extends Controller
             throw new ForbiddenException();
         }
         $actividades = actividades::cargarActividades();
-    
+
         if ($actividades) {
             $actividadesCollection = new actividadesCollection();
             $permisosFormat = $actividadesCollection->formatActividades($actividades);
@@ -191,9 +192,9 @@ class actividadController extends Controller
         $logger->debug(__METHOD__, [$exception]);
         return  json_encode([]);
     }
-    
+
     }
-    
+
     public function obtenerTiposActividad()
     {
         try {
@@ -206,7 +207,7 @@ class actividadController extends Controller
                 $logger->debug(__METHOD__, [$tipo]);
                 return json_encode([]);
             }
-           
+
         }catch (\Exception $exception){
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));

@@ -497,6 +497,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'guardarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'buscarUsuario' => [
                         'permisos' => [],
                         'parametros' => [],
@@ -539,6 +550,17 @@ if (!function_exists("routas")) {
                         'method' => 'editar',
                         'action' => 'get',
                         'subRutas' => [],
+                    ],
+
+                    'actualizarUsuarios' => [
+                        'permisos' => permisos::$usuarios_crear,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar usuarios',
+                        'route' => '/usuario/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
                 ]
             ],
