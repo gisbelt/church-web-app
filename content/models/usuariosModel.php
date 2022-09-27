@@ -54,10 +54,16 @@ class usuariosModel extends Model //BD
     //Crear usuario
     public static function crear($username, $email, $password, $rol, $miembro, $fecha)
     {
+
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id status, role_id fecha_creado) 
-        VALUES (?,?,?,?)");
-        return $sql->execute([$username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha]);
+        VALUES (?,?,?,?,?,?,?)");
+        $user = $sql->execute([$username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha]);
+        $logger->debug(__METHOD__, [$user]);
+        return $user;
     }
 
     // Validar que esté la sesión cerrada 
@@ -159,7 +165,6 @@ class usuariosModel extends Model //BD
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
             'username' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MACTH, 'match' => 'password']]
         ];
     }
 }

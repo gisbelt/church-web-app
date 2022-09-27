@@ -149,16 +149,13 @@ class usuariosController extends Controller
         $usuario->loadData($request->getBody());
         if ($usuario->validate()) {
             if ($request->getBody()['password'] == $request->getBody()['password-confirm']) {
-                if (empty($request->getBody()['miembro']) || empty($request->getBody()['rol'])) {
+                if ($request->getBody()['miembro'] != '' || $request->getBody()['rol'] != '') {
                     $miembro = $request->getBody()['miembro'];
                     $username = $request->getBody()['username'];
                     $email = $request->getBody()['email'];
                     $rol = $request->getBody()['rol'];
                     $fecha = Carbon::now();
                     $password = password_hash($request->getBody()['password'], PASSWORD_BCRYPT, ['cost' => 10]);
-                    $logger = new Logger("web");
-                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                    $logger->debug(__METHOD__, [$password]);
                     $usuario = usuarios::crear($username, $email, $password, $rol, $miembro, $fecha);
                     if ($usuario) {
                         $data = [
