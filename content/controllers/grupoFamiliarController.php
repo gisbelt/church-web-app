@@ -153,15 +153,11 @@ class grupoFamiliarController extends Controller
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
-        }
-         $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        
+        }        
         $id = $request->getRouteParams();
         $grupo = grupoFamiliarModel::id_grupo($id['id']);
         $lider = grupoFamiliarModel::lider();
         $zonas = grupoFamiliarModel::zonas();
-        $logger->debug(__METHOD__, ['respuesta' => $grupos]);
         return $this->render('grupoFamiliar/editarView', [
             'zonas' => $zonas,
             'lideres' => $lider,
