@@ -4,8 +4,8 @@
 $this->title = 'Registrar donaciones'
 ?>
 <div class="container-fluid">
-    <div class="row">
-        <div class="offset-md-2 col-md-8">
+    <div class="row center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-header mb-4">
                     <div>

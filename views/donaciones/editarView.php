@@ -18,7 +18,7 @@ $this->title = 'Editar donacion';
                     <form method="post" enctype="multipart/form-data" id="form-actualizar-donacion" action="/donacion/actualizar">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="mb-3">
+                                <div class="form-group mb-3">
                                     <p class="">Donante:* </p>
                                     <select class="form-select" id="donante" name="donante" disabled>
                                         <?php foreach ($miembros as $miembro) {
@@ -35,7 +35,7 @@ $this->title = 'Editar donacion';
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mb-3">
+                                <div class="form-group mb-3">
                                     <p class="">Tipo donacion:* </p>
                                     <select class="form-select" id="tipo_donacion" name="tipo_donacion" disabled>
                                         <?php foreach ($tipo_donaciones as $tipo_donacion) {

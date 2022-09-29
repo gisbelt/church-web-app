@@ -432,12 +432,23 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'dataGrupos' => [
+                        'permisos' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'parametros' => [],
+                        'text' => 'Obtener Grupos',
+                        'route' => '/grupo-familiares/data',
+                        'method' => 'obtenerGrupos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'dataAmigos' => [
                         'permisos' => [],
                         'icon' => 'bx bx-search-alt-2',
                         'parametros' => [],
                         'text' => 'Obtener Amigos',
-                        'route' => '/grupo-familiares/data',
+                        'route' => '/grupo-familiares/data-amigos',
                         'method' => 'obtenerAmigos',
                         'action' => 'get',
                         'subRutas' => []
@@ -454,6 +465,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'obtenerIntegrantesGrupo' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/grupo-familiares/obtener-integrantes',
+                        'method' => 'obtenerIntegrantesGrupo',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'guardarGrupoFamiliar' => [
                         'permisos' => [],
                         'parametros' => [],
@@ -463,6 +485,61 @@ if (!function_exists("routas")) {
                         'method' => 'guardar',
                         'action' => 'post',
                         'subRutas' => []
+                    ],
+
+                    'editarGrupoFamiliar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Grupo Familiar',
+                        'route' => '/grupo-familiares/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarGrupoFamiliar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/grupo-familiares/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'eliminarGrupoFamiliar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Eliminar Grupo Familiar',
+                        'route' => '/grupo-familiares/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'asignarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Asignar Amigos',
+                        'route' => '/grupo-familiares/asignar-amigos', //{id:\d+}/{username} {id}
+                        'method' => 'asignarAmigos',
+                        'action' => 'post',
+                        'subRutas' => [],
+                    ],
+
+                    'eliminarAmigo' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Asignar Amigos',
+                        'route' => '/grupo-familiares/eliminar-amigo/{id}/{grupo_id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminarAmigo',
+                        'action' => 'get',
+                        'subRutas' => [],
                     ],
                 ]
             ],
