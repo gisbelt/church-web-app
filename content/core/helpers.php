@@ -493,7 +493,7 @@ if (!function_exists("routas")) {
                         'icon' => 'bx bx-pencil',
                         'text' => 'Editar Grupo Familiar',
                         'route' => '/grupo-familiares/editar/{id}', //{id:\d+}/{username} {id}
-                        'method' => 'editarGrupo',
+                        'method' => 'editar',
                         'action' => 'get',
                         'subRutas' => [],
                     ],
@@ -504,7 +504,7 @@ if (!function_exists("routas")) {
                         'icon' => 'bx bx-save',
                         'text' => 'index',
                         'route' => '/grupo-familiares/actualizar',
-                        'method' => 'actualizarGrupo',
+                        'method' => 'actualizar',
                         'action' => 'post',
                         'subRutas' => []
                     ],
@@ -515,7 +515,29 @@ if (!function_exists("routas")) {
                         'icon' => 'bx bx-pencil',
                         'text' => 'Eliminar Grupo Familiar',
                         'route' => '/grupo-familiares/eliminar/{id}', //{id:\d+}/{username} {id}
-                        'method' => 'eliminarGrupo',
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'asignarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Asignar Amigos',
+                        'route' => '/grupo-familiares/asignar-amigos', //{id:\d+}/{username} {id}
+                        'method' => 'asignarAmigos',
+                        'action' => 'post',
+                        'subRutas' => [],
+                    ],
+
+                    'eliminarAmigo' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Asignar Amigos',
+                        'route' => '/grupo-familiares/eliminar-amigo/{id}/{grupo_id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminarAmigo',
                         'action' => 'get',
                         'subRutas' => [],
                     ],

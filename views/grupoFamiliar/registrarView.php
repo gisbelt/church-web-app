@@ -6,7 +6,7 @@ $this->title = 'Registrar Grupo Familiar'
 <!-- Menú -->
 <div class="container-fluid">
     <div class="row center">
-        <div class="col-md-6">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
             <div class="card mb-4">
                 <div class="card-header mb-4">
                     <div>
@@ -50,9 +50,10 @@ $this->title = 'Registrar Grupo Familiar'
                         </div>
 
                         <div class="form-group">
+                            <p class="text-first-color">Agregar Amigo: </p>
                             <div class="mb-4 input-group">
                                 <span class="input-group-btn">
-                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaAmigos">Ver lista</i></button>
+                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaAmigos">Ver lista de amigos</i></button>
                                 </span>
                                 <input type="search" name="nombreAmigo" id="amigo" class="form-control" placeholder="Buscar Amigo..." value="">
                                 <span class="input-group-btn">

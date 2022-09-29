@@ -49,11 +49,7 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$request->getBody()]);
         $amigos = grupoFamiliarModel::obtenerAmigo();
-
         if($amigos){
             $grupoFamiliarCollection = new grupoFamiliarCollection();
             $amigosFormat = $grupoFamiliarCollection->formatAmigosLista($amigos);
@@ -151,16 +147,86 @@ class grupoFamiliarController extends Controller
         $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
     }
 
-    // Eliminar Grupo 
-    public function eliminarGrupo(Request $request)
+    // Editar View 
+    public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+         $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        
+        $id = $request->getRouteParams();
+        $grupo = grupoFamiliarModel::id_grupo($id['id']);
+        $lider = grupoFamiliarModel::lider();
+        $zonas = grupoFamiliarModel::zonas();
+        $logger->debug(__METHOD__, ['respuesta' => $grupos]);
+        return $this->render('grupoFamiliar/editarView', [
+            'zonas' => $zonas,
+            'lideres' => $lider,
+            'grupo' => $grupo['grupo'],
+            'nombre' => $grupo['nombre'],
+            'direccion' => $grupo['direccion'],
+            'lider' => $grupo['lider'],
+            'lider_id' => $grupo['lider_id'],
+            'zona' => $grupo['zona'],
+            'zona_id' => $grupo['zona_id'],
+        ]);
+    }
+
+    // Actualizar grupo
+    public function actualizar(Request $request)
+    {
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        $grupo = new grupoFamiliarModel();
+        $grupo->loadData($request->getBody());
+        if ($grupo->validate()) {
+            $grupo_id = $request->getBody()['grupo_id'];
+            $nombre = $request->getBody()['nombre'];
+            $direccion = $request->getBody()['direccion'];
+            $lider = $request->getBody()['lider'];
+            $zona = $request->getBody()['zona'];
+            $fecha_actualizado = Carbon::now();
+            $grupo = grupoFamiliarModel::actualizar($nombre, $direccion, $lider, $zona, $fecha_actualizado, $grupo_id);
+            if ($grupo) {
+                $data = [
+                    'title' => 'Datos actualizados',
+                    'messages' => 'El Grupo Familiar se ha actualizado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'El Grupo Familiar no se ha actualizado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        if (count($grupo->errors) > 0) {
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $grupo->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
+    }
+
+    // Eliminar Grupo 
+    public function eliminar(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $grupo_id = $request->getRouteParam('id');
         if(!is_null($grupo_id)){
-            $grupos = grupoFamiliarModel::eliminarGrupo($grupo_id);
+            $grupos = grupoFamiliarModel::eliminar($grupo_id);
             if($grupos){
                 $data = [
                     'title' => 'Dato eliminado',
@@ -179,6 +245,67 @@ class grupoFamiliarController extends Controller
         $data = [
             'title' => 'Error',
             'messages' => 'Algo salio mal intente mas tardes',
+            'code' => 422
+        ];
+        return json_encode($data, 422);
+    }
+
+    //Asignar Amigo
+    public static function asignarAmigos(Request $request){
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $gf = new grupoFamiliarModel();
+        $gf->loadData($request->getBody());
+        $grupo_id = $request->getBody()['grupo_id'];
+        $amigo_id = $request->getBody()['amigo_id'];
+        $gf = grupoFamiliarModel::asignarAmigos($grupo_id,$amigo_id);
+        if ($gf) {
+            $data = [
+                'title' => 'Datos registrados',
+                'messages' => 'Se agregó el amigo',
+                'code' => 200
+            ];
+        } else {
+            $data = [
+                'title' => 'Error',
+                'messages' => 'No se pudo agregar el amigo',
+                'code' => 422
+            ];
+        }
+        return json_encode($data);     
+    }
+
+    // Eliminar Amigo 
+    public function eliminarAmigo(Request $request)
+    {
+        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $amigo_id = $request->getRouteParam('id');
+        $grupo_id = $request->getRouteParam('grupo_id');
+        if(!is_null($amigo_id)){
+            $amigos = grupoFamiliarModel::eliminarAmigo($amigo_id,$grupo_id);
+            if($amigos){
+                $data = [
+                    'title' => 'Dato eliminado',
+                    'messages' => 'El amigo se ha eliminado',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'El amigo no se ha eliminado',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }
+        $data = [
+            'title' => 'Error',
+            'messages' => 'Algo salio mal intente mas tarde',
             'code' => 422
         ];
         return json_encode($data, 422);
