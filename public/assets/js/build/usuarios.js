@@ -110,10 +110,7 @@ const listaUsuarios = () =>{
 const eliminarUsuario = () =>{
     $(document).on('click', '#eliminar-usuario', function (e) {
         e.preventDefault();
-        //route = `${$table.data('route')}?currency=${currency}&provider=${provider}`;
-        //let id = $(this).data('id');
         let route = $(this).data('route');
-        //let tr = $(this).parents("tr");
         Swal.fire({
             title: '¿Estás seguro?',
             text: "No podrás revertir esto.",
