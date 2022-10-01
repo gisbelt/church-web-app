@@ -218,9 +218,6 @@ class grupoFamiliarModel extends Model
             'zona' => [self::RULE_REQUIRED],
         ];
     }
-
-
-
 }
 
 ?>

@@ -79,7 +79,7 @@ class usuariosController extends Controller
         //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
         usuarios::validarLogin();
         $cargos = cargos::obtener_cargos();
-        $miembros = miembrosModel::obtener_miembros();
+        $miembros = miembrosModel::obtener_miembros_usuarios();
         return $this->render('/acceso/usuarios/consultarView', [
             'cargos' => $cargos,
             'miembros' => $miembros
