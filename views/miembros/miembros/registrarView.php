@@ -17,7 +17,7 @@ $this->title = 'Registrar Miembros'
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarMiembros">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrar-miembros" action="/miembros/guardar">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
@@ -165,7 +165,7 @@ $this->title = 'Registrar Miembros'
                     </div>
                     <br>
                     <div class="btn-group modal-footer" role="group" aria-label="">
-                        <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+                        <button type="button" name="agregar-miembros" id="agregar-miembros" class="btn btn-success">Agregar</button>
                         <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                     </div>
                     </form>

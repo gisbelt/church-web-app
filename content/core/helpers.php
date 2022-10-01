@@ -155,6 +155,17 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+
+                    'guardarMiembros' => [
+                        'permisos' => permisos::$permiso,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar miembros',
+                        'route' => '/miembros/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 
