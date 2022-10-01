@@ -76,7 +76,6 @@ class usuariosController extends Controller
     // Mostrar vista lista usuario
     public function index()
     {
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/usuarios/consultarView.php')), 200);
         usuarios::validarLogin();
         $cargos = cargos::obtener_cargos();
         $miembros = miembrosModel::obtener_miembros_usuarios();

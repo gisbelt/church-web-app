@@ -23,24 +23,24 @@ $this->title = 'Registrar Miembros'
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" " autofocus>
+                                        <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" " autofocus autocomplete="off">
                                         <label for="cedula" class="form-label fw-bold">Cedula:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">
+                                        <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" " autocomplete="off">
                                         <label for="nombre" class="form-label fw-bold">Nombre:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="apellido" class="form-control form-input mb-4" id="apellido" value="" placeholder=" ">
+                                        <input type="text" required name="apellido" class="form-control form-input mb-4" id="apellido" value="" placeholder=" " autocomplete="off">
                                         <label for="apellido" class="form-label fw-bold">Apellido:*</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group input-daterange" id="datepicker">
-                                            <input type="text" class="form-control form-input mb-4" id="fecha_nacimiento" value="dd/mm/aaaa" placeholder=" ">
+                                            <input type="text" class="form-control form-input mb-4" id="fecha_nacimiento" value="dd/mm/aaaa" placeholder=" " autocomplete="off">
                                             <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento:*</label>
                                             <span class="input-group-append">
                                                 <span class="input-group-text bg-transparent border-0">
@@ -51,12 +51,12 @@ $this->title = 'Registrar Miembros'
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="telefono" class="form-control form-input mb-4" id="telefono" value="" placeholder=" ">
+                                        <input type="text" required name="telefono" class="form-control form-input mb-4" id="telefono" value="" placeholder=" " autocomplete="off">
                                         <label for="telefono" class="form-label fw-bold">Teléfono:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="disponibilidad" class="form-control form-input mb-4" id="disponibilidad" value="" placeholder=" ">
+                                        <input type="text" required name="disponibilidad" class="form-control form-input mb-4" id="disponibilidad" value="" placeholder=" " autocomplete="off">
                                         <label for="disponibilidad" class="form-label fw-bold">Disponibilidad:*</label>
                                     </div>
                                 </div>
@@ -64,12 +64,12 @@ $this->title = 'Registrar Miembros'
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" required name="direccion" class="form-control form-input mb-4" id="direccion" value="" placeholder=" ">
+                                        <input type="text" required name="direccion" class="form-control form-input mb-4" id="direccion" value="" placeholder=" " autocomplete="off">
                                         <label for="direccion" class="form-label fw-bold">Dirección:*</label>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" required name="grado_instruccion" class="form-control form-input mb-4" id="grado_instruccion" value="" placeholder=" ">
+                                        <input type="text" required name="grado_instruccion" class="form-control form-input mb-4" id="grado_instruccion" value="" placeholder=" " autocomplete="off">
                                         <label for="grado_instruccion" class="form-label fw-bold">Grado de Instrucción:</label>
                                     </div>
 
@@ -123,7 +123,7 @@ $this->title = 'Registrar Miembros'
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fecha_paso_fe" value="dd/mm/aaaa" placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fecha_paso_fe" value="dd/mm/aaaa" placeholder=" " autocomplete="off">
                                     <label for="fecha_paso_fe" class="form-label fw-bold">Fecha de paso de Fe:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
@@ -134,7 +134,7 @@ $this->title = 'Registrar Miembros'
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fecha_bautismo" value="dd/mm/aaaa" placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fecha_bautismo" value="dd/mm/aaaa" placeholder=" " autocomplete="off">
                                     <label for="fecha_bautismo" class="form-label fw-bold">Fecha de Bautismo:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">

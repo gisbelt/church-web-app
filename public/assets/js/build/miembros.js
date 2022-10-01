@@ -7,7 +7,6 @@ const registrarMiembros = () => {
     let $button = $('#agregar-miembros');
     $button.click(function (e) {
         e.preventDefault();
-        console.log('click...');
         let $form = $('#form-registrar-miembros');
         $('#agregar-miembros').disabled = true;
         $.ajax({

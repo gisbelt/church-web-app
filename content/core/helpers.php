@@ -157,7 +157,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'guardarMiembros' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar miembros',

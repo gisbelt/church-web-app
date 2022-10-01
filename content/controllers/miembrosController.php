@@ -2,12 +2,10 @@
 
 namespace content\controllers;
 
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
 use content\core\Controller;
+use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\enums\permisos;
 use content\models\cargosModel;
 use content\models\membresiasModel;
 use content\models\usuariosModel as usuarios;
@@ -27,15 +25,19 @@ class miembrosController extends Controller
 
     public function index()
     {
-        /*$data['titulo'] = 'Miembros';
-        include_once("view/miembros/miembros/consultarView.php");*/
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         usuarios::validarLogin();
         return $this->render('miembros/miembros/consultarView');
     }
 
     public function registrar()
     {
-        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
         $profesiones = profesionModel::obtener_profesiones();
         return $this->render('miembros/miembros/consultarView', [
             'profesiones' => $profesiones
@@ -44,7 +46,10 @@ class miembrosController extends Controller
 
     public function create()
     {
-        $user = usuarios::validarLogin();
+        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
         $profesiones = profesionModel::obtener_profesiones();
         $membresias = membresiasModel::obtener_membresias();
         $cargos = cargosModel::obtener_cargos();
@@ -54,6 +59,11 @@ class miembrosController extends Controller
             'cargos' => $cargos
         ]);
     }
-}
 
-?>
+    public function guardar(Request $request)
+    {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, ['llegando']);
+    }
+}
