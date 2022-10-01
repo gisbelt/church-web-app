@@ -41,6 +41,20 @@ class miembrosModel extends Model
         $sql = $conexionBD->prepare("SELECT miembros.id AS miembro, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo
 	                                            FROM miembros
 		                                            INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
+		                                                WHERE miembros.id IN ( SELECT usuarios.miembro_id FROM usuarios)
+                                                            and miembros.status = ?");
+        $sql->execute(array(self::ACTIVE));
+        $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
+    }
+
+    // Obtener usuarios miembros
+    public static function obtener_miembros_no_usuarios()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.id AS miembro, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo
+	                                            FROM miembros
+		                                            INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
 		                                                WHERE miembros.id NOT IN ( SELECT usuarios.miembro_id FROM usuarios)
                                                             and miembros.status = ?");
         $sql->execute(array(self::ACTIVE));

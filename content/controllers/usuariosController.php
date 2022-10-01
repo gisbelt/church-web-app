@@ -90,7 +90,7 @@ class usuariosController extends Controller
     public function create()
     {
         usuarios::validarLogin();
-        $miembros = miembros::obtener_miembros();
+        $miembros = miembrosModel::obtener_miembros_no_usuarios();
         $roles = rolesModel::obtener_roles();
         return $this->render('/acceso/usuarios/registrarView', [
             'miembros' => $miembros,
