@@ -15,6 +15,7 @@ const registrarMiembros = () => {
             data: $form.serialize(),
             dataType: 'json',
         }).done(function (response) {
+            console.log(response)
             if (response.code == 422) {
                 let html = '<ul>';
                 $.each(response.messages, function (index, value) {

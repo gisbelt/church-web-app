@@ -4,6 +4,8 @@ namespace content\models;
 
 use content\config\conection\database as BD;
 use content\core\Model;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use PDO as pdo;
 
 /**
@@ -62,12 +64,18 @@ class miembrosModel extends Model
         return $miembros;
     }
 
+    //Crear miemrbo
+    public static function crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO miembros (fecha_paso_de_fe, fecha_bautismo, membresia_id, status, cargo_id, fecha_creado) 
+        VALUES (?,?,?,?,?,?)");
+        $sql->execute(array($fechaPasoFe, $fechaBautismo, $membresia, self::ACTIVE, $cargo, $fecha ));
+        return $conexionBD->lastInsertId();
+    }
+
     public function rules(): array
     {
-        return [
-            'datalles' => [self::RULE_REQUIRED],
-            'cantidad' => [self::RULE_REQUIRED]
-            //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
-        ];
+        return [ ];
     }
 }

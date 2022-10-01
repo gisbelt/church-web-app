@@ -56,10 +56,6 @@ class usuariosModel extends Model //BD
     //Crear usuario
     public static function crear($username, $email, $password, $rol, $miembro, $fecha)
     {
-
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$username, $email, $password, $rol, $miembro, $fecha]);
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id, status, role_id, fecha_creado) 
         VALUES (?,?,?,?,?,?,?)");
