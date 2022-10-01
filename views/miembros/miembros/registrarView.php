@@ -76,9 +76,10 @@ $this->title = 'Registrar Miembros'
                                     <div class="form-group mb-3">
                                         <p class="">Profesión:* </p>
                                         <select class="form-select" name="profesion" id="profesion">
-                                            <option>New Delhi</option>
-                                            <option>Istanbul</option>
-                                            <option>Jakarta</option>
+                                            <option value="">selecione profesion</option>
+                                            <?php foreach ($profesiones as $profesion) {
+                                                echo '<option value="' . $profesion[id] . '">' . $profesion[nombre] . '</option>';
+                                            } ?>
                                         </select>   
                                     </div>
                                 </div>
@@ -145,17 +146,19 @@ $this->title = 'Registrar Miembros'
                             <div class="form-group mb-3">
                                 <p class="">Membresía:* </p>
                                 <select class="form-select" name="membresia" id="membresia">
-                                    <option>New Delhi</option>
-                                    <option>Istanbul</option>
-                                    <option>Jakarta</option>
+                                    <option value="">selecione membresias</option>
+                                    <?php foreach ($membresias as $membresia) {
+                                        echo '<option value="' . $membresia[id] . '">' . $membresia[nombre] . '</option>';
+                                    } ?>
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <p class="">Cargo:* </p>
                                 <select class="form-select" name="cargo" id="cargo">
-                                    <option>New Delhi</option>
-                                    <option>Istanbul</option>
-                                    <option>Jakarta</option>
+                                    <option value="">selecione cargo</option>
+                                    <?php foreach ($cargos as $cargo) {
+                                        echo '<option value="' . $cargo[id] . '">' . $cargo[nombre] . '</option>';
+                                    } ?>
                                 </select>
                             </div>
                         </div>

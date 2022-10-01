@@ -630,7 +630,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'actualizarUsuarios' => [
-                        'permisos' => permisos::$usuarios_crear,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Actualizar usuarios',

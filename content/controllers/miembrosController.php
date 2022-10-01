@@ -8,7 +8,10 @@ use content\component\footerElement as footerElement;
 
 use content\core\Controller;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\models\cargosModel;
+use content\models\membresiasModel;
 use content\models\usuariosModel as usuarios;
+use content\models\profesionModel;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -33,17 +36,23 @@ class miembrosController extends Controller
     public function registrar()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Miembros';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/miembros/consultarView.php')), 200);
-        return $this->render('miembros/miembros/consultarView');
+        $profesiones = profesionModel::obtener_profesiones();
+        return $this->render('miembros/miembros/consultarView', [
+            'profesiones' => $profesiones
+        ]);
     }
 
     public function create()
     {
         $user = usuarios::validarLogin();
-        $data['titulo'] = 'Registrar Miembros';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/miembros/miembros/registrarView.php')), 200);
-        return $this->render('miembros/miembros/registrarView');
+        $profesiones = profesionModel::obtener_profesiones();
+        $membresias = membresiasModel::obtener_membresias();
+        $cargos = cargosModel::obtener_cargos();
+        return $this->render('miembros/miembros/registrarView', [
+            'profesiones' => $profesiones,
+            'membresias' => $membresias,
+            'cargos' => $cargos
+        ]);
     }
 }
 
