@@ -19,10 +19,9 @@ $this->title = 'Actividades'
                     <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/store">
                     <div class="form-group">
                         <div class="mb-4 input-group">
-                            <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Miembro a realizar la actividad" autofocus>
-                            <span class="input-group-text">
-                                <i class="bi bi-search text-first-color"></i>
-                            </span>
+                            <select class="form-control" name="miembro_id" id="miembro_id">
+                                <option value="" selected disabled>Selecciona un miembro</option>
+                            </select>
                         </div>
                         <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                     </div>                    

@@ -11,6 +11,7 @@ use content\core\Request;
 use content\enums\permisos;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
+use content\models\miembrosModel as miembros;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -63,11 +64,13 @@ class actividadController extends Controller
                 $fechaHora = $request->getBody()['fecha'];
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
+                $miembro = $request->getBody()['miembro_id'];
                 $fecha = Carbon::now();
                 $actividades = actividades::registrarActividades($nombre, $description, $status, $tipo, $fecha);
                 $horarios = actividades::horariosCreate($hora, $fechaHora, $fecha);
                 $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'], $horarios['id'], $fecha);
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
+                actividades::miembroActividad($miembro,$actividades['id'],$status,$fecha);
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
@@ -128,6 +131,7 @@ class actividadController extends Controller
                 $horarios = actividades::horariosCreate($hora,$fechaHora,$fecha);
                 $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'],$horarios['id'],$fecha);
                 actividades::observacionActividad($actividades['id'],$observacion,$fecha);
+                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
@@ -205,6 +209,26 @@ class actividadController extends Controller
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                 $logger->debug(__METHOD__, [$tipo]);
+                return json_encode([]);
+            }
+
+        }catch (\Exception $exception){
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return  json_encode([]);
+        }
+    }
+    public function obtenerMiembros()
+    {
+        try {
+            $miembros = miembros::miemrbosSelect();
+            if(!is_null($miembros)){
+                return  json_encode($miembros);
+            }else{
+                $logger = new Logger("web");
+                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                $logger->debug(__METHOD__, [$miembros]);
                 return json_encode([]);
             }
 

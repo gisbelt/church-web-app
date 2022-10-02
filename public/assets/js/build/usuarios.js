@@ -85,6 +85,13 @@ const listaUsuarios = () =>{
             {"data": "status"},
             {"data": "actions", "className": "center"},
         ],
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
         "initComplete": function () {
             api = this.api();
             api.buttons().container()

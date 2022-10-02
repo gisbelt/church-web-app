@@ -155,7 +155,7 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
-                ]
+                ],
             ],
 
             'amigos' => [
@@ -364,6 +364,16 @@ if (!function_exists("routas")) {
                         'text' => 'tipo de actividad',
                         'route' => '/actividad/tipos',
                         'method' => 'obtenerTiposActividad',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                    'selectMiembros' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'select miembros',
+                        'route' => '/miembros/select',
+                        'method' => 'obtenerMiembros',
                         'action' => 'get',
                         'subRutas' => []
                     ],
