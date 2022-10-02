@@ -6,7 +6,7 @@ $this->title = 'Registrar Miembros'
 <div class="container-fluid">
     <div class="row m-0">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header mb-4">
                     <div>
                         <h5 class="p-0 absolute text-center">Datos de los miembros</h5>
@@ -181,7 +181,7 @@ $this->title = 'Registrar Miembros'
 
 <script>
     function limpiar() {
-        $("#form-registrarMiembros")[0].reset();
+        $("#form-registrar-miembros")[0].reset();
         $("#cedula").focus();
     }
 </script>
