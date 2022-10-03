@@ -1,11 +1,23 @@
 $(document).ready(function(){
 
     // Cuenta / perfil 
-    $('.editar_perfil').click(function(e){
+    const myNodePencil = document.getElementsByClassName('pencil');
+    const div = document.getElementsByClassName("tools");    
+    if(myNodePencil){        
+        for (i = 0; i < myNodePencil.length; i++) {            
+            for (i = 0; i < div.length; i++) {
+                div[i].id = ("show_"+i); //add id
+                div[i].classList.add('hidden'); //add class hidden                
+                myNodePencil[i].setAttribute("data-number", +i); //add data-number
+            }
+        }
+    }       
+    $('.pencil').click(function(e){
         var id = this.dataset['number'];
-        $(".show_"+id).slideToggle(250);
-        $(".show_"+id).removeClass("hidden");
+        $("#show_"+id).slideToggle(250);
+        $("#show_"+id).removeClass("hidden");
     });
+
     // Not finish yet 
     $('.avatar').hover(function(){ 
         // $('#avatar-pencil').addClass('avatar-pencil');

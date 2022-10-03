@@ -876,6 +876,28 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'obtenerUsuario' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/obtener-usuario',
+                        'method' => 'obtener_usuario',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'actualizarUsername' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-username',
+                        'method' => 'actualizar_username',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'preferencias' => [
                         'permisos' => permisos::$permiso,
                         'parametros' => [],

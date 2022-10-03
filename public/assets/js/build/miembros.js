@@ -17,9 +17,9 @@ const registrarMiembros = () => {
         }).done(function (response) {
             console.log(response)
             if (response.code == 422) {
-                let html = '<ul>';
+                let html = '<ul class="list-group list-group-flush">';
                 $.each(response.messages, function (index, value) {
-                    html += '<li>' + value + '</li>';
+                    html += '<li class="list-group-item">' + value + '</li>';
                 });
                 html += '</ul>';
 
