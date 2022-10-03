@@ -1,6 +1,31 @@
 $(document).ready(function () {
+    obtener_usuario();
     actualizarUsername();
 });
+
+const obtener_usuario = () =>{
+    $.ajax({
+        url: "/cuenta/obtener-usuario",
+        type: "GET",
+        dateType: "json",
+    }).done(function (response) {
+        let data = JSON.parse(response);
+        $('#username').append(data.username);
+        $('#nombre').append(data.nombre_completo);
+        $('#telefono').append(data.telefono);
+        $('#direccion').append(data.direccion);
+
+        $('#username-input').val(data.username);
+        $('#nombre-input').val(data.nombre_completo);
+        $('#telefono-input').val(data.telefono);
+        $('#direccion-input').val(data.direccion);
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({
+            title: 'Error',
+            icon: 'error'
+        })
+    })
+}
 
 const actualizarUsername = function () {
     obtenerusername = function(response){

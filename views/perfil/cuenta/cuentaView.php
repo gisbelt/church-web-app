@@ -27,15 +27,15 @@ $this->title = 'Mi Cuenta';
                 <h3 class="mb-2 text-first-color">Detalles</h3>
 
                 <div class="form-group">
-                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-nombre">
+                    <form method="POST" enctype="multipart/form-data" id="form-nombre" action="/cuenta/actualizar-nombre">
                     <p  class="fw-bold mb-1">Nombre: </p>
                     <p>
-                        <span id="nombre"><?php echo $nombre_completo ?></span>
+                        <span id="nombre"></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">                        
                         <div class="input-group mb-3 w-50">
-                            <input type="text" class="form-control mb-2 w-50" value="<?php echo $nombre_completo?>" id="nombre" name="nombre" placeholder="Nombre:">
+                            <input type="text" class="form-control mb-2 w-50" value="" id="nombre-input" name="nombre" placeholder="Nombre:">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-nombre">Cambiar</a>
                             </span>
@@ -48,12 +48,12 @@ $this->title = 'Mi Cuenta';
                     <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-username">
                     <p  class="fw-bold mb-1">Nombre de usuario: </p>
                     <p>
-                        <span id="username"><?php echo $_SESSION['username'] ?></span>
+                        <span id="username"></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
                         <div class="input-group mb-3 w-50">
-                            <input type="text" class="form-control mb-2 w-50" value="<?php echo $_SESSION['username'] ?>" id="username" name="username" placeholder="Nombre de usuario:">
+                            <input type="text" class="form-control mb-2 w-50" value="" id="username-input" name="username" placeholder="Nombre de usuario:">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-username">Cambiar</a>
                             </span>
@@ -63,15 +63,15 @@ $this->title = 'Mi Cuenta';
                 </div>
 
                 <div class="form-group">  
-                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-telefono">                      
+                    <form method="POST" enctype="multipart/form-data" id="form-telefono" action="/cuenta/actualizar-telefono">                      
                     <p class="fw-bold mb-1">Teléfono: </p>
                     <p>
-                        <span id="telefono"><?php echo $telefono?></span>
+                        <span id="telefono"></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
                         <div class="input-group mb-3 w-50">
-                            <input type="text" required class="form-control mb-2 w-auto" value="<?php echo $telefono?>" id="telefono" name="telefono" placeholder="Teléfono">
+                            <input type="text" required class="form-control mb-2 w-auto" value="" id="telefono-input" name="telefono" placeholder="Teléfono">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-telefono">Cambiar</a>
                             </span>
@@ -81,15 +81,15 @@ $this->title = 'Mi Cuenta';
                 </div>              
 
                 <div class="form-group">
-                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-direccion"> 
+                    <form method="POST" enctype="multipart/form-data" id="form-direccion" action="/cuenta/actualizar-direccion"> 
                     <p class="fw-bold mb-1">Dirección:</p>
                     <p>
-                        <span id="direccion"><?php echo $direccion?></span>
+                        <span id="direccion"></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
                         <div class="input-group mb-3">
-                            <textarea class="form-control mb-2 " name="direccion" id="direccion" rows="1"><?php echo $direccion?></textarea>
+                            <textarea class="form-control mb-2 " name="direccion" id="direccion-input" rows="1"></textarea>
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-direccion">Cambiar</a>
                             </span>

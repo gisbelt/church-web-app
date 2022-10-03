@@ -28,21 +28,35 @@ class perfilController extends Controller
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }        
-        $email = $_SESSION['user_email'];
-        $usuario = cuentaModel::obtener_usuario_correo($email);
-        return $this->render('/perfil/cuenta/cuentaView', [
-            'nombre_completo' => $usuario['nombre_completo'],
-            'telefono' => $usuario['telefono'],
-            'direccion' => $usuario['direccion'],
-        ]);
+        return $this->render('/perfil/cuenta/cuentaView');
     }
     
     public function preferencias()
     {
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Preferencias';
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/perfil/preferencias/preferenciasView.php')), 200);
         return $this->render('/perfil/preferencias/preferenciasView');
+    }
+
+    public function obtener_usuario()
+    {     
+        try {
+            $email = $_SESSION['user_email'];
+            $usuario = cuentaModel::obtener_usuario_correo($email);
+            if(!is_null($usuario)){
+                return  json_encode($usuario);
+            }else{
+                $logger = new Logger("web");
+                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                $logger->debug(__METHOD__, [$usuario]);
+                return json_encode([]);
+            }
+        }catch (\Exception $exception){
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return  json_encode([]);
+        }
     }
 
     public function actualizar_username(Request $request)
@@ -50,8 +64,6 @@ class perfilController extends Controller
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         usuarios::validarLogin();
         $usuario = new cuentaModel();
         $usuario->loadData($request->getBody());   
@@ -59,7 +71,6 @@ class perfilController extends Controller
             $username = $request->getBody()['username'];
             $email = $_SESSION['user_email'];
             $usuario = cuentaModel::actualizar_username($username,$email);            
-            $logger->debug(__METHOD__, [$usuario]);
             if ($usuario) {
                 $data = [
                     'title' => 'Datos actualizados',

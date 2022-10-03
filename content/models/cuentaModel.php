@@ -27,12 +27,12 @@ class cuentaModel extends Model //BD
     public static function obtener_usuario_correo($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT perfiles.telefono, perfiles.direccion, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo FROM usuarios 
+        $sql = $conexionBD->prepare("SELECT usuarios.username, perfiles.telefono, perfiles.direccion, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo FROM usuarios 
         INNER JOIN miembros ON miembros.id = usuarios.miembro_id
         INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
         WHERE usuarios.email = ?");
         $sql->execute(array($email));
-        $usuario = $sql->fetch(PDO::FETCH_LAZY);
+        $usuario = $sql->fetch(PDO::FETCH_ASSOC);
         return $usuario;
     }
 
