@@ -45,7 +45,7 @@ class donacionesController extends Controller
             if ($donacion) {
                 $data = [
                     'title' => 'Datos actualizado',
-                    'messages' => 'Donacion ha actualizada',
+                    'messages' => 'Donacion actualizada',
                     'code' => 200
                 ];
             } else {

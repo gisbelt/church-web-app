@@ -339,7 +339,7 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
                     'editarActividades' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Actualizar actividades',
@@ -352,7 +352,7 @@ if (!function_exists("routas")) {
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-save',
-                        'text' => 'Actualizar actividades',
+                        'text' => '',
                         'route' => '/actividades/update',
                         'method' => 'update',
                         'action' => 'post',
