@@ -2,14 +2,14 @@
 
 /**  @var $this \content\core\View */
 
-$this->title = 'Iniciar sesion'
+$this->title = 'Iniciar Sesión'
 ?>
 <div class="container">
 <div class="row rowLogin center">
     <div class="col-md-4">
         <div class="card">
             <div class="card-header mb-2">
-                Iniciar session
+                Iniciar Sesión
             </div>
             <div class="card-body">
                 <!-- Creamos Formulario: !crt-form-login -->
