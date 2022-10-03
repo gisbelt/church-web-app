@@ -876,6 +876,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'actualizarUsername' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-username',
+                        'method' => 'actualizar_username',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'preferencias' => [
                         'permisos' => permisos::$permiso,
                         'parametros' => [],

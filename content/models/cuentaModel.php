@@ -36,13 +36,36 @@ class cuentaModel extends Model //BD
         return $usuario;
     }
 
+    // Actualizar username
+    public static function actualizar_username($username,$email)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios 
+        INNER JOIN miembros ON miembros.id = usuarios.miembro_id
+        INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
+        SET usuarios.username = ? 
+        WHERE usuarios.email = ?");
+        $usuario = $sql->execute(array($username,$email));
+        return $usuario;
+    }
+    public static function obtener_username($email)
+    {
+        $conexionBD=BD::crearInstancia();
+        $sql= $conexionBD->prepare("SELECT username FROM usuarios where email=?");
+        $sql->execute(array($email));
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        $result = $row["username"];
+        return $result;
+    }
+    
+
+
     /**
      * @return array[]
      */
     public function rules(): array
     {
         return [
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
         ];
     }

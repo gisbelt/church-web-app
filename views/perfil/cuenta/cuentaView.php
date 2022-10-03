@@ -4,18 +4,14 @@
 $this->title = 'Mi Cuenta';
 ?>
 <!-- Menú -->
-<div class="offset-md-3 col-md-6">
-    
-        <div class="card">
+<div class="container-fluid">
+<div class="row center">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6">    
+        <div class="card mb-4">
             <div class="card-header">
                 <p class="p-0 text-center fw-bold">Administra tu cuenta</p>
             </div>
-
             <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" id="form-cuenta" action="">
-                <!-- Mensaje de éxito  -->
-                <div class="alert alert-primary hidden" role="alert">
-                </div>
 
                 <div class="avatar mb-3" id="avatar">
                     <a id="avatar-link"><i class="bi bi-pencil" id="avatar-pencil"></i></a>
@@ -27,62 +23,85 @@ $this->title = 'Mi Cuenta';
                     <input type="text" disabled class="form-control mb-2 w-50" value="<?php echo $_SESSION['user_email'];?>" id="email" name="email" placeholder="Correo">
                 </div>               
 
-                <hr>
-                
+                <hr>                
                 <h3 class="mb-2 text-first-color">Detalles</h3>
 
                 <div class="form-group">
-                    <p  class="fw-bold mb-1">Nombre de usuario: </p>
+                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-nombre">
+                    <p  class="fw-bold mb-1">Nombre: </p>
                     <p>
-                        <?php echo $_SESSION['username'] ?>
+                        <span id="nombre"><?php echo $nombre_completo ?></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
-                    <div class="tools">
-                        <input type="text" class="form-control mb-2 w-50" value="<?php echo $_SESSION['username'] ?>" id="username" name="username" placeholder="Nombre de usuario:">
-                        <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
+                    <div class="tools">                        
+                        <div class="input-group mb-3 w-50">
+                            <input type="text" class="form-control mb-2 w-50" value="<?php echo $nombre_completo?>" id="nombre" name="nombre" placeholder="Nombre:">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-nombre">Cambiar</a>
+                            </span>
+                        </div>
                     </div>
+                    </form>
                 </div>
 
                 <div class="form-group">
-                    <p  class="fw-bold mb-1">Nombre: </p>
+                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-username">
+                    <p  class="fw-bold mb-1">Nombre de usuario: </p>
                     <p>
-                        <?php echo $nombre_completo ?>
+                        <span id="username"><?php echo $_SESSION['username'] ?></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <input type="text" class="form-control mb-2 w-50" value="<?php echo $nombre_completo?>" id="nombre" name="nombre" placeholder="Nombre:">
-                        <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
+                        <div class="input-group mb-3 w-50">
+                            <input type="text" class="form-control mb-2 w-50" value="<?php echo $_SESSION['username'] ?>" id="username" name="username" placeholder="Nombre de usuario:">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-username">Cambiar</a>
+                            </span>
+                        </div>                        
                     </div>
+                    </form>
                 </div>
 
-                <div class="form-group">                        
+                <div class="form-group">  
+                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-telefono">                      
                     <p class="fw-bold mb-1">Teléfono: </p>
                     <p>
-                    <?php echo $telefono?>
+                        <span id="telefono"><?php echo $telefono?></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <input type="text" required class="form-control mb-2 w-auto" value="<?php echo $telefono?>" id="telefono" name="telefono" placeholder="Teléfono">
-                        <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
+                        <div class="input-group mb-3 w-50">
+                            <input type="text" required class="form-control mb-2 w-auto" value="<?php echo $telefono?>" id="telefono" name="telefono" placeholder="Teléfono">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-telefono">Cambiar</a>
+                            </span>
+                        </div>    
                     </div>
+                    </form>
                 </div>              
 
                 <div class="form-group">
+                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-direccion"> 
                     <p class="fw-bold mb-1">Dirección:</p>
                     <p>
-                        <?php echo $direccion?>
+                        <span id="direccion"><?php echo $direccion?></span>
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <textarea class="form-control mb-2 " name="direccion" id="direccion" rows="2"><?php echo $direccion?></textarea>
-                        <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
+                        <div class="input-group mb-3">
+                            <textarea class="form-control mb-2 " name="direccion" id="direccion" rows="1"><?php echo $direccion?></textarea>
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-direccion">Cambiar</a>
+                            </span>
+                        </div> 
                     </div>
+                    </form>
                 </div>
-                </form>
+
             </div><!--card-body-->
 
             <div class="card-footer bg-light">
-                <form method="POST" enctype="multipart/form-data" action="">
+                <form method="POST" enctype="multipart/form-data" action="/cuenta/actualizar-contrasena">
                 <p class="p-0 text-center fw-bold">Seguridad</p>
                 <label for="password" class="fw-bold mb-1">Contraseña: </label>
                 <p>
@@ -111,20 +130,11 @@ $this->title = 'Mi Cuenta';
                 </div>
                 <br>
                 <div class="btn-group derecha mb-3" role="group" aria-label="">
-                    <button type="submit" name="guardar_cambios" value="Guardar cambios" class="btn btn-success" disabled>Guardar cambios</button>
+                    <button type="submit" name="guardar_cambios" value="Guardar cambios" class="btn btn-success">Guardar cambios</button>
                 </div>   
                 </form>             
             </div><!--card-footer-->
         </div><!--card-->    
-</div><!--col-->
-
-<script>
-    // function limpiar() {
-    //     $("#form-cuenta")[0].reset();
-    //     $("#username").focus();
-    // }
-
-    // $(document).ready(function () {
-    //     $("#username").focus();
-    // });
-</script>
+    </div><!--col-->
+</div><!--row-->
+</div><!--container-->
