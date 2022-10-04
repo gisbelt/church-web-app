@@ -74,7 +74,7 @@ class AutenticacionController extends Controller
                     return json_encode($data);
                 } else {
                     if (!$consultarUsuario || !password_verify($password, $consultarUsuario['password'])) {
-                        $usuarioModel->addError("datos", "El correo o contraseña son incorrectos");
+                        $usuarioModel->addError("datos", "El correo o contraseña incorrectos");
                     }
 
                     $data = [

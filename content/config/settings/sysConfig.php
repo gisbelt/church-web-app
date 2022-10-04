@@ -15,11 +15,11 @@ define("_CONTROLLER_", 'Controller.php');                                    /* 
 define("_DB_SERVER_", 'http://localhost/');                                /* nombre del servidor */
 
 define('_DB_MANAGER_', 'mysql');                                            /* manejador de base de datos */
-define("_DB_WEB_", 'bd_iglesia');                                            /* nombre de la base de datos */
+define("_DB_WEB_", 'iglesia_bd');                                            /* nombre de la base de datos */
 define('_DB_HOST_', 'localhost');                                            /* nombre del host */
 define("_DB_USER_", 'root');                                                /* nombre del usuario de la base de datos */
-define("_DB_PASS_", '');                                                    /* contraseña de la base de datos  */
-define("_DB_PORT_", '3306');                                                /* puerto de la base de datos  */
+define("_DB_PASS_", '123456');                                                    /* contraseña de la base de datos  */
+define("_DB_PORT_", '3307');                                                /* puerto de la base de datos  */
 
 class sysConfig
 {

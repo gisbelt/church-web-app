@@ -24,7 +24,7 @@ class miembrosModel extends Model
     public $fecha_creado;
     public $fecha_actualizado;
 
-    // Tipo donacion
+    // Obtener miembros
     public static function obtener_miembros()
     {
         $conexionBD = BD::crearInstancia();
@@ -35,6 +35,45 @@ class miembrosModel extends Model
         $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $miembros;
     }
+
+    // Obtener usuarios miembros
+    public static function obtener_miembros_usuarios()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.id AS miembro, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo
+	                                            FROM miembros
+		                                            INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
+		                                                WHERE miembros.id IN ( SELECT usuarios.miembro_id FROM usuarios)
+                                                            and miembros.status = ?");
+        $sql->execute(array(self::ACTIVE));
+        $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
+    }
+
+    // Obtener usuarios miembros
+    public static function obtener_miembros_no_usuarios()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.id AS miembro, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo
+	                                            FROM miembros
+		                                            INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
+		                                                WHERE miembros.id NOT IN ( SELECT usuarios.miembro_id FROM usuarios)
+                                                            and miembros.status = ?");
+        $sql->execute(array(self::ACTIVE));
+        $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
+    }
+
+    //Crear miemrbo
+    public static function crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO miembros (fecha_paso_de_fe, fecha_bautismo, membresia_id, status, cargo_id, fecha_creado) 
+        VALUES (?,?,?,?,?,?)");
+        $sql->execute(array($fechaPasoFe, $fechaBautismo, $membresia, self::ACTIVE, $cargo, $fecha ));
+        return $conexionBD->lastInsertId();
+    }
+
 public static function miemrbosSelect()
 {
     try{
@@ -53,10 +92,6 @@ public static function miemrbosSelect()
 }
     public function rules(): array
     {
-        return [
-            'datalles' => [self::RULE_REQUIRED],
-            'cantidad' => [self::RULE_REQUIRED]
-            //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
-        ];
+        return [ ];
     }
 }

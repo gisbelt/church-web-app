@@ -6,7 +6,7 @@ $this->title = 'Registrar Grupo Familiar'
 <!-- Menú -->
 <div class="container-fluid">
     <div class="row center">
-        <div class="col-md-6">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
             <div class="card mb-4">
                 <div class="card-header mb-4">
                     <div>
@@ -33,8 +33,8 @@ $this->title = 'Registrar Grupo Familiar'
                             <p class="">Lider:* </p>
                             <select class="form-select" id="lider" name="lider">
                                 <option value="">Selecione Lider</option>
-                                <?php foreach ($miembros as $miembro) {
-                                    echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
+                                <?php foreach ($lideres as $lider) {
+                                    echo '<option value="' . $lider[miembro] . '">' . $lider[nombre_completo] . '</option>';
                                 } ?>
                             </select>
                         </div>
@@ -50,9 +50,10 @@ $this->title = 'Registrar Grupo Familiar'
                         </div>
 
                         <div class="form-group">
+                            <p class="text-first-color">Agregar Amigo: </p>
                             <div class="mb-4 input-group">
                                 <span class="input-group-btn">
-                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaAmigos">Ver lista</i></button>
+                                    <button type="button" name="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaAmigos">Ver lista de amigos</i></button>
                                 </span>
                                 <input type="search" name="nombreAmigo" id="amigo" class="form-control" placeholder="Buscar Amigo..." value="">
                                 <span class="input-group-btn">
@@ -89,7 +90,7 @@ $this->title = 'Registrar Grupo Familiar'
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100" id="amigos-table" data-route="/grupo-familiares/data">
+                            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100" id="amigos-table" data-route="/grupo-familiares/data-amigos">
                                 <thead class="thead-primary">
                                 <tr>
                                     <th class="w-auto">Cédula</th>

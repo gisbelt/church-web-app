@@ -1,67 +1,4 @@
 $(document).ready(function(){
-    //Usuarios
-    // Buscar miembro
-    const buscarUsuario = () =>{       
-        $("#buscarMiembro").keyup(function () {
-            const valorBusqueda = this.value;
-            var v = $(this).val().length;
-            if (v > 0) {
-                obtener_registros(valorBusqueda);
-            } else {
-                $(".tabla_resultado").fadeOut(100);
-            }
-        });              
-        const obtener_registros = (miembros) => {
-            const buscarMiembro = document.getElementById('buscarMiembro').value;
-            $.ajax({
-                url: '/usuarios/buscar-usuario',
-                data:{
-                    'buscarMiembro':buscarMiembro
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: function(data){
-                    const lista = document.querySelector('#tabla_resultado_usuarios');
-                    const campoMiembro = document.getElementById('nombreMiembro'); 
-                    const buscarMiembro = document.getElementById('buscarMiembro');
-
-                    //Filtramos los resultados según el valor que ha insertado el usuario
-                    const datos = data.filter (results => {
-                       return [results]
-                    });                    
-                    
-                    // Recorremos con el map los resultados filtrados para crear cada elemento
-                    lista.innerHTML = datos
-                    .map((result, index) => {
-                        const isSelected = index === 1;
-                        return `
-                        <li 
-                        class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
-                        data-id='${result.id }'
-                        >${result.cedula} - <span>${result.nombre} ${result.apellido}</span></li>
-                        `                        
-                    })
-                    .join("");
-
-                    // Rellenar campo al hacer click en el elemento creado 
-                    $('.tabla_resultado').click(function (e) {                        
-                        const id = $(this).attr("data-id");
-                        const texto = $(this).children().text();
-                        campoMiembro.setAttribute('data-id', id);
-                        campoMiembro.id = id;
-                        campoMiembro.value = texto;
-                        campoMiembro.focus();
-                        buscarMiembro.value = '';
-                        $('.tabla_resultado').fadeOut(100);
-                    });
-                },
-                error: function(){} 
-            })
-        }        
-    }
-    buscarUsuario();
-    //Usuarios
-
     listaUsuarios();
     actualizarUsuario();
     registrarUsuario();
@@ -108,7 +45,7 @@ const listaUsuarios = () =>{
         let route = `${$table.data('route')}?cargo=${cargo}&status=${status}&miembro=${miembro}`;
         api.ajax.url(route).load();
         $table.on('draw.dt', function () {
-            $button.button('reset');
+
         });
     });
 }
@@ -117,10 +54,7 @@ const listaUsuarios = () =>{
 const eliminarUsuario = () =>{
     $(document).on('click', '#eliminar-usuario', function (e) {
         e.preventDefault();
-        //route = `${$table.data('route')}?currency=${currency}&provider=${provider}`;
-        //let id = $(this).data('id');
         let route = $(this).data('route');
-        //let tr = $(this).parents("tr");
         Swal.fire({
             title: '¿Estás seguro?',
             text: "No podrás revertir esto.",
@@ -221,9 +155,9 @@ const registrarUsuario = function (){
             dataType: 'json',
         }).done(function (response) {
             if (response.code == 422) {
-                let html = '<ul>';
+                let html = '<ul class="list-group list-group-flush">';
                 $.each(response.messages, function (index, value) {
-                    html += '<li>' + value + '</li>';
+                    html += '<li class="list-group-item">' + value + '</li>';
                 });
                 html += '</ul>';
 

@@ -121,7 +121,7 @@ const listaDonaciones = function () {
             'pdfHtml5'
         ],
         "initComplete": function () {
-            api = this.api();
+            let api = this.api();
             api.buttons().container()
                 .appendTo($('#table-buttons'));
             eliminarDonacion();
