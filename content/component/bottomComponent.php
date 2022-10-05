@@ -33,8 +33,8 @@ class bottomComponent
             <!--<script src="../assets/js/jszip.min.js"></script>
             Librerias para exportar PDF-->
             <script src="../../../assets/js/pdfmake.min.js"></script>
-            <!--<script src="../assets/js/vfs_fonts.js"></script>
-            Librerias para botones de exportación-->
+            <script src="../../../assets/js/vfs_fonts.js"></script>
+            <!--Librerias para botones de exportación-->
             <script src="../../../assets/js/buttons.html5.min.js"></script>
 
             <!-- auth -->
