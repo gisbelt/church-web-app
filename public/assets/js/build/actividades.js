@@ -6,7 +6,6 @@ $(document).ready(function () {
 // Lista Actividades
 const listaActividades = function () {
     let table = $("#actividad-table");
-    console.log(table.val())
     table.DataTable({
         "ajax": {
             "url": table.data("route"),
