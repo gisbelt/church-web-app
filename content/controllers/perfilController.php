@@ -59,6 +59,7 @@ class perfilController extends Controller
         }
     }
 
+    //username
     public function actualizar_username(Request $request)
     {
         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
@@ -69,8 +70,9 @@ class perfilController extends Controller
         $usuario->loadData($request->getBody());   
         if (!empty($request->getBody()['username'])) {    
             $username = $request->getBody()['username'];
+            $fecha = Carbon::now();
             $email = $_SESSION['user_email'];
-            $usuario = cuentaModel::actualizar_username($username,$email);            
+            $usuario = cuentaModel::actualizar_username($username,$fecha,$email);            
             if ($usuario) {
                 $data = [
                     'title' => 'Datos actualizados',
@@ -81,7 +83,7 @@ class perfilController extends Controller
             } else {
                 $data = [
                     'title' => 'Error',
-                    'messages' => 'El nombre de usuarui no se pudo actualizar',
+                    'messages' => 'El nombre de usuario no se pudo actualizar',
                     'code' => 422
                 ];
             }
@@ -101,6 +103,154 @@ class perfilController extends Controller
         }
     }
 
+    //nombre
+    public function actualizar_nombre(Request $request)
+    {
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        $usuario = new cuentaModel();
+        $usuario->loadData($request->getBody());   
+        if (!empty($request->getBody()['nombre']) && !empty($request->getBody()['apellido'])) {    
+            $nombre = $request->getBody()['nombre'];
+            $apellido = $request->getBody()['apellido'];
+            $fecha = Carbon::now();
+            $email = $_SESSION['user_email'];
+            $usuario = cuentaModel::actualizar_nombre($nombre,$apellido,$fecha,$email);            
+            if ($usuario) {
+                $nombre_completo = cuentaModel::obtener_nombre($email);
+                $data = [
+                    'title' => 'Datos actualizados',
+                    'messages' => 'El nombre se actualizó correctamente',
+                    'nombre_completo' => $nombre_completo,
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'El nombre no se pudo actualizar',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }else {
+            if (empty($request->getBody()['nombre']) && empty($request->getBody()['apellido'])) {
+                $usuario->addError("nombre", "El campo nombre es requerido");
+                $usuario->addError("apellido", "El campo apellido es requerido");
+            }else if (empty($request->getBody()['nombre'])) {
+                $usuario->addError("nombre", "El campo nombre es requerido");
+            } else if (empty($request->getBody()['apellido'])) {
+                $usuario->addError("apellido", "El campo apellido es requerido");
+            }
+        }
+        if (count($usuario->errors) > 0) {
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $usuario->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
+    }
+
+    //telefono
+    public function actualizar_telefono(Request $request)
+    {
+        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        $usuario = new cuentaModel();
+        $usuario->loadData($request->getBody());   
+        if (!empty($request->getBody()['telefono']) && strlen($request->getBody()['telefono']) < 15 && strlen($request->getBody()['telefono']) > 9) {    
+            $telefono = $request->getBody()['telefono'];
+            $fecha = Carbon::now();
+            $email = $_SESSION['user_email'];
+            $usuario = cuentaModel::actualizar_telefono($telefono,$fecha,$email);            
+            if ($usuario) {
+                $telefono = cuentaModel::obtener_telefono($email);
+                $data = [
+                    'title' => 'Datos actualizados',
+                    'messages' => 'El telefono se actualizó correctamente',
+                    'telefono' => $telefono,
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'El telefono no se pudo actualizar',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }else {
+            if (empty($request->getBody()['telefono']) && strlen($request->getBody()['telefono']) < 10 && strlen($request->getBody()['telefono']) > 14) {
+                $usuario->addError("telefono", "El campo telefono es requerido");
+                $usuario->addError("telefono", "La longitud mínima del telefono debe ser 10");
+                $usuario->addError("telefono", "La longitud máxima del telefono debe ser 15");
+            } else if (empty($request->getBody()['telefono'])) {
+                $usuario->addError("telefono", "El campo telefono es requerido");
+            } else if (strlen($request->getBody()['telefono']) < 10) {
+                $usuario->addError("telefono", "La longitud mínima del telefono debe ser 10");
+            } else if (strlen($request->getBody()['telefono']) > 14) {
+                $usuario->addError("telefono", "La longitud máxima del telefono no puede ser mayor a 14");
+            }
+        }
+        if (count($usuario->errors) > 0) {
+            $data = [
+                'title' => 'Datos invalidos',
+                'messages' => $usuario->errors,
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }
+    }
+
+     //direccion
+     public function actualizar_direccion(Request $request)
+     {
+         if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+             throw new ForbiddenException();
+         }
+         usuarios::validarLogin();
+         $usuario = new cuentaModel();
+         $usuario->loadData($request->getBody());   
+         if (!empty($request->getBody()['direccion'])) {    
+             $direccion = $request->getBody()['direccion'];
+             $fecha = Carbon::now();
+             $email = $_SESSION['user_email'];
+             $usuario = cuentaModel::actualizar_direccion($direccion,$fecha,$email);            
+             if ($usuario) {
+                 $direccion = cuentaModel::obtener_direccion($email);
+                 $data = [
+                     'title' => 'Datos actualizados',
+                     'messages' => 'La direccion se actualizó correctamente',
+                     'direccion' => $direccion,
+                     'code' => 200
+                 ];
+             } else {
+                 $data = [
+                     'title' => 'Error',
+                     'messages' => 'La direccion no se pudo actualizar',
+                     'code' => 422
+                 ];
+             }
+             return json_encode($data);
+         }else {
+             if (empty($request->getBody()['direccion'])) {
+                 $usuario->addError("direccion", "El campo direccion es requerido");
+             }
+         }
+         if (count($usuario->errors) > 0) {
+             $data = [
+                 'title' => 'Datos invalidos',
+                 'messages' => $usuario->errors,
+                 'code' => 422
+             ];
+             return json_encode($data, 422);
+         }
+     }
 }
 
 ?>

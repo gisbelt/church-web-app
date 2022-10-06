@@ -35,7 +35,8 @@ $this->title = 'Mi Cuenta';
                     </p>
                     <div class="tools">                        
                         <div class="input-group mb-3 w-50">
-                            <input type="text" class="form-control mb-2 w-50" value="" id="nombre-input" name="nombre" placeholder="Nombre:">
+                            <input type="text" class="form-control mb-2" value="" id="nombre-input" name="nombre" placeholder="Nombre:">
+                            <input type="text" class="form-control mb-2" value="" id="apellido-input" name="apellido" placeholder="Apellido:">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-nombre">Cambiar</a>
                             </span>

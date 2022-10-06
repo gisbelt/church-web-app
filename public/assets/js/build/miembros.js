@@ -41,7 +41,7 @@ const registrarMiembros = () => {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-usuario")[0].reset();
+                $("#form-registrar-miembros")[0].reset();
                 $('#agregar-miembros').disabled = false;
             }
         }).fail(function (json) {

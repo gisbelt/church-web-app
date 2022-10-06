@@ -898,6 +898,39 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'actualizarNombre' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-nombre',
+                        'method' => 'actualizar_nombre',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'actualizarTelefono' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-telefono',
+                        'method' => 'actualizar_telefono',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'actualizarDireccion' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-direccion',
+                        'method' => 'actualizar_direccion',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'preferencias' => [
                         'permisos' => permisos::$permiso,
                         'parametros' => [],
