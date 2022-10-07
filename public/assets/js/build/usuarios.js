@@ -7,7 +7,6 @@ $(document).ready(function(){
 const listaUsuarios = () =>{
     let api;
     let $button = $('#busqueda_usuario');
-    let $form = $('#form-usuarios-table');
     let $table = $("#usuarios-table");
 
     $table.DataTable({
@@ -31,7 +30,6 @@ const listaUsuarios = () =>{
     })
 
     $button.click(function () {
-        $button.button('loading');
         let cargo = $('#cargo').val();
         let status = $('#status').val();
         let miembro = $('#miembro').val();

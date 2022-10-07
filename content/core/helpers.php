@@ -145,6 +145,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'listaDataMiembros' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de miembros',
+                        'route' => '/miembros/data',
+                        'method' => 'consultarMiembros',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'crearMiembros' => [
                         'permisos' => permisos::$permiso,
                         'parametros' => [],
@@ -163,6 +174,39 @@ if (!function_exists("routas")) {
                         'text' => 'Registrar miembros',
                         'route' => '/miembros/guardar',
                         'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'borraMiembros' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/miembros/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'desactivarMiembro',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarMiembros' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Permisos',
+                        'route' => '/miembros/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarMiembros' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar usuarios',
+                        'route' => '/miembros/actualizar',
+                        'method' => 'actualizar',
                         'action' => 'post',
                         'subRutas' => []
                     ],
