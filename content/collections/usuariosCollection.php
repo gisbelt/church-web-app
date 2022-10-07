@@ -19,7 +19,7 @@ class usuariosCollection
                 '/usuarios/eliminar/' . $usuario['id'],
             );
             $statusClass = $usuario['status'] == 1 ? 'success' : 'warning';
-            $statusText = $usuario['status'] == 1 ? 'Disponible' : 'Agotado';
+            $statusText = $usuario['status'] == 1 ? 'Activo' : 'Inactivo';
             $usuario['status'] = sprintf(
                 '<h5><span class="badge bg-%s">%s</span></h5>',
                 $statusClass,

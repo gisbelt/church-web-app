@@ -19,7 +19,10 @@ class cuentaModel extends Model //BD
     public $email;
     public $password;
     public $role_id;
-    public $nombreMiembro;
+    public $nombre;
+    public $apellido;
+    public $telefono;
+    public $direccion;
     public $fecha_creado;
     public $fecha_actualizado;
 
@@ -27,7 +30,7 @@ class cuentaModel extends Model //BD
     public static function obtener_usuario_correo($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT usuarios.username, perfiles.telefono, perfiles.direccion, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo FROM usuarios 
+        $sql = $conexionBD->prepare("SELECT usuarios.username, perfiles.telefono, perfiles.direccion, perfiles.nombre, perfiles.apellido FROM usuarios 
         INNER JOIN miembros ON miembros.id = usuarios.miembro_id
         INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
         WHERE usuarios.email = ?");
@@ -37,15 +40,15 @@ class cuentaModel extends Model //BD
     }
 
     // Actualizar username
-    public static function actualizar_username($username,$email)
+    public static function actualizar_username($username,$fecha_actualizado,$email)
     {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE usuarios 
         INNER JOIN miembros ON miembros.id = usuarios.miembro_id
         INNER JOIN perfiles ON perfiles.miembro_id = miembros.id
-        SET usuarios.username = ? 
+        SET usuarios.username = ?, usuarios.fecha_actualizado = ? 
         WHERE usuarios.email = ?");
-        $usuario = $sql->execute(array($username,$email));
+        $usuario = $sql->execute(array($username,$fecha_actualizado,$email));
         return $usuario;
     }
     public static function obtener_username($email)
@@ -57,6 +60,81 @@ class cuentaModel extends Model //BD
         $result = $row["username"];
         return $result;
     }
+
+    // Actualizar username
+    public static function actualizar_nombre($nombre,$apellido,$fecha_actualizado,$email)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE perfiles 
+        INNER JOIN miembros ON miembros.id = perfiles.miembro_id
+        INNER JOIN usuarios ON usuarios.miembro_id = miembros.id
+        SET perfiles.nombre = ?, perfiles.apellido = ?, perfiles.fecha_actualizado = ?
+        WHERE usuarios.email = ?");
+        $usuario = $sql->execute(array($nombre,$apellido,$fecha_actualizado,$email));
+        return $usuario;
+    }
+    public static function obtener_nombre($email)
+    {
+        $conexionBD=BD::crearInstancia();
+        $sql= $conexionBD->prepare("SELECT nombre, apellido FROM perfiles 
+        INNER JOIN miembros ON miembros.id = perfiles.miembro_id
+        INNER JOIN usuarios ON usuarios.miembro_id = miembros.id
+        WHERE usuarios.email=?");
+        $sql->execute(array($email));
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        $result = array('nombre' => $row["nombre"], 'apellido' => $row["apellido"]);
+        return json_encode($result);
+    }
+
+     // Actualizar telefono
+     public static function actualizar_telefono($telefono,$fecha_actualizado,$email)
+     {
+         $conexionBD = BD::crearInstancia();
+         $sql = $conexionBD->prepare("UPDATE perfiles 
+         INNER JOIN miembros ON miembros.id = perfiles.miembro_id
+         INNER JOIN usuarios ON usuarios.miembro_id = miembros.id
+         SET perfiles.telefono = ?, perfiles.fecha_actualizado = ?
+         WHERE usuarios.email = ?");
+         $usuario = $sql->execute(array($telefono,$fecha_actualizado,$email));
+         return $usuario;
+     }
+     public static function obtener_telefono($email)
+     {
+         $conexionBD=BD::crearInstancia();
+         $sql= $conexionBD->prepare("SELECT telefono FROM perfiles 
+         INNER JOIN miembros ON miembros.id = perfiles.miembro_id
+         INNER JOIN usuarios ON usuarios.miembro_id = miembros.id
+         WHERE usuarios.email=?");
+         $sql->execute(array($email));
+         $row = $sql->fetch(PDO::FETCH_ASSOC);
+         $result = $row["telefono"];
+         return $result;
+     }
+
+      // Actualizar direccion
+      public static function actualizar_direccion($direccion,$fecha_actualizado,$email)
+      {
+          $conexionBD = BD::crearInstancia();
+          $sql = $conexionBD->prepare("UPDATE perfiles 
+          INNER JOIN miembros ON miembros.id = perfiles.miembro_id
+          INNER JOIN usuarios ON usuarios.miembro_id = miembros.id
+          SET perfiles.direccion = ?, perfiles.fecha_actualizado = ?
+          WHERE usuarios.email = ?");
+          $usuario = $sql->execute(array($direccion,$fecha_actualizado,$email));
+          return $usuario;
+      }
+      public static function obtener_direccion($email)
+      {
+          $conexionBD=BD::crearInstancia();
+          $sql= $conexionBD->prepare("SELECT direccion FROM perfiles 
+          INNER JOIN miembros ON miembros.id = perfiles.miembro_id
+          INNER JOIN usuarios ON usuarios.miembro_id = miembros.id
+          WHERE usuarios.email=?");
+          $sql->execute(array($email));
+          $row = $sql->fetch(PDO::FETCH_ASSOC);
+          $result = $row["direccion"];
+          return $result;
+      }
     
 
 

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     registrarMiembros();
+    listaMiembros();
 });
 
 // Registrar miembros
@@ -41,11 +42,96 @@ const registrarMiembros = () => {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-usuario")[0].reset();
+                $("#form-registrar-miembros")[0].reset();
                 $('#agregar-miembros').disabled = false;
             }
         }).fail(function (json) {
             console.log(JSON.parse(json));
         });
+    });
+}
+
+// Lista miembros
+const listaMiembros = () =>{
+    let api;
+    let $button = $('#busqueda_miembros');
+    let $table = $("#miembros-table");
+
+    $table.DataTable({
+        "ajax": {
+            "url": $table.data("route"),
+            "dataSrc": "miembros"
+        },
+        "columns": [
+            {"data": "cedula"},
+            {"data": "nombre_completo"},
+            {"data": "telefono"},
+            {"data": "status"},
+            {"data": "fecha_fe"},
+            {"data": "fecha_bautismo"},
+            {"data": "actions", "className": "center"}
+        ],
+        "initComplete": function () {
+            api = this.api();
+            api.buttons().container()
+                .appendTo($('#table-buttons'));
+            eliminarMiembro();
+
+            $button.click(function () {
+                let nombre = $('#nombre').val();
+                let sexo = $('#sexo').val();
+                let fecha = $('#fecha').val();
+                let tipo_fecha = $('#tipo_fecha').val();
+                let route = `${$table.data('route')}?nombre=${nombre}&sexo=${sexo}&fecha=${fecha}&tipo_fecha=${tipo_fecha}`;
+                api.ajax.url(route).load();
+                $table.on('draw.dt', function () {
+
+                });
+            });
+        }
+    })
+}
+
+// Eliminar miembro
+const eliminarMiembro = () =>{
+    $(document).on('click', '#eliminar-miembro', function (e) {
+        e.preventDefault();
+        let route = $(this).data('route');
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            preConfirm: () => {
+                return fetch(route)
+                    .then(response => {
+                        if (!response.ok) {
+                            response.json().then(json => {
+                                swal.fire({
+                                    title: json.title,
+                                    text: json.message,
+                                    type: 'error',
+                                    showConfirmButton: false,
+                                    showCancelButton: true,
+                                    cancelButtonText: '<i class="hs-admin-close"></i> ' + json.data.close
+                                });
+                            });
+                        }
+                        return response.json();
+                    });
+            },
+        }).then((result) => {
+            if (result.value.code == 200) {
+                Swal.fire(
+                    result.value.title,
+                    result.value.messages,
+                    'success'
+                )
+                tr.remove();
+            }
+        })
     });
 }
