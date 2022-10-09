@@ -13,11 +13,13 @@ class miembrosCollection
                 '/miembros/editar/' . $miembro['id'],
             );
 
-            $miembro['actions'] .= sprintf(
-                '<button type="button" data-route="%s" name="eliminar-miembro" id="eliminar-miembro" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
+            if ($miembro['status'] == 1) {
+                $miembro['actions'] .= sprintf(
+                    '<button type="button" data-route="%s" name="eliminar-miembro" id="eliminar-miembro" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
                           </button>',
-                '/miembros/eliminar/' . $miembro['id'],
-            );
+                    '/miembros/eliminar/' . $miembro['id'],
+                );
+            }
             $miembro['telefono'] = !is_null($miembro['telefono']) ? $miembro['telefono'] : 'No tiene telefono';
             $miembro['fecha_bautismo'] = !is_null($miembro['fecha_bautismo']) ? $miembro['fecha_bautismo'] : 'No se ha bautizado';
             $miembro['fecha_fe'] = !is_null($miembro['fecha_fe']) ? $miembro['fecha_fe'] : 'Sin registro de fecha';
