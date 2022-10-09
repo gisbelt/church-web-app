@@ -19,27 +19,26 @@
                     <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/update">
                         <div class="form-group">
                             <div class="mb-4 input-group">
-                                <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Miembro a realizar la actividad" autofocus>
-                                <span class="input-group-text">
-                                <i class="bi bi-search text-first-color"></i>
-                            </span>
+                                <select class="form-control" name="miembro_id" id="miembro_id">
+                                
+                                </select>
                             </div>
                             <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                         </div>
                         <div class="form-group">
-                            <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" " >
+                            <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="<?php echo $nombre ?>" placeholder=" " >
                             <label for="nombre" class="form-label fw-bold">Nombre de la Actividad:*</label>
                         </div>
                         <div class="form-group">
                             <div class="mb-3">
                                 <p class="">Descripción:*</p>
-                                <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" rows="3"><?php echo $descripcion ?></textarea>
                             </div>
                         </div>
                         <div class="mb-3">
                             <p class="">Tipo de actividad:* </p>
                             <select class="form-control" name="tipo_actividad" id="tipo_actividad">
-                            
+                                <option value="<?php echo $id_tipo ?>"><?php echo $tipo ?></option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -55,13 +54,13 @@
                             <h5 class="mb-4">Horario:*</h5>
                             <div class="form-group col-md-6">
                                 <div class="input-group input-time">
-                                    <input type="time" required name="hora" class="form-control form-input mb-4" id="hora" value="" placeholder=" ">
+                                    <input type="time" required name="hora" class="form-control form-input mb-4" id="hora" value="<?php echo $hora ?>" placeholder=" ">
                                     <label for="hora" class="form-label fw-bold">Hora:*</label>
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" required name="fecha" class="form-control form-input mb-4" id="fecha" value="dd/mm/aaaa" placeholder=" ">
+                                    <input type="text" required name="fecha" class="form-control form-input mb-4" id="fecha" value="<?php echo $fecha ?>" placeholder=" ">
                                     <label for="fecha" class="form-label fw-bold">Fecha:*</label>
                                     <span class="input-group-append">
                                     <span class="input-group-text bg-transparent border-0">
@@ -74,18 +73,9 @@
                         <hr>
                         <h5 class="mb-4 text-danger">Opcional:</h5>
                         <div class="form-group">
-                            <div class="mb-4 input-group">
-                                <input type="search" name="buscarAmigo" id="buscarAmigo" class="form-control" placeholder="Amigo a participar" autofocus>
-                                <span class="input-group-text">
-                                <i class="bi bi-search text-first-color"></i>
-                            </span>
-                            </div>
-                            <ul class="list-group" id="tabla_resultado_usuarios"></ul>
-                        </div>
-                        <div class="form-group">
                             <div class="mb-3">
                                 <p class="">Observación:</p>
-                                <textarea class="form-control" name="observacion" id="observacion" rows="3"></textarea>
+                                <textarea class="form-control" name="observacion" id="observacion" rows="3"><?php echo $observacion ?></textarea>
                             </div>
                         </div>
                         <!--Botones-->

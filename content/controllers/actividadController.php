@@ -43,12 +43,26 @@ class actividadController extends Controller
     {
         try{
             $edit = $request->getRouteParams();
+            $actividades = actividades::actividadesPorId($edit['id']);
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, ['request' => $edit]);
+            $logger->debug(__METHOD__, ['cargar' => $actividades]);
             $user = usuarios::validarLogin();
+            $fecha = $actividades['fecha'];
+            $hora= $actividades['hora'];
+            $tipo = $actividades['tipo'];
+            $fecha = date("d-m-Y", strtotime($fecha));
+            $hora = date("h:i:s A", strtotime($hora));
             $data['titulo'] = 'Actualizar Actividades';
-            return $this->render('actividades/editarView',[]);
+            return $this->render('actividades/editarView',[
+                'nombre' => $actividades['actividad'],
+                'descripcion' => $actividades['descripcion'],
+                'observacion' => $actividades['observacion'],
+                'fecha' => $fecha,
+                'hora'=> $hora,
+                'tipo' => $tipo,
+                'id_tipo' => $actividades['id_tipo']
+            ]);
         }catch(\Exception $exception){
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
