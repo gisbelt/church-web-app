@@ -13,13 +13,13 @@ $this->title = 'Amigos';
             <div class="card-body py-4">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-                        <div class="form-group mt-3">                            
+                        <div class="form-group mt-3">   
                             <input type="text" required name="cedula" class="form-control form-input mb-4"
                                    id="cedula" value="" placeholder=" " autocomplete="off">
                             <label for="cedula" class="form-label fw-bold">Cédula:</label>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                    <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
                         <div class="form-group">
                             <label>Sexo:</label>
                             <select class="form-select" id="sexo">
@@ -30,18 +30,7 @@ $this->title = 'Amigos';
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-                        <div class="form-group">
-                            <label>Status:</label>
-                            <select class="form-select" id="status">
-                                <option value="">seleccione...</option>
-                                <option value="true">Activos</option>
-                                <option value="false">Inactivos</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                    <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
                         <label>Fecha de Nacimiento:</label>
                         <div class="input-group input-daterange" id="datepicker">
                             <span class="input-group-text">                        
@@ -90,3 +79,76 @@ $this->title = 'Amigos';
         </div><!--col-md-8-->
     </div><!--row-->
 </div><!--container-->
+
+<!-- Modal  -->
+<div class="modal fade" id="convertir-miembro" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Miembros</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <form method="POST" id="form-amigo-miembro" action="/amigos/converti-miembro">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="input-group input-daterange" id="datepicker">
+                                        <input type="text" class="form-control form-input mb-4" name="fecha_paso_fe" id="fecha_paso_fe" placeholder=" " autocomplete="off">
+                                        <label for="fecha_paso_fe" class="form-label fw-bold">Fecha de paso de Fe:*</label>
+                                        <span class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0">
+                                            <i class="bi bi-calendar-minus"></i>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-daterange" id="datepicker">
+                                        <input type="text" class="form-control form-input mb-4" name="fecha_bautismo" id="fecha_bautismo" placeholder=" " autocomplete="off">
+                                        <label for="fecha_bautismo" class="form-label fw-bold">Fecha de Bautismo:*</label>
+                                        <span class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0">
+                                            <i class="bi bi-calendar-minus"></i>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <p class="">Membresía:* </p>
+                                    <select class="form-select" name="membresia" id="membresia">
+                                        <option value="">selecione membresias</option>
+                                        <?php foreach ($membresias as $membresia) {
+                                            echo '<option value="' . $membresia[id] . '">' . $membresia[nombre] . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <p class="">Cargo:* </p>
+                                    <select class="form-select" name="cargo" id="cargo">
+                                        <option value="">selecione cargo</option>
+                                        <?php foreach ($cargos as $cargo) {
+                                            echo '<option value="' . $cargo[id] . '">' . $cargo[nombre] . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="btn-group modal-footer" role="group" aria-label="">
+
+                                <button type="button" name="amigo-miembro-guardar" id="amigo-miembro-guardar" class="btn btn-success">Agregar
+                                </button>
+                                <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal  -->

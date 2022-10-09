@@ -2,34 +2,43 @@
 
 namespace content\collections;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 class amigosCollection
 {
     public function formatAmigos($amigos)
     {
         $data = [];
         foreach ($amigos as $amigo) {
-            $amigo['actions'] = sprintf(
-                '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
-                '/amigos/editar/' . $amigo['id'],
-            );
+            if ($amigo['status'] == 1) {
+                $amigo['actions'] = sprintf(
+                    '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                    '/amigos/editar/' . $amigo['id'],
+                );
 
-            if($amigo['status'] == 1){
-                $amigo['actions'] .= sprintf(
-                    '<button type="button" data-route="%s" name="eliminar-amigos" id="eliminar-amigos" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
+                $amigo['actions'] .= sprintf('<button name="miembro-modal" data-amigo="%s" class="btn btn-success mx-2" data-bs-toggle="modal"
+                                            data-bs-target="#convertir-miembro"><i class="bi bi-arrow-clockwise text-light"></i> Convertir a miembro
                           </button>',
-                    '/amigos/eliminar/' . $amigo['id'],
+                    $amigo['id'],
+                );
+            } else {
+                $amigo['actions'] = sprintf(
+                    '<h5><span class="badge bg-%s">%s</span></h5>',
+                    'warning',
+                   'Accion no disponible'
                 );
             }
 
             $amigo['telefono'] = !is_null($amigo['telefono']) ? $amigo['telefono'] : 'No tiene telefono';
-            if ($amigo['sexo'] == 1){
+            if ($amigo['sexo'] == '1') {
                 $amigo['sexo'] = 'Masculino';
-            } else if($amigo['sexo'] == 0) {
+            } else if ($amigo['sexo'] == '0') {
                 $amigo['sexo'] = 'Femenino';
             }
 
             $statusClass = $amigo['status'] == 1 ? 'success' : 'warning';
-            $statusText = $amigo['status'] == 1 ? 'Activo' : 'Inactivo';
+            $statusText = $amigo['status'] == 1 ? 'Es amigo' : 'Ahora es miembro';
             $amigo['status'] = sprintf(
                 '<h5><span class="badge bg-%s">%s</span></h5>',
                 $statusClass,

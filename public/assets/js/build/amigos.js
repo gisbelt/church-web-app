@@ -1,6 +1,7 @@
 $(document).ready(function(){
     registrarAmigos();
     amigosLista();
+    actualizarAmigo();
 });
 
 // lista amigos
@@ -32,12 +33,11 @@ const amigosLista = () =>{
         "initComplete": function () {
             api = this.api();
             $button.click(function () {
-                console.log('click..')
+
                 let sexo = $('#sexo').val();
-                let status = $('#status').val();
                 let cedula = $('#cedula').val();
                 let fecha_nacimiento = $('#fecha_nacimiento').val();
-                let route = `${$table.data('route')}?sexo=${sexo}&status=${status}&cedula=${cedula}&fecha_nacimiento=${fecha_nacimiento}`;
+                let route = `${$table.data('route')}?sexo=${sexo}&cedula=${cedula}&fecha_nacimiento=${fecha_nacimiento}`;
                 api.ajax.url(route).load();
                 $table.on('draw.dt', function () {
 
@@ -45,6 +45,7 @@ const amigosLista = () =>{
             });
 
             eliminarAmigos();
+            convertirMiembro();
         }
     })
 }
@@ -89,7 +90,7 @@ const registrarAmigos = function ()
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-amigos").reset();
+                setTimeout(() => window.location.href = '', 1000);
                 $('#agregar-amigos').disabled = false;
             }
         }).fail(function (json) {
@@ -140,4 +141,110 @@ const eliminarAmigos = () =>{
             }
         })
     });
+}
+
+// Actualizar amigo
+const actualizarAmigo = function () {
+    let $button = $('#actualizar-amigos');
+    $button.click(function (e) {
+        e.preventDefault();
+        let $form = $('#form-actualizar-amigos');
+        $button.disabled = true;
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            dataType: 'json',
+        }).done(function (response) {
+            if (response.code == 422) {
+                let html = '<ul class="list-group list-group-flush">';
+                $.each(response.messages, function (index, value) {
+                    html += '<li class="list-group-item">' + value + '</li>';
+                });
+                html += '</ul>';
+
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $button.disabled = false;
+            } else {
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                setTimeout(() => window.location.href = '', 1000);
+                $button.disabled = false;
+            }
+        }).fail(function (json) {
+            console.log(JSON.parse(json));
+        });
+    });
+}
+
+const convertirMiembro = function () {
+    let $button = $('#amigo-miembro-guardar');
+    let $form = $('#form-amigo-miembro');
+    let $modal = $('#convertir-miembro');
+
+    $modal.on('show.bs.modal', function(event) {
+        let $target = $(event.relatedTarget);
+        console.log($target.data())
+
+    $button.click(function () {
+        $('#migo-miembro-guardar').disabled = true;
+        $.ajax({
+            url: $form.attr('action') ,
+            method: $form.attr('method'),
+            data: $form.serialize() + '&amigo_id=' + $target.data('amigo'),
+            dataType: 'json',
+
+        }).done(function (response) {
+            if (response.code == 422) {
+                let html = '<ul class="list-group list-group-flush">';
+                $.each(response.messages, function (index, value) {
+                    html += '<li class="list-group-item">' + value + '</li>';
+                });
+                html += '</ul>';
+
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $('#migo-miembro-guardar').disabled = false;
+            } else {
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                let $table = $("#lista-amigos-table");
+                let sexo = $('#sexo').val();
+                let cedula = $('#cedula').val();
+                let fecha_nacimiento = $('#fecha_nacimiento').val();
+                let route = `${$table.data('route')}?sexo=${sexo}&cedula=${cedula}&fecha_nacimiento=${fecha_nacimiento}`;
+                api.ajax.url(route).load();
+                setTimeout(() => window.location.href = '', 1000);
+                $('#migo-miembro-guardar').disabled = false;
+            }
+        }).fail(function (response) {
+            console.log(JSON.parse(response));
+        })
+    });
+    })
 }

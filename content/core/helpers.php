@@ -291,11 +291,33 @@ if (!function_exists("routas")) {
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
-                        'text' => 'Eliminar amigos',
-                        'route' => '/amigos/eliminar/{id}', //{id:\d+}/{username} {id}
-                        'method' => 'eliminar',
+                        'text' => 'Convertir amigos',
+                        'route' => '/amigos/converti-miembro', //{id:\d+}/{username} {id}
+                        'method' => 'convertirMiembro',
+                        'action' => 'post',
+                        'subRutas' => [],
+                    ],
+
+                    'editarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar amigos',
+                        'route' => '/amigos/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
                         'action' => 'get',
                         'subRutas' => [],
+                    ],
+
+                    'actualizarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/amigos/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
                     ],
                 ]
             ],

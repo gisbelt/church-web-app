@@ -43,11 +43,6 @@ class perfilesModel extends Model
     //Crear miemrbo
     public static function crear($miembroId, $cedula, $nombre, $apellido, $fechaNacimiento, $telefono, $direccion, $disponibilidad, $gradoInstruccion, $sexo, $vehiculo, $profesionId, $fecha)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$miembroId, $cedula, $nombre, $apellido, $fechaNacimiento,
-            $telefono, $direccion, $disponibilidad, $gradoInstruccion,
-            $sexo, $vehiculo, $profesionId]);
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO perfiles (cedula, nombre, apellido, fecha_nacimiento, telefono, direccion, disponibilidad,
                                             grado_instruccion, sexo, vehiculo, miembro_id, profesion_id, fecha_creado) 
