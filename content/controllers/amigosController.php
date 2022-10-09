@@ -36,6 +36,27 @@ class amigosController extends Controller
         return $this->render('/miembros/amigos/registrarView');
     }
 
+    public function editar(Request $request)
+    {
+        usuarios::validarLogin();
+        $id = $request->getRouteParams();
+
+        $amigo = amigos::amigoId($id['id']);
+
+        return $this->render('/miembros/amigos/editarView',[
+            'id' => $id['id'],
+            'nombre' => $amigo['nombre'],
+            'apellido' => $amigo['apellido'],
+            'cedula' => $amigo['cedula'],
+            'telefono' => $amigo['telefono'],
+            'direccion' => $amigo['direccion'],
+            'sexo' => $amigo['sexo'],
+            'status' => $amigo['status'],
+            'como_llego' => $amigo['como_llego'],
+            'fecha_nacimiento' => Carbon::createFromFormat('Y-m-d H:i:s', $amigo['fecha_nacimiento'])->format('d-m-Y')
+        ]);
+    }
+
     public function obtenerAmigos(Request $request)
     {
         try {
@@ -46,9 +67,6 @@ class amigosController extends Controller
             if(!is_null($cedula) || !is_null($sexo) || !is_null($status) || !is_null($fechaNacimiento)){
 
                 $amigos = amigos::obtenerAmigos($cedula, $sexo, $status, $fechaNacimiento);
-                $logger = new Logger("web");
-                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$amigos]);
                 $amigosCollection = new amigosCollection();
                 $dataAmigo = $amigosCollection->formatAmigos($amigos);
                 $data = [

@@ -20,6 +20,16 @@ class amigosModel extends Model
     public $status;
     public $como_llego;
 
+    //buscar amigos id
+    public static function amigoId($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT * FROM amigos WHERE id = ?");
+        $sql->execute(array($id));
+        $amigos = $sql->fetch(PDO::FETCH_ASSOC);
+        return $amigos;
+    }
+
     //buscar amigos cedula
     public static function buscarAmigoCedula($cedula)
     {
