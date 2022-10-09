@@ -56,6 +56,7 @@ class bottomComponent
             <script src="../../../assets/js/build/tipo-actividad.js"></script>
             <script src="../../../assets/js/build/miembros.js"></script>
             <script src="../../../assets/js/build/cuenta.js"></script>
+             <script src="../../../assets/js/build/amigos.js"></script>
 
             <!-- Charts -->
             <script src="../../../assets/js/chart.bundle.min.js"></script>

@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    //permisos
-    console.log('entrando')
     listaActividades();
 });
 // Lista Actividades
@@ -21,14 +19,12 @@ const listaActividades = function () {
         ],
         dom: 'Bfrtip',
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
         ],
         "initComplete": function () {
             api = this.api();
-            api.buttons().container().appendTo($('#table-buttons'));
             // eliminarDonacion();
             // observacion_donacion();
         }

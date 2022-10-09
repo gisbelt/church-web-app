@@ -51,7 +51,7 @@ const registrarPermiso = function (){
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos")[0].reset();
+                $("#form-registrar-permisos").reset();
                 $button.disabled = false;
             }
         }).fail(function (json) {
@@ -98,7 +98,7 @@ const actualizarPermiso = function (){
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos")[0].reset();
+                $("#form-registrar-permisos").reset();
                 $button.disabled = false;
             }
         }).fail(function (json) {
@@ -121,15 +121,12 @@ const listaPermisos = function (){
         ],
         dom: 'Bfrtip',
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
         ],
         "initComplete": function () {
             api = this.api();
-            api.buttons().container()
-                .appendTo($('#table-buttons'));
                 eliminarPermiso();
         }
     })
@@ -265,7 +262,7 @@ const actualizarRol = function (){
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos")[0].reset();
+                $("#form-registrar-permisos").reset();
             }
             $button.disabled = false;
         }).fail(function (json) {
@@ -286,10 +283,14 @@ const listaRoles = function (){
             {"data": "role_nombre"},
             {"data": "actions", "className": "center"},
         ],
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
+        ],
         "initComplete": function () {
             api = this.api();
-            api.buttons().container()
-                .appendTo($('#table-buttons'));
             eliminarRol();
         }
     })
