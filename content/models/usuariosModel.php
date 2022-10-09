@@ -27,7 +27,7 @@ class usuariosModel extends Model //BD
     public static function login($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id
+        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id, status
         FROM usuarios WHERE email=?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);
