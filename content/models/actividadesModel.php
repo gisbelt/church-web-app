@@ -225,6 +225,39 @@ class actividadesModel extends Model
                 return null;
             }
         }
+    public static function actividadesPorId($id)
+    {
+        try{
+            $conexionBD = BD::crearInstancia();
+            $sql = $conexionBD->prepare("SELECT
+                    actividades.nombre AS actividad,
+                    actividades.descripcion,
+                    actividades.STATUS AS estado,
+                    horarios.hora,
+                    horarios.fecha,
+                    observacion_actividad.descripcion AS observacion,
+                    tipo_actividad.nombre AS tipo,
+                    tipo_actividad.id AS id_tipo,
+                    perfiles.nombre
+                FROM
+                    actividades
+                    INNER JOIN actividades_horarios ON actividades.id = actividades_horarios.actividad_id
+                    INNER JOIN horarios ON actividades_horarios.horario_id = horarios.id
+                    INNER JOIN miembros_actividades ON actividades.id = miembros_actividades.actividad_id
+                    INNER JOIN observacion_actividad ON actividades.id = observacion_actividad.actividad_id
+                    INNER JOIN miembros ON miembros_actividades.miembro_id = miembros.id
+                    INNER JOIN tipo_actividad ON actividades.tipo_actividad_id = tipo_actividad.id
+                    INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+                WHERE actividades.id = '$id'");
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $exception){
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
+        }
+    }
     /**
      * @return array[]
      */
