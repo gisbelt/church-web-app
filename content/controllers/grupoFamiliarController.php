@@ -21,14 +21,26 @@ class grupoFamiliarController extends Controller
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerAmigos']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['buscarAmigo']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerGrupos']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerIntegrantesGrupo']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['eliminar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['asignarAmigos']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['asignarAmigos']));
     }
 
+    //Mostra vista de lista
     public function index()
     {
         $user = usuarios::validarLogin();
         return $this->render('grupoFamiliar/consultarView');
     }
 
+    //Mostra vista de crear
     public function create()
     {
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
@@ -118,7 +130,6 @@ class grupoFamiliarController extends Controller
 
         return json_encode($data);
     }
-   
 
     //Registrar grupo y amigo a grupo familiar
     public static function guardar(Request $request){

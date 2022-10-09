@@ -24,8 +24,21 @@ class seguridadController extends Controller
 
     public function __construct()
     {
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizar']));
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerPermisos']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['create']));
         $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['eliminar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizarRol']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['indexRol']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerRoles']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['createRol']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardarRol']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editarRol']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['eliminarRol']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['eliminarRol']));
     }
 
     public function actualizar(Request $request)

@@ -27,6 +27,11 @@ class amigosController extends Controller
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerAmigos']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['convertirMiembro']));
     }
 
     // Editar datos de usuario
@@ -76,6 +81,7 @@ class amigosController extends Controller
         }
     }
 
+    // Mostrar vista lista de amigos
     public function index()
     {
         usuarios::validarLogin();
@@ -89,12 +95,14 @@ class amigosController extends Controller
         ]);
     }
 
+    // Mostrar vista crear de amigos
     public function create()
     {
         usuarios::validarLogin();
         return $this->render('/miembros/amigos/registrarView');
     }
 
+    // Mostrar vista editar de amigos
     public function editar(Request $request)
     {
         usuarios::validarLogin();
@@ -114,6 +122,7 @@ class amigosController extends Controller
         ]);
     }
 
+    // Obtener amigos
     public function obtenerAmigos(Request $request)
     {
         try {
@@ -150,6 +159,7 @@ class amigosController extends Controller
 
     }
 
+    // Guardar datos de amigos
     public function guardar(Request $request)
     {
         try {
@@ -218,6 +228,7 @@ class amigosController extends Controller
         }
     }
 
+    // Convertir amigo a miembro
     public function convertirMiembro(Request $request)
     {
         usuarios::validarLogin();
