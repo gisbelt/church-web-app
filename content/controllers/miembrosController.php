@@ -24,8 +24,11 @@ class miembrosController extends Controller
     public function __construct()
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['consultarMiembros']));
         $this->registerMiddleware(new AutenticacionMiddleware(['registrar']));
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['desactivarMiembro']));
     }
 
     public function index()
@@ -36,7 +39,6 @@ class miembrosController extends Controller
         usuarios::validarLogin();
         return $this->render('miembros/miembros/consultarView');
     }
-
 
     public function consultarMiembros(Request $request)
     {
