@@ -41,10 +41,19 @@ class actividadController extends Controller
 
     public function edit(Request $request)
     {
-        $user = usuarios::validarLogin();
-        $id = $request->getRouteParams();
-        $data['titulo'] = 'Actualizar Actividades';
-        return $this->render('actividades/editarView');
+        try{
+            $edit = $request->getRouteParams();
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, ['request' => $edit]);
+            $user = usuarios::validarLogin();
+            $data['titulo'] = 'Actualizar Actividades';
+            return $this->render('actividades/editarView',[]);
+        }catch(\Exception $exception){
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+        }
     }
 
     public function store(Request $request)
@@ -168,6 +177,7 @@ class actividadController extends Controller
         }
 
     }
+    
     public function obtenerActividades()
     {
     try{
@@ -186,9 +196,6 @@ class actividadController extends Controller
         $data = [
             'actividades' => $permisosFormat,
         ];
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$data]);
         return json_encode($data);
     }catch(\Exception $exception){
         $logger = new Logger("web");

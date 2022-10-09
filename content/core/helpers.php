@@ -387,7 +387,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Actualizar actividades',
-                        'route' => '/actividades/edit/{id}',
+                        'route' => '/actividades/editar/{id}',
                         'method' => 'edit',
                         'action' => 'get',
                         'subRutas' => []
