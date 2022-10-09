@@ -19,10 +19,9 @@ $this->title = 'Actividades'
                     <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/store">
                     <div class="form-group">
                         <div class="mb-4 input-group">
-                            <input type="search" name="buscarMiembro" id="buscarMiembro" class="form-control" placeholder="Miembro a realizar la actividad" autofocus>
-                            <span class="input-group-text">
-                                <i class="bi bi-search text-first-color"></i>
-                            </span>
+                            <select class="form-control" name="miembro_id" id="miembro_id">
+                                <option value="" selected disabled>Selecciona un miembro</option>
+                            </select>
                         </div>
                         <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                     </div>                    
@@ -74,13 +73,13 @@ $this->title = 'Actividades'
                     <hr>
                     <h5 class="mb-4 text-danger">Opcional:</h5>
                     <div class="form-group">
-                        <div class="mb-4 input-group">
-                            <input type="search" name="buscarAmigo" id="buscarAmigo" class="form-control" placeholder="Amigo a participar" autofocus>
-                            <span class="input-group-text">
-                                <i class="bi bi-search text-first-color"></i>
-                            </span>
-                        </div>
-                        <ul class="list-group" id="tabla_resultado_usuarios"></ul>
+<!--                        <div class="mb-4 input-group">-->
+<!--                            <input type="search" name="buscarAmigo" id="buscarAmigo" class="form-control" placeholder="Amigo a participar" autofocus>-->
+<!--                            <span class="input-group-text">-->
+<!--                                <i class="bi bi-search text-first-color"></i>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                        <ul class="list-group" id="tabla_resultado_usuarios"></ul>-->
                     </div>  
                     <div class="form-group">
                         <div class="mb-3">

@@ -209,8 +209,8 @@ class actividadesModel extends Model
             try{
                 $conexionBD = BD::crearInstancia();
                 if(!is_null($miembroId)){
-                    $sql = $conexionBD->prepare("INSERT INTO `miembros_actividad`(`miembro_id`, `actividad_id`, `status`,`fecha_creado`, `fecha_actualizado`) VALUES (?, ?,?, ?, ?);");
-                    return $sql->execute([$miembroId,$actividadId,$fecha,$fecha]);
+                    $sql = $conexionBD->prepare("INSERT INTO `miembros_actividades`(`miembro_id`, `actividad_id`, `status`,`fecha_creado`, `fecha_actualizado`) VALUES (?, ?,?, ?, ?);");
+                    return $sql->execute([$miembroId,$actividadId,$status,$fecha,$fecha]);
                 }else{
                     $logger = new Logger("web");
                     $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));

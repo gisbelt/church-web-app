@@ -74,6 +74,22 @@ class miembrosModel extends Model
         return $conexionBD->lastInsertId();
     }
 
+public static function miemrbosSelect()
+{
+    try{
+    $conexionBD = BD::crearInstancia();
+    $sql = $conexionBD->prepare("SELECT miembros.id, perfiles.nombre, membresias.nombre as status FROM miembros INNER JOIN membresias
+	ON miembros.membresia_id = membresias.id INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+	where membresias.nombre = 'activo'");
+    $sql->execute();
+    return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }catch(\Exception $exception){
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$exception]);
+        return null;
+    }
+}
     public static function obtener_miembros_filtro($nombre, $sexo, $tipo_fecha, $fecha)
     {
         $logger = new Logger("web");

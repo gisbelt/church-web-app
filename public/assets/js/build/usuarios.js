@@ -21,10 +21,14 @@ const listaUsuarios = () =>{
             {"data": "status"},
             {"data": "actions", "className": "center"},
         ],
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
+        ],
         "initComplete": function () {
             api = this.api();
-            api.buttons().container()
-                .appendTo($('#table-buttons'));
             eliminarUsuario();
         }
     })
@@ -123,7 +127,7 @@ const actualizarUsuario = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos")[0].reset();
+                $("#form-registrar-permisos").reset();
                 $button.disabled = false;
             }
         }).fail(function (json) {
@@ -170,7 +174,7 @@ const registrarUsuario = function (){
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-usuario")[0].reset();
+                $("#form-registrar-usuario").reset();
                 $('#agregar-usuario').disabled = false;
             }
         }).fail(function (json) {

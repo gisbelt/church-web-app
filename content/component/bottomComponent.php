@@ -36,6 +36,8 @@ class bottomComponent
             
             <!--Librerias para exportar PDF-->
             <script src="../../../assets/js/pdfmake.min.js"></script>
+            <script src="../../../assets/js/vfs_fonts.js"></script>
+            <!--Librerias para botones de exportación-->
             <!--<script src="../assets/js/vfs_fonts.js"></script>-->
             
             <!--Librerias para botones de exportación-->
@@ -54,6 +56,8 @@ class bottomComponent
             <script src="../../../assets/js/build/tipo-actividad.js"></script>
             <script src="../../../assets/js/build/miembros.js"></script>
             <script src="../../../assets/js/build/cuenta.js"></script>
+            <script src="../../../assets/js/build/miembros-select.js"></script>
+             <script src="../../../assets/js/build/amigos.js"></script>
             <script src="../../../assets/js/build/asistencias.js"></script>
 
             <!-- Charts -->

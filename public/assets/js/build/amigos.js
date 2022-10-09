@@ -1,15 +1,62 @@
 $(document).ready(function(){
-    registrarMiembros();
-    listaMiembros();
+    registrarAmigos();
+    amigosLista();
 });
 
-// Registrar miembros
-const registrarMiembros = () => {
-    let $button = $('#agregar-miembros');
+// lista amigos
+const amigosLista = () =>{
+    let api;
+    let $button = $('#busqueda_amigos');
+    let $table = $("#lista-amigos-table");
+
+    $table.DataTable({
+        "ajax": {
+            "url": $table.data("route"),
+            "dataSrc": "amigos"
+        },
+        "columns": [
+            {"data": "cedula"},
+            {"data": "nombre_completo"},
+            {"data": "sexo"},
+            {"data": "telefono"},
+            {"data": "status"},
+            {"data": "actions", "className": "center"},
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
+        ],
+        "initComplete": function () {
+            api = this.api();
+            $button.click(function () {
+                console.log('click..')
+                let sexo = $('#sexo').val();
+                let status = $('#status').val();
+                let cedula = $('#cedula').val();
+                let fecha_nacimiento = $('#fecha_nacimiento').val();
+                let route = `${$table.data('route')}?sexo=${sexo}&status=${status}&cedula=${cedula}&fecha_nacimiento=${fecha_nacimiento}`;
+                api.ajax.url(route).load();
+                $table.on('draw.dt', function () {
+
+                });
+            });
+
+            eliminarAmigos();
+        }
+    })
+}
+
+// registrar amigos
+const registrarAmigos = function ()
+{
+    let $button = $('#agregar-amigos');
     $button.click(function (e) {
         e.preventDefault();
-        let $form = $('#form-registrar-miembros');
-        $('#agregar-miembros').disabled = true;
+        console.log('clic..')
+        let $form = $('#form-registrar-amigos');
+        $('#agregar-amigos').disabled = true;
         $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -31,7 +78,7 @@ const registrarMiembros = () => {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $('#agregar-miembros').disabled = false;
+                $('#agregar-amigos').disabled = false;
             } else {
                 swal.fire({
                     title: response.title,
@@ -41,8 +88,8 @@ const registrarMiembros = () => {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-miembros")[0].reset();
-                $('#agregar-miembros').disabled = false;
+                $("#form-registrar-amigos").reset();
+                $('#agregar-amigos').disabled = false;
             }
         }).fail(function (json) {
             console.log(JSON.parse(json));
@@ -50,50 +97,9 @@ const registrarMiembros = () => {
     });
 }
 
-// Lista miembros
-const listaMiembros = () =>{
-    let api;
-    let $button = $('#busqueda_miembros');
-    let $table = $("#miembros-table");
-
-    $table.DataTable({
-        "ajax": {
-            "url": $table.data("route"),
-            "dataSrc": "miembros"
-        },
-        "columns": [
-            {"data": "cedula"},
-            {"data": "nombre_completo"},
-            {"data": "telefono"},
-            {"data": "status"},
-            {"data": "fecha_fe"},
-            {"data": "fecha_bautismo"},
-            {"data": "actions", "className": "center"}
-        ],
-        "initComplete": function () {
-            api = this.api();
-            api.buttons().container()
-                .appendTo($('#table-buttons'));
-            eliminarMiembro();
-
-            $button.click(function () {
-                let nombre = $('#nombre').val();
-                let sexo = $('#sexo').val();
-                let fecha = $('#fecha').val();
-                let tipo_fecha = $('#tipo_fecha').val();
-                let route = `${$table.data('route')}?nombre=${nombre}&sexo=${sexo}&fecha=${fecha}&tipo_fecha=${tipo_fecha}`;
-                api.ajax.url(route).load();
-                $table.on('draw.dt', function () {
-
-                });
-            });
-        }
-    })
-}
-
-// Eliminar miembro
-const eliminarMiembro = () =>{
-    $(document).on('click', '#eliminar-miembro', function (e) {
+// Eliminar amigo
+const eliminarAmigos = () =>{
+    $(document).on('click', '#eliminar-amigos', function (e) {
         e.preventDefault();
         let route = $(this).data('route');
         Swal.fire({
@@ -129,6 +135,7 @@ const eliminarMiembro = () =>{
                     result.value.messages,
                     'success'
                 )
+                setTimeout(() => window.location.href = '', 1000);
             }
         })
     });

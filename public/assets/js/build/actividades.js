@@ -1,12 +1,9 @@
 $(document).ready(function () {
-    //permisos
-    console.log('entrando')
     listaActividades();
 });
 // Lista Actividades
 const listaActividades = function () {
     let table = $("#actividad-table");
-    console.log(table.val())
     table.DataTable({
         "ajax": {
             "url": table.data("route"),
@@ -20,9 +17,14 @@ const listaActividades = function () {
             {"data": "fecha"},
             {"data": "actions", "className": "center"},
         ],
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
+        ],
         "initComplete": function () {
             api = this.api();
-            api.buttons().container().appendTo($('#table-buttons'));
             // eliminarDonacion();
             // observacion_donacion();
         }

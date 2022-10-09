@@ -17,7 +17,7 @@ $this->title = 'Registrar Amigos';
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarAmigos" action="">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrar-amigos" action="/amigo/guardar">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -74,7 +74,7 @@ $this->title = 'Registrar Amigos';
 
                             <div class="form-group">
                                 <div class="input-group input-daterange" id="datepicker">
-                                    <input type="text" class="form-control form-input mb-4" id="fecha_nacimiento" value="dd/mm/aaaa" placeholder=" ">
+                                    <input type="text" class="form-control form-input mb-4" id="fecha_nacimiento" name="fecha_nacimiento" value="dd/mm/aaaa" placeholder=" ">
                                     <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento:*</label>
                                     <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
@@ -83,11 +83,22 @@ $this->title = 'Registrar Amigos';
                                     </span>
                                 </div>
                             </div>
+                            <div class="form-group mb-3">
+                                <p class="">Como llego:* </p>
+                                <select class="form-select" name="como_llego" id="como_llego">
+                                    <option value="">selecione</option>
+                                    <option value="1">Radio</option>
+                                    <option value="2">Red social</option>
+                                    <option value="3">Miembro</option>
+                                    <option value="4">Iglesia</option>
+                                    <option value="5">Otros...</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <br>
                     <div class="btn-group modal-footer" role="group" aria-label="">
-                        <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+                        <button type="button" name="agregar-amigos" id="agregar-amigos" class="btn btn-success">Agregar</button>
                         <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                     </div>
                     </form>
