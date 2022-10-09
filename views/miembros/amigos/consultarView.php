@@ -12,11 +12,11 @@ $this->title = 'Amigos';
             </div>
             <div class="card-body py-4">
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
-                        <div class="form-group">
-                            <label>Cedula:</label>
+                    <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                        <div class="form-group mt-3">   
                             <input type="text" required name="cedula" class="form-control form-input mb-4"
                                    id="cedula" value="" placeholder=" " autocomplete="off">
+                            <label for="cedula" class="form-label fw-bold">Cédula:</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">

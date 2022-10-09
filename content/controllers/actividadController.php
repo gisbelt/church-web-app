@@ -23,6 +23,12 @@ class actividadController extends Controller
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['edit']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['store']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['update']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
     }
 
     public function index()
@@ -147,7 +153,6 @@ class actividadController extends Controller
 
     }
 
-
     public function update(Request $request)
     {
         try{
@@ -256,6 +261,7 @@ class actividadController extends Controller
             return  json_encode([]);
         }
     }
+
     public function obtenerMiembros()
     {
         try {

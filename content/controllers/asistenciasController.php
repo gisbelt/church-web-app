@@ -21,6 +21,11 @@ class asistenciasController extends Controller
     {
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerAsistencias']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['eliminar']));
     }
 
     public function index()
