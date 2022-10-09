@@ -17,12 +17,13 @@ class donacionesCollection
                 '/donaciones/editar/' . $donacion['donacion'],
             );
 
-            $donacion['actions'] .= sprintf(
-                '<button type="button" data-route="%s" name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger mx-2"><i class="bi bi-trash text-light"></i>
-                          </button>',
-                '/donaciones/eliminar/' . $donacion['donacion'],
-            );
-
+            if($donacion['status'] == 1){
+                $donacion['actions'] .= sprintf(
+                    '<button type="button" data-route="%s" name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger mx-2"><i class="bi bi-trash text-light"></i>
+                              </button>',
+                    '/donaciones/eliminar/' . $donacion['donacion'],
+                );
+            }
             if($donacion['disponible']){
                 $donacion['actions'] .= sprintf(
                     '<button name="donacion-modal" data-donacion="%s" class="btn btn-success mx-2" data-bs-toggle="modal"

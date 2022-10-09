@@ -63,7 +63,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'recuperarContrasena' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'recuperar-contrasena',
@@ -73,12 +73,34 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'resetearContrasena' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
+                        'text' => 'resetear-contrasena',
+                        'route' => '/resetear-contrasena',
+                        'method' => 'resetearContrasena',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'enviarCorreo' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-bar-chart-alt-2',
+                        'text' => 'login',
+                        'route' => '/enviar/correo',
+                        'method' => 'verificarCorreo',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'cambiarContrasena' => [
                         'permisos' => permisos::$permiso,
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'cambiar-contrasena',
-                        'route' => '/cambiar-contrasena',
+                        'route' => '/cambiar-contrasena/{id}',
                         'method' => 'cambiarContrasena',
                         'action' => 'get',
                         'subRutas' => []
@@ -232,6 +254,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'dataAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de amigos',
+                        'route' => '/amigos/data',
+                        'method' => 'obtenerAmigos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     'crearAmigos' => [
                         'permisos' => permisos::$permiso,
                         'parametros' => [],
@@ -240,6 +273,50 @@ if (!function_exists("routas")) {
                         'route' => '/amigos/create',
                         'method' => 'create',
                         'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'guardarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar amigo',
+                        'route' => '/amigo/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'eliminarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Eliminar amigos',
+                        'route' => '/amigos/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'editarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar amigos',
+                        'route' => '/amigos/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarAmigos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/amigos/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
                         'subRutas' => []
                     ],
                 ]
@@ -463,6 +540,61 @@ if (!function_exists("routas")) {
                         'method' => 'create',
                         'action' => 'get',
                         'subRutas' => []
+                    ],
+
+                    'guardarAsistencias' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/asistencias/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'dataAsistencias' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de donaciones',
+                        'route' => '/asistencias/data',
+                        'method' => 'obtenerAsistencias',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarAsistencias' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar actividades',
+                        'route' => '/asistencias/editar/{id}',
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'actualizarAsistencias' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar actividades',
+                        'route' => '/asistencias/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'eliminarAsistencia' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Eliminar donacion',
+                        'route' => '/asistencias/eliminar/{id}', 
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => [],
                     ],
                 ]
             ],

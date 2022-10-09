@@ -10,7 +10,7 @@ $this->title = 'Editar Grupo Familiar'
             <div class="card mb-4">
                 <div class="card-header mb-4">
                     <div>
-                        <h5 class="p-0 absolute text-center">Grupos Familiares</h5>
+                        <h5 class="p-0 absolute text-center">Actualizar Datos</h5>
                     </div>
                     <div class="derecha mb-2 p-2 " role="group" aria-label="">
                         <a href="/grupo-familiares" class="btn btn-outline-success text-center">Ver listado</a>

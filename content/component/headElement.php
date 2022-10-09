@@ -37,10 +37,10 @@ class headElement
             <link rel="stylesheet" href="../../../assets/css/datepicker.css">
             <!-- datepicker -->
             
-             <!-- datable
-            <link rel="stylesheet" href="../assets/css/dataTables.bootstrap.min.css">
-            <link rel="stylesheet" href="../assets/css/buttons.bootstrap.min.css">
-            datable -->
+             <!-- datable-->
+            <!--<link rel="stylesheet" href="../assets/css/dataTables.bootstrap.min.css">-->
+             <link rel="stylesheet" href="../../../assets/css/buttons.bootstrap.min.css">
+           
             '
         );
     }

@@ -90,7 +90,7 @@ const actualizarDonacion = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos")[0].reset();
+                $("#form-registrar-permisos").reset();
                 $button.disabled = false;
             }
         }).fail(function (json) {
@@ -115,10 +115,9 @@ const listaDonaciones = function () {
         ],
         dom: 'Bfrtip',
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
+            { extend: 'copy', className: 'btn btn-secondary glyphicon glyphicon-duplicate' },
+            { extend: 'csv', className: 'btn btn-secondary glyphicon glyphicon-save-file' },
+            { extend: 'pdf', className: 'btn btn-secondary glyphicon glyphicon-file' },
         ],
         "initComplete": function () {
             let api = this.api();

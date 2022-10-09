@@ -35,10 +35,8 @@ class donacionesController extends Controller
         $donacion = new donacion();
         $donacion->loadData($request->getBody());
         if ($donacion->validate()) {
-            //$donante = $request->getBody()['donante'];
             $detalles = $request->getBody()['detalles'];
             $donacion = $request->getBody()['donacion'];
-            //$tipo_donacion = $request->getBody()['tipo_donacion'];
             $cantidad = $request->getBody()['cantidad'];
             $fecha_actualizado = Carbon::now();
             $donacion = donacion::actualizar_donacion($detalles, $cantidad, $donacion, $fecha_actualizado);

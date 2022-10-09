@@ -14,7 +14,7 @@ $this->title = 'Restablecer contraseña'
                     Resetea tu clave
                 </div>
                 <div class="card-body">
-                    <form method="POST" >
+                    <form method="POST" enctype="multipart/form-data" action="/resetear-contrasena" id="resetear-contrasena-form">
                         <div class="form-group">
                             <input type="password" class="form-control form-input mb-2" name="clave" id="clave" placeholder=" " autocomplete="off">
                             <label for="clave" class="form-label">
@@ -24,13 +24,14 @@ $this->title = 'Restablecer contraseña'
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="password" class="form-control form-input" name="clave" id="clave2" placeholder=" " autocomplete="off">
+                            <input type="password" class="form-control form-input" name="confirmar-clave" id="confirmar-clave" placeholder=" " autocomplete="off">
                             <label for="clave2" class="form-label">
                                 Confirmar contraseña:
                                 <span class="bi bi-lock"></span>
                             </label>
+                            <input type="hidden" class="form-control form-input" name="user" id="user" value="<?php echo  $id ?>"/>
                         </div>
-                        <button type="submit" name="" class="btn btn-primary w-100 mt-3">Resetear clave</button>
+                        <button type="button" name="resetear" id="resetear" class="btn btn-primary w-100 mt-3">Resetear clave</button>
                     </form>
                     <div class="position-relative mb-2 mt-4">
                         <hr class="position-absolute top-0 start-0" width="43%"> 

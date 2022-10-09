@@ -151,6 +151,15 @@ class usuariosModel extends Model //BD
         return $usuario;
     }
 
+    // Actualizar clave
+    public static function actualizarClave($id, $clave)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET password = ? WHERE id = ?");
+        $usuario = $sql->execute(array($clave, $id));
+        return $usuario;
+    }
+
     public static  function eliminar($id) {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE usuarios SET status = ? WHERE id = ?");

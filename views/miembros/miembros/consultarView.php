@@ -13,9 +13,9 @@ $this->title = 'Miembros';
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
                             <div class="form-group center">
-                                <label>Nombre:</label>
                                 <input type="text" required name="nombre" class="form-control form-input mb-4"
                                        id="nombre" value="" placeholder=" " autocomplete="off">
+                                <label for="nombre" class="form-label fw-bold">Nombre:</label>
                             </div>
                         </div>
 

@@ -41,7 +41,7 @@ class perfilController extends Controller
     public function obtener_usuario()
     {     
         try {
-            $email = $_SESSION['user_email'];
+            $email = !empty($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
             $usuario = cuentaModel::obtener_usuario_correo($email);
             if(!is_null($usuario)){
                 return  json_encode($usuario);

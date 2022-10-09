@@ -13,11 +13,13 @@ class usuariosCollection
                 '/usuarios/editar/' . $usuario['id'],
             );
 
-            $usuario['actions'] .= sprintf(
-                '<button type="button" data-route="%s" name="eliminar-usuario" id="eliminar-usuario" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
+            if ($usuario['status'] == 1) {
+                $usuario['actions'] .= sprintf(
+                    '<button type="button" data-route="%s" name="eliminar-usuario" id="eliminar-usuario" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
                           </button>',
-                '/usuarios/eliminar/' . $usuario['id'],
-            );
+                    '/usuarios/eliminar/' . $usuario['id'],
+                );
+            }
             $statusClass = $usuario['status'] == 1 ? 'success' : 'warning';
             $statusText = $usuario['status'] == 1 ? 'Activo' : 'Inactivo';
             $usuario['status'] = sprintf(
