@@ -10,6 +10,11 @@ use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
 use content\models\amigosModel as amigos;
+use content\models\cargosModel;
+use content\models\membresiasModel;
+use content\models\miembrosModel;
+use content\models\perfilesModel;
+use content\models\profesionModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
@@ -27,9 +32,6 @@ class amigosController extends Controller
     // Editar datos de usuario
     public function actualizar(Request $request)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, ['request' => $request->getBody()]);
         usuarios::validarLogin();
         $amigos = new amigos();
         $amigos->loadData($request->getBody());
@@ -40,13 +42,12 @@ class amigosController extends Controller
                 $nombre = $request->getBody()['nombre'];
                 $apellido = $request->getBody()['apellido'];
                 $sexo = $request->getBody()['sexo'] == 'on' ? 1 : 0;
-                $status = $request->getBody()['status'];
                 $direccion = $request->getBody()['direccion'];
                 $telefono = $request->getBody()['telefono'];
                 $comoLlego = $request->getBody()['como_llego'];
                 $fecha = Carbon::now();
                 $fechaNacimiento = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d H:i:s');
-                $amigo = amigos::actualizar($id, $cedula, $nombre, $apellido, $sexo, $status, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
+                $amigo = amigos::actualizar($id, $cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
                 if ($amigo) {
                     $data = [
                         'title' => 'Datos actualizado',
@@ -78,7 +79,14 @@ class amigosController extends Controller
     public function index()
     {
         usuarios::validarLogin();
-        return $this->render('/miembros/amigos/consultarView');
+        $profesiones = profesionModel::obtener_profesiones();
+        $membresias = membresiasModel::obtener_membresias();
+        $cargos = cargosModel::obtener_cargos();
+        return $this->render('/miembros/amigos/consultarView', [
+            'profesiones' => $profesiones,
+            'membresias' => $membresias,
+            'cargos' => $cargos
+        ]);
     }
 
     public function create()
@@ -111,11 +119,10 @@ class amigosController extends Controller
         try {
             $cedula = !empty($request->getBody()['cedula']) ? $request->getBody()['cedula'] : null;
             $sexo = !empty($request->getBody()['sexo']) ? $request->getBody()['sexo'] : null;
-            $status = !empty($request->getBody()['status']) ? $request->getBody()['status'] : null;
             $fechaNacimiento = !empty($request->getBody()['fecha_nacimiento']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d') : null;
-            if (!is_null($cedula) || !is_null($sexo) || !is_null($status) || !is_null($fechaNacimiento)) {
+            if (!is_null($cedula) || !is_null($sexo) || !is_null($fechaNacimiento)) {
 
-                $amigos = amigos::obtenerAmigos($cedula, $sexo, $status, $fechaNacimiento);
+                $amigos = amigos::obtenerAmigos($cedula, $sexo, $fechaNacimiento);
                 $amigosCollection = new amigosCollection();
                 $dataAmigo = $amigosCollection->formatAmigos($amigos);
                 $data = [
@@ -211,36 +218,114 @@ class amigosController extends Controller
         }
     }
 
-    public function eliminar(Request $request)
+    public function convertirMiembro(Request $request)
     {
         usuarios::validarLogin();
         if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $id = $request->getRouteParam('id');
-        if (!is_null($id)) {
-            $usuario = amigos::eliminar($id);
-            if ($usuario) {
-                $data = [
-                    'title' => 'Dato eliminado',
-                    'messages' => 'El amigo se ha eliminado',
-                    'code' => 200
-                ];
+        try {
+            $miembros = new miembrosModel();
+            $perfiles = new perfilesModel();
+            $miembros->loadData($request->getBody());
+            $amigos = new amigos();
+            $id = $request->getBody()['amigo_id'];
+
+            if (!is_null($id)) {
+                if (!empty($request->getBody()['membresia']) && !empty($request->getBody()['cargo'])) {
+                    $amigosData = $amigos::amigoId($id);
+                    $perfiles->loadData($amigosData);
+                    if($perfiles->validate()) {
+                        if ($request->getBody()['fecha_paso_fe'] != "") {
+                            $fechaPasoFe = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_paso_fe'])->format('Y-m-d H:i:s');
+                        } else {
+                            $fechaPasoFe = NULL;
+                        }
+                        if ($request->getBody()['fecha_bautismo'] != "") {
+                            $fechaBautismo = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_bautismo'])->format('Y-m-d H:i:s');
+                        } else {
+                            $fechaBautismo = NULL;
+                        }
+                        $membresia = $request->getBody()['membresia'];
+                        $cargo = $request->getBody()['cargo'];
+                        $fecha = Carbon::now();
+                        $miembro = miembrosModel::crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha);
+                        if($miembro){
+                            $miembroId = $miembro;
+                            $cedula = $amigosData['cedula'];
+                            $nombre = $amigosData['nombre'];
+                            $apellido = $amigosData['apellido'] ?? NULL;
+                            if ($amigosData['fecha_nacimiento'] != NULL) {
+                                $fechaNacimiento = Carbon::createFromFormat('Y-m-d H:i:s', $amigosData['fecha_nacimiento'])->format('Y-m-d H:i:s');
+                            } else {
+                                $fechaNacimiento = NULL;
+                            }
+
+                            $telefono = $amigosData['telefono'] ?? NULL;
+                            $direccion = $amigosData['direccion'] ?? NULL;
+                            $disponibilidad = NULL;
+                            $gradoInstruccion = NULL;
+                            $sexo = $amigosData['sexo'] ?? 1;
+                            $vehiculo = 0;
+                            $profesionId = 73;
+                            $perfil = perfilesModel::crear($miembroId, $cedula, $nombre, $apellido, $fechaNacimiento,
+                                $telefono, $direccion, $disponibilidad, $gradoInstruccion,
+                                $sexo, $vehiculo, $profesionId, $fecha);
+                            $logger = new Logger("web");
+                            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                            $logger->debug(__METHOD__, [$perfil]);
+                            if ($perfil) {
+                                $amigos::covertirMiembro($request->getBody()['amigo_id']);
+                                $data = [
+                                    'title' => 'Datos registrado',
+                                    'messages' => 'El amigo se ha convertido en miembro',
+                                    'code' => 200
+                                ];
+                            } else {
+                                $data = [
+                                    'title' => 'Error',
+                                    'messages' => 'El amigo no se ha podido convertir a miembro',
+                                    'code' => 500
+                                ];
+                            }
+                            return json_encode($data);
+                        }
+                    }
+                }else {
+                    if (empty($request->getBody()['membresia']) && empty($request->getBody()['cargo'])) {
+                        $miembros->addError("cargo", "El campo cargo es requerido");
+                        $miembros->addError("membresia", "El campo membresia es requerido");
+                    } else if (empty($request->getBody()['membresia'])) {
+                        $miembros->addError("membresia", "El campo membresia es requerido");
+                    } else if (empty($request->getBody()['cargo'])) {
+                        $miembros->addError("cargo", "El campo cargo es requerido");
+                    }
+                }
             } else {
                 $data = [
                     'title' => 'Error',
-                    'messages' => 'El amigo no se ha eliminado',
+                    'messages' => 'El amigo no se ha encontrado',
                     'code' => 422
                 ];
+                return json_encode($data);
             }
+            $data = [
+                'title' => 'Error',
+                'messages' => 'Algo salio mal intente mas tardes',
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
             return json_encode($data);
         }
-        $data = [
-            'title' => 'Error',
-            'messages' => 'Algo salio mal intente mas tardes',
-            'code' => 422
-        ];
-        return json_encode($data, 422);
     }
 
 }
