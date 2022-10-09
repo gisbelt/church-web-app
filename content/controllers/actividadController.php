@@ -12,7 +12,7 @@ use content\enums\permisos;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
 use content\models\miembrosModel as miembros;
-
+use content\enums\estadosActividad as status;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -53,6 +53,20 @@ class actividadController extends Controller
             $tipo = $actividades['tipo'];
             $fecha = date("d-m-Y", strtotime($fecha));
             $hora = date("h:i:s A", strtotime($hora));
+            switch ($actividades['estado_id']){
+                case status::$en_curso:
+                    $status = 'En Curso';
+                    break;
+                case status::$en_pausa:
+                    $status = 'En Pausa';
+                    break;
+                case status::$terminado:
+                    $status = 'Terminado';
+                    break;
+                case status::$cancelado:
+                    $status = 'Cancelado';
+                    break;
+            }
             $data['titulo'] = 'Actualizar Actividades';
             return $this->render('actividades/editarView',[
                 'nombre' => $actividades['actividad'],
@@ -61,7 +75,9 @@ class actividadController extends Controller
                 'fecha' => $fecha,
                 'hora'=> $hora,
                 'tipo' => $tipo,
-                'id_tipo' => $actividades['id_tipo']
+                'id_tipo' => $actividades['id_tipo'],
+                'estado_id' => $actividades['estado_id'],
+                'estado' => $status
             ]);
         }catch(\Exception $exception){
             $logger = new Logger("web");
@@ -158,13 +174,13 @@ class actividadController extends Controller
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
-                        'messages' => 'La actividad se ha registrado',
+                        'messages' => 'La actividad se ha actualizado',
                         'code' => 200
                     ];
                 } else {
                     $data = [
                         'title' => 'Error',
-                        'messages' => 'La actividad no se ha registrado',
+                        'messages' => 'La actividad no se ha actualizado',
                         'code' => 422
                     ];
                 }

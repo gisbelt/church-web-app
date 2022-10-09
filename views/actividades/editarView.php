@@ -44,6 +44,7 @@
                         <div class="mb-3">
                             <p class="">Estado:* </p>
                             <select class="form-control" name="status" id="status">
+                                <option value="<?php echo $estado_id ?>"><?php echo $estado ?></option>
                                 <option value="1">En curso</option>
                                 <option value="2">Terminada</option>
                                 <option value="3">Pausada</option>

@@ -232,7 +232,7 @@ class actividadesModel extends Model
             $sql = $conexionBD->prepare("SELECT
                     actividades.nombre AS actividad,
                     actividades.descripcion,
-                    actividades.STATUS AS estado,
+                    actividades.status AS estado_id,
                     horarios.hora,
                     horarios.fecha,
                     observacion_actividad.descripcion AS observacion,
