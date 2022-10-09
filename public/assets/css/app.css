@@ -480,6 +480,18 @@ background: #fff; }
 }
 /* Reportes  */
 
+.table-tools{
+    display: flex;
+    justify-content: space-between;
+}   
+
+@media screen and (max-width: 992px){
+    .table-tools{
+        display: flex;
+        flex-direction: column;
+    }    
+}
+
 @media screen and (min-width: 768px){
     .form-label{
         font-size: 1rem !important;
@@ -488,7 +500,7 @@ background: #fff; }
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label{
         font-size: 1.2rem !important;
-    }    
+    }
 }
 
 @media screen and (min-width: 320px){
