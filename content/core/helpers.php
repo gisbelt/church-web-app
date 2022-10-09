@@ -291,10 +291,10 @@ if (!function_exists("routas")) {
                         'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-pencil',
-                        'text' => 'Eliminar amigos',
-                        'route' => '/amigos/eliminar/{id}', //{id:\d+}/{username} {id}
-                        'method' => 'eliminar',
-                        'action' => 'get',
+                        'text' => 'Convertir amigos',
+                        'route' => '/amigos/converti-miembro', //{id:\d+}/{username} {id}
+                        'method' => 'convertirMiembro',
+                        'action' => 'post',
                         'subRutas' => [],
                     ],
 

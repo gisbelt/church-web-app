@@ -53,24 +53,6 @@ $this->title = 'Editar';
                                             ?>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <p class="">Status:* </p>
-                                        <select class="form-select" id="status" name="status">
-                                            <?php
-                                            if (1 == $status) {
-                                                $selected = 'selected';
-                                                echo '<option value="'. $status . '" ' . $selected . '> Activo </option>';
-                                                echo '<option value="0">Inactivo</option>';
-                                            } else {
-                                                $selected = 'selected';
-                                                echo '<option value="1"> Activo </option>';
-                                                echo '<option value="'. $status . '" ' . $selected . '>Inactivo</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <input type="hidden" name="id" class="form-control form-input mb-4" id="id" value="<?php echo $id ?>">
                             <!-- ********************** -->
