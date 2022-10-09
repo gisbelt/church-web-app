@@ -95,6 +95,15 @@ class amigosModel extends Model
         return $amigos;
     }
 
+    // Actualizar amigo
+    public static function actualizar($id, $cedula, $nombre, $apellido, $sexo, $status, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE amigos SET cedula = ?, nombre = ?, apellido = ?, sexo = ?, status = ?, direccion = ?, telefono = ?, como_llego = ?, fecha_nacimiento = ?, fecha_actualizado = ? WHERE id = ?");
+        $amigo = $sql->execute(array($cedula, $nombre, $apellido, $sexo, $status, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha, $id));
+        return $amigo;
+    }
+
     /**
      * @return array[]
      */

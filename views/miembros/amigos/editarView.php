@@ -15,8 +15,8 @@ $this->title = 'Editar';
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrar-amigos"
-                          action="/amigo/guardar">
+                    <form method="POST" enctype="multipart/form-data" id="form-actualizar-amigos"
+                          action="/amigos/actualizar">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -81,7 +81,7 @@ $this->title = 'Editar';
                                     </div>
                                 </div>
                             </div>
-
+                            <input type="hidden" name="id" class="form-control form-input mb-4" id="id" value="<?php echo $id ?>">
                             <!-- ********************** -->
 
                             <div class="col-md-6">
@@ -162,8 +162,8 @@ $this->title = 'Editar';
                         </div>
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="button" name="agregar-amigos" id="agregar-amigos" class="btn btn-success">
-                                Agregar
+                            <button type="button" name="actualizar-amigos" id="actualizar-amigos" class="btn btn-success">
+                                Actualizar
                             </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
