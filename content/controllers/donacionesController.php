@@ -21,8 +21,14 @@ class donacionesController extends Controller
 {
     public function __construct()
     {
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizar']));
         $this->registerMiddleware(new AutenticacionMiddleware(['index']));
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerDonaciones']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['eliminar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['guardarObservacionDonacion']));
     }
 
     // Actualizar donacion
@@ -208,6 +214,7 @@ class donacionesController extends Controller
         return json_encode($data, 422);
     }
 
+    //guardar obersvaciones
     public function guardarObservacionDonacion(Request $request)
     {
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
