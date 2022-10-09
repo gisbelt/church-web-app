@@ -27,6 +27,9 @@ class amigosController extends Controller
     // Editar datos de usuario
     public function actualizar(Request $request)
     {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, ['request' => $request->getBody()]);
         usuarios::validarLogin();
         $amigos = new amigos();
         $amigos->loadData($request->getBody());
@@ -142,9 +145,6 @@ class amigosController extends Controller
 
     public function guardar(Request $request)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, ['request' => $request->getBody()]);
         try {
             $amigos = new amigos();
             $amigos->loadData($request->getBody());

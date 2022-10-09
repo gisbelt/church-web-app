@@ -39,28 +39,19 @@ $this->title = 'Editar';
 
                                 <div class="form-group">
                                     <p class="">Sexo:* </p>
-                                    <?php
-                                    if ($sexo == 0) {
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo" checked>';
-                                        echo '<label class="form-check-label" for="femenino">Femenino</label>';
-                                        echo '</div>';
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo" >';
-                                        echo '<label class="form-check-label" for="masculino">Masculino</label>';
-                                        echo '</div>';
-                                    } else {
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo">';
-                                        echo '<label class="form-check-label" for="femenino">Femenino</label>';
-                                        echo '</div>';
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo" checked>';
-                                        echo '<label class="form-check-label" for="masculino">Masculino</label>';
-                                        echo '</div>';
-                                    }
-
-                                    ?>
+                                    <select class="form-select" id="sexo" name="sexo">
+                                            <?php
+                                            if (1 == $sexo) {
+                                                $selected = 'selected';
+                                                echo '<option value="'. $sexo . '" ' . $selected . '> Masculino </option>';
+                                                echo '<option value="0">Femenino</option>';
+                                            } else {
+                                                $selected = 'selected';
+                                                echo '<option value="1"> Masculino </option>';
+                                                echo '<option value="'. $sexo . '" ' . $selected . '>Femenino</option>';
+                                            }
+                                            ?>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
