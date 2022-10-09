@@ -14,13 +14,14 @@ class amigosCollection
             if ($amigo['status'] == 1) {
                 $amigo['actions'] = sprintf(
                     '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
-                    '/amigos/editar/' . $amigo['id'],
+                    '/amigos/editar/' . $amigo['amigo'],
                 );
 
-                $amigo['actions'] .= sprintf('<button name="miembro-modal" data-amigo="%s" class="btn btn-success mx-2" data-bs-toggle="modal"
-                                            data-bs-target="#convertir-miembro"><i class="bi bi-arrow-clockwise text-light"></i> Convertir a miembro
-                          </button>',
-                    $amigo['id'],
+                $amigo['actions'] .= sprintf(
+                    '<button name="miembro-modal" data-amigo="%s" class="btn btn-success mx-2" data-bs-toggle="modal"
+                                data-bs-target="#convertir-miembro-modal"><i class="bi bi-arrow-clockwise text-light"></i> %s</button>',
+                    $amigo['amigo'],
+                    'Convertir a miembro'
                 );
             } else {
                 $amigo['actions'] = sprintf(

@@ -2,6 +2,7 @@ $(document).ready(function(){
     registrarAmigos();
     amigosLista();
     actualizarAmigo();
+    convertirMiembro()
 });
 
 // lista amigos
@@ -43,7 +44,6 @@ const amigosLista = () =>{
 
                 });
             });
-
             eliminarAmigos();
             convertirMiembro();
         }
@@ -191,20 +191,21 @@ const actualizarAmigo = function () {
 }
 
 const convertirMiembro = function () {
+    let $modal = $('#convertir-miembro-modal');
     let $button = $('#amigo-miembro-guardar');
     let $form = $('#form-amigo-miembro');
-    let $modal = $('#convertir-miembro');
-
     $modal.on('show.bs.modal', function(event) {
         let $target = $(event.relatedTarget);
-        console.log($target.data())
-
-    $button.click(function () {
+        $('#amigo_id').val($target.data('amigo'));
+    })
+    $button.click(function (e) {
+        e.preventDefault();
         $('#migo-miembro-guardar').disabled = true;
+
         $.ajax({
-            url: $form.attr('action') ,
+            url: $form.attr('action'),
             method: $form.attr('method'),
-            data: $form.serialize() + '&amigo_id=' + $target.data('amigo'),
+            data: $form.serialize(),
             dataType: 'json',
 
         }).done(function (response) {
@@ -246,5 +247,4 @@ const convertirMiembro = function () {
             console.log(JSON.parse(response));
         })
     });
-    })
 }

@@ -68,12 +68,6 @@ class usuariosModel extends Model //BD
     {
         // Si existe alguien logueado, mosrar alerta de cerrar sesión
         if (isset($_SESSION['email'])) {
-
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$_SESSION['email']]);
-        }
-        if (isset($_SESSION['email'])) {
             echo "
             <script>
             alert('Por favor cerrar sesión');
