@@ -15,8 +15,8 @@ $this->title = 'Editar';
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrar-amigos"
-                          action="/amigo/guardar">
+                    <form method="POST" enctype="multipart/form-data" id="form-actualizar-amigos"
+                          action="/amigos/actualizar">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -39,28 +39,19 @@ $this->title = 'Editar';
 
                                 <div class="form-group">
                                     <p class="">Sexo:* </p>
-                                    <?php
-                                    if ($sexo == 0) {
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo" checked>';
-                                        echo '<label class="form-check-label" for="femenino">Femenino</label>';
-                                        echo '</div>';
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo" >';
-                                        echo '<label class="form-check-label" for="masculino">Masculino</label>';
-                                        echo '</div>';
-                                    } else {
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo">';
-                                        echo '<label class="form-check-label" for="femenino">Femenino</label>';
-                                        echo '</div>';
-                                        echo '<div class="form-check form-check-inline">';
-                                        echo '<input class="form-check-input" type="radio" name="sexo" id="sexo" checked>';
-                                        echo '<label class="form-check-label" for="masculino">Masculino</label>';
-                                        echo '</div>';
-                                    }
-
-                                    ?>
+                                    <select class="form-select" id="sexo" name="sexo">
+                                            <?php
+                                            if (1 == $sexo) {
+                                                $selected = 'selected';
+                                                echo '<option value="'. $sexo . '" ' . $selected . '> Masculino </option>';
+                                                echo '<option value="0">Femenino</option>';
+                                            } else {
+                                                $selected = 'selected';
+                                                echo '<option value="1"> Masculino </option>';
+                                                echo '<option value="'. $sexo . '" ' . $selected . '>Femenino</option>';
+                                            }
+                                            ?>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -81,7 +72,7 @@ $this->title = 'Editar';
                                     </div>
                                 </div>
                             </div>
-
+                            <input type="hidden" name="id" class="form-control form-input mb-4" id="id" value="<?php echo $id ?>">
                             <!-- ********************** -->
 
                             <div class="col-md-6">
@@ -162,8 +153,8 @@ $this->title = 'Editar';
                         </div>
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="button" name="agregar-amigos" id="agregar-amigos" class="btn btn-success">
-                                Agregar
+                            <button type="button" name="actualizar-amigos" id="actualizar-amigos" class="btn btn-success">
+                                Actualizar
                             </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
