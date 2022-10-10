@@ -4,7 +4,6 @@ $(document).ready(function () {
     eliminarDonacion();
     registrarDonacion();
     actualizarDonacion();
-
 });
 
 const eliminarDonacion = function () {

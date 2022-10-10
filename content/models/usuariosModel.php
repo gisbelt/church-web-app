@@ -27,7 +27,7 @@ class usuariosModel extends Model //BD
     public static function login($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id
+        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id, status
         FROM usuarios WHERE email=?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);
@@ -67,12 +67,6 @@ class usuariosModel extends Model //BD
     public static function validarLogout()
     {
         // Si existe alguien logueado, mosrar alerta de cerrar sesión
-        if (isset($_SESSION['email'])) {
-
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$_SESSION['email']]);
-        }
         if (isset($_SESSION['email'])) {
             echo "
             <script>

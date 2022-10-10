@@ -241,10 +241,13 @@ class amigosController extends Controller
             $miembros->loadData($request->getBody());
             $amigos = new amigos();
             $id = $request->getBody()['amigo_id'];
-
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$request->getBody()]);
             if (!is_null($id)) {
                 if (!empty($request->getBody()['membresia']) && !empty($request->getBody()['cargo'])) {
                     $amigosData = $amigos::amigoId($id);
+                    $logger->debug(__METHOD__, [$amigosData]);
                     $perfiles->loadData($amigosData);
                     if($perfiles->validate()) {
                         if ($request->getBody()['fecha_paso_fe'] != "") {
@@ -261,6 +264,7 @@ class amigosController extends Controller
                         $cargo = $request->getBody()['cargo'];
                         $fecha = Carbon::now();
                         $miembro = miembrosModel::crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha);
+
                         if($miembro){
                             $miembroId = $miembro;
                             $cedula = $amigosData['cedula'];
@@ -282,9 +286,7 @@ class amigosController extends Controller
                             $perfil = perfilesModel::crear($miembroId, $cedula, $nombre, $apellido, $fechaNacimiento,
                                 $telefono, $direccion, $disponibilidad, $gradoInstruccion,
                                 $sexo, $vehiculo, $profesionId, $fecha);
-                            $logger = new Logger("web");
-                            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                            $logger->debug(__METHOD__, [$perfil]);
+
                             if ($perfil) {
                                 $amigos::covertirMiembro($request->getBody()['amigo_id']);
                                 $data = [

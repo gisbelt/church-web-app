@@ -35,7 +35,6 @@ class AutenticacionController extends Controller
         usuarios::validarLogout();
         $this->setLayout('auth');
         return $this->render('acceso/login/loginView');
-        //return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/loginView.php')), 200);
     }
 
     public function iniciar(Request $request)
@@ -47,7 +46,7 @@ class AutenticacionController extends Controller
             $password = $request->getBody()['password'];
             if ($usuarioModel->validate()) {
                 $consultarUsuario = $usuarioModel::login($email);
-                if ($consultarUsuario && password_verify($password, $consultarUsuario['password'])) {
+                if ($consultarUsuario && password_verify($password, $consultarUsuario['password']) && $consultarUsuario['status']) {
                     $_SESSION['email'] = 'ok';
                     $_SESSION['user'] = $consultarUsuario['id'];
                     $_SESSION['user_email'] = $consultarUsuario['email'];
@@ -70,6 +69,16 @@ class AutenticacionController extends Controller
                         'messages' => 'En breve le dirigiremos al panel de control',
                         'code' => 200,
                         'route' => '/home'
+                    ];
+                    return json_encode($data);
+                } else if(!$consultarUsuario['status']){
+                    if (!$consultarUsuario['status']) {
+                        $usuarioModel->addError("datos", "El usuario se encuentra desactivado");
+                    }
+                    $data = [
+                        'title' => 'Usuario desactivado',
+                        'messages' => $usuarioModel->errors,
+                        'code' => 403
                     ];
                     return json_encode($data);
                 } else {

@@ -81,7 +81,7 @@ $this->title = 'Amigos';
 </div><!--container-->
 
 <!-- Modal  -->
-<div class="modal fade" id="convertir-miembro" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="convertir-miembro-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,7 +91,7 @@ $this->title = 'Amigos';
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <form method="POST" id="form-amigo-miembro" action="/amigos/converti-miembro">
+                        <form method="POST" enctype="multipart/form-data" id="form-amigo-miembro" action="/amigos/converti-miembro">
                             <div class="row">
                                 <div class="form-group">
                                     <div class="input-group input-daterange" id="datepicker">
@@ -136,7 +136,8 @@ $this->title = 'Amigos';
                             </div>
                             <br>
                             <div class="btn-group modal-footer" role="group" aria-label="">
-
+                                <input type="hidden" name="amigo_id" class="form-control form-input mb-4"
+                                       id="amigo_id">
                                 <button type="button" name="amigo-miembro-guardar" id="amigo-miembro-guardar" class="btn btn-success">Agregar
                                 </button>
                                 <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>

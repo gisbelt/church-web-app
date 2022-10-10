@@ -34,6 +34,22 @@ const iniciarSession = function () {
                     cancelButtonText: 'close'
                 });
                 $button.disabled = false;
+            } else if(response.code == 403) {
+                let html = '<ul>';
+                $.each(response.messages, function (index, value) {
+                    html += '<li>' + value + '</li>';
+                });
+                html += '</ul>';
+                swal.fire({
+                    title: response.titulo,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    cancelButtonText: 'close'
+                });
+                $button.disabled = false;
+
             } else {
                 swal.fire({
                     title: response.titulo,

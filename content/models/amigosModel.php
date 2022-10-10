@@ -11,6 +11,7 @@ use PDO;
 class amigosModel extends Model
 {
 
+    public $id;
     public $cedula;
     public $telefono;
     public $nombre;
@@ -43,7 +44,7 @@ class amigosModel extends Model
     public static function obtenerAmigos($cedula, $sexo,  $fechaNacimiento)
     {
         $connexionBD = BD::crearInstancia();
-        $query = "SELECT amigos.id, amigos.sexo, DATE(amigos.fecha_nacimiento) AS nacimiento, amigos.cedula, amigos.telefono, amigos.status,CONCAT(amigos.nombre,' ',amigos.apellido) AS nombre_completo FROM amigos";
+        $query = "SELECT amigos.id as amigo, amigos.sexo, DATE(amigos.fecha_nacimiento) AS nacimiento, amigos.cedula, amigos.telefono, amigos.status,CONCAT(amigos.nombre,' ',amigos.apellido) AS nombre_completo FROM amigos";
         $conditions = array();
 
         if(!is_null($cedula)) {

@@ -57,7 +57,7 @@ class donacionesModel extends Model
     public static function obtener_donaciones()
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT donaciones.id as donacion, donaciones.disponible, detalles, cantidad, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo FROM donaciones INNER JOIN miembros ON miembros.id = donaciones.donante_id 
+        $sql = $conexionBD->prepare("SELECT donaciones.id as donacion, donaciones.disponible, detalles, cantidad, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, donaciones.status FROM donaciones INNER JOIN miembros ON miembros.id = donaciones.donante_id 
                                 INNER JOIN perfiles ON perfiles.miembro_id = miembros.id WHERE donaciones.status = ?");
         $sql->execute(array(self::ACTIVE));
         $donaciones = $sql->fetchAll(PDO::FETCH_ASSOC);
