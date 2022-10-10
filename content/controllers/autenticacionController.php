@@ -70,6 +70,7 @@ class AutenticacionController extends Controller
                         'code' => 200,
                         'route' => '/home'
                     ];
+                    return json_encode($data);
                 } else if(!$consultarUsuario['status']){
                     if (!$consultarUsuario['status']) {
                         $usuarioModel->addError("datos", "El usuario se encuentra desactivado");
@@ -79,6 +80,7 @@ class AutenticacionController extends Controller
                         'messages' => $usuarioModel->errors,
                         'code' => 403
                     ];
+                    return json_encode($data);
                 } else {
                     if (!$consultarUsuario || !password_verify($password, $consultarUsuario['password'])) {
                         $usuarioModel->addError("datos", "El correo o contraseña incorrectos");
@@ -89,9 +91,8 @@ class AutenticacionController extends Controller
                         'messages' => $usuarioModel->errors,
                         'code' => 422
                     ];
-
+                    return json_encode($data);
                 }
-                return json_encode($data);
             }
             $data = [
                 'title' => 'Datos invalidos',

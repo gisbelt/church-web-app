@@ -4,7 +4,6 @@ $(document).ready(function () {
     eliminarDonacion();
     registrarDonacion();
     actualizarDonacion();
-    observacion_donacion();
 });
 
 const eliminarDonacion = function () {

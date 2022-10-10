@@ -39,7 +39,14 @@
                         <div class="mb-3">
                             <p class="">Tipo de actividad:* </p>
                             <select class="form-control" name="tipo_actividad" id="tipo_actividad">
-                            
+                                <?php foreach ($tipo_actividad as $actividad) {
+                                    if ($miembro == $donante) {
+                                        $selected = 'selected';
+                                    } else {
+                                        $selected = '';
+                                    }
+                                    echo '<option value="' . $actividad[miembro] . '"  ' . $selected . '>' . $miembro[nombre_completo] . '</option>';
+                                } ?>
                             </select>
                         </div>
                         <div class="mb-3">

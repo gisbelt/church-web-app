@@ -149,12 +149,12 @@ class donacionesController extends Controller
 
         if($donaciones){
             $donacionesCollection = new donacionesCollection();
-            $permisosFormat = $donacionesCollection->formatDonaciones($donaciones);
+            $donacionesFormat = $donacionesCollection->formatDonaciones($donaciones);
         } else {
             $permisosFormat = [];
         }
         $data = [
-            'donaciones' => $permisosFormat,
+            'donaciones' => $donacionesFormat,
         ];
         return json_encode($data);
     }

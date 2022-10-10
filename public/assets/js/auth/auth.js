@@ -59,7 +59,7 @@ const iniciarSession = function () {
                     showCancelButton: false,
                     cancelButtonText: 'close'
                 });
-                //setTimeout(() => window.location.href = response.route, 1000);
+                setTimeout(() => window.location.href = response.route, 1000);
                 $button.disabled = false;
             }
         }).fail(function (json) {

@@ -192,12 +192,13 @@ const actualizarAmigo = function () {
 
 const convertirMiembro = function () {
     let $modal = $('#convertir-miembro-modal');
-    let $button = $('#amigo-miembro-guardar');
-    let $form = $('#form-amigo-miembro');
     $modal.on('show.bs.modal', function(event) {
         let $target = $(event.relatedTarget);
+        console.log($target.data())
         $('#amigo_id').val($target.data('amigo'));
     })
+    let $button = $('#amigo-miembro-guardar');
+    let $form = $('#form-amigo-miembro');
     $button.click(function (e) {
         e.preventDefault();
         $('#migo-miembro-guardar').disabled = true;

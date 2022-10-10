@@ -136,7 +136,7 @@ $this->title = 'Amigos';
                             </div>
                             <br>
                             <div class="btn-group modal-footer" role="group" aria-label="">
-                                <input type="text" name="amigo_id" class="form-control form-input mb-4"
+                                <input type="hidden" name="amigo_id" class="form-control form-input mb-4"
                                        id="amigo_id">
                                 <button type="button" name="amigo-miembro-guardar" id="amigo-miembro-guardar" class="btn btn-success">Agregar
                                 </button>

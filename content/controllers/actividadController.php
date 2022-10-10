@@ -26,9 +26,9 @@ class actividadController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['edit']));
         $this->registerMiddleware(new AutenticacionMiddleware(['store']));
         $this->registerMiddleware(new AutenticacionMiddleware(['update']));
-        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
-        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
-        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
+        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
+        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
+        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
     }
 
     public function index()
@@ -53,7 +53,9 @@ class actividadController extends Controller
             $logger->debug(__METHOD__, ['request' => $edit]);
             $user = usuarios::validarLogin();
             $data['titulo'] = 'Actualizar Actividades';
-            return $this->render('actividades/editarView',[]);
+
+            return $this->render('actividades/editarView',[
+            ]);
         }catch(\Exception $exception){
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
@@ -179,7 +181,6 @@ class actividadController extends Controller
             ];
             return json_encode($data);
         }
-
     }
     
     public function obtenerActividades()
