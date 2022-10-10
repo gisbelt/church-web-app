@@ -193,6 +193,7 @@ const actualizarAmigo = function () {
 const convertirMiembro = function () {
     let $modal = $('#convertir-miembro-modal');
     $modal.on('show.bs.modal', function(event) {
+        if(event.namespace !== 'bs.modal') return;
         let $target = $(event.relatedTarget);
         console.log($target.data())
         $('#amigo_id').val($target.data('amigo'));
