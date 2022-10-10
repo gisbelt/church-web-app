@@ -13,7 +13,7 @@ $this->title = 'Amigos';
             <div class="card-body py-4">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-                        <div class="form-group mt-3">   
+                        <div class="form-group mt-3">
                             <input type="text" required name="cedula" class="form-control form-input mb-4"
                                    id="cedula" value="" placeholder=" " autocomplete="off">
                             <label for="cedula" class="form-label fw-bold">Cédula:</label>
@@ -95,7 +95,7 @@ $this->title = 'Amigos';
                             <div class="row">
                                 <div class="form-group">
                                     <div class="input-group input-daterange" id="datepicker">
-                                        <input type="text" class="form-control form-input mb-4" name="fecha_paso_fe" id="fecha_paso_fe" placeholder=" " autocomplete="off">
+                                        <input type="text" class="form-control form-input mb-4" name="fecha_paso_fe" id="fecha_paso_fe" placeholder=" "/>
                                         <label for="fecha_paso_fe" class="form-label fw-bold">Fecha de paso de Fe:*</label>
                                         <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
@@ -106,7 +106,7 @@ $this->title = 'Amigos';
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group input-daterange" id="datepicker">
-                                        <input type="text" class="form-control form-input mb-4" name="fecha_bautismo" id="fecha_bautismo" placeholder=" " autocomplete="off">
+                                        <input type="text" class="form-control form-input mb-4" name="fecha_bautismo" id="fecha_bautismo" placeholder=" "/>
                                         <label for="fecha_bautismo" class="form-label fw-bold">Fecha de Bautismo:*</label>
                                         <span class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0">
@@ -135,12 +135,10 @@ $this->title = 'Amigos';
                                 </div>
                             </div>
                             <br>
+                            <input type="hidden" name="amigo_id" id="amigo_id"/>
                             <div class="btn-group modal-footer" role="group" aria-label="">
-                                <input type="hidden" name="amigo_id" class="form-control form-input mb-4"
-                                       id="amigo_id">
                                 <button type="button" name="amigo-miembro-guardar" id="amigo-miembro-guardar" class="btn btn-success">Agregar
                                 </button>
-                                <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                             </div>
                         </form>
                     </div>

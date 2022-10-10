@@ -243,11 +243,9 @@ class amigosController extends Controller
             $id = $request->getBody()['amigo_id'];
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$request->getBody()]);
             if (!is_null($id)) {
                 if (!empty($request->getBody()['membresia']) && !empty($request->getBody()['cargo'])) {
                     $amigosData = $amigos::amigoId($id);
-                    $logger->debug(__METHOD__, [$amigosData]);
                     $perfiles->loadData($amigosData);
                     if($perfiles->validate()) {
                         if ($request->getBody()['fecha_paso_fe'] != "") {
@@ -263,6 +261,7 @@ class amigosController extends Controller
                         $membresia = $request->getBody()['membresia'];
                         $cargo = $request->getBody()['cargo'];
                         $fecha = Carbon::now();
+                        $logger->debug(__METHOD__, [$fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha]);
                         $miembro = miembrosModel::crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha);
 
                         if($miembro){
@@ -322,11 +321,26 @@ class amigosController extends Controller
                 ];
                 return json_encode($data);
             }
-            $data = [
-                'title' => 'Error',
-                'messages' => 'Algo salio mal intente mas tardes',
-                'code' => 422
-            ];
+            if(count($amigos->errors)>0){
+                $data = [
+                    'title' => 'Error',
+                    'messages' => $amigos->errors,
+                    'code' => 422
+                ];
+            } else if(count($miembros->errors)>0) {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => $miembros->errors,
+                    'code' => 422
+                ];
+            } else if(count($perfiles->errors)>0){
+                $data = [
+                    'title' => 'Error',
+                    'messages' => $perfiles->errors,
+                    'code' => 422
+                ];
+            }
+
             return json_encode($data, 422);
         } catch (\Exception $ex) {
             $logger = new Logger("web");
