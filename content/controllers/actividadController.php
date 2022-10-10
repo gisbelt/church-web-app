@@ -208,9 +208,8 @@ class actividadController extends Controller
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
                 $actividades = actividades::modificarActividades($nombre,$description,$status,$tipo,$fecha,$id);
-                $horarios = actividades::horariosModificar($hora,$fechaHora,$fecha);
-//                $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'],$horarios['id'],$fecha);
-//                actividades::observacionActividad($actividades['id'],$observacion,$fecha);
+//                $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
+                actividades::observacionActividadModificar($id,$observacion,$fecha);
 //                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
                 if ($actividades) {
                     $data = [

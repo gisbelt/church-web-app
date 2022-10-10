@@ -192,6 +192,24 @@ class actividadesModel extends Model
                 return null;
             }
         }
+        public static function observacionActividadModificar($actividadId, $descripcion, $fecha)
+        {
+            try{
+                $conexionBD = BD::crearInstancia();
+                if(!is_null($descripcion)){
+                    $sql = $conexionBD->prepare("UPDATE `observacion_actividad` SET `descripcion` = '$descripcion', `fecha_actualizado` = '$fecha' WHERE `actividad_id` = '$actividadId';");
+                    return $sql->execute();
+                }else{
+                    return null;
+                }
+               
+            }catch(Exception $exception){
+                $logger = new Logger("web");
+                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                $logger->debug(__METHOD__, [$exception]);
+                return null;
+            }
+        }
     
     /**
      * @param $miembroId
