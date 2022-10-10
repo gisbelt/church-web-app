@@ -2,7 +2,6 @@ $(document).ready(function(){
     registrarAmigos();
     amigosLista();
     actualizarAmigo();
-    convertirMiembro()
 });
 
 // lista amigos
@@ -195,7 +194,6 @@ const convertirMiembro = function () {
     $modal.on('show.bs.modal', function(event) {
         if(event.namespace !== 'bs.modal') return;
         let $target = $(event.relatedTarget);
-        console.log($target.data())
         $('#amigo_id').val($target.data('amigo'));
     })
     let $button = $('#amigo-miembro-guardar');
@@ -203,9 +201,9 @@ const convertirMiembro = function () {
     $button.click(function (e) {
         e.preventDefault();
         $('#migo-miembro-guardar').disabled = true;
-
+        console.log($form.serialize())
         $.ajax({
-            url: $form.attr('action'),
+            url: $form.attr('action') ,
             method: $form.attr('method'),
             data: $form.serialize(),
             dataType: 'json',
