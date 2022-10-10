@@ -240,6 +240,27 @@ class actividadesModel extends Model
                 return null;
             }
         }
+        public static function miembroActividadModificacion($miembroId, $actividadId, $status, $fecha)
+        {
+            try{
+                $conexionBD = BD::crearInstancia();
+                if(!is_null($miembroId)){
+                    $sql = $conexionBD->prepare("UPDATE `miembros_actividades` SET `status` = '$status', `fecha_actualizado` = '$fecha' WHERE `miembro_id` = '$miembroId' AND `actividad_id` = '$actividadId';");
+                    return $sql->execute();
+                }else{
+                    $logger = new Logger("web");
+                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                    $logger->debug(__METHOD__, [$miembroId]);
+                    return null;
+                }
+               
+            }catch(Exception $exception){
+                $logger = new Logger("web");
+                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+                $logger->debug(__METHOD__, [$exception]);
+                return null;
+            }
+        }
     public static function actividadesPorId($id)
     {
         try{
