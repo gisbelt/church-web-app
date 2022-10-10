@@ -43,7 +43,14 @@ class actividadController extends Controller
         $data['titulo'] = 'Registrar Actividades';
         return $this->render('actividades/registrarView');
     }
-
+    
+    /**
+     * View Edit
+     *
+     * @param Request $request
+     *
+     * @return array|false|string|string[]|void
+     */
     public function edit(Request $request)
     {
         try{
@@ -71,9 +78,34 @@ class actividadController extends Controller
                 case status::$cancelado:
                     $status = 'Cancelado';
                     break;
+                default:{
+                    $status = 'No Disponible';
+                }
             }
+                $dataStatus = [
+                  [
+                      'id' => 1,
+                      'nombre' => 'En Curso' ,
+                  ]  ,
+                  [
+                      'id' => 2,
+                      'nombre' => 'Terminado'
+                  ],
+                  
+                  [
+                      'id' => 3,
+                      'nombre' => 'En Pausa'
+                   ],
+                  [
+                      'id' => 4,
+                      'nombre' => 'Cancelado'
+                  ]
+                  
+                  
+                ];
             $data['titulo'] = 'Actualizar Actividades';
             return $this->render('actividades/editarView',[
+                'id' => $edit['id'],
                 'nombre' => $actividades['actividad'],
                 'descripcion' => $actividades['descripcion'],
                 'observacion' => $actividades['observacion'],
@@ -82,7 +114,8 @@ class actividadController extends Controller
                 'tipo' => $tipo,
                 'id_tipo' => $actividades['id_tipo'],
                 'estado_id' => $actividades['estado_id'],
-                'estado' => $status
+                'estado' => $status,
+                'select_estado' => $dataStatus
             ]);
         }catch(\Exception $exception){
             $logger = new Logger("web");
@@ -159,10 +192,14 @@ class actividadController extends Controller
                 throw new ForbiddenException();
             }
             usuarios::validarLogin();
+            $logger = new Logger("update");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, ['request'=> $request->getBody()]);
             $actividad = new actividades();
             $actividad->loadData($request->getBody());
             if ($actividad->validate()) {
                 $nombre = $request->getBody()['nombre'];
+                $id = $request->getBody()['id'];
                 $description = $request->getBody()['descripcion'];
                 $tipo = $request->getBody()['tipo_actividad'];
                 $status = $request->getBody()['status'];
@@ -170,14 +207,14 @@ class actividadController extends Controller
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
-                $actividades = actividades::registrarActividades($nombre,$description,$status,$tipo,$fecha);
-                $horarios = actividades::horariosCreate($hora,$fechaHora,$fecha);
-                $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'],$horarios['id'],$fecha);
-                actividades::observacionActividad($actividades['id'],$observacion,$fecha);
-                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
-                if ($actividades && $horarios && $actividadHorarios) {
+                $actividades = actividades::modificarActividades($nombre,$description,$status,$tipo,$fecha,$id);
+                $horarios = actividades::horariosModificar($hora,$fechaHora,$fecha);
+//                $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'],$horarios['id'],$fecha);
+//                actividades::observacionActividad($actividades['id'],$observacion,$fecha);
+//                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
+                if ($actividades) {
                     $data = [
-                        'title' => 'Datos registrado',
+                        'title' => 'Datos Actualizado',
                         'messages' => 'La actividad se ha actualizado',
                         'code' => 200
                     ];

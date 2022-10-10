@@ -19,5 +19,6 @@
          * @var int
          */
         public static $en_pausa = 3;
+        
         public static $cancelado = 4;
     }

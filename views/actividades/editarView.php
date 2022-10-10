@@ -25,6 +25,7 @@
                             </div>
                             <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                         </div>
+                        <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         <div class="form-group">
                             <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="<?php echo $nombre ?>" placeholder=" " >
                             <label for="nombre" class="form-label fw-bold">Nombre de la Actividad:*</label>
@@ -44,10 +45,14 @@
                         <div class="mb-3">
                             <p class="">Estado:* </p>
                             <select class="form-control" name="status" id="status">
-                                <option value="<?php echo $estado_id ?>"><?php echo $estado ?></option>
-                                <option value="1">En curso</option>
-                                <option value="2">Terminada</option>
-                                <option value="3">Pausada</option>
+                                <option value="<?php echo $estado_id ?>" selected><?php echo $estado ?></option>
+                                <?php foreach ($select_estado as $status) {
+                                    if ($status['id'] != $estado_id) {
+                                        echo '<option value="' . $status['id'] . '"  ' . '>' . $status['nombre'] . '</option>';
+                                    }
+                                
+                                }
+                                ?>
                             </select>
                         </div>
                         

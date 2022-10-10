@@ -133,9 +133,6 @@ class actividadesModel extends Model
                 $conexionBD = BD::crearInstancia();
                 $date = str_replace('/', '-', $fecha);
                 $fechaNew = date('Y-m-d', strtotime($date));
-                $logger = new Logger("web");
-                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$fechaNew]);
                 $sql = $conexionBD->prepare("INSERT INTO `horarios`(`hora`, `fecha`, `fecha_creado`, `fecha_actualizado`) VALUES (?, ?, ?, ?);");
                 $horarios = $sql->execute([$hora, $fechaNew,$fechaCreacion,$fechaCreacion]);
                 $id = $conexionBD->lastInsertId();
