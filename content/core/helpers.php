@@ -1,6 +1,5 @@
 <?php
 
-
 use content\controllers\AutenticacionController;
 use content\controllers\actividadController;
 use content\controllers\amigosController;
@@ -16,7 +15,6 @@ use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
 use content\enums\permisos;
-
 
 if (!function_exists("routas")) {
 
@@ -1021,7 +1019,7 @@ if (!function_exists("routas")) {
             'Bitacora' => [
                 'permisos' => permisos::$bitacora,
                 'parametros' => [],
-                'controller' => bitacoreController::class,
+                'controller' => bitacoraController::class,
                 'icon' => 'bx bx-log-in-circle',
                 'text' => 'Bitacora',
                 'route' => '/Bitacora',
