@@ -24,8 +24,8 @@ $this->title = 'Miembros';
                                 <label>Sexo:</label>
                                 <select class="form-select ms-2" id="sexo" name="sexo">
                                     <option value="">Todos</option>
-                                    <option value="0">Femenino</option>
-                                    <option value="1">Masculino</option>
+                                    <option value="false">Femenino</option>
+                                    <option value="true">Masculino</option>
                                 </select>
                             </div>
                         </div>
@@ -66,35 +66,28 @@ $this->title = 'Miembros';
         </div><!--col-->
     </div><!-- row -->
 </div><!--container-->
+<div class="container-fluid">
+    <div class="row center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+            <div class="card mb-5">
+                <div class="card-body center table-wrap">
+                    <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
+                           id="miembros-table" data-route="miembros/data">
+                        <thead class="thead-primary">
+                        <tr>
+                            <th class="w-auto">Cédula</th>
+                            <th class="w-auto">Nombre</th>
+                            <th class="w-auto">Teléfono</th>
+                            <th class="w-auto">Status</th>
+                            <th class="w-auto">Paso de Fe</th>
+                            <th class="w-auto">Bautismo</th>
+                            <th class="text-center w-auto">Acciones</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div><!--card-body-->
+            </div><!--card-->
 
-<div class="container-fluid mt-4"> <!--container-->
-    <div class="row">
-        <div class="col-md-12 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
-                   id="miembros-table" data-route="miembros/data">
-                <thead class="thead-primary">
-                <tr>
-                    <th class="w-auto">Cédula</th>
-                    <th class="w-auto">Nombre</th>
-                    <th class="w-auto">Teléfono</th>
-                    <th class="w-auto">Status</th>
-                    <th class="w-auto">Paso de Fe</th>
-                    <th class="w-auto">Bautismo</th>
-                    <th class="text-center w-auto">Acciones</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-</div>
-
-<script>
-    // $(document).ready(function () {
-    //     $("#miembro").on("keyup", function () {
-    //         var value = $(this).val().toLowerCase();
-    //         $("#myTable tr").filter(function () {
-    //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    //         });
-    //     });
-    // });
-</script>
+        </div><!--col-md-8-->
+    </div><!--row-->
+</div><!--container-->

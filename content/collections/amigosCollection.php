@@ -2,6 +2,7 @@
 
 namespace content\collections;
 
+use content\enums\permisos;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -12,11 +13,18 @@ class amigosCollection
         $data = [];
         foreach ($amigos as $amigo) {
             if ($amigo['status'] == 1) {
-                $amigo['actions'] = sprintf(
-                    '<a href="%s" class="btn btn-info me-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
-                    '/amigos/editar/' . $amigo['amigo'],
-                );
-
+                if (in_array(permisos::$actualizar_amigos, $_SESSION['user_permisos'])) {
+                    $amigo['actions'] = sprintf(
+                        '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                        '/amigos/editar/' . $amigo['amigo'],
+                    );
+                } else {
+                    $amigo['actions'] = sprintf(
+                        '<h5><span class="badge bg-%s">%s</span></h5>',
+                        'warning',
+                        'Accion no disponible'
+                    );
+                }
                 $amigo['actions'] .= sprintf(
                     '<button name="miembro-modal" data-amigo="%s" class="btn btn-success mx-2" data-bs-toggle="modal"
                                 data-bs-target="#convertir-miembro-modal"><i class="bi bi-arrow-clockwise text-light"></i> %s</button>',

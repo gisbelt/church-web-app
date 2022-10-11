@@ -1,6 +1,5 @@
 <?php
 
-
 use content\controllers\AutenticacionController;
 use content\controllers\actividadController;
 use content\controllers\amigosController;
@@ -17,7 +16,6 @@ use content\controllers\perfilController;
 use content\controllers\errorController;
 use content\enums\permisos;
 
-
 if (!function_exists("routas")) {
 
     function rutas()
@@ -25,13 +23,13 @@ if (!function_exists("routas")) {
         $rutas = [
             'login' => [
                 'controller' => AutenticacionController::class,
-                'permisos' => permisos::$permiso,
+                'permisos' => [],
                 'parametros' => [],
                 'icon' => 'bx bx-bar-chart-alt-2',
                 'text' => 'login',
                 'subRutas' => [
                     'loginView' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'index',
@@ -42,7 +40,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'loginPost' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'login',
@@ -53,7 +51,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'logout' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'logout',
@@ -96,7 +94,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'cambiarContrasena' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'cambiar-contrasena',
@@ -132,11 +130,11 @@ if (!function_exists("routas")) {
                 'controller' => errorController::class,
                 'parametros' => [],
                 'icon' => 'bx bx-bar-chart-alt-2',
-                'permisos' => permisos::$permiso,
+                'permisos' => [],
                 'text' => 'error',
                 'subRutas' => [
                     'errorView' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-bar-chart-alt-2',
                         'text' => 'error',
@@ -150,14 +148,14 @@ if (!function_exists("routas")) {
 
             'miembros' => [
                 'controller' => miembrosController::class,
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$miembros,
                 'parametros' => [],
                 'route' => null,
                 'text' => 'Miembros',
                 'icon' => 'bx bx-group',
                 'subRutas' => [
                     'listaMiembros' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$lista_miembros,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de miembros',
@@ -179,7 +177,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearMiembros' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$crear_miembros,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar miembros',
@@ -237,14 +235,14 @@ if (!function_exists("routas")) {
 
             'amigos' => [
                 'controller' => amigosController::class,
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$amigos,
                 'parametros' => [],
                 'route' => null,
                 'icon' => 'bx bx-smile',
                 'text' => 'Amigos',
                 'subRutas' => [
                     'listaAmigos' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$lista_amigos,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de amigo',
@@ -266,7 +264,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearAmigos' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$crear_amigos,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registra amigo',
@@ -324,14 +322,14 @@ if (!function_exists("routas")) {
 
             'donaciones' => [
                 'controller' => donacionesController::class,
-                'permisos' => permisos::$donaciones,
+                'permisos' => permisos::$donacion,
                 'parametros' => [],
                 'route' => null,
                 'text' => 'Donaciones',
                 'icon' => 'bx bx-donate-heart',
                 'subRutas' => [
                     'listaDonaciones' => [
-                        'permisos' => permisos::$donaciones,
+                        'permisos' => permisos::$lista_donacion,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de donaciones',
@@ -353,7 +351,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearDonaciones' => [
-                        'permisos' => permisos::$donaciones,
+                        'permisos' => permisos::$crear_donacion,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar donaciones',
@@ -422,14 +420,14 @@ if (!function_exists("routas")) {
 
             'actividades' => [
                 'controller' => actividadController::class,
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$actividades,
                 'parametros' => [],
                 'route' => null,
                 'text' => 'Actividades',
                 'icon' => 'bx bx-briefcase-alt',
                 'subRutas' => [
                     'listaActividades' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$actividades,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de actividades',
@@ -440,7 +438,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearActividades' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$crear_actividades,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar actividades',
@@ -514,14 +512,14 @@ if (!function_exists("routas")) {
 
             'asitencias' => [
                 'controller' => asistenciasController::class,
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$asitencias,
                 'parametros' => [],
                 'route' => null,
                 'icon' => 'bx bx-list-check',
                 'text' => 'Asistencias',
                 'subRutas' => [
                     'listaAsistencias' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$lista_asitencias,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de asistencias',
@@ -532,7 +530,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearAsistencias' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$crear_asitencias,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar asistencias',
@@ -601,14 +599,14 @@ if (!function_exists("routas")) {
 
             'grupoFamiliares' => [
                 'controller' => grupoFamiliarController::class,
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$grupo_familiar,
                 'parametros' => [],
                 'route' => null,
                 'text' => 'Grupo familiar',
                 'icon' => 'bx bx-group',
                 'subRutas' => [
                     'listaGrupoFamiliares' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$lista_grupo_familiar,
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista de grupos familiar',
@@ -619,7 +617,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'crearGrupoFamiliares' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$crear_grupo_familiar,
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar grupo familiar',
@@ -840,7 +838,7 @@ if (!function_exists("routas")) {
             ],
 
             'reportes' => [
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$reportes,
                 'parametros' => [],
                 'icon' => 'bx bxs-report',
                 'text' => 'Reportes',
@@ -1019,9 +1017,9 @@ if (!function_exists("routas")) {
             ],
 
             'Bitacora' => [
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$bitacora,
                 'parametros' => [],
-                'controller' => bitacoreController::class,
+                'controller' => bitacoraController::class,
                 'icon' => 'bx bx-log-in-circle',
                 'text' => 'Bitacora',
                 'route' => '/Bitacora',
@@ -1038,13 +1036,13 @@ if (!function_exists("routas")) {
                 'route' => '/Ayuda',
                 'method' => 'index',
                 'action' => 'get',
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$ayuda,
                 'sinSubRutas' => 'ok',
                 'subRutas' => []
             ],
 
             'perfil' => [
-                'permisos' => permisos::$permiso,
+                'permisos' => permisos::$perfiles,
                 'parametros' => [],
                 'controller' => perfilController::class,
                 'icon' => '',
@@ -1052,7 +1050,7 @@ if (!function_exists("routas")) {
                 'text' => 'Perfil',
                 'subRutas' => [
                     'cuenta' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => permisos::$perfiles,
                         'parametros' => [],
                         'text' => 'Cuenta',
                         'icon' => '',
@@ -1118,7 +1116,7 @@ if (!function_exists("routas")) {
                     ],
 
                     'preferencias' => [
-                        'permisos' => permisos::$permiso,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => '',
                         'text' => 'Preferencias',

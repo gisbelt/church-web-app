@@ -9,6 +9,7 @@ use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\bitacoraModel;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
 use content\models\miembrosModel as miembros;
@@ -33,12 +34,19 @@ class actividadController extends Controller
 
     public function index()
     {
+        if (!in_array(permisos::$lista_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         return $this->render('actividades/consultarView');
     }
 
     public function create()
     {
+        if (!in_array(permisos::$crear_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        bitacoraModel::guardar('Lista de actividades', 'Index actividades');
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar Actividades';
         return $this->render('actividades/registrarView');
@@ -46,6 +54,10 @@ class actividadController extends Controller
 
     public function edit(Request $request)
     {
+        if (!in_array(permisos::$actualizar_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        bitacoraModel::guardar('Editar de actividades', 'Editar actividades');
         try{
             $edit = $request->getRouteParams();
             $logger = new Logger("web");
@@ -87,6 +99,7 @@ class actividadController extends Controller
                 $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'], $horarios['id'], $fecha);
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
                 actividades::miembroActividad($miembro,$actividades['id'],$status,$fecha);
+                bitacoraModel::guardar('Registro de actividades', 'Registro actividades');
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
@@ -148,6 +161,7 @@ class actividadController extends Controller
                 actividades::observacionActividad($actividades['id'],$observacion,$fecha);
                 actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
                 if ($actividades && $horarios && $actividadHorarios) {
+                    bitacoraModel::guardar('Actualizo la actividad: '. $nombre, 'Actualizo actividades');
                     $data = [
                         'title' => 'Datos registrado',
                         'messages' => 'La actividad se ha registrado',

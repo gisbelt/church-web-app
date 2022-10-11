@@ -2,6 +2,8 @@
 
 namespace content\collections;
 
+use content\enums\permisos;
+
 /**
  * Class seguridad Collection
  *
@@ -25,17 +27,32 @@ class grupoFamiliarCollection
     {
         $data = [];
         foreach ($grupos as $grupo) {
-            $grupo['actions'] = sprintf(
-                '<a href="%s" class="btn btn-info mx-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
-                '/grupo-familiares/editar/' . $grupo['grupo'],
-            );
+            if (in_array(permisos::$actualizar_grupo_familiar, $_SESSION['user_permisos'])) {
+                $grupo['actions'] = sprintf(
+                    '<a href="%s" class="btn btn-info mx-2" target="_blank" title="editar"><i class="bi bi-pencil text-light"></i></a>',
+                    '/grupo-familiares/editar/' . $grupo['grupo'],
+                );
+            } else {
+                $grupo['actions'] = sprintf(
+                    '<h5><span class="badge bg-%s">%s</span></h5>',
+                    'warning',
+                    'Accion no disponible'
+                );
+            }
 
-            $grupo['actions'] .= sprintf(
-                '<button type="button" data-route="%s" name="eliminar-grupo" id="eliminar-grupo" class="btn btn-danger mx-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
-                          </button>',
-                '/grupo-familiares/eliminar/' . $grupo['grupo'],
-            );
-
+            if (in_array(permisos::$eliminar_grupo_familiar, $_SESSION['user_permisos'])) {
+                $grupo['actions'] .= sprintf(
+                    '<button type="button" data-route="%s" name="eliminar-grupo" id="eliminar-grupo" class="btn btn-danger mx-2" title="eliminar"><i class="bi bi-trash text-light"></i>
+                              </button>',
+                    '/grupo-familiares/eliminar/' . $grupo['grupo'],
+                );
+            } else {
+                $grupo['actions'] = sprintf(
+                    '<h5><span class="badge bg-%s">%s</span></h5>',
+                    'warning',
+                    'Accion no disponible'
+                );
+            }
             $grupo['actions'] .= sprintf(
                 '<button name="grupo-modal" data-id="%s" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#integrantes" data-title="ver amigos">
                  <i class="bi bi-eye text-light">%s</i>
@@ -55,7 +72,7 @@ class grupoFamiliarCollection
             $amigo['actions'] .= sprintf(
                 '<button type="button" data-route="%s" name="eliminar-amigo-grupo" id="eliminar-amigo-grupo" class="btn btn-danger mx-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                           </button>',
-                '/grupo-familiares/eliminar-amigo/' . $amigo['amigo'].'/'.$amigo['grupo_id'],
+                '/grupo-familiares/eliminar-amigo/' . $amigo['amigo'] . '/' . $amigo['grupo_id'],
             );
             $data[] = $amigo;
         }

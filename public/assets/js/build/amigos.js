@@ -201,7 +201,6 @@ const convertirMiembro = function () {
     $button.click(function (e) {
         e.preventDefault();
         $('#migo-miembro-guardar').disabled = true;
-        console.log($form.serialize())
         $.ajax({
             url: $form.attr('action') ,
             method: $form.attr('method'),
@@ -226,6 +225,8 @@ const convertirMiembro = function () {
                 });
                 $('#migo-miembro-guardar').disabled = false;
             } else {
+                $form.trigger('reset');
+                $('#membresia, #cargo').val("null").trigger('change');
                 swal.fire({
                     title: response.title,
                     html: response.messages,
@@ -234,13 +235,7 @@ const convertirMiembro = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                let $table = $("#lista-amigos-table");
-                let sexo = $('#sexo').val();
-                let cedula = $('#cedula').val();
-                let fecha_nacimiento = $('#fecha_nacimiento').val();
-                let route = `${$table.data('route')}?sexo=${sexo}&cedula=${cedula}&fecha_nacimiento=${fecha_nacimiento}`;
-                api.ajax.url(route).load();
-                setTimeout(() => window.location.href = '', 1000);
+                setTimeout(() => window.location.href = '/amigos', 1500);
                 $('#migo-miembro-guardar').disabled = false;
             }
         }).fail(function (response) {
