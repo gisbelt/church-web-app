@@ -94,11 +94,7 @@ class grupoFamiliarController extends Controller
 
     //Obtener Grupos
     public function obtenerGrupos(Request $request){
-        $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-        
+        $user = usuarios::validarLogin();        
         $grupos = grupoFamiliarModel::obtenerGrupos();     
         if($grupos){
             $grupoFamiliarCollection = new grupoFamiliarCollection();

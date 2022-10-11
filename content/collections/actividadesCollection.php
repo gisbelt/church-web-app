@@ -26,7 +26,7 @@ class actividadesCollection
                     'Accion no disponible'
                 );
             }
-            if (in_array(permisos::$eliminar_actividades_actividades, $_SESSION['user_permisos'])) {
+            if (in_array(permisos::$eliminar_actividades, $_SESSION['user_permisos'])) {
                 $actividad['actions'] .= sprintf(
                     '<button type="button"  name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger ms-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                           </button>',

@@ -16,7 +16,7 @@ class donacionesCollection
         foreach ($donaciones as $donacion) {
             if (in_array(permisos::$actualizar_donacion, $_SESSION['user_permisos'])) {
                 $donacion['actions'] = sprintf(
-                    '<a href="%s" class="btn btn-info mx-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                    '<a href="%s" class="btn btn-info mx-2" target="_blank" data-tile="editar"><i class="bi bi-pencil text-light"></i></a>',
                     '/donaciones/editar/' . $donacion['donacion'],
                 );
             } else {
@@ -29,7 +29,7 @@ class donacionesCollection
             if (in_array(permisos::$eliminar_donacion, $_SESSION['user_permisos'])) {
                 if ($donacion['status'] == 1) {
                     $donacion['actions'] .= sprintf(
-                        '<button type="button" data-route="%s" name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger mx-2"><i class="bi bi-trash text-light"></i>
+                        '<button type="button" data-route="%s" name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger mx-2" data-tile="eliminar"><i class="bi bi-trash text-light"></i>
                                   </button>',
                         '/donaciones/eliminar/' . $donacion['donacion'],
                     );

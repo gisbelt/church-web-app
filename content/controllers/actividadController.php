@@ -201,9 +201,9 @@ class actividadController extends Controller
     {
     try{
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
+        // if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        //     throw new ForbiddenException();
+        // }
         $actividades = actividades::cargarActividades();
 
         if ($actividades) {

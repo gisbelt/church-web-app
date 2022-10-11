@@ -107,9 +107,6 @@ class usuariosController extends Controller
     // Mostrar vista datos de usuario en la lista
     public function obtenerUsuarios(Request $request)
     {
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         usuarios::validarLogin();
         $cargo = count($request->getBody()) > 1 ? $request->getBody()['cargo'] : null;
         $status = count($request->getBody()) > 1 ? $request->getBody()['status'] : null;

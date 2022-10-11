@@ -106,4 +106,6 @@ class permisos
 
     public static $prueba = 49;
 
+    public static $cuenta = 50;
+
 }
