@@ -1,7 +1,7 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Lista de bitacora'
+$this->title = 'Bitacora'
 ?>
 <div class="container-fluid">
     <div class="row center">
@@ -15,7 +15,7 @@ $this->title = 'Lista de bitacora'
                         <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
                             <div class="form-group">
                                 <label>Usuario:</label>
-                                <select class="form-select" id="sexo">
+                                <select class="form-select" id="usuario">
                                     <option value="">seleccione...</option>
                                     <?php foreach ($usuarios as $usuario) {
                                         echo '<option value="' . $usuario[id] . '">' . $usuario[username] . '</option>';
@@ -46,7 +46,7 @@ $this->title = 'Lista de bitacora'
 
                         <div class="col-md-12 mt-3">
                             <div class="form-group">
-                                <button type="button" name="busqueda_amigos" id="busqueda_amigos"
+                                <button type="button" name="busqueda_bitacora" id="busqueda_bitacora"
                                         class="btn btn-secondary btn-sm btn-block">
                                     <i class="bi bi-search"></i> Buscar
                                 </button>

@@ -1022,11 +1022,33 @@ if (!function_exists("routas")) {
                 'controller' => bitacoraController::class,
                 'icon' => 'bx bx-log-in-circle',
                 'text' => 'Bitacora',
-                'route' => '/Bitacora',
+                'route' => null,
                 'method' => 'index',
                 'action' => 'get',
-                'sinSubRutas' => 'ok',
-                'subRutas' => []
+                'subRutas' => [
+
+                    'BitacoraIndex' => [
+                        'permisos' => permisos::$bitacora,
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'Reporte bitacora',
+                        'route' => '/Bitacora',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'BitacoraDatos' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'datos bitacora',
+                        'route' => '/bitacora/data',
+                        'method' => 'bitacoraDatos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                ]
             ],
 
             'Ayuda' => [
