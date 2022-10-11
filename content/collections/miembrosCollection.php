@@ -9,13 +9,13 @@ class miembrosCollection
         $data = [];
         foreach ($miembros as $miembro) {
             $miembro['actions'] = sprintf(
-                '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                '<a href="%s" class="btn btn-info me-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
                 '/miembros/editar/' . $miembro['id'],
             );
 
             if ($miembro['status'] == 1) {
                 $miembro['actions'] .= sprintf(
-                    '<button type="button" data-route="%s" name="eliminar-miembro" id="eliminar-miembro" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
+                    '<button type="button" data-route="%s" name="eliminar-miembro" id="eliminar-miembro" class="btn btn-danger ms-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                           </button>',
                     '/miembros/eliminar/' . $miembro['id'],
                 );

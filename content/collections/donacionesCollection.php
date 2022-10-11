@@ -13,13 +13,13 @@ class donacionesCollection
         $data = [];
         foreach ($donaciones as $donacion) {
             $donacion['actions'] = sprintf(
-                '<a href="%s" class="btn btn-info mx-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                '<a href="%s" class="btn btn-info mx-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
                 '/donaciones/editar/' . $donacion['donacion'],
             );
 
             if($donacion['status'] == 1){
                 $donacion['actions'] .= sprintf(
-                    '<button type="button" data-route="%s" name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger mx-2"><i class="bi bi-trash text-light"></i>
+                    '<button type="button" data-route="%s" name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger mx-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                               </button>',
                     '/donaciones/eliminar/' . $donacion['donacion'],
                 );

@@ -13,7 +13,7 @@ class amigosCollection
         foreach ($amigos as $amigo) {
             if ($amigo['status'] == 1) {
                 $amigo['actions'] = sprintf(
-                    '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                    '<a href="%s" class="btn btn-info me-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
                     '/amigos/editar/' . $amigo['amigo'],
                 );
 

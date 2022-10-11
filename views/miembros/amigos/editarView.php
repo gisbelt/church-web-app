@@ -87,9 +87,9 @@ $this->title = 'Editar';
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <p class="">Como llego:* </p>
+                                    <p class="">¿Cómo llegó?:* </p>
                                     <select class="form-select" name="como_llego" id="como_llego">
-                                        <option value="">selecione</option>
+                                        <option value="">Seleccione</option>
                                         <?php
                                         switch ($como_llego) {
                                             case '1':

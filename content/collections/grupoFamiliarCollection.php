@@ -26,18 +26,18 @@ class grupoFamiliarCollection
         $data = [];
         foreach ($grupos as $grupo) {
             $grupo['actions'] = sprintf(
-                '<a href="%s" class="btn btn-info mx-2" target="_blank" title="editar"><i class="bi bi-pencil text-light"></i></a>',
+                '<a href="%s" class="btn btn-info mx-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
                 '/grupo-familiares/editar/' . $grupo['grupo'],
             );
 
             $grupo['actions'] .= sprintf(
-                '<button type="button" data-route="%s" name="eliminar-grupo" id="eliminar-grupo" class="btn btn-danger mx-2" title="eliminar"><i class="bi bi-trash text-light"></i>
+                '<button type="button" data-route="%s" name="eliminar-grupo" id="eliminar-grupo" class="btn btn-danger mx-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                           </button>',
                 '/grupo-familiares/eliminar/' . $grupo['grupo'],
             );
 
             $grupo['actions'] .= sprintf(
-                '<button name="grupo-modal" data-id="%s" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#integrantes" title="ver amigos">
+                '<button name="grupo-modal" data-id="%s" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#integrantes" data-title="ver amigos">
                  <i class="bi bi-eye text-light">%s</i>
                 </button>',
                 $grupo['grupo'],
@@ -53,7 +53,7 @@ class grupoFamiliarCollection
         $data = [];
         foreach ($amigos as $amigo) {
             $amigo['actions'] .= sprintf(
-                '<button type="button" data-route="%s" name="eliminar-amigo-grupo" id="eliminar-amigo-grupo" class="btn btn-danger mx-2" title="eliminar"><i class="bi bi-trash text-light"></i>
+                '<button type="button" data-route="%s" name="eliminar-amigo-grupo" id="eliminar-amigo-grupo" class="btn btn-danger mx-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                           </button>',
                 '/grupo-familiares/eliminar-amigo/' . $amigo['amigo'].'/'.$amigo['grupo_id'],
             );

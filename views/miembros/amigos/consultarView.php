@@ -23,7 +23,7 @@ $this->title = 'Amigos';
                         <div class="form-group">
                             <label>Sexo:</label>
                             <select class="form-select" id="sexo">
-                                <option value="">seleccione...</option>
+                                <option value="">Todos</option>
                                 <option value="false">Femenino</option>
                                 <option value="true">Masculino</option>
                             </select>
@@ -43,7 +43,7 @@ $this->title = 'Amigos';
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <button type="button" name="busqueda_amigos" id="busqueda_amigos"
-                                    class="btn btn-secondary btn-sm btn-block">
+                                    class="btn btn-secondary btn-block">
                                 <i class="bi bi-search"></i> Buscar
                             </button>
                         </div>
