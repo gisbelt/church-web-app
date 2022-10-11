@@ -9,6 +9,7 @@ use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\bitacoraModel;
 use content\models\cargosModel;
 use content\models\membresiasModel;
 use content\models\miembrosModel;
@@ -36,6 +37,7 @@ class miembrosController extends Controller
         if (!in_array(permisos::$lista_miembros, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso a miembros', 'Index miembros');
         usuarios::validarLogin();
         return $this->render('miembros/miembros/consultarView');
     }
@@ -83,6 +85,7 @@ class miembrosController extends Controller
         if (!in_array(permisos::$crear_miembros, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso a crear miembros', 'Crear miembros');
         usuarios::validarLogin();
         $profesiones = profesionModel::obtener_profesiones();
         $membresias = membresiasModel::obtener_membresias();
@@ -144,6 +147,7 @@ class miembrosController extends Controller
                                 $sexo, $vehiculo, $profesionId, $fecha);
 
                             if ($perfil) {
+                                bitacoraModel::guardar('Creo el miembro:'. $miembroId, 'Creo miembros');
                                 $data = [
                                     'title' => 'Datos registrado',
                                     'messages' => 'El miemrbo se ha registrado',
@@ -210,8 +214,9 @@ class miembrosController extends Controller
         try {
             $id = $request->getRouteParam('id');
             if (!is_null($id)) {
-                $usuario = miembrosModel::eliminar($id);
-                if ($usuario) {
+                $miembro = miembrosModel::eliminar($id);
+                if ($miembro) {
+                    bitacoraModel::guardar('Elimino el miembro:'. $id, 'Elimino miembros');
                     $data = [
                         'title' => 'Dato eliminado',
                         'messages' => 'El miembro se ha eliminado',

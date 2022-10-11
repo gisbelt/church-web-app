@@ -10,6 +10,7 @@ use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
 use content\models\amigosModel as amigos;
+use content\models\bitacoraModel;
 use content\models\cargosModel;
 use content\models\membresiasModel;
 use content\models\miembrosModel;
@@ -54,6 +55,7 @@ class amigosController extends Controller
                 $fechaNacimiento = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d H:i:s');
                 $amigo = amigos::actualizar($id, $cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
                 if ($amigo) {
+                    bitacoraModel::guardar('Actualizo de amigo:'. $cedula, 'Actualizo amigo');
                     $data = [
                         'title' => 'Datos actualizado',
                         'messages' => 'El usuario se ha actualizado',
@@ -88,6 +90,7 @@ class amigosController extends Controller
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
+        bitacoraModel::guardar('Ingreso amigos', 'Lista amigo');
         $profesiones = profesionModel::obtener_profesiones();
         $membresias = membresiasModel::obtener_membresias();
         $cargos = cargosModel::obtener_cargos();
@@ -104,6 +107,7 @@ class amigosController extends Controller
         if (!in_array(permisos::$crear_amigos, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso crear amigos', 'Crear amigo');
         usuarios::validarLogin();
         return $this->render('/miembros/amigos/registrarView');
     }
@@ -117,6 +121,7 @@ class amigosController extends Controller
         usuarios::validarLogin();
         $id = $request->getRouteParams();
         $amigo = amigos::amigoId($id['id']);
+        bitacoraModel::guardar('Ingreso editar amigo:'. $id['id'], 'Editar amigo');
         return $this->render('/miembros/amigos/editarView', [
             'id' => $id['id'],
             'nombre' => $amigo['nombre'],
@@ -190,6 +195,7 @@ class amigosController extends Controller
 
                         $amigos = amigos::guardar($cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
                         if ($amigos) {
+                            bitacoraModel::guardar('Registro amigo:'. $cedula, 'Registrar amigo');
                             $data = [
                                 'title' => 'Datos registrado',
                                 'messages' => 'El amigo se ha registrado',
@@ -250,8 +256,6 @@ class amigosController extends Controller
             $miembros->loadData($request->getBody());
             $amigos = new amigos();
             $id = $request->getBody()['amigo_id'];
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             if (!is_null($id)) {
                 if (!empty($request->getBody()['membresia']) && !empty($request->getBody()['cargo'])) {
                     $amigosData = $amigos::amigoId($id);
@@ -270,7 +274,6 @@ class amigosController extends Controller
                         $membresia = $request->getBody()['membresia'];
                         $cargo = $request->getBody()['cargo'];
                         $fecha = Carbon::now();
-                        $logger->debug(__METHOD__, [$fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha]);
                         $miembro = miembrosModel::crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha);
 
                         if($miembro){
@@ -296,6 +299,7 @@ class amigosController extends Controller
                                 $sexo, $vehiculo, $profesionId, $fecha);
 
                             if ($perfil) {
+                                bitacoraModel::guardar('Convirtion el amigo  miembro:'. $cedula, 'Convertir amigo a miembro');
                                 $amigos::covertirMiembro($request->getBody()['amigo_id']);
                                 $data = [
                                     'title' => 'Datos registrado',

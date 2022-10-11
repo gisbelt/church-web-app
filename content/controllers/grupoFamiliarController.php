@@ -9,6 +9,7 @@ use content\enums\permisos;
 use content\collections\grupoFamiliarCollection;
 use content\core\Controller;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\models\bitacoraModel;
 use content\models\usuariosModel as usuarios;
 use content\models\grupoFamiliarModel;
 use content\models\miembrosModel as miembros;
@@ -39,6 +40,7 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$lista_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso en lista grupo familiar', 'Index grupo familiar');
         $user = usuarios::validarLogin();
         return $this->render('grupoFamiliar/consultarView');
     }
@@ -49,6 +51,7 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$crear_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso en crear grupo familiar', 'Crear grupo familiar');
         $user = usuarios::validarLogin();        
         $lider = grupoFamiliarModel::lider();
         $zonas = grupoFamiliarModel::zonas();
@@ -147,7 +150,8 @@ class grupoFamiliarController extends Controller
         $amigo_id = $request->getBody()['amigo_id'];
         if(isset($nombre)){
             if($gf->validate()){
-                $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
+                $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);
+                bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
             }
             if(count($gf->errors) > 0){
                 $data = [
@@ -158,7 +162,8 @@ class grupoFamiliarController extends Controller
                 return json_encode($data, 422);
             } 
         }        
-        $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
+        $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);
+        bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
     }
 
     // Editar View 
@@ -172,6 +177,7 @@ class grupoFamiliarController extends Controller
         $grupo = grupoFamiliarModel::id_grupo($id['id']);
         $lider = grupoFamiliarModel::lider();
         $zonas = grupoFamiliarModel::zonas();
+        bitacoraModel::guardar('Ingreso en editar grupo familiar:'. $id['id'], 'Editar grupo familiar');
         return $this->render('grupoFamiliar/editarView', [
             'zonas' => $zonas,
             'lideres' => $lider,
@@ -203,6 +209,7 @@ class grupoFamiliarController extends Controller
             $fecha_actualizado = Carbon::now();
             $grupo = grupoFamiliarModel::actualizar($nombre, $direccion, $lider, $zona, $fecha_actualizado, $grupo_id);
             if ($grupo) {
+                bitacoraModel::guardar('Edito el grupo familiar:'. $grupo_id, 'Edito grupo familiar');
                 $data = [
                     'title' => 'Datos actualizados',
                     'messages' => 'El Grupo Familiar se ha actualizado',
@@ -238,6 +245,7 @@ class grupoFamiliarController extends Controller
         if(!is_null($grupo_id)){
             $grupos = grupoFamiliarModel::eliminar($grupo_id);
             if($grupos){
+                bitacoraModel::guardar('Elimino el grupo familiar:'. $grupo_id, 'Elimino grupo familiar');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'Grupo Familiar se ha eliminado',
@@ -263,15 +271,13 @@ class grupoFamiliarController extends Controller
     //Asignar Amigo
     public static function asignarAmigos(Request $request){
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $gf = new grupoFamiliarModel();
         $gf->loadData($request->getBody());
         $grupo_id = $request->getBody()['grupo_id'];
         $amigo_id = $request->getBody()['amigo_id'];
         $gf = grupoFamiliarModel::asignarAmigos($grupo_id,$amigo_id);
         if ($gf) {
+            bitacoraModel::guardar('Agrego el amigo '. $amigo_id. ' al grupo familiar:'. $grupo_id, 'Agrego amigo al grupo familiar');
             $data = [
                 'title' => 'Datos registrados',
                 'messages' => 'Se agregó el amigo',
@@ -291,14 +297,12 @@ class grupoFamiliarController extends Controller
     public function eliminarAmigo(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $amigo_id = $request->getRouteParam('id');
         $grupo_id = $request->getRouteParam('grupo_id');
         if(!is_null($amigo_id)){
             $amigos = grupoFamiliarModel::eliminarAmigo($amigo_id,$grupo_id);
             if($amigos){
+                bitacoraModel::guardar('Elimino el amigo: '. $amigo_id. ' del grupo familiar:'. $grupo_id, 'Agrego amigo al grupo familiar');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'El amigo se ha eliminado',

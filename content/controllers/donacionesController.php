@@ -9,6 +9,7 @@ use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\bitacoraModel;
 use content\models\donacionesModel as donacion;
 use content\models\miembrosModel as miembros;
 use content\models\observacionDonacionModel;
@@ -44,6 +45,7 @@ class donacionesController extends Controller
             $fecha_actualizado = Carbon::now();
             $donacion = donacion::actualizar_donacion($detalles, $cantidad, $donacion, $fecha_actualizado);
             if ($donacion) {
+                bitacoraModel::guardar('Actualizo donacion:'. $donacion, 'Actualizar donacion');
                 $data = [
                     'title' => 'Datos actualizado',
                     'messages' => 'Donacion actualizada',
@@ -73,11 +75,8 @@ class donacionesController extends Controller
         if (!in_array(permisos::$lista_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso lista donacion', 'Index donacion');
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-
         return $this->render('donaciones/consultarView');
     }
 
@@ -88,7 +87,7 @@ class donacionesController extends Controller
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
-
+        bitacoraModel::guardar('Ingreso crear donacion', 'Crear donacion');
         $tipoDonacion = donacion::tipo_donaciones();
         $miembros = miembros::obtener_miembros();
         return $this->render('donaciones/registrarView', [
@@ -114,6 +113,7 @@ class donacionesController extends Controller
             $fecha_crear = Carbon::now();
             $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad, $fecha_crear);
             if ($donacion) {
+                bitacoraModel::guardar('Registro donacion:'. $detalles, 'Registro donacion');
                 $data = [
                     'title' => 'Datos registrado',
                     'messages' => 'La donacion se ha registrado',
@@ -167,6 +167,7 @@ class donacionesController extends Controller
         $donacion = donacion::id_donacion($id['id']);
         $tipoDonacion = donacion::tipo_donaciones();
         $miembros = miembros::obtener_miembros();
+        bitacoraModel::guardar('Ingreso editar donacion:'. $id['id'], 'Editar donacion');
         return $this->render('donaciones/editarView', [
             'donacion' => $donacion['donacion'],
             'detalle' => $donacion['detalles'],
@@ -187,8 +188,9 @@ class donacionesController extends Controller
         }
         $id = $request->getRouteParam('id');
         if (!is_null($id)) {
-            $permiso = donacion::eliminar($id);
-            if ($permiso) {
+            $donacion = donacion::eliminar($id);
+            if ($donacion) {
+                bitacoraModel::guardar('Elimino donacion:'. $id['id'], 'Eliminar donacion');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'Donacion se ha eliminado',
@@ -227,6 +229,7 @@ class donacionesController extends Controller
             $fecha = Carbon::now();
             $observacion_donacion = observacionDonacionModel::guardar($cantidad, $descripcion, $donacion_id, $fecha);
             if ($observacion_donacion) {
+                bitacoraModel::guardar('Observacion donacion:'. $donacion_id, 'Agrego donacion');
                 $data = [
                     'title' => 'Datos registrado',
                     'messages' => 'Observacion de la donacion registrada',

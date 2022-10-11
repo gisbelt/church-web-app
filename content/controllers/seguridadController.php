@@ -9,6 +9,7 @@ use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\bitacoraModel;
 use content\models\permisosModel;
 use content\models\rolesModel;
 use content\models\usuariosModel as usuarios;
@@ -53,6 +54,7 @@ class seguridadController extends Controller
                 $fecha =  Carbon::now();
                 $seguridad = permisosModel::actualizar_permiso($id, $nombre, $fecha);
                 if($seguridad){
+                    bitacoraModel::guardar('Actualizo el permiso:'. $nombre, 'Seguridad actualizar permiso');
                     $data = [
                         'title' => 'Datos actualizado',
                         'messages' => 'El permiso se ha actualizado',
@@ -84,9 +86,7 @@ class seguridadController extends Controller
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
+        bitacoraModel::guardar('Ingreso a lista permiso', 'Index permiso');
         return $this->render('seguridad/permisos/consultarView');
     }
 
@@ -115,6 +115,7 @@ class seguridadController extends Controller
         if (!in_array(permisos::$seguridad_permisos, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso a crear permiso', 'Crear permiso');
         $user = usuarios::validarLogin();
         return $this->render('seguridad/permisos/registrarView');
     }
@@ -131,6 +132,7 @@ class seguridadController extends Controller
                 $fecha =  Carbon::now();
                 $seguridad = permisosModel::agregar_permiso($nombre, $fecha);
                 if($seguridad){
+                    bitacoraModel::guardar('Registro el permiso permiso:'. $nombre, 'Registro permiso');
                     $data = [
                         'title' => 'Datos registrado',
                         'messages' => 'El permiso se ha registrado',
@@ -164,6 +166,7 @@ class seguridadController extends Controller
         }
         $id = $request->getRouteParams();
         $permiso = permisosModel::id_permiso($id['id']);
+        bitacoraModel::guardar('Ingreso en actualizar permiso:'. $id['id'], 'Actualiar permiso');
         return $this->render('seguridad/permisos/editarView', [
             'permiso' => $permiso['permiso'],
             'nombre_permiso' => $permiso['permiso_nombre'],
@@ -180,6 +183,7 @@ class seguridadController extends Controller
         if(!is_null($id)){
             $permiso = permisosModel::eliminar($id);
             if($permiso){
+                bitacoraModel::guardar('Elimino el permiso:'. $id, 'Elimino permiso');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'El permiso se ha eliminado',
@@ -214,6 +218,7 @@ class seguridadController extends Controller
                 $fecha =  Carbon::now();
                 $seguridad = rolesModel::actualizar_rol($id, $nombre, $fecha);
                 if($seguridad){
+                    bitacoraModel::guardar('Actualizo el rol:'. $nombre, 'Actualizar rol');
                     $data = [
                         'title' => 'Datos actualizado',
                         'messages' => 'El rol se ha actualizado',
@@ -245,9 +250,7 @@ class seguridadController extends Controller
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
+        bitacoraModel::guardar('Ingreso en lista roles', 'Index rol');
         return $this->render('seguridad/roles/consultarView');
     }
 
@@ -274,6 +277,7 @@ class seguridadController extends Controller
         if (!in_array(permisos::$seguridad_roles, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso en crear roles', 'Crear rol');
         return $this->render('seguridad/roles/registrarView');
     }
 
@@ -289,6 +293,7 @@ class seguridadController extends Controller
                 $nombre = $request->getBody()['nombre'];
                 $seguridad = rolesModel::agregar_rol($nombre, $fecha);
                 if($seguridad){
+                    bitacoraModel::guardar('Registro rol'. $nombre, 'Creo el rol');
                     $data = [
                         'title' => 'Datos registrado',
                         'messages' => 'El rol se ha registrado',
@@ -322,6 +327,7 @@ class seguridadController extends Controller
         }
         $id = $request->getRouteParams();
         $rol = rolesModel::id_rol($id['id']);
+        bitacoraModel::guardar('Ingreso en editar rol'. $id, 'Actualizar rol');
         return $this->render('seguridad/roles/editarView', [
             'rol' => $rol['rol'],
             'role_nombre' => $rol['role_nombre'],
@@ -338,6 +344,7 @@ class seguridadController extends Controller
         if(!is_null($id)){
             $rol = rolesModel::eliminar($id);
             if($rol){
+                bitacoraModel::guardar('Elimino el rol'. $id, 'Eliminar rol');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'El rol se ha eliminado',

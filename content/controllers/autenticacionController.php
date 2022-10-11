@@ -6,6 +6,7 @@ use content\core\Aplicacion;
 use content\core\Request;
 use content\core\Controller;
 use content\enums\seguridad;
+use content\models\bitacoraModel;
 use content\models\permisosModel;
 use content\models\usuariosModel as usuarios;
 
@@ -54,7 +55,7 @@ class AutenticacionController extends Controller
                     $_SESSION['date'] = date('d_m_Y_H_i');
                     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
                     $_SESSION['rol'] = seguridad::getRolName($consultarUsuario['role_id']);
-
+                    bitacoraModel::guardar('El usuario inicion session', 'inicio de sesion');
                     $seguirdadModel = new permisosModel();
                     $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
                     $userPermisos = [];

@@ -23,6 +23,5 @@ class bitacoraController extends Controller
         }
         $data['titulo'] = 'Bitacora';
         return new RedirectResponse('/home', 302);
-
     }
 }
