@@ -9,6 +9,7 @@ use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
 use content\models\asistenciasModel;
+use content\models\bitacoraModel;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel;
 use content\collections\asistenciasCollection;
@@ -33,6 +34,7 @@ class asistenciasController extends Controller
         if (!in_array(permisos::$lista_asitencias, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso en lista asistencia', 'Index asistencia');
         $user = usuarios::validarLogin();        
         return $this->render('asistencias/consultarView');
     }
@@ -42,6 +44,7 @@ class asistenciasController extends Controller
         if (!in_array(permisos::$crear_asitencias, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        bitacoraModel::guardar('Ingreso en crear asistencia', 'Crear asistencia');
         $user = usuarios::validarLogin();        
         $actividades = actividadesModel::cargarActividades();
         return $this->render('asistencias/registrarView', [
@@ -62,6 +65,7 @@ class asistenciasController extends Controller
                 $fecha = Carbon::now();           
                 $asistencias = asistenciasModel::guardar($actividad,$detalles,$fecha);
                 if ($asistencias) {
+                    bitacoraModel::guardar('Registro asistencia:'. $actividad, 'Registro asistencia');
                     $data = [
                         'title' => 'Datos actualizados',
                         'messages' => 'La asistencia se ha registrado',
@@ -121,6 +125,7 @@ class asistenciasController extends Controller
         $id = $request->getRouteParams();
         $asistencias = asistenciasModel::id_asistencias($id['id']);
         $actividades = actividadesModel::cargarActividades();
+        bitacoraModel::guardar('Editar asistencia:'. $id['id'], 'Editar asistencia');
         return $this->render('asistencias/editarView', [
             'actividad_id' => $asistencias['actividad_id'],
             'nombre' => $asistencias['nombre'],
@@ -146,6 +151,7 @@ class asistenciasController extends Controller
             $fecha_actualizado = Carbon::now();
             $asistencias = asistenciasModel::actualizar_asistencia($actividad_id, $detalles, $fecha_actualizado, $asistencia);
             if ($asistencias) {
+                bitacoraModel::guardar('Actualizo asistencia:'. $asistencia, 'Actualizo asistencia');
                 $data = [
                     'title' => 'Datos actualizados',
                     'messages' => 'Asistencia actualizada',
@@ -181,6 +187,7 @@ class asistenciasController extends Controller
         if(!is_null($id)){
             $asistencias = asistenciasModel::eliminar($id);
             if($asistencias){
+                bitacoraModel::guardar('Elimino asistencia:'. $id, 'Elimino asistencia');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'La asistencia se ha eliminado',

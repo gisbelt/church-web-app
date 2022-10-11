@@ -106,6 +106,7 @@ class AutenticacionController extends Controller
 
     public function cerrarSesion()
     {
+        bitacoraModel::guardar('El usuario'.  $_SESSION['username']. ' cerro session:', 'Cerrar session');
         unset($_SESSION['email']);
         unset($_SESSION['user_email']);
         unset($_SESSION['username']);

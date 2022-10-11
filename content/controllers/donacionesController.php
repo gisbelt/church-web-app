@@ -167,7 +167,7 @@ class donacionesController extends Controller
         $donacion = donacion::id_donacion($id['id']);
         $tipoDonacion = donacion::tipo_donaciones();
         $miembros = miembros::obtener_miembros();
-        bitacoraModel::guardar('Ingreso editar donacion:'. $id['id'], 'Editar donacion');
+        bitacoraModel::guardar('Ingreso en editar donacion: '.$donacion['donacion'], 'Editar donacion');
         return $this->render('donaciones/editarView', [
             'donacion' => $donacion['donacion'],
             'detalle' => $donacion['detalles'],

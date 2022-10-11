@@ -55,7 +55,7 @@ class amigosController extends Controller
                 $fechaNacimiento = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d H:i:s');
                 $amigo = amigos::actualizar($id, $cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
                 if ($amigo) {
-                    bitacoraModel::guardar('Actualizo de amigo:'. $cedula, 'Actualizo amigo');
+                    bitacoraModel::guardar('Actualizo el amigo:'. $nombre.' '. $apellido , 'Actualizo amigo');
                     $data = [
                         'title' => 'Datos actualizado',
                         'messages' => 'El usuario se ha actualizado',
@@ -121,7 +121,7 @@ class amigosController extends Controller
         usuarios::validarLogin();
         $id = $request->getRouteParams();
         $amigo = amigos::amigoId($id['id']);
-        bitacoraModel::guardar('Ingreso editar amigo:'. $id['id'], 'Editar amigo');
+        bitacoraModel::guardar('Ingreso editar amigo:'. $amigo['nombre'].' '. $amigo['apellido'], 'Editar amigo');
         return $this->render('/miembros/amigos/editarView', [
             'id' => $id['id'],
             'nombre' => $amigo['nombre'],
@@ -195,7 +195,7 @@ class amigosController extends Controller
 
                         $amigos = amigos::guardar($cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
                         if ($amigos) {
-                            bitacoraModel::guardar('Registro amigo:'. $cedula, 'Registrar amigo');
+                            bitacoraModel::guardar('Registro amigo:'. $nombre.' '. $apellido, 'Registrar amigo');
                             $data = [
                                 'title' => 'Datos registrado',
                                 'messages' => 'El amigo se ha registrado',
@@ -299,7 +299,7 @@ class amigosController extends Controller
                                 $sexo, $vehiculo, $profesionId, $fecha);
 
                             if ($perfil) {
-                                bitacoraModel::guardar('Convirtion el amigo  miembro:'. $cedula, 'Convertir amigo a miembro');
+                                bitacoraModel::guardar('Convirtion el amigo  miembro:'. $nombre.' '. $apellido, 'Convertir amigo a miembro');
                                 $amigos::covertirMiembro($request->getBody()['amigo_id']);
                                 $data = [
                                     'title' => 'Datos registrado',

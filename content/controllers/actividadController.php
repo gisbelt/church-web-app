@@ -161,7 +161,7 @@ class actividadController extends Controller
                 actividades::observacionActividad($actividades['id'],$observacion,$fecha);
                 actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
                 if ($actividades && $horarios && $actividadHorarios) {
-                    bitacoraModel::guardar('Actualizo de actividades'. $actividades['id'], 'Actualizo actividades');
+                    bitacoraModel::guardar('Actualizo la actividad: '. $nombre, 'Actualizo actividades');
                     $data = [
                         'title' => 'Datos registrado',
                         'messages' => 'La actividad se ha registrado',

@@ -177,7 +177,7 @@ class grupoFamiliarController extends Controller
         $grupo = grupoFamiliarModel::id_grupo($id['id']);
         $lider = grupoFamiliarModel::lider();
         $zonas = grupoFamiliarModel::zonas();
-        bitacoraModel::guardar('Ingreso en editar grupo familiar:'. $id['id'], 'Editar grupo familiar');
+        bitacoraModel::guardar('Ingreso en editar grupo familiar: '. $grupo['nombre'], 'Editar grupo familiar');
         return $this->render('grupoFamiliar/editarView', [
             'zonas' => $zonas,
             'lideres' => $lider,
@@ -209,7 +209,7 @@ class grupoFamiliarController extends Controller
             $fecha_actualizado = Carbon::now();
             $grupo = grupoFamiliarModel::actualizar($nombre, $direccion, $lider, $zona, $fecha_actualizado, $grupo_id);
             if ($grupo) {
-                bitacoraModel::guardar('Edito el grupo familiar:'. $grupo_id, 'Edito grupo familiar');
+                bitacoraModel::guardar('Edito el grupo familiar:'. $nombre, 'Edito grupo familiar');
                 $data = [
                     'title' => 'Datos actualizados',
                     'messages' => 'El Grupo Familiar se ha actualizado',
