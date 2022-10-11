@@ -36,6 +36,9 @@ class grupoFamiliarController extends Controller
     //Mostra vista de lista
     public function index()
     {
+        if (!in_array(permisos::$lista_grupo_familiar, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         return $this->render('grupoFamiliar/consultarView');
     }
@@ -43,7 +46,7 @@ class grupoFamiliarController extends Controller
     //Mostra vista de crear
     public function create()
     {
-        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$crear_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();        

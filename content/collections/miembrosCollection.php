@@ -2,22 +2,40 @@
 
 namespace content\collections;
 
+use content\enums\permisos;
+
 class miembrosCollection
 {
     public function formatMiembros($miembros)
     {
         $data = [];
         foreach ($miembros as $miembro) {
-            $miembro['actions'] = sprintf(
-                '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
-                '/miembros/editar/' . $miembro['id'],
-            );
+            if (in_array(permisos::$actualizar_miembros, $_SESSION['user_permisos'])) {
+                $miembro['actions'] = sprintf(
+                    '<a href="%s" class="btn btn-info me-2" target="_blank"><i class="bi bi-pencil text-light"></i></a>',
+                    '/miembros/editar/' . $miembro['id'],
+                );
+            } else {
+                $miembro['actions'] = sprintf(
+                    '<h5><span class="badge bg-%s">%s</span></h5>',
+                    'warning',
+                    'Accion no disponible'
+                );
+            }
 
             if ($miembro['status'] == 1) {
-                $miembro['actions'] .= sprintf(
-                    '<button type="button" data-route="%s" name="eliminar-miembro" id="eliminar-miembro" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
+                if (in_array(permisos::$eliminar_miembros, $_SESSION['user_permisos'])) {
+                    $miembro['actions'] .= sprintf(
+                        '<button type="button" data-route="%s" name="eliminar-miembro" id="eliminar-miembro" class="btn btn-danger ms-2"><i class="bi bi-trash text-light"></i>
                           </button>',
-                    '/miembros/eliminar/' . $miembro['id'],
+                        '/miembros/eliminar/' . $miembro['id'],
+                    );
+                }
+            } else {
+                $miembro['actions'] = sprintf(
+                    '<h5><span class="badge bg-%s">%s</span></h5>',
+                    'warning',
+                    'Accion no disponible'
                 );
             }
             $miembro['telefono'] = !is_null($miembro['telefono']) ? $miembro['telefono'] : 'No tiene telefono';

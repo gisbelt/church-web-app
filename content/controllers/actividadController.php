@@ -33,12 +33,18 @@ class actividadController extends Controller
 
     public function index()
     {
+        if (!in_array(permisos::$lista_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         return $this->render('actividades/consultarView');
     }
 
     public function create()
     {
+        if (!in_array(permisos::$crear_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar Actividades';
         return $this->render('actividades/registrarView');
@@ -46,6 +52,9 @@ class actividadController extends Controller
 
     public function edit(Request $request)
     {
+        if (!in_array(permisos::$actualizar_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         try{
             $edit = $request->getRouteParams();
             $logger = new Logger("web");

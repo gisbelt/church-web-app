@@ -33,7 +33,7 @@ class miembrosController extends Controller
 
     public function index()
     {
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$lista_miembros, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
@@ -42,21 +42,18 @@ class miembrosController extends Controller
 
     public function consultarMiembros(Request $request)
     {
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         try {
-            $nombre = count($request->getBody()) > 1 ? $request->getBody()['nombre'] : null;
-            $sexo = count($request->getBody()) > 1 ? $request->getBody()['sexo'] : null;
-            $tipo_fecha = count($request->getBody()) > 1 ? $request->getBody()['tipo_fecha'] : null;
-            $fecha = !empty($request->getBody()['fecha'])  ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha'])->format('Y-m-d') : null;
-            if ($nombre != '' || $sexo  != '' || $tipo_fecha  != '' || $fecha  != '') {
+            $nombre = !empty($request->getBody()['nombre']) ? $request->getBody()['nombre'] : null;
+            $sexo = !empty($request->getBody()['sexo']) ? $request->getBody()['sexo'] : null;
+            $tipo_fecha = !empty($request->getBody()['tipo_fecha']) ? $request->getBody()['tipo_fecha'] : null;
+            $fecha = !empty($request->getBody()['fecha']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha'])->format('Y-m-d') : null;
+            if (!is_null($nombre) || !is_null($sexo) || !is_null($tipo_fecha) || !is_null($fecha)) {
                 $miembros = miembrosModel::obtener_miembros_filtro($nombre, $sexo, $tipo_fecha, $fecha);
                 if ($miembros) {
                     $miembrosCollection = new miembrosCollection();
                     $miembrosFormat = $miembrosCollection->formatMiembros($miembros);
                 } else {
-                    $usuariosFormat = [];
+                    $miembrosFormat = [];
                 }
                 $data = [
                     'miembros' => $miembrosFormat,
@@ -81,21 +78,9 @@ class miembrosController extends Controller
         }
     }
 
-    public function registrar()
-    {
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-        usuarios::validarLogin();
-        $profesiones = profesionModel::obtener_profesiones();
-        return $this->render('miembros/miembros/consultarView', [
-            'profesiones' => $profesiones
-        ]);
-    }
-
     public function create()
     {
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$crear_miembros, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
@@ -111,13 +96,6 @@ class miembrosController extends Controller
 
     public function guardar(Request $request)
     {
-
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-        $errors = [];
         $miembros = new miembrosModel();
         $perfiles = new perfilesModel();
         $miembros->loadData($request->getBody());
@@ -226,45 +204,45 @@ class miembrosController extends Controller
     public function desactivarMiembro(Request $request)
     {
         usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$eliminar_miembros, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-       try{
-           $id = $request->getRouteParam('id');
-           if(!is_null($id)){
-               $usuario = miembrosModel::eliminar($id);
-               if($usuario){
-                   $data = [
-                       'title' => 'Dato eliminado',
-                       'messages' => 'El miembro se ha eliminado',
-                       'code' => 200
-                   ];
-               } else {
-                   $data = [
-                       'title' => 'Error',
-                       'messages' => 'El miembro no se ha eliminado',
-                       'code' => 422
-                   ];
-               }
-               return json_encode($data);
-           }
-           $data = [
-               'title' => 'Error',
-               'messages' => 'Algo salio mal intente mas tardes',
-               'code' => 422
-           ];
-           return json_encode($data, 422);
+        try {
+            $id = $request->getRouteParam('id');
+            if (!is_null($id)) {
+                $usuario = miembrosModel::eliminar($id);
+                if ($usuario) {
+                    $data = [
+                        'title' => 'Dato eliminado',
+                        'messages' => 'El miembro se ha eliminado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El miembro no se ha eliminado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            }
+            $data = [
+                'title' => 'Error',
+                'messages' => 'Algo salio mal intente mas tardes',
+                'code' => 422
+            ];
+            return json_encode($data, 422);
 
-       }catch (\Exception $ex) {
-           $logger = new Logger("web");
-           $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-           $logger->debug(__METHOD__, [$ex, 'request' => $request]);
-           $data = [
-               'title' => 'Error',
-               'messages' => $ex,
-               'code' => 403
-           ];
-           return json_encode($data);
-       }
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
     }
 }

@@ -34,9 +34,6 @@ class donacionesController extends Controller
     // Actualizar donacion
     public function actualizar(Request $request)
     {
-        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         usuarios::validarLogin();
         $donacion = new donacion();
         $donacion->loadData($request->getBody());
@@ -73,6 +70,9 @@ class donacionesController extends Controller
 
     public function index()
     {
+        if (!in_array(permisos::$lista_donacion, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
@@ -84,7 +84,7 @@ class donacionesController extends Controller
     // Vista crear donacion
     public function create()
     {
-        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$crear_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();
@@ -138,16 +138,13 @@ class donacionesController extends Controller
         }
     }
 
-   // Obtener donaciones
+    // Obtener donaciones
     public function obtenerDonaciones()
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $donaciones = donacion::obtener_donaciones();
 
-        if($donaciones){
+        if ($donaciones) {
             $donacionesCollection = new donacionesCollection();
             $donacionesFormat = $donacionesCollection->formatDonaciones($donaciones);
         } else {
@@ -163,7 +160,7 @@ class donacionesController extends Controller
     public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$actualizar_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $id = $request->getRouteParams();
@@ -185,13 +182,13 @@ class donacionesController extends Controller
     public function eliminar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$eliminar_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $id = $request->getRouteParam('id');
-        if(!is_null($id)){
+        if (!is_null($id)) {
             $permiso = donacion::eliminar($id);
-            if($permiso){
+            if ($permiso) {
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'Donacion se ha eliminado',
@@ -217,7 +214,7 @@ class donacionesController extends Controller
     //guardar obersvaciones
     public function guardarObservacionDonacion(Request $request)
     {
-        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$obseravacion_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();

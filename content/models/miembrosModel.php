@@ -87,6 +87,8 @@ public static function miemrbosSelect()
 }
     public static function obtener_miembros_filtro($nombre, $sexo, $tipo_fecha, $fecha)
     {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         $connexionBD = BD::crearInstancia();
         $query = "SELECT miembros.id, DATE(miembros.fecha_paso_de_fe) AS fecha_fe, DATE(miembros.fecha_bautismo) AS fecha_bautismo, miembros.status, profesiones.nombre AS profesion, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, perfiles.cedula, perfiles.telefono FROM miembros INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
                        INNER JOIN profesiones ON perfiles.profesion_id = profesiones.id ";
@@ -95,7 +97,11 @@ public static function miemrbosSelect()
             $conditions[] = "perfiles.nombre LIKE '%$nombre%'";
         }
         if ($sexo != '') {
-            $conditions[] = "perfiles.sexo='$sexo'";
+            if ($sexo == 'true'){
+                $conditions[] = "perfiles.sexo=1";
+            } else if($sexo == 'false'){
+                $conditions[] = "perfiles.sexo=0";
+            }
         }
         if ($tipo_fecha != '') {
             if ($tipo_fecha == '1') {
@@ -109,10 +115,11 @@ public static function miemrbosSelect()
         if (count($conditions) > 0) {
             $queryString .= " WHERE " . implode(' AND ', $conditions);
         }
+        $logger->debug(__METHOD__, [$queryString]);
         $sql = $connexionBD->prepare($queryString);
         $sql->execute();
-        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $usuarios;
+        $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
     }
 
     public static  function eliminar($id) {

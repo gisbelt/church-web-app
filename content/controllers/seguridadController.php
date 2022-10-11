@@ -80,6 +80,9 @@ class seguridadController extends Controller
 
     public function index()
     {
+        if (!in_array(permisos::$seguridad_permisos, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
@@ -109,9 +112,10 @@ class seguridadController extends Controller
 
     public function create()
     {
+        if (!in_array(permisos::$seguridad_permisos, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
-        /*$data["titulo"] = "Home";
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);*/
         return $this->render('seguridad/permisos/registrarView');
     }
 
@@ -155,9 +159,9 @@ class seguridadController extends Controller
     public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
-        //if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-        //    throw new ForbiddenException();
-       // }
+        if (!in_array(permisos::$seguridad_permisos, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $id = $request->getRouteParams();
         $permiso = permisosModel::id_permiso($id['id']);
         return $this->render('seguridad/permisos/editarView', [
@@ -169,7 +173,7 @@ class seguridadController extends Controller
     public function eliminar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$seguridad_permisos, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $id = $request->getRouteParam('id');
@@ -237,6 +241,9 @@ class seguridadController extends Controller
 
     public function indexRol()
     {
+        if (!in_array(permisos::$seguridad_roles, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
@@ -246,13 +253,7 @@ class seguridadController extends Controller
 
     public function obtenerRoles()
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        //$logger->debug(__METHOD__, ['roles']);
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $roles = rolesModel::obtener_roles();
         if($roles){
             $seguridaCollection = new seguridadCollection();
@@ -270,8 +271,9 @@ class seguridadController extends Controller
     public function createRol()
     {
         $user = usuarios::validarLogin();
-        /*$data["titulo"] = "Home";
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/homeView.php')), 200);*/
+        if (!in_array(permisos::$seguridad_roles, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         return $this->render('seguridad/roles/registrarView');
     }
 
@@ -315,9 +317,9 @@ class seguridadController extends Controller
     public function editarRol(Request $request)
     {
         $user = usuarios::validarLogin();
-        //if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-        //    throw new ForbiddenException();
-        // }
+        if (!in_array(permisos::$seguridad_roles, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $id = $request->getRouteParams();
         $rol = rolesModel::id_rol($id['id']);
         return $this->render('seguridad/roles/editarView', [
@@ -329,7 +331,7 @@ class seguridadController extends Controller
     public function eliminarRol(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$seguridad_roles, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $id = $request->getRouteParam('id');

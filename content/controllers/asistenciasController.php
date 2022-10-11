@@ -30,7 +30,7 @@ class asistenciasController extends Controller
 
     public function index()
     {
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$lista_asitencias, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();        
@@ -39,7 +39,7 @@ class asistenciasController extends Controller
 
     public function create()
     {
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$crear_asitencias, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $user = usuarios::validarLogin();        
@@ -97,9 +97,6 @@ class asistenciasController extends Controller
     //Obtener asistencias
     public function obtenerAsistencias(Request $request){
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }        
         $asistencias = asistenciasModel::obtenerAsistencias();     
         if($asistencias){
             $asistenciasCollection = new asistenciasCollection();
@@ -118,7 +115,7 @@ class asistenciasController extends Controller
     public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$actualizar_asitencias, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         $id = $request->getRouteParams();

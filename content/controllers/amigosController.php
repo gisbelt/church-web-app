@@ -84,6 +84,9 @@ class amigosController extends Controller
     // Mostrar vista lista de amigos
     public function index()
     {
+        if (!in_array(permisos::$lista_amigos, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         usuarios::validarLogin();
         $profesiones = profesionModel::obtener_profesiones();
         $membresias = membresiasModel::obtener_membresias();
@@ -98,6 +101,9 @@ class amigosController extends Controller
     // Mostrar vista crear de amigos
     public function create()
     {
+        if (!in_array(permisos::$crear_amigos, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         usuarios::validarLogin();
         return $this->render('/miembros/amigos/registrarView');
     }
@@ -105,6 +111,9 @@ class amigosController extends Controller
     // Mostrar vista editar de amigos
     public function editar(Request $request)
     {
+        if (!in_array(permisos::$actualizar_amigos, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         usuarios::validarLogin();
         $id = $request->getRouteParams();
         $amigo = amigos::amigoId($id['id']);
