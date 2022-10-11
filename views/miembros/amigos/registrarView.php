@@ -23,7 +23,7 @@ $this->title = 'Registrar Amigos';
                             <div class="form-group">
                                 <input type="text" required name="cedula" class="form-control form-input mb-4"
                                     id="cedula" value="" placeholder=" " autofocus>
-                                <label for="cedula" class="form-label fw-bold">Cedula:*</label>
+                                <label for="cedula" class="form-label fw-bold">Cédula:*</label>
                             </div>
 
                             <div class="form-group">
@@ -84,9 +84,9 @@ $this->title = 'Registrar Amigos';
                                 </div>
                             </div>
                             <div class="form-group mb-3">
-                                <p class="">Como llego:* </p>
+                                <p class="">¿Cómo llegó?:* </p>
                                 <select class="form-select" name="como_llego" id="como_llego">
-                                    <option value="">selecione</option>
+                                    <option value="">Seleccione</option>
                                     <option value="1">Radio</option>
                                     <option value="2">Red social</option>
                                     <option value="3">Miembro</option>

@@ -161,6 +161,15 @@ class usuariosModel extends Model //BD
         return $usuarios;
     }
 
+    public static function usuarioBitacora()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT id, username FROM usuarios");
+        $sql->execute();
+        $usuario = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuario;
+    }
+
     /**
      * @return array[]
      */

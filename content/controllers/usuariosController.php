@@ -13,6 +13,7 @@ use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\bitacoraModel;
 use content\models\cargosModel as cargos;
 use content\models\miembrosModel;
 use content\models\miembrosModel as miembros;
@@ -51,6 +52,7 @@ class usuariosController extends Controller
                 $fecha = Carbon::now();
                 $usuario = usuarios::actualizar($id, $username, $email, $status, $fecha);
                 if ($usuario) {
+                    bitacoraModel::guardar('Actualizo el usuario:'.  $username, 'Actualizo usuario');
                     $data = [
                         'title' => 'Datos actualizado',
                         'messages' => 'El usuario se ha actualizado',
@@ -82,6 +84,7 @@ class usuariosController extends Controller
         usuarios::validarLogin();
         $cargos = cargos::obtener_cargos();
         $miembros = miembrosModel::obtener_miembros_usuarios();
+        bitacoraModel::guardar('Ingreso en lista de usuarios', 'Index usuario');
         return $this->render('/acceso/usuarios/consultarView', [
             'cargos' => $cargos,
             'miembros' => $miembros
@@ -94,6 +97,7 @@ class usuariosController extends Controller
         usuarios::validarLogin();
         $miembros = miembrosModel::obtener_miembros_no_usuarios();
         $roles = rolesModel::obtener_roles();
+        bitacoraModel::guardar('Ingreso en crear usuarios', 'Crear usuario');
         return $this->render('/acceso/usuarios/registrarView', [
             'miembros' => $miembros,
             'roles' => $roles
@@ -103,9 +107,6 @@ class usuariosController extends Controller
     // Mostrar vista datos de usuario en la lista
     public function obtenerUsuarios(Request $request)
     {
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         usuarios::validarLogin();
         $cargo = count($request->getBody()) > 1 ? $request->getBody()['cargo'] : null;
         $status = count($request->getBody()) > 1 ? $request->getBody()['status'] : null;
@@ -135,6 +136,7 @@ class usuariosController extends Controller
     {
         $id = $request->getRouteParams();
         $usuario = usuarios::id_usuario($id['id']);
+        bitacoraModel::guardar('Ingreso en editar usuario:'.$usuario['username'] , 'Editar usuario');
         return $this->render('acceso/usuarios/editarView', [
             'id' => $usuario['id'],
             'username' => $usuario['username'],
@@ -161,6 +163,7 @@ class usuariosController extends Controller
                         $password = password_hash($request->getBody()['password'], PASSWORD_BCRYPT, ['cost' => 10]);
                         $usuario = usuarios::crear($username, $email, $password, $rol, $miembro, $fecha);
                         if ($usuario) {
+                            bitacoraModel::guardar('Registro el usuario:'. $username , 'Creo usuario');
                             $data = [
                                 'title' => 'Datos regidtrado',
                                 'messages' => 'El usuario se ha registrado',
@@ -207,6 +210,7 @@ class usuariosController extends Controller
         if(!is_null($id)){
             $usuario = usuarios::eliminar($id);
             if($usuario){
+                bitacoraModel::guardar('Elimino el usuario:'. $id , 'Eliminar usuario');
                 $data = [
                     'title' => 'Dato eliminado',
                     'messages' => 'El usuario se ha eliminado',

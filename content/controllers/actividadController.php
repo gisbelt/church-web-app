@@ -9,6 +9,7 @@ use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
+use content\models\bitacoraModel;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
 use content\models\miembrosModel as miembros;
@@ -33,17 +34,24 @@ class actividadController extends Controller
 
     public function index()
     {
+        if (!in_array(permisos::$lista_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         return $this->render('actividades/consultarView');
     }
 
     public function create()
     {
+        if (!in_array(permisos::$crear_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        bitacoraModel::guardar('Lista de actividades', 'Index actividades');
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Registrar Actividades';
         return $this->render('actividades/registrarView');
     }
-    
+
     /**
      * View Edit
      *
@@ -53,6 +61,10 @@ class actividadController extends Controller
      */
     public function edit(Request $request)
     {
+        if (!in_array(permisos::$actualizar_actividades, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        bitacoraModel::guardar('Editar de actividades', 'Editar actividades');
         try{
             $edit = $request->getRouteParams();
             $actividades = actividades::actividadesPorId($edit['id']);
@@ -91,7 +103,7 @@ class actividadController extends Controller
                       'id' => 2,
                       'nombre' => 'Terminado'
                   ],
-                  
+
                   [
                       'id' => 3,
                       'nombre' => 'En Pausa'
@@ -100,8 +112,8 @@ class actividadController extends Controller
                       'id' => 4,
                       'nombre' => 'Cancelado'
                   ]
-                  
-                  
+
+
                 ];
             $data['titulo'] = 'Actualizar Actividades';
             return $this->render('actividades/editarView',[
@@ -148,6 +160,7 @@ class actividadController extends Controller
                 $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'], $horarios['id'], $fecha);
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
                 actividades::miembroActividad($miembro,$actividades['id'],$status,$fecha);
+                bitacoraModel::guardar('Registro de actividades', 'Registro actividades');
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
@@ -214,6 +227,7 @@ class actividadController extends Controller
                 actividades::observacionActividadModificar($id,$observacion,$fecha);
 //                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
                 if ($actividades) {
+                    bitacoraModel::guardar('Actualizo la actividad: '. $nombre, 'Actualizo actividades');
                     $data = [
                         'title' => 'Datos Actualizado',
                         'messages' => 'La actividad se ha actualizado',
@@ -253,9 +267,6 @@ class actividadController extends Controller
     {
     try{
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $actividades = actividades::cargarActividades();
 
         if ($actividades) {

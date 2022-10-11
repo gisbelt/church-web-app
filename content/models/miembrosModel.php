@@ -95,7 +95,11 @@ public static function miemrbosSelect()
             $conditions[] = "perfiles.nombre LIKE '%$nombre%'";
         }
         if ($sexo != '') {
-            $conditions[] = "perfiles.sexo='$sexo'";
+            if ($sexo == 'true'){
+                $conditions[] = "perfiles.sexo=1";
+            } else if($sexo == 'false'){
+                $conditions[] = "perfiles.sexo=0";
+            }
         }
         if ($tipo_fecha != '') {
             if ($tipo_fecha == '1') {
@@ -111,8 +115,8 @@ public static function miemrbosSelect()
         }
         $sql = $connexionBD->prepare($queryString);
         $sql->execute();
-        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $usuarios;
+        $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
     }
 
     public static  function eliminar($id) {

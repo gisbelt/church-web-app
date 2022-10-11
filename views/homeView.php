@@ -2,6 +2,8 @@
 
 /**  @var $this \content\core\View */
 
+use content\enums\permisos;
+
 $this->title = 'Home'
 ?>
 <div class="container-fluid">
@@ -12,8 +14,14 @@ $this->title = 'Home'
             <p class="lead">Vamos a administrar nuestra Iglesia</p>
             <hr class="my-2">
             <p class="lead mt-3">
-                <a class="btn btn-primary btn-lg mb-2" href="/usuarios/create" role="button">Registrar Usuarios</a>
-                <a class="btn btn-info btn-lg mb-2" href="/usuarios" role="button">Listado de Usuarios</a>
+                <?php
+                    if (in_array(permisos::$actualizar_actividades, $_SESSION['user_permisos'])) {
+                        echo '<a class="btn btn-primary btn-lg mb-2" href="/usuarios/create" role="button">Registrar Usuarios</a>';
+                    }
+                    if (in_array(permisos::$actualizar_actividades, $_SESSION['user_permisos'])) {
+                        echo ' <a class="btn btn-info btn-lg mb-2" href="/usuarios" role="button">Listado de Usuarios</a>';
+                    }
+                ?>
             </p>
         </div>
     </div>
