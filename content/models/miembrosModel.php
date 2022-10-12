@@ -126,6 +126,18 @@ public static function miemrbosSelect()
         return $miembros;
     }
 
+    // reporte donacion
+    public static function reporteMiembros()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT COUNT(perfiles.sexo) as cantidad, perfiles.sexo FROM  miembros
+	                INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+	            GROUP BY perfiles.sexo");
+         $sql->execute();
+        $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
+    }
+
     public function rules(): array
     {
         return [];

@@ -122,6 +122,28 @@ if (!function_exists("routas")) {
                         'method' => 'index',
                         'action' => 'get',
                         'subRutas' => []
+                    ],
+
+                    'proximasActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Proximas Actividades',
+                        'icon' => 'bx bx-view-list',
+                        'route' => '/home/proximas-actividades',
+                        'method' => 'proximasActividades',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'bitacoraLastActions' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Bitacora Ultimas Acciones',
+                        'icon' => 'bx bx-view-list',
+                        'route' => '/home/bitacora-last',
+                        'method' => 'bitacoraLastActions',
+                        'action' => 'get',
+                        'subRutas' => []
                     ]
                 ]
             ],
@@ -863,11 +885,31 @@ if (!function_exists("routas")) {
                 'icon' => 'bx bxs-report',
                 'text' => 'Reportes',
                 'controller' => reportesController::class,
-                'route' => '/reportes',
-                'method' => 'index',
-                'action' => 'get',
-                'sinSubRutas' => 'ok',
-                'subRutas' => []
+                'route' => null,
+                'subRutas' => [
+
+                    'indexReport' => [
+                        'permisos' => permisos::$reportes,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista reportes',
+                        'route' => '/reportes',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'donacionReport' => [
+                        'permisos' => permisos::$reportes,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista reportes',
+                        'route' => '/reportes/donacion',
+                        'method' => 'dataDonacion',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                ]
             ],
 
             'Seguridad' => [

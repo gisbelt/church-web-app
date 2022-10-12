@@ -377,6 +377,76 @@ background: #fff; }
 .todoCheck{
     margin-right: 12px;
 }
+
+/* small boxes  */
+.small-boxes .bg-info, 
+.small-boxes .bg-success, 
+.small-boxes .bg-danger, 
+.small-boxes .bg-first-color{
+    color: white;
+}
+.small-boxes .bg-warning a{
+    color: black;
+}
+.small-boxes .bg-info, 
+.small-boxes .bg-success, 
+.small-boxes .bg-danger, 
+.small-boxes .bg-first-color,
+.small-boxes .bg-warning{
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+@media screen and (max-width: 767.98px){
+    .small-boxes p {
+        font-size: 12px;
+    }  
+}
+.small-boxes h3{
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+    white-space: nowrap;
+}
+.small-boxes .icon{
+    color: rgba(0,0,0,.15);
+    z-index: 0;
+    position: relative;
+}
+.small-boxes .icon i{
+    font-size: 90px;
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+    transition: .4s;
+}
+.small-boxes:hover .icon i{
+    transform: scale(1.1);   
+}
+.small-boxes .small-box-footer{
+    background-color: rgba(0,0,0,.1);
+    color: rgba(255,255,255,.8);
+    display: flex;
+    padding: 8px;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 10;
+    line-height: 1;
+}
+.small-boxes .small-box-footer:hover{
+    background-color: rgba(0,0,0,.15);
+}
+.small-boxes .small-box-footer:hover i{
+    transform: scale(1.1);   
+}
+.small-boxes .small-box-footer i{
+    font-size: 1.05rem;
+    margin-left: 8px;
+}
 /*Home*/
 
 /* Login */

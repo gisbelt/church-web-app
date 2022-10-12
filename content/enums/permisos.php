@@ -104,8 +104,8 @@ class permisos
 
     public static $eliminar_usuarios = 48;
 
-    public static $prueba = 49;
+    // public static $prueba = 49;
 
-    public static $cuenta = 50;
+    public static $cuenta = 49;
 
 }
