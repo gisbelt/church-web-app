@@ -270,8 +270,11 @@ class actividadController extends Controller
         $actividades = actividades::cargarActividades();
 
         if ($actividades) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$actividades]);
             $actividadesCollection = new actividadesCollection();
-            $permisosFormat = $actividadesCollection->formatActividades($actividades);
+            $permisosFormat = $actividadesCollection->formatActividades2($actividades);
         } else {
             $permisosFormat = [];
         }
