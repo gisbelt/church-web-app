@@ -19,5 +19,4 @@ $(document).ready(function(){
         language: 'es',
         // startDate: '0d',
     }).datepicker("setDate", new Date());
-
 });
