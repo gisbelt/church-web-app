@@ -843,11 +843,31 @@ if (!function_exists("routas")) {
                 'icon' => 'bx bxs-report',
                 'text' => 'Reportes',
                 'controller' => reportesController::class,
-                'route' => '/reportes',
-                'method' => 'index',
-                'action' => 'get',
-                'sinSubRutas' => 'ok',
-                'subRutas' => []
+                'route' => null,
+                'subRutas' => [
+
+                    'indexReport' => [
+                        'permisos' => permisos::$reportes,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista reportes',
+                        'route' => '/reportes',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'donacionReport' => [
+                        'permisos' => permisos::$reportes,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista reportes',
+                        'route' => '/reportes/donacion',
+                        'method' => 'dataDonacion',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                ]
             ],
 
             'Seguridad' => [

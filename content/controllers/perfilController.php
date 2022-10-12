@@ -24,18 +24,18 @@ class perfilController extends Controller
 
     public function index()
     {
-        if (!in_array(permisos::$cuenta, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
+        //if (!in_array(permisos::$cuenta, $_SESSION['user_permisos'])) {
+        //    throw new ForbiddenException();
+        //}
         $user = usuarios::validarLogin();
         return $this->render('/perfil/cuenta/cuentaView');
     }
 
     public function preferencias()
     {
-        if (!in_array(permisos::$perfiles, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
+        //if (!in_array(permisos::$perfiles, $_SESSION['user_permisos'])) {
+        //    throw new ForbiddenException();
+        //}
         $user = usuarios::validarLogin();
         $data['titulo'] = 'Preferencias';
         return $this->render('/perfil/preferencias/preferenciasView');
@@ -43,9 +43,9 @@ class perfilController extends Controller
 
     public function obtener_usuario()
     {
-        if (!in_array(permisos::$cuenta, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
+        //if (!in_array(permisos::$cuenta, $_SESSION['user_permisos'])) {
+        //    throw new ForbiddenException();
+        //}
         try {
             $email = !empty($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
             $usuario = cuentaModel::obtener_usuario_correo($email);

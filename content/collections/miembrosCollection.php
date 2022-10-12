@@ -52,4 +52,15 @@ class miembrosCollection
         }
         return $data;
     }
+
+    public function formatMiembrosReport($miembrosReport)
+    {
+        $data = [];
+        foreach($miembrosReport as $miembroReport)
+        {
+            $miembroReport['sexo'] = $miembroReport['sexo'] == '0' ? 'Femenino' : 'Masculino';
+            $data[] = $miembroReport;
+        }
+        return $data;
+    }
 }

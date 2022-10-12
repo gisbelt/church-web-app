@@ -24,7 +24,7 @@ const obtener_usuario = () =>{
         $('#telefono-input').val(data.telefono);
         $('#direccion-input').val(data.direccion);
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        swal({
+        swal.fire({
             title: 'Error',
             icon: 'error'
         })
