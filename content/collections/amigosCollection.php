@@ -15,7 +15,7 @@ class amigosCollection
             if ($amigo['status'] == 1) {
                 if (in_array(permisos::$actualizar_amigos, $_SESSION['user_permisos'])) {
                     $amigo['actions'] = sprintf(
-                        '<a href="%s" class="btn btn-info me-2" target="_blank" data-tile="editar"><i class="bi bi-pencil text-light"></i></a>',
+                        '<a href="%s" class="btn btn-info me-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>',
                         '/amigos/editar/' . $amigo['amigo'],
                     );
                 } else {

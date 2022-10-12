@@ -64,9 +64,6 @@ class grupoFamiliarController extends Controller
     //Buscar amigo que no tenga grupo familiar (Lista)
     public function obtenerAmigos(Request $request){
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $amigos = grupoFamiliarModel::obtenerAmigo();
         if($amigos){
             $grupoFamiliarCollection = new grupoFamiliarCollection();

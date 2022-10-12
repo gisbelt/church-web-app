@@ -13,11 +13,11 @@ $(document).ready(function(){
     $('#calendar').datepicker({
         format: 'dd-mm-yyyy',
         inline: true,
-        calendarWeeks : true,
+        // calendarWeeks : true,
         firstDay: 1,
         disableTouchKeyboard: true,
         language: 'es',
-        startDate: '0d',
+        // startDate: '0d',
     }).datepicker("setDate", new Date());
 
 });

@@ -122,6 +122,28 @@ if (!function_exists("routas")) {
                         'method' => 'index',
                         'action' => 'get',
                         'subRutas' => []
+                    ],
+
+                    'proximasActividades' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Proximas Actividades',
+                        'icon' => 'bx bx-view-list',
+                        'route' => '/home/proximas-actividades',
+                        'method' => 'proximasActividades',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'bitacoraLastActions' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Bitacora Ultimas Acciones',
+                        'icon' => 'bx bx-view-list',
+                        'route' => '/home/bitacora-last',
+                        'method' => 'bitacoraLastActions',
+                        'action' => 'get',
+                        'subRutas' => []
                     ]
                 ]
             ],

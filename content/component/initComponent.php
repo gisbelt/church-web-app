@@ -39,17 +39,22 @@
 </div>
 
  <!-- breadcrumb -->
- <div class="page-breadcrumb ps-4 pt-4">
-    <h3 class="page-title mb-0 p-0 text-first-color"><?php echo $this->title; ?></h3>
-    <div class="d-flex align-items-center">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/home">Sistema</a></li>
-        <i class="breadcrumb-item-icon bx bx-chevron-right"></i>
-        <li class="breadcrumb-item active" aria-current="page"><?php echo $this->title; ?></li>
-        </ol>
-    </nav>
+ <div class="page-breadcrumb ps-4 pt-3 flex-row">
+    <div class="w-50 me-5">
+        <h3 class="page-title mb-0 p-0 text-first-color"><?php echo $this->title; ?></h3>
+        <div class="d-flex align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="/home">Sistema</a></li>
+            <i class="breadcrumb-item-icon bx bx-chevron-right"></i>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo $this->title; ?></li>
+            </ol>
+        </nav>
+        </div>
     </div>
+    <?php if ($this->title == "Home") {?>
+    <div class="w-100 ms-3 d-none d-sm-block"><h1 class="display-5 font-monospace">Bienvenido: <?php echo $_SESSION['username'] ?></h1></div>
+    <?php } ?>
 </div>
 <!-- breadcrumb -->
 
