@@ -60,10 +60,12 @@ class bottomComponent
             <script src="../../../assets/js/build/amigos.js"></script>
             <script src="../../../assets/js/build/asistencias.js"></script>
             <script src="../../../assets/js/build/bitacora.js"></script>
+            <script src="../../../assets/js/build/report.js"></script>
             <script src="../../../assets/js/build/home.js"></script>
 
             <!-- Charts -->
             <script src="../../../assets/js/chart.bundle.min.js"></script>
+           
 
             '
         );

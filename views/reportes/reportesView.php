@@ -11,7 +11,7 @@ $this->title = 'Reportes'
         <!-- 1 -->
         <section class="report">
             <div class="report-header">
-                <h4 class="">Donaciones</h4>
+                <h4 class="">Miembros</h4>
                 <div class="derecha">
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report1" aria-expanded="false" aria-controls="collapseExample">Expandir</button>
                 </div>                
@@ -21,10 +21,10 @@ $this->title = 'Reportes'
             <div class="report-content collapse" id="report1">
                 <div class="card bg-transparent">
                     <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Donaciones</h5>
+                        <h5 class="card-title text-white m-0">Miembros</h5>
                     </div>
                     <div class="card-body">
-
+                        <canvas id="report_one" data-route="/reportes/donacion"></canvas>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div>
@@ -46,7 +46,7 @@ $this->title = 'Reportes'
                         <h5 class="card-title text-white m-0">Donaciones</h5>
                     </div>
                     <div class="card-body">
-
+                        <canvas id="report_two" ></canvas>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div>
@@ -68,7 +68,7 @@ $this->title = 'Reportes'
                         <h5 class="card-title text-white m-0">Donaciones</h5>
                     </div>
                     <div class="card-body">
-
+                        <canvas id="report_three"></canvas>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div>
@@ -90,7 +90,7 @@ $this->title = 'Reportes'
                         <h5 class="card-title text-white m-0">Donaciones</h5>
                     </div>
                     <div class="card-body">
-                        
+                        <canvas id="report_four"></canvas>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div>

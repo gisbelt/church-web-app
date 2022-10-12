@@ -13,7 +13,7 @@ use content\models\bitacoraModel;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
 use content\models\miembrosModel as miembros;
-
+use content\enums\estadosActividad as status;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -27,9 +27,9 @@ class actividadController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['edit']));
         $this->registerMiddleware(new AutenticacionMiddleware(['store']));
         $this->registerMiddleware(new AutenticacionMiddleware(['update']));
-        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
-        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
-        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
     }
 
     public function index()
@@ -52,6 +52,13 @@ class actividadController extends Controller
         return $this->render('actividades/registrarView');
     }
 
+    /**
+     * View Edit
+     *
+     * @param Request $request
+     *
+     * @return array|false|string|string[]|void
+     */
     public function edit(Request $request)
     {
         if (!in_array(permisos::$actualizar_actividades, $_SESSION['user_permisos'])) {
@@ -60,13 +67,67 @@ class actividadController extends Controller
         bitacoraModel::guardar('Editar de actividades', 'Editar actividades');
         try{
             $edit = $request->getRouteParams();
+            $actividades = actividades::actividadesPorId($edit['id']);
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, ['request' => $edit]);
+            $logger->debug(__METHOD__, ['cargar' => $actividades]);
             $user = usuarios::validarLogin();
-            $data['titulo'] = 'Actualizar Actividades';
+            $fecha = $actividades['fecha'];
+            $hora= $actividades['hora'];
+            $tipo = $actividades['tipo'];
+            $fecha = date("d-m-Y", strtotime($fecha));
+            $hora = date("h:i:s A", strtotime($hora));
+            switch ($actividades['estado_id']){
+                case status::$en_curso:
+                    $status = 'En Curso';
+                    break;
+                case status::$en_pausa:
+                    $status = 'En Pausa';
+                    break;
+                case status::$terminado:
+                    $status = 'Terminado';
+                    break;
+                case status::$cancelado:
+                    $status = 'Cancelado';
+                    break;
+                default:{
+                    $status = 'No Disponible';
+                }
+            }
+                $dataStatus = [
+                  [
+                      'id' => 1,
+                      'nombre' => 'En Curso' ,
+                  ]  ,
+                  [
+                      'id' => 2,
+                      'nombre' => 'Terminado'
+                  ],
 
+                  [
+                      'id' => 3,
+                      'nombre' => 'En Pausa'
+                   ],
+                  [
+                      'id' => 4,
+                      'nombre' => 'Cancelado'
+                  ]
+
+
+                ];
+            $data['titulo'] = 'Actualizar Actividades';
             return $this->render('actividades/editarView',[
+                'id' => $edit['id'],
+                'nombre' => $actividades['actividad'],
+                'descripcion' => $actividades['descripcion'],
+                'observacion' => $actividades['observacion'],
+                'fecha' => $fecha,
+                'hora'=> $hora,
+                'tipo' => $tipo,
+                'id_tipo' => $actividades['id_tipo'],
+                'estado_id' => $actividades['estado_id'],
+                'estado' => $status,
+                'select_estado' => $dataStatus
             ]);
         }catch(\Exception $exception){
             $logger = new Logger("web");
@@ -144,10 +205,15 @@ class actividadController extends Controller
                 throw new ForbiddenException();
             }
             usuarios::validarLogin();
+            $logger = new Logger("update");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, ['request'=> $request->getBody()]);
             $actividad = new actividades();
             $actividad->loadData($request->getBody());
             if ($actividad->validate()) {
                 $nombre = $request->getBody()['nombre'];
+                $miembro = $request->getBody()['miembro_id'];
+                $id = $request->getBody()['id'];
                 $description = $request->getBody()['descripcion'];
                 $tipo = $request->getBody()['tipo_actividad'];
                 $status = $request->getBody()['status'];
@@ -155,22 +221,22 @@ class actividadController extends Controller
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
-                $actividades = actividades::registrarActividades($nombre,$description,$status,$tipo,$fecha);
-                $horarios = actividades::horariosCreate($hora,$fechaHora,$fecha);
-                $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'],$horarios['id'],$fecha);
-                actividades::observacionActividad($actividades['id'],$observacion,$fecha);
-                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
-                if ($actividades && $horarios && $actividadHorarios) {
+                $actividades = actividades::modificarActividades($nombre,$description,$status,$tipo,$fecha,$id);
+//                $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
+                actividades::miembroActividadModificacion($miembro,$id,$status,$fecha);
+                actividades::observacionActividadModificar($id,$observacion,$fecha);
+//                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
+                if ($actividades) {
                     bitacoraModel::guardar('Actualizo la actividad: '. $nombre, 'Actualizo actividades');
                     $data = [
-                        'title' => 'Datos registrado',
-                        'messages' => 'La actividad se ha registrado',
+                        'title' => 'Datos Actualizado',
+                        'messages' => 'La actividad se ha actualizado',
                         'code' => 200
                     ];
                 } else {
                     $data = [
                         'title' => 'Error',
-                        'messages' => 'La actividad no se ha registrado',
+                        'messages' => 'La actividad no se ha actualizado',
                         'code' => 422
                     ];
                 }
@@ -201,14 +267,14 @@ class actividadController extends Controller
     {
     try{
         $user = usuarios::validarLogin();
-        // if (!in_array(permisos::$seguridad, $_SESSION['user_permisos'])) {
-        //     throw new ForbiddenException();
-        // }
         $actividades = actividades::cargarActividades();
 
         if ($actividades) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$actividades]);
             $actividadesCollection = new actividadesCollection();
-            $permisosFormat = $actividadesCollection->formatActividades($actividades);
+            $permisosFormat = $actividadesCollection->formatActividades2($actividades);
         } else {
             $permisosFormat = [];
         }

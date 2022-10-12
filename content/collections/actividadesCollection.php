@@ -3,6 +3,7 @@
 namespace content\collections;
 
 use content\core\exception\ForbiddenException;
+use content\enums\estadosActividad as status;
 use content\enums\permisos;
 use DateTime;
 use Monolog\Handler\StreamHandler;
@@ -11,6 +12,31 @@ use Monolog\Logger;
 class actividadesCollection
 {
     public function formatActividades($actividades)
+    {
+        $data = [];
+        foreach ($actividades as $actividad) {
+            switch ($actividad['status']) {
+                case status::$en_curso:
+                    $actividad['status'] = 'En Curso';
+                    break;
+                case status::$en_pausa:
+                    $actividad['status'] = 'En Pausa';
+                    break;
+                case status::$terminado:
+                    $actividad['status'] = 'Terminado';
+                    break;
+                case status::$cancelado:
+                    $actividad['status'] = 'Cancelado';
+                    break;
+                default:
+                {
+                    $actividad['status'] = 'No Disponible';
+                }
+            }
+        }
+    }
+
+    public function formatActividades2($actividades)
     {
         $data = [];
         foreach ($actividades as $actividad) {
