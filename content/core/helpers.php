@@ -507,6 +507,26 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+                    'registrarTipoDeActividad' => [
+                        'permisos' =>  permisos::$crear_actividades,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Registrar tipo',
+                        'route' => '/actividades/registrar/tipo',
+                        'method' => 'createTipo',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                    'tipoDeActividadStore' => [
+                        'permisos' =>  [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'registrar tipo',
+                        'route' => '/actividades/tipos/store',
+                        'method' => 'storeTipo',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 
