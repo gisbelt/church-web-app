@@ -271,7 +271,7 @@ class actividadController extends Controller
 
         if ($actividades) {
             $actividadesCollection = new actividadesCollection();
-            $permisosFormat = $actividadesCollection->formatActividades($actividades);
+            $permisosFormat = $actividadesCollection->formatActividadesData($actividades);
         } else {
             $permisosFormat = [];
         }
