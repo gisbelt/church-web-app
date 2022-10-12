@@ -11,32 +11,15 @@ use Monolog\Logger;
 
 class actividadesCollection
 {
-    public function formatActividades($actividades)
-    {
-        $data = [];
-        foreach ($actividades as $actividad) {
-            switch ($actividad['status']) {
-                case status::$en_curso:
-                    $actividad['status'] = 'En Curso';
-                    break;
-                case status::$en_pausa:
-                    $actividad['status'] = 'En Pausa';
-                    break;
-                case status::$terminado:
-                    $actividad['status'] = 'Terminado';
-                    break;
-                case status::$cancelado:
-                    $actividad['status'] = 'Cancelado';
-                    break;
-                default:
-                {
-                    $actividad['status'] = 'No Disponible';
-                }
-            }
-        }
-    }
+//    public function formatStatusActividades($actividades)
+//    {
+//        $data = [];
+//        foreach ($actividades as $actividad) {
+//
+//        }
+//    }
 
-    public function formatActividades2($actividades)
+    public function formatActividadesData($actividades)
     {
         $data = [];
         foreach ($actividades as $actividad) {
@@ -52,21 +35,39 @@ class actividadesCollection
                     'Accion no disponible'
                 );
             }
-            if (in_array(permisos::$eliminar_actividades, $_SESSION['user_permisos'])) {
-                $actividad['actions'] .= sprintf(
-                    '<button type="button"  name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger ms-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
-                          </button>',
-                );
-            } else {
-                $actividad['actions'] = sprintf(
-                    '<h5><span class="badge bg-%s">%s</span></h5>',
-                    'warning',
-                    'Accion no disponible'
-                );
-            }
+//            if (in_array(permisos::$eliminar_actividades, $_SESSION['user_permisos'])) {
+//                $actividad['actions'] .= sprintf(
+//                    '<button type="button"  name="eliminar-donacion" id="eliminar-donacion" class="btn btn-danger ms-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
+//                          </button>',
+//                );
+//            } else {
+//                $actividad['actions'] = sprintf(
+//                    '<h5><span class="badge bg-%s">%s</span></h5>',
+//                    'warning',
+//                    'Accion no disponible'
+//                );
+//            }
             $date = $actividad['fecha'] . ' ' . $actividad['hora'];
             $date = new DateTime($date);
             $actividad['fecha'] = $date->format('d/m/Y H:i:s');
+            switch ($actividad['status']) {
+                case status::$en_curso:
+                    $actividad['status'] = 'En Curso';
+                    break;
+                case status::$en_pausa:
+                    $actividad['status'] = 'En Pausa';
+                    break;
+                case status::$terminado:
+                    $actividad['status'] = 'Terminado';
+                    break;
+                case status::$cancelado:
+                    $actividad['status'] = 'Cancelado';
+                    break;
+                default:
+                    {
+                        $actividad['status'] = 'No Disponible';
+                    }
+            }
             $data[] = $actividad;
         }
 

@@ -46,7 +46,8 @@ class actividadesModel extends Model
                                                 INNER JOIN
                                                 tipo_actividad
                                                 ON
-		                            actividades.tipo_actividad_id = tipo_actividad.id");
+		                            actividades.tipo_actividad_id = tipo_actividad.id
+		                            where actividades.status != 4");
             $sql->execute();
            
             $actividades = $sql->fetchAll(PDO::FETCH_ASSOC);
