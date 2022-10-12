@@ -4,8 +4,11 @@ $(document).ready(function () {
         type: "GET",
         dateType: "json",
     }).done(function (response) {
+        var tipo = $("#tipo_actividad").val();
         $.each(JSON.parse(response), function (count, item) {
-            $("#tipo_actividad").append('<option value="' + item['id'] + '">' + item['nombre'] + '</option>');
+            if(tipo !== item['id']){
+                $("#tipo_actividad").append('<option value="' + item['id'] + '">' + item['nombre'] + '</option>');
+            }
         });
     }).fail(function (jqXHR, textStatus, errorThrown) {
         swal({
