@@ -201,7 +201,7 @@ class actividadController extends Controller
     public function update(Request $request)
     {
         try{
-            if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+            if (!in_array(permisos::$actividades, $_SESSION['user_permisos'])) {
                 throw new ForbiddenException();
             }
             usuarios::validarLogin();
