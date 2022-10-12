@@ -2,6 +2,7 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\collections\homeCollection;
 use content\core\Aplicacion;
 use content\core\Controller;
@@ -45,8 +46,9 @@ class homeController extends Controller
     public function proximasActividades()
     {
         try{
-            $user = usuarios::validarLogin();            
-            $actividades = homeModel::cargarActividades();            
+            usuarios::validarLogin();
+            $fecha = Carbon::now()->format('Y-m-d');
+            $actividades = homeModel::cargarActividades($fecha);
             if ($actividades) {
                 $homeCollection = new homeCollection();
                 $actividadesFormat =  $homeCollection->formatActividades($actividades);

@@ -42,7 +42,7 @@ class homeModel extends Model {
         return $countAmigos;
     }
 
-    public static function cargarActividades()
+    public static function cargarActividades($fecha)
     {
         try{
             $conexionBD = BD::crearInstancia();
@@ -51,12 +51,11 @@ class homeModel extends Model {
             INNER JOIN actividades_horarios ON actividades.id = actividades_horarios.actividad_id
             INNER JOIN horarios ON actividades_horarios.horario_id = horarios.id
             INNER JOIN tipo_actividad ON actividades.tipo_actividad_id = tipo_actividad.id
-            WHERE actividades.status=? ORDER BY horarios.fecha DESC LIMIT 6");
-            $sql->execute(array(self::ACTIVE));           
+            WHERE actividades.status=? 
+            AND horarios.fecha >= ?
+            ORDER BY horarios.fecha DESC LIMIT 6");
+            $sql->execute(array(self::ACTIVE, $fecha));
             $actividades = $sql->fetchAll(PDO::FETCH_ASSOC);
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$actividades]);
             return $actividades;
         }catch(Exception $exception){
             $logger = new Logger("web");
