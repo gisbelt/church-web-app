@@ -2,6 +2,7 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\collections\miembrosCollection;
 use content\component\headElement as headElement;
 use content\component\bottomComponent as bottomComponent;
@@ -10,6 +11,7 @@ use content\component\footerElement as footerElement;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
+use content\core\Request;
 use content\enums\permisos;
 use content\models\bitacoraModel;
 use content\models\miembrosModel;
@@ -36,16 +38,20 @@ class reportesController extends Controller
         return $this->render('/reportes/reportesView');
     }
 
-    public function dataDonacion()
+    public function dataMiembros(Request $request)
     {
         try {
-            $report = miembrosModel::reporteMiembros();
-            $miembrosCollection = new miembrosCollection();
-            $formatMiembrosReport = $miembrosCollection->formatMiembrosReport($report);
-            $data = [
-                'miembros' => $formatMiembrosReport,
-            ];
-            return json_encode($data);
+             if(!empty($request->getBody()['fecha'])){
+                 $fecha = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha'])->format('Y-m-d');
+                 $report = miembrosModel::reporteMiembros($fecha);
+                 $miembrosCollection = new miembrosCollection();
+                 $formatMiembrosReport = $miembrosCollection->formatMiembrosReport($report);
+                 $data = [
+                     'miembros' => $formatMiembrosReport,
+                 ];
+                 return json_encode($data);
+             }
+
         } catch (\Exception $ex) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));

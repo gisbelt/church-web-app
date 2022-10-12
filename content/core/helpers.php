@@ -880,12 +880,12 @@ if (!function_exists("routas")) {
                     ],
 
                     'donacionReport' => [
-                        'permisos' => permisos::$reportes,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista reportes',
                         'route' => '/reportes/donacion',
-                        'method' => 'dataDonacion',
+                        'method' => 'dataMiembros',
                         'action' => 'get',
                         'subRutas' => []
                     ],

@@ -26,53 +26,64 @@ $(document).ready(function () {
 
 const report1 = function () {
     let $grafica_one = $("#report_one");
-       $.ajax({
-        url: $grafica_one.data('route'),
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        method: "GET",
-        success: function(data) {
-            let sexo = [];
-            let cantidad = [];
-            let color = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'];
-            let bordercolor = ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'];
+    let $form = $("#form-report-one");
+    let $button = $("#busqueda_reporte_one");
+    $button.click(function () {
+        $.ajax({
+            url: $form.attr('action') + '?' + $form.serialize(),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            method: "GET",
+            success: function (data) {
+                let sexo = [];
+                let cantidad = [];
+                let color = [];
+                let bordercolor = [];
 
-            for (let i in data.miembros) {
-                sexo.push(data.miembros[i].sexo);
-                cantidad.push(data.miembros[i].cantidad);
-            }
-
-            let chartdata = {
-                labels: sexo,
-                datasets: [{
-                    label: sexo,
-                    backgroundColor: color,
-                    borderColor: color,
-                    borderWidth: 2,
-                    hoverBackgroundColor: color,
-                    hoverBorderColor: bordercolor,
-                    data: cantidad
-                }]
-            };
-
-            new Chart($grafica_one, {
-                type: 'doughnut',
-                data: chartdata,
-                options: {
-                    responsive: true,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
+                for (let i in data.miembros) {
+                    sexo.push(data.miembros[i].sexo);
+                    cantidad.push(data.miembros[i].cantidad);
+                    if(data.miembros[i].sexo == 'Masculino'){
+                        color.push('rgba(54, 162, 235, 0.2)');
+                        bordercolor = ['rgba(54, 162, 235, 1)'];
+                    } else {
+                        color = ['rgba(255, 99, 132, 0.2)'];
+                        bordercolor = ['rgba(255,99,132,1)'];
                     }
                 }
-            });
-        },
-        error: function(data) {
-            console.log(data);
-        }
+
+                let chartdata = {
+                    labels: sexo,
+                    datasets: [{
+                        label: sexo,
+                        backgroundColor: color,
+                        borderColor: color,
+                        borderWidth: 2,
+                        hoverBackgroundColor: color,
+                        hoverBorderColor: bordercolor,
+                        data: cantidad
+                    }]
+                };
+
+                new Chart($grafica_one, {
+                    type: 'doughnut',
+                    data: chartdata,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 }
 
