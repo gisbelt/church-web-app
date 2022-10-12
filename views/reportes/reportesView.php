@@ -21,7 +21,7 @@ $this->title = 'Reportes'
             <div class="report-content collapse" id="report1">
                 <div class="card bg-transparent">
                     <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Donaciones</h5>
+                        <h5 class="card-title text-white m-0">Miembros</h5>
                     </div>
                     <div class="card-body">
                         <canvas id="report_one" data-route="/reportes/donacion"></canvas>
