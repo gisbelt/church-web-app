@@ -19,7 +19,7 @@ $this->title = 'Reportes'
             </div>
             <!-- put view here  -->
             <div class="report-content collapse" id="report1">
-                <div class="card bg-transparent">
+                <div class="card">
                     <div class="card-header bg-first-color">
                         <h5 class="card-title text-white m-0">Miembros</h5>
                     </div>
