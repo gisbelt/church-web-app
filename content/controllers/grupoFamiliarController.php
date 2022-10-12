@@ -94,7 +94,7 @@ class grupoFamiliarController extends Controller
 
     //Obtener Grupos
     public function obtenerGrupos(Request $request){
-        $user = usuarios::validarLogin();        
+        $user = usuarios::validarLogin();
         $grupos = grupoFamiliarModel::obtenerGrupos();     
         if($grupos){
             $grupoFamiliarCollection = new grupoFamiliarCollection();
@@ -146,7 +146,7 @@ class grupoFamiliarController extends Controller
         $amigo_id = $request->getBody()['amigo_id'];
         if(isset($nombre)){
             if($gf->validate()){
-                $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);
+                $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
                 bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
             }
             if(count($gf->errors) > 0){
@@ -158,7 +158,7 @@ class grupoFamiliarController extends Controller
                 return json_encode($data, 422);
             } 
         }        
-        $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);
+        $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
         bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
     }
 
