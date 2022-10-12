@@ -110,9 +110,6 @@ class grupoFamiliarController extends Controller
     public function obtenerIntegrantesGrupo(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $integrantes = new grupoFamiliarModel();
         $integrantes->loadData($request->getBody());
         $grupo_id = $request->getBody()['grupo_id'];
