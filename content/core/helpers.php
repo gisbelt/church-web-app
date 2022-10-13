@@ -880,12 +880,45 @@ if (!function_exists("routas")) {
                     ],
 
                     'donacionReport' => [
-                        'permisos' => permisos::$reportes,
+                        'permisos' => [],
                         'parametros' => [],
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista reportes',
                         'route' => '/reportes/donacion',
                         'method' => 'dataDonacion',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'gruposReport' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Grupos Familiares Reportes',
+                        'route' => '/reportes/grupos',
+                        'method' => 'dataGrupos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'gruposAmigosReport' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Cantidad Amigos Grupo',
+                        'route' => '/reportes/gruposAmigos',
+                        'method' => 'dataGruposAmigos',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'gruposIngresadosMesReport' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Grupos Ingresados Mes',
+                        'route' => '/reportes/grupos-ingresados-mes',
+                        'method' => 'dataGruposIngresadosMes',
                         'action' => 'get',
                         'subRutas' => []
                     ],

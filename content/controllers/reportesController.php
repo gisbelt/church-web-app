@@ -2,17 +2,17 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
 use content\collections\miembrosCollection;
-use content\component\headElement as headElement;
-use content\component\bottomComponent as bottomComponent;
-use content\component\footerElement as footerElement;
-
+use content\collections\grupoFamiliarCollection;
+use content\core\Request;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
 use content\enums\permisos;
 use content\models\bitacoraModel;
 use content\models\miembrosModel;
+use content\models\grupoFamiliarModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
@@ -58,4 +58,100 @@ class reportesController extends Controller
             return json_encode($data);
         }
     }
+
+    // Cantidad Grupos por mes 
+    public function dataGrupos()
+    {
+        try {
+            $report = grupoFamiliarModel::reporteGrupos();   
+            $grupoFamiliarCollection = new grupoFamiliarCollection();
+            $formatGruposReport = $grupoFamiliarCollection->formatGruposReport($report);         
+            $data = [
+                'grupos' => $formatGruposReport,
+            ];
+            return json_encode($data);
+
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
+    }
+
+    // cantidad de amigos de cada grupo familiar
+    public function dataGruposAmigos(Request $request)
+    {
+        try {
+            $fechaInicial = !empty($request->getBody()['fecha_inicial']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_inicial'])->startOfDay()->format('Y-m-d H:i:s') : null;
+            $fechaFinal = !empty($request->getBody()['fecha_final']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_final'])->endOfDay()->format('Y-m-d H:i:s') : null;
+            if(!is_null($fechaInicial) && !is_null($fechaFinal)){
+                $report = grupoFamiliarModel::reporteGrupos2($fechaInicial,$fechaFinal);
+                $data = [
+                    'gruposAmigos' => $report,
+                ];
+                return json_encode($data);
+            } else {
+                $data = [
+                    'title' => 'Datos invalidos',
+                    'messages' => 'Debe ingresar una fecha inicial y una fecha final',
+                    'code' => 422
+                ];
+                return json_encode($data, 422);
+            }
+
+       } catch (\Exception $ex) {
+           $logger = new Logger("web");
+           $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+           $logger->debug(__METHOD__, [$ex]);
+           $data = [
+               'title' => 'Error',
+               'messages' => $ex,
+               'code' => 403
+           ];
+           return json_encode($data);
+       }
+
+    }
+
+    // cantidad de grupos ingresados por mes
+    public function dataGruposIngresadosMes(Request $request)
+    {
+        try {
+            $fechaInicial = !empty($request->getBody()['fecha_inicial']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_inicial'])->startOfDay()->format('Y-m-d H:i:s') : null;
+            $fechaFinal = !empty($request->getBody()['fecha_final']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_final'])->endOfDay()->format('Y-m-d H:i:s') : null;
+            if(!is_null($fechaInicial) && !is_null($fechaFinal)){
+                $report = grupoFamiliarModel::reporteGrupos3($fechaInicial,$fechaFinal);
+                $data = [
+                    'gruposIngresados' => $report,
+                ];
+                return json_encode($data);
+            } else {
+                $data = [
+                    'title' => 'Datos invalidos',
+                    'messages' => 'Debe ingresar una fecha inicial y una fecha final',
+                    'code' => 422
+                ];
+                return json_encode($data, 422);
+            }
+
+       } catch (\Exception $ex) {
+           $logger = new Logger("web");
+           $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+           $logger->debug(__METHOD__, [$ex]);
+           $data = [
+               'title' => 'Error',
+               'messages' => $ex,
+               'code' => 403
+           ];
+           return json_encode($data);
+       }
+
+    }
+
 }
