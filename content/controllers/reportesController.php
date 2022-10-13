@@ -9,7 +9,6 @@ use content\core\Request;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
 use content\core\middlewares\AutenticacionMiddleware;
-use content\core\Request;
 use content\enums\permisos;
 use content\models\bitacoraModel;
 use content\models\miembrosModel;

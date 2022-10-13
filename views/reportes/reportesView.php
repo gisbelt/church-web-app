@@ -15,34 +15,30 @@ $this->title = 'Reportes'
                 <div class="derecha">
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report1" aria-expanded="false" aria-controls="collapseExample">Expandir</button>
                 </div>                
-                <p>Estadísticas</p>
+                <p>Genero de miembro por fecha de nacimiento</p>
             </div>
             <!-- put view here  -->
             <div class="report-content collapse" id="report1">
                 <div class="card">
                     <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Miembros</h5>
+                        <h5 class="card-title text-white m-0">Género</h5>
                     </div>
                     <div class="card-body">
                         <form method="POST" enctype="multipart/form-data" id="form-report-one" action="/reportes/donacion">
                             <div class="row">
-                                <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                                <div class="col-md-4 col-12 mb-2">
                                     <div class="form-group center">
                                         <div class="input-group input-daterange" id="datepicker">
-                                        <span class="input-group-text">
-                                            <i class="bi bi-calendar-date text-first-color"></i>
-                                        </span>
+                                            <span class="input-group-text">
+                                                <i class="bi bi-calendar-date text-first-color"></i>
+                                            </span>
                                             <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha nacimiento" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-                                    <div class="form-group">
-                                        <button type="button" name="busqueda_reporte_one" id="busqueda_reporte_one"
-                                                class="btn btn-secondary btn-block">
-                                            <i class="bi bi-search"></i> Buscar
-                                        </button>
+                                            <span class="input-group-btn">
+                                                <button type="button" name="busqueda_reporte_one" id="busqueda_reporte_one" class="btn btn-secondary btn-block">
+                                                    <i class="bi bi-search"></i> Buscar
+                                                </button>
+                                            </span>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
