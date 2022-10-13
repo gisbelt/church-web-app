@@ -127,13 +127,16 @@ public static function miemrbosSelect()
     }
 
     // reporte donacion
-    public static function reporteMiembros()
+    public static function reporteMiembros($fecha)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT COUNT(perfiles.sexo) as cantidad, perfiles.sexo FROM  miembros
-	                INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
-	            GROUP BY perfiles.sexo");
-         $sql->execute();
+        $sql = $conexionBD->prepare("SELECT COUNT(perfiles.sexo) as cantidad, perfiles.sexo, DATE(perfiles.fecha_nacimiento) FROM  miembros
+	                INNER JOIN perfiles ON miembros.id = perfiles.miembro_id WHERE DATE(perfiles.fecha_nacimiento)=?
+	            GROUP BY perfiles.sexo, DATE(perfiles.fecha_nacimiento)");
+        $sql->execute(array($fecha));
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$sql]);
         $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $miembros;
     }

@@ -201,7 +201,7 @@ class actividadController extends Controller
     public function update(Request $request)
     {
         try{
-            if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+            if (!in_array(permisos::$actividades, $_SESSION['user_permisos'])) {
                 throw new ForbiddenException();
             }
             usuarios::validarLogin();
@@ -270,11 +270,8 @@ class actividadController extends Controller
         $actividades = actividades::cargarActividades();
 
         if ($actividades) {
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$actividades]);
             $actividadesCollection = new actividadesCollection();
-            $permisosFormat = $actividadesCollection->formatActividades2($actividades);
+            $permisosFormat = $actividadesCollection->formatActividadesData($actividades);
         } else {
             $permisosFormat = [];
         }

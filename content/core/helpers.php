@@ -885,7 +885,7 @@ if (!function_exists("routas")) {
                         'icon' => 'bx bx-list-ul',
                         'text' => 'Lista reportes',
                         'route' => '/reportes/donacion',
-                        'method' => 'dataDonacion',
+                        'method' => 'dataMiembros',
                         'action' => 'get',
                         'subRutas' => []
                     ],

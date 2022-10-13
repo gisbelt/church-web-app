@@ -2,6 +2,8 @@
 
 namespace content\controllers;
 
+use Carbon\Carbon;
+use content\collections\homeCollection;
 use content\core\Aplicacion;
 use content\core\Controller;
 use content\core\exception\ForbiddenException;
@@ -10,7 +12,6 @@ use content\enums\permisos;
 use content\models\bitacoraModel;
 use content\models\homeModel;
 use content\models\usuariosModel as usuarios;
-use DateTime;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -41,24 +42,16 @@ class homeController extends Controller
         ]);
     }
 
-    public function formatActividades($actividades)
-    {
-        $data = [];
-        foreach ($actividades as $actividad) {
-            $date = $actividad['fecha'] . ' ' . $actividad['hora'];
-            $date = new DateTime($date);
-            $actividad['fecha'] = $date->format('d/m/Y H:i:s');
-            $data[] = $actividad;
-        }
-        return $data;
-    }
+
     public function proximasActividades()
     {
         try{
-            $user = usuarios::validarLogin();            
-            $actividades = homeModel::cargarActividades();            
+            usuarios::validarLogin();
+            $fecha = Carbon::now()->format('Y-m-d');
+            $actividades = homeModel::cargarActividades($fecha);
             if ($actividades) {
-                $actividadesFormat =  $this->formatActividades($actividades);            
+                $homeCollection = new homeCollection();
+                $actividadesFormat =  $homeCollection->formatActividades($actividades);
             } else {
                 $actividadesFormat = [];
             }  
@@ -74,24 +67,14 @@ class homeController extends Controller
         }
     }
 
-    public function formatBitacora($bitacoras)
-    {
-        $data = [];
-        foreach ($bitacoras as $bitacora) {
-            $date = $bitacora['fecha'];
-            $date = new DateTime($date);
-            $bitacora['fecha'] = $date->format('d/m/Y H:i:s');
-            $data[] = $bitacora;
-        }
-        return $data;
-    }
     public function bitacoraLastActions()
     {
         try{
             $user = usuarios::validarLogin();            
             $bitacoras = homeModel::bitacoraLastActions(); 
             if ($bitacoras) {
-                $bitacoraFormat =  $this->formatBitacora($bitacoras);            
+                $homeCollection = new homeCollection();
+                $bitacoraFormat =  $homeCollection->formatBitacora($bitacoras);
             } else {
                 $bitacoraFormat = [];
             }           

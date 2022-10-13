@@ -24,7 +24,30 @@ $this->title = 'Reportes'
                         <h5 class="card-title text-white m-0">Miembros</h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="report_one" data-route="/reportes/donacion" width="764" height="250"></canvas>
+                        <form method="POST" enctype="multipart/form-data" id="form-report-one" action="/reportes/donacion">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                                    <div class="form-group center">
+                                        <div class="input-group input-daterange" id="datepicker">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-calendar-date text-first-color"></i>
+                                        </span>
+                                            <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha nacimiento" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                                    <div class="form-group">
+                                        <button type="button" name="busqueda_reporte_one" id="busqueda_reporte_one"
+                                                class="btn btn-secondary btn-block">
+                                            <i class="bi bi-search"></i> Buscar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <canvas id="report_one"></canvas>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div>
