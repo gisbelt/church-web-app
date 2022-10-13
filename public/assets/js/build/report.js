@@ -231,8 +231,6 @@ const report5 = function () {
                         'rgb(54, 162, 235)',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
                         'rgb(255, 205, 86)',
                         'rgb(54, 162, 70)',
                         'rgb(54, 162, 165)',
@@ -243,6 +241,8 @@ const report5 = function () {
                         'rgb(54, 162, 19)',
                         'rgb(54, 162, 219)',
                         'rgb(54, 162, 17)',
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
                     ],
                     borderWidth: 2,
                     hoverBackgroundColor: color,
