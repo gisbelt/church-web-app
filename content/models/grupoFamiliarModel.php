@@ -207,6 +207,47 @@ class grupoFamiliarModel extends Model
         return $lider;
     }
 
+     // reportes cantidad grupos por mes
+     public static function reporteGrupos()
+     {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT COUNT(grupos_familiares.nombre) as cantidad, MONTH(grupos_familiares.fecha_creado) as mes FROM  grupos_familiares
+        GROUP BY grupos_familiares.nombre");
+        $sql->execute();
+        $reporte = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $reporte;
+     }
+
+    //  cantidad de amigos de cada grupo familiar
+    public static function reporteGrupos2($fecha_inicial,$fecha_final)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT COUNT(grupo_familiare_amigo.amigo_id) as cantidad_amigos,
+        grupos_familiares.nombre as grupo
+        FROM grupos_familiares
+        INNER JOIN grupo_familiare_amigo ON grupos_familiares.id = grupo_familiare_amigo.grupo_id
+        WHERE grupos_familiares.fecha_creado BETWEEN ? and ?
+        GROUP BY grupo");
+        $sql->execute(array($fecha_inicial,$fecha_final));
+        $reporte = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $reporte;
+    }
+
+    //  cantidad de grupos familiares ingresados en el mes
+    public static function reporteGrupos3($fecha_inicial,$fecha_final)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT COUNT(grupos_familiares.id) as cantidad_familia,
+		grupos_familiares.nombre as grupo
+        FROM grupos_familiares
+		WHERE grupos_familiares.fecha_creado BETWEEN ? and ?
+        GROUP BY grupo");
+        $sql->execute(array($fecha_inicial,$fecha_final));
+        $reporte = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $reporte;
+    }
+
+     
     /**
      * @return array[]
      */

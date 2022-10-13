@@ -78,4 +78,56 @@ class grupoFamiliarCollection
         }
         return $data;
     }
+
+    //Reportes
+    public function formatGruposReport($grupos)
+    {
+        $data = [];
+        foreach($grupos as $grupo)
+        {
+            switch ($grupo['mes']){
+                case 1:
+                    $grupo['mes'] = 'Enero';
+                    break;
+                case 2:
+                    $grupo['mes'] = 'Febrero';
+                    break;
+                case 3:
+                    $grupo['mes'] = 'Marzo';
+                    break;
+                case 4:
+                    $grupo['mes'] = 'Abril';
+                    break;
+                case 5:
+                    $grupo['mes'] = 'Mayo';
+                    break;
+                case 6:
+                    $grupo['mes'] = 'Junio';
+                    break;    
+                case 7:
+                    $grupo['mes'] = 'Julio';
+                    break;
+                case 8:
+                    $grupo['mes'] = 'Agosto';
+                    break;
+                case 9:
+                    $grupo['mes'] = 'Septiembre';
+                    break;
+                case 10:
+                    $grupo['mes'] = 'Octubre';
+                    break;
+                case 11:
+                    $grupo['mes'] = 'Noviembre';
+                    break;
+                case 12:
+                    $grupo['mes'] = 'Diciembre';
+                    break;
+                default:{
+                    $grupo['mes'] = 'No Disponible';
+                }
+            }
+            $data[] = $grupo;
+        }
+        return $data;
+    }
 }
