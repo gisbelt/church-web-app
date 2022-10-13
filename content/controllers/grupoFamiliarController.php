@@ -91,40 +91,67 @@ class grupoFamiliarController extends Controller
 
     //Obtener Grupos
     public function obtenerGrupos(Request $request){
-        $user = usuarios::validarLogin();
-        $grupos = grupoFamiliarModel::obtenerGrupos();     
-        if($grupos){
-            $grupoFamiliarCollection = new grupoFamiliarCollection();
-            $gruposFormat = $grupoFamiliarCollection->formatGrupos($grupos);
-        } else {
-            $gruposFormat = [];
-        }
-        $data = [
-            'grupos' => $gruposFormat,
-        ];
+        try {
+            $user = usuarios::validarLogin();
+            $grupos = grupoFamiliarModel::obtenerGrupos();
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$grupos]);
+            if($grupos){
+                $grupoFamiliarCollection = new grupoFamiliarCollection();
+                $gruposFormat = $grupoFamiliarCollection->formatGrupos($grupos);
+            } else {
+                $gruposFormat = [];
+            }
+            $data = [
+                'grupos' => $gruposFormat,
+            ];
 
-        return json_encode($data);
+            return json_encode($data);
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
     }
 
     //Obtener Integrantes Grupos
     public function obtenerIntegrantesGrupo(Request $request)
     {
-        $user = usuarios::validarLogin();
-        $integrantes = new grupoFamiliarModel();
-        $integrantes->loadData($request->getBody());
-        $grupo_id = $request->getBody()['grupo_id'];
-        $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
-        if($integrantes){
-            $grupoFamiliarCollection = new grupoFamiliarCollection();
-            $observarAmigosFormat = $grupoFamiliarCollection->formatObservarAmigos($integrantes);
-        } else {
-            $observarAmigosFormat = [];
-        }   
-        $data = [
-            'amigos' => $observarAmigosFormat,
-        ];
+        try {
+            $user = usuarios::validarLogin();
+            $integrantes = new grupoFamiliarModel();
+            $integrantes->loadData($request->getBody());
+            $grupo_id = $request->getBody()['grupo_id'];
+            $integrantes = grupoFamiliarModel::obtenerIntegrantesGrupo($grupo_id);
+            if ($integrantes) {
+                $grupoFamiliarCollection = new grupoFamiliarCollection();
+                $observarAmigosFormat = $grupoFamiliarCollection->formatObservarAmigos($integrantes);
+            } else {
+                $observarAmigosFormat = [];
+            }
+            $data = [
+                'amigos' => $observarAmigosFormat,
+            ];
 
-        return json_encode($data);
+            return json_encode($data);
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
     }
 
     //Registrar grupo y amigo a grupo familiar

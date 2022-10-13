@@ -22,6 +22,7 @@ class grupoFamiliarModel extends Model
     public $fecha_actualizado;
     public $grupo_id;
     public $amigo_id;
+    public $status;
 
     public function  __construct(){
         
