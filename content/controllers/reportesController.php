@@ -67,9 +67,12 @@ class reportesController extends Controller
     public function dataGrupos()
     {
         try {
-            $report = grupoFamiliarModel::reporteGrupos();   
+            $endMonth = Carbon::now()->startOfMonth()->format('m');
+            $startMonth =  Carbon::now()->subMonth(3)->format('m');
+            $report = grupoFamiliarModel::reporteGrupos($startMonth, $endMonth);
             $grupoFamiliarCollection = new grupoFamiliarCollection();
-            $formatGruposReport = $grupoFamiliarCollection->formatGruposReport($report);         
+            $formatGruposReport = $grupoFamiliarCollection->formatGruposReport($report);
+
             $data = [
                 'grupos' => $formatGruposReport,
             ];

@@ -208,12 +208,13 @@ class grupoFamiliarModel extends Model
     }
 
      // reportes cantidad grupos por mes
-     public static function reporteGrupos()
+     public static function reporteGrupos($startMonth, $endMonth)
      {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT COUNT(grupos_familiares.nombre) as cantidad, MONTH(grupos_familiares.fecha_creado) as mes FROM  grupos_familiares
-        GROUP BY grupos_familiares.nombre");
-        $sql->execute();
+        $sql = $conexionBD->prepare("SELECT COUNT(grupos_familiares.id) as cantidad,  MONTH(grupos_familiares.fecha_creado) as mes FROM  grupos_familiares
+                                                WHERE MONTH(grupos_familiares.fecha_creado) BETWEEN ? AND ? 
+                                        GROUP BY  MONTH(grupos_familiares.fecha_creado)");
+         $sql->execute(array($startMonth, $endMonth));
         $reporte = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $reporte;
      }

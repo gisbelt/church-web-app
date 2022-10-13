@@ -49,7 +49,7 @@ $this->title = 'Reportes'
             </div>
         </section>
        
-        <!-- 2 -->
+        <!-- 2
         <section class="report">
             <div class="report-header">
                 <h4 class="">Reporte 2</h4>
@@ -57,22 +57,22 @@ $this->title = 'Reportes'
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report2">Expandir</button>
                 </div>                
                 <p>reportes</p>
-            </div>
+            </div>-->
             <!-- put view here  -->
-            <div class="report-content collapse" id="report2">
-                <div class="card bg-transparent">
-                    <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Donaciones</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="report_two" width="764" height="250"></canvas>
-                    </div><!-- /.card-body -->
-                </div><!-- /.card -->
-            </div>
-        </section>
+        <!-- <div class="report-content collapse" id="report2">
+             <div class="card bg-transparent">
+                 <div class="card-header bg-first-color">
+                     <h5 class="card-title text-white m-0">Donaciones</h5>
+                 </div>
+                 <div class="card-body">
+                     <canvas id="report_two" width="764" height="250"></canvas>
+                 </div><!-- /.card-body -->
+        <!-- </div><!-- /.card -->
+        <!--</div>
+    </section>-->
        
         <!-- 3 -->
-        <section class="report">
+        <!--<section class="report">
             <div class="report-header">
                 <h4 class="">Reporte 3</h4>
                 <div class="derecha">
@@ -81,39 +81,39 @@ $this->title = 'Reportes'
                 <p>reportes</p>
             </div>
             <!-- put view here  -->
-            <div class="report-content collapse" id="report3">
-                <div class="card bg-transparent">
-                    <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Donaciones</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="report_three" width="764" height="250"></canvas>
-                    </div><!-- /.card-body -->
-                </div><!-- /.card -->
-            </div>
-        </section>
-       
-        <!-- 4 -->
-        <section class="report">
+        <!--<div class="report-content collapse" id="report3">
+           <div class="card bg-transparent">
+               <div class="card-header bg-first-color">
+                   <h5 class="card-title text-white m-0">Donaciones</h5>
+               </div>
+               <div class="card-body">
+                   <canvas id="report_three" width="764" height="250"></canvas>
+               </div><!-- /.card-body -->
+        <!--</div><!-- /.card -->
+        <!-- </div>
+     </section>-->
+
+     <!-- 4 -->
+        <!--<section class="report">
             <div class="report-header">
                 <h4 class="">Reporte 4</h4>
                 <div class="derecha">
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report4">Expandir</button>
                 </div>                
                 <p>reportes</p>
-            </div>
+            </div>-->
             <!-- put view here  -->
-            <div class="report-content collapse" id="report4">
-                <div class="card bg-transparent">
-                    <div class="card-header bg-first-color">
-                        <h5 class="card-title text-white m-0">Donaciones</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="report_four" width="764" height="250"></canvas>
-                    </div><!-- /.card-body -->
-                </div><!-- /.card -->
-            </div>
-        </section>   
+        <!--<div class="report-content collapse" id="report4">
+            <div class="card bg-transparent">
+                <div class="card-header bg-first-color">
+                    <h5 class="card-title text-white m-0">Donaciones</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="report_four" width="764" height="250"></canvas>
+                </div><!-- /.card-body -->
+        <!--</div><!-- /.card -->
+        <!--  </div>
+      </section>   -->
         
         <!-- 5 -->
         <section class="report">

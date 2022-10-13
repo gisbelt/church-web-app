@@ -7,7 +7,7 @@ $(document).ready(function () {
                 report1();
                 break;
 
-            case '#report2':
+            /*case '#report2':
                 report2();
                 break;
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
             case '#report4':
                 report4(); 
-                break;
+                break;*/
             case '#report5':
                 report5(); 
                 break;
@@ -94,7 +94,7 @@ const report1 = function () {
     });
 }
 
-const report2 = function () {
+/*const report2 = function () {
     let $grafica_one = document.querySelector("#report_two");
     let datosVentas2020 = {
         label: "Ventas por mes",
@@ -194,7 +194,7 @@ const report4 = function () {
             },
         }
     });
-}
+}*/
 
 const report5 = function () {
     let $grafica_five = $("#report_five");
@@ -210,15 +210,13 @@ const report5 = function () {
             let bordercolor = [];
             for (let i in data.grupos) {                    
                 mes.push(data.grupos[i].mes)
-                cantidad.push(data.grupos[i].cantidad);                
+                cantidad.push(data.grupos[i].cantidad);
             }
             let chartdata = {
                 labels: mes,
                 datasets: [{
                     label: mes,
                     backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
                         'rgb(255, 205, 86)',
                         'rgb(54, 162, 70)',
                         'rgb(54, 162, 165)',
@@ -229,6 +227,8 @@ const report5 = function () {
                         'rgb(54, 162, 19)',
                         'rgb(54, 162, 219)',
                         'rgb(54, 162, 17)',
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
                     ],
                     borderColor: [
                         'rgb(255, 99, 132)',

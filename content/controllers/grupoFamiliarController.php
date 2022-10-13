@@ -187,7 +187,7 @@ class grupoFamiliarController extends Controller
     public function editar(Request $request)
     {
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$actualizar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }        
         $id = $request->getRouteParams();
