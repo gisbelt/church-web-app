@@ -20,16 +20,16 @@ class homeModel extends Model {
 
     public static function countMiembrosActivos(){
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT COUNT(*) as numrows FROM miembros where status=? and fecha_paso_de_fe is not null");
-        $sql->execute(array(self::ACTIVE));
+        $sql = $conexionBD->prepare("SELECT COUNT(*) as numrows FROM miembros where membresia_id=?");
+        $sql->execute(array(2));
         $countAmigos = $sql->fetch(PDO::FETCH_ASSOC);        
         return $countAmigos;
     }
 
     public static function countMiembrosPasivos(){
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT COUNT(*) as numrows FROM miembros where status=? and fecha_paso_de_fe is null");
-        $sql->execute(array(self::ACTIVE));
+        $sql = $conexionBD->prepare("SELECT COUNT(*) as numrows FROM miembros where membresia_id=?");
+        $sql->execute(array(1));
         $countAmigos = $sql->fetch(PDO::FETCH_ASSOC);        
         return $countAmigos;
     }

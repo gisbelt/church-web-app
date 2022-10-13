@@ -69,7 +69,7 @@ class grupoFamiliarCollection
     {
         $data = [];
         foreach ($amigos as $amigo) {
-            $amigo['actions'] .= sprintf(
+            $amigo['actions'] = sprintf(
                 '<button type="button" data-route="%s" name="eliminar-amigo-grupo" id="eliminar-amigo-grupo" class="btn btn-danger mx-2" data-title="eliminar"><i class="bi bi-trash text-light"></i>
                           </button>',
                 '/grupo-familiares/eliminar-amigo/' . $amigo['amigo'] . '/' . $amigo['grupo_id'],
