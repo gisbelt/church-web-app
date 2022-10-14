@@ -66,31 +66,25 @@ class grupoFamiliarModel extends Model
         echo json_encode($result);
     }
 
-    //  Registrar grupo y amigo a grupo familiar 
-    public static function guardar($nombre,$direccion,$lider,$zona,$fecha,$amigo_id){
+    //  Registrar grupo familiar 
+    public static function guardar($nombre,$direccion,$lider,$zona,$fecha){
         $conexionBD=BD::crearInstancia();   
-        if(isset($nombre)){        
-            $sql= $conexionBD->prepare("INSERT INTO grupos_familiares (`nombre`,`direccion`,`lider_id`,`zona_id`,`fecha_creado`,status) VALUES (?,?,?,?,?,?)"); 
-            $sql->execute(array($nombre,$direccion,$lider,$zona,$fecha,self::ACTIVE));        
-            $result = [msj1 => $sql];
-            die(json_encode($result));
-        }        
+        $sql= $conexionBD->prepare("INSERT INTO grupos_familiares (`nombre`,`direccion`,`lider_id`,`zona_id`,`fecha_creado`,status) VALUES (?,?,?,?,?,?)"); 
+        $result = $sql->execute(array($nombre,$direccion,$lider,$zona,$fecha,self::ACTIVE));
+        return $result;
+    }
+    //  Registrar grupo familiar  amigos
+    public static function guardarGrupoAmigos($amigo_id){
+        $conexionBD=BD::crearInstancia();  
 
         $sql2 = $conexionBD->prepare("SELECT * FROM grupos_familiares as g
         WHERE g.id=(SELECT max(id) FROM grupos_familiares)");
         $sql2->execute();
         $lastID = $sql2->fetch(PDO::FETCH_ASSOC); 
         
-        $sql3= $conexionBD->prepare("INSERT INTO grupo_familiare_amigo (`grupo_id`,`amigo_id`,status) VALUES (?,?,?)");   
-        $sql3->execute(array($lastID['id'],$amigo_id,self::ACTIVE));
-        $result2 = [msj2 => $sql3];
-        $data = [
-            'title' => 'Datos registrados',
-            'messages' => 'El Grupo Familiar se ha registrado con exito',
-            'code' => 200
-        ];
-        
-        die(json_encode([$result2, $data]));
+        $sql3= $conexionBD->prepare("INSERT INTO grupo_familiare_amigo (`grupo_id`,`amigo_id`,status) VALUES (?,?,?)");           
+        $result2 = $sql3->execute(array($lastID['id'],$amigo_id,self::ACTIVE));
+        return $result2;
     }
 
     // Obtener grupos

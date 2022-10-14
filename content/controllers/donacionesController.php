@@ -99,7 +99,7 @@ class donacionesController extends Controller
     // Guardar donacion
     public function guardar(Request $request)
     {
-        if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$crear_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
