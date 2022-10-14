@@ -212,6 +212,7 @@ const registrarGrupoFamiliar = () =>{
                         setTimeout(function() {
                             newAmigo.innerHTML = "";                            
                         },1000); 
+                        setTimeout(() => window.location.href = '', 1000);
                     },
                     error: function(){} 
                 })
@@ -415,7 +416,8 @@ const asignarAmigo = function () {
                         });
                         setTimeout(function() {
                             newAmigo.innerHTML = "";                            
-                        },1000); 
+                        },1000);
+                        setTimeout(() => window.location.href = '', 200); 
                     }
                 },
                 error: function(response){

@@ -43,9 +43,6 @@ class perfilController extends Controller
 
     public function obtener_usuario()
     {
-        if (!in_array(permisos::$perfiles, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         try {
             $email = !empty($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
             $usuario = cuentaModel::obtener_usuario_correo($email);
