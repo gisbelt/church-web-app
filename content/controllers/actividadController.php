@@ -27,9 +27,9 @@ class actividadController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['edit']));
         $this->registerMiddleware(new AutenticacionMiddleware(['store']));
         $this->registerMiddleware(new AutenticacionMiddleware(['update']));
-        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
-        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
-        $this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
+        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerActividades']));
+        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerTiposActividad']));
+        //$this->registerMiddleware(new AutenticacionMiddleware(['obtenerMiembros']));
     }
 
     public function index()
@@ -65,7 +65,7 @@ class actividadController extends Controller
             throw new ForbiddenException();
         }
         bitacoraModel::guardar('Editar de actividades', 'Editar actividades');
-        try{
+        try {
             $edit = $request->getRouteParams();
             $actividades = actividades::actividadesPorId($edit['id']);
             $logger = new Logger("web");
@@ -73,11 +73,11 @@ class actividadController extends Controller
             $logger->debug(__METHOD__, ['cargar' => $actividades]);
             $user = usuarios::validarLogin();
             $fecha = $actividades['fecha'];
-            $hora= $actividades['hora'];
+            $hora = $actividades['hora'];
             $tipo = $actividades['tipo'];
             $fecha = date("d-m-Y", strtotime($fecha));
             $hora = date("h:i:s A", strtotime($hora));
-            switch ($actividades['estado_id']){
+            switch ($actividades['estado_id']) {
                 case status::$en_curso:
                     $status = 'En Curso';
                     break;
@@ -90,46 +90,47 @@ class actividadController extends Controller
                 case status::$cancelado:
                     $status = 'Cancelado';
                     break;
-                default:{
+                default:
+                {
                     $status = 'No Disponible';
                 }
             }
-                $dataStatus = [
-                  [
-                      'id' => 1,
-                      'nombre' => 'En Curso' ,
-                  ]  ,
-                  [
-                      'id' => 2,
-                      'nombre' => 'Terminado'
-                  ],
+            $dataStatus = [
+                [
+                    'id' => 1,
+                    'nombre' => 'En Curso',
+                ],
+                [
+                    'id' => 2,
+                    'nombre' => 'Terminado'
+                ],
 
-                  [
-                      'id' => 3,
-                      'nombre' => 'En Pausa'
-                   ],
-                  [
-                      'id' => 4,
-                      'nombre' => 'Cancelado'
-                  ]
+                [
+                    'id' => 3,
+                    'nombre' => 'En Pausa'
+                ],
+                [
+                    'id' => 4,
+                    'nombre' => 'Cancelado'
+                ]
 
 
-                ];
+            ];
             $data['titulo'] = 'Actualizar Actividades';
-            return $this->render('actividades/editarView',[
+            return $this->render('actividades/editarView', [
                 'id' => $edit['id'],
                 'nombre' => $actividades['actividad'],
                 'descripcion' => $actividades['descripcion'],
                 'observacion' => $actividades['observacion'],
                 'fecha' => $fecha,
-                'hora'=> $hora,
+                'hora' => $hora,
                 'tipo' => $tipo,
                 'id_tipo' => $actividades['id_tipo'],
                 'estado_id' => $actividades['estado_id'],
                 'estado' => $status,
                 'select_estado' => $dataStatus
             ]);
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);
@@ -159,7 +160,7 @@ class actividadController extends Controller
                 $horarios = actividades::horariosCreate($hora, $fechaHora, $fecha);
                 $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'], $horarios['id'], $fecha);
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
-                actividades::miembroActividad($miembro,$actividades['id'],$status,$fecha);
+                actividades::miembroActividad($miembro, $actividades['id'], $status, $fecha);
                 bitacoraModel::guardar('Registro de actividades', 'Registro actividades');
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
@@ -200,14 +201,14 @@ class actividadController extends Controller
 
     public function update(Request $request)
     {
-        try{
+        try {
             if (!in_array(permisos::$actividades, $_SESSION['user_permisos'])) {
                 throw new ForbiddenException();
             }
             usuarios::validarLogin();
             $logger = new Logger("update");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, ['request'=> $request->getBody()]);
+            $logger->debug(__METHOD__, ['request' => $request->getBody()]);
             $actividad = new actividades();
             $actividad->loadData($request->getBody());
             if ($actividad->validate()) {
@@ -221,13 +222,13 @@ class actividadController extends Controller
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
-                $actividades = actividades::modificarActividades($nombre,$description,$status,$tipo,$fecha,$id);
+                $actividades = actividades::modificarActividades($nombre, $description, $status, $tipo, $fecha, $id);
 //                $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
-                actividades::miembroActividadModificacion($miembro,$id,$status,$fecha);
-                actividades::observacionActividadModificar($id,$observacion,$fecha);
+                actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
+                actividades::observacionActividadModificar($id, $observacion, $fecha);
 //                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
                 if ($actividades) {
-                    bitacoraModel::guardar('Actualizo la actividad: '. $nombre, 'Actualizo actividades');
+                    bitacoraModel::guardar('Actualizo la actividad: ' . $nombre, 'Actualizo actividades');
                     $data = [
                         'title' => 'Datos Actualizado',
                         'messages' => 'La actividad se ha actualizado',
@@ -250,10 +251,10 @@ class actividadController extends Controller
                 ];
                 return json_encode($data, 422);
             }
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$ex,'request'=> $request]);
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
             $data = [
                 'title' => 'Error',
                 'messages' => $ex,
@@ -262,50 +263,49 @@ class actividadController extends Controller
             return json_encode($data);
         }
     }
-    
+
     public function obtenerActividades()
     {
-    try{
-        $user = usuarios::validarLogin();
-        $actividades = actividades::cargarActividades();
+        try {
+            $user = usuarios::validarLogin();
+            $actividades = actividades::cargarActividades();
 
-        if ($actividades) {
-            $actividadesCollection = new actividadesCollection();
-            $permisosFormat = $actividadesCollection->formatActividadesData($actividades);
-        } else {
-            $permisosFormat = [];
+            if ($actividades) {
+                $actividadesCollection = new actividadesCollection();
+                $permisosFormat = $actividadesCollection->formatActividadesData($actividades);
+            } else {
+                $permisosFormat = [];
+            }
+            $data = [
+                'actividades' => $permisosFormat,
+            ];
+            return json_encode($data);
+        } catch (\Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return json_encode([]);
         }
-        $data = [
-            'actividades' => $permisosFormat,
-        ];
-        return json_encode($data);
-    }catch(\Exception $exception){
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$exception]);
-        return  json_encode([]);
-    }
-
     }
 
     public function obtenerTiposActividad()
     {
         try {
             $tipo = actividades::tipoActividad();
-            if(!is_null($tipo)){
-                return  json_encode($tipo);
-            }else{
+            if (!is_null($tipo)) {
+                return json_encode($tipo);
+            } else {
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                 $logger->debug(__METHOD__, [$tipo]);
                 return json_encode([]);
             }
 
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);
-            return  json_encode([]);
+            return json_encode([]);
         }
     }
 
@@ -313,20 +313,20 @@ class actividadController extends Controller
     {
         try {
             $miembros = miembros::miemrbosSelect();
-            if(!is_null($miembros)){
-                return  json_encode($miembros);
-            }else{
+            if (!is_null($miembros)) {
+                return json_encode($miembros);
+            } else {
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                 $logger->debug(__METHOD__, [$miembros]);
                 return json_encode([]);
             }
 
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);
-            return  json_encode([]);
+            return json_encode([]);
         }
     }
 
