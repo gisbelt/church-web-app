@@ -38,49 +38,59 @@ class amigosController extends Controller
     // Editar datos de usuario
     public function actualizar(Request $request)
     {
-        usuarios::validarLogin();
-        $amigos = new amigos();
-        $amigos->loadData($request->getBody());
-        if ($amigos->validate()) {
-            if ($request->getBody()['fecha_nacimiento'] != '') {
-                $id = $request->getBody()['id'];
-                $cedula = $request->getBody()['cedula'];
-                $nombre = $request->getBody()['nombre'];
-                $apellido = $request->getBody()['apellido'];
-                $sexo = $request->getBody()['sexo'] == 'on' ? 1 : 0;
-                $direccion = $request->getBody()['direccion'];
-                $telefono = $request->getBody()['telefono'];
-                $comoLlego = $request->getBody()['como_llego'];
-                $fecha = Carbon::now();
-                $fechaNacimiento = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d H:i:s');
-                $amigo = amigos::actualizar($id, $cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
-                if ($amigo) {
-                    bitacoraModel::guardar('Actualizo el amigo:'. $nombre.' '. $apellido , 'Actualizo amigo');
-                    $data = [
-                        'title' => 'Datos actualizado',
-                        'messages' => 'El usuario se ha actualizado',
-                        'code' => 200
-                    ];
+        try {
+            usuarios::validarLogin();
+            $amigos = new amigos();
+            $amigos->loadData($request->getBody());
+            if ($amigos->validate()) {
+                if ($request->getBody()['fecha_nacimiento'] != '') {
+                    $id = $request->getBody()['id'];
+                    $cedula = $request->getBody()['cedula'];
+                    $nombre = $request->getBody()['nombre'];
+                    $apellido = $request->getBody()['apellido'];
+                    $sexo = $request->getBody()['sexo'] == 'on' ? 1 : 0;
+                    $direccion = $request->getBody()['direccion'];
+                    $telefono = $request->getBody()['telefono'];
+                    $comoLlego = $request->getBody()['como_llego'];
+                    $fecha = Carbon::now();
+                    $fechaNacimiento = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d H:i:s');
+                    $amigo = amigos::actualizar($id, $cedula, $nombre, $apellido, $sexo, $direccion, $telefono, $comoLlego, $fechaNacimiento, $fecha);
+                    if ($amigo) {
+                        bitacoraModel::guardar('Actualizo el amigo:'. $nombre.' '. $apellido , 'Actualizo amigo');
+                        $data = [
+                            'title' => 'Datos actualizado',
+                            'messages' => 'El usuario se ha actualizado',
+                            'code' => 200
+                        ];
+                    } else {
+                        $data = [
+                            'title' => 'Error',
+                            'messages' => 'El usuario no se ha actualizado',
+                            'code' => 422
+                        ];
+                    }
+                    return json_encode($data);
                 } else {
-                    $data = [
-                        'title' => 'Error',
-                        'messages' => 'El usuario no se ha actualizado',
-                        'code' => 422
-                    ];
+                    $amigos->addError("fecha naciemiento", "La fecha nacimiento es requerida");
                 }
-                return json_encode($data);
-            } else {
-                $amigos->addError("fecha naciemiento", "La fecha nacimiento es requerida");
             }
-        }
-        if (count($amigos->errors) > 0) {
+            if (count($amigos->errors) > 0) {
+                $data = [
+                    'title' => 'Datos invalidos',
+                    'messages' => $amigos->errors,
+                    'code' => 422
+                ];
+                return json_encode($data, 422);
+            }
+        }catch (\Exception $ex){
             $data = [
-                'title' => 'Datos invalidos',
-                'messages' => $amigos->errors,
+                'title' => 'Error',
+                'messages' => 'El usuario no se ha actualizado',
                 'code' => 422
             ];
             return json_encode($data, 422);
         }
+        
     }
 
     // Mostrar vista lista de amigos

@@ -40,68 +40,78 @@ class AutenticacionController extends Controller
 
     public function iniciar(Request $request)
     {
-        if ($request->isPost()) {
-            $usuarioModel = new usuarios();
-            $usuarioModel->loadData($request->getBody());
-            $email = $request->getBody()['email'];
-            $password = $request->getBody()['password'];
-            if ($usuarioModel->validate()) {
-                $consultarUsuario = $usuarioModel::login($email);
-                if ($consultarUsuario && password_verify($password, $consultarUsuario['password']) && $consultarUsuario['status']) {
-                    $_SESSION['email'] = 'ok';
-                    $_SESSION['user'] = $consultarUsuario['id'];
-                    $_SESSION['user_email'] = $consultarUsuario['email'];
-                    $_SESSION['username'] = $consultarUsuario['username'];
-                    $_SESSION['date'] = date('d_m_Y_H_i');
-                    $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-                    $_SESSION['rol'] = seguridad::getRolName($consultarUsuario['role_id']);
-                    bitacoraModel::guardar('El usuario inicion session', 'inicio de sesion');
-                    $seguirdadModel = new permisosModel();
-                    $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
-                    $userPermisos = [];
-                    foreach ($permisos as $permiso) {
-                        $userPermisos[] = (int)$permiso['permiso'];
+        try{
+            if ($request->isPost()) {
+                $usuarioModel = new usuarios();
+                $usuarioModel->loadData($request->getBody());
+                $email = $request->getBody()['email'];
+                $password = $request->getBody()['password'];
+                if ($usuarioModel->validate()) {
+                    $consultarUsuario = $usuarioModel::login($email);
+                    if ($consultarUsuario && password_verify($password, $consultarUsuario['password']) && $consultarUsuario['status']) {
+                        $_SESSION['email'] = 'ok';
+                        $_SESSION['user'] = $consultarUsuario['id'];
+                        $_SESSION['user_email'] = $consultarUsuario['email'];
+                        $_SESSION['username'] = $consultarUsuario['username'];
+                        $_SESSION['date'] = date('d_m_Y_H_i');
+                        $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+                        $_SESSION['rol'] = seguridad::getRolName($consultarUsuario['role_id']);
+                        bitacoraModel::guardar('El usuario inicion session', 'inicio de sesion');
+                        $seguirdadModel = new permisosModel();
+                        $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
+                        $userPermisos = [];
+                        foreach ($permisos as $permiso) {
+                            $userPermisos[] = (int)$permiso['permiso'];
+                        }
+                
+                        $_SESSION['user_permisos'] = $userPermisos;
+                
+                        $data = [
+                            'title' => 'Bienvenido',
+                            'messages' => 'En breve le dirigiremos al panel de control',
+                            'code' => 200,
+                            'route' => '/home'
+                        ];
+                        return json_encode($data);
+                    } else if(!$consultarUsuario['status']){
+                        if (!$consultarUsuario['status']) {
+                            $usuarioModel->addError("datos", "El usuario se encuentra desactivado");
+                        }
+                        $data = [
+                            'title' => 'Usuario desactivado',
+                            'messages' => $usuarioModel->errors,
+                            'code' => 403
+                        ];
+                        return json_encode($data);
+                    } else {
+                        if (!$consultarUsuario || !password_verify($password, $consultarUsuario['password'])) {
+                            $usuarioModel->addError("datos", "El correo o contraseña incorrectos");
+                        }
+                
+                        $data = [
+                            'title' => 'Verifique sus datos',
+                            'messages' => $usuarioModel->errors,
+                            'code' => 422
+                        ];
+                        return json_encode($data);
                     }
-
-                    $_SESSION['user_permisos'] = $userPermisos;
-
-                    $data = [
-                        'title' => 'Bienvenido',
-                        'messages' => 'En breve le dirigiremos al panel de control',
-                        'code' => 200,
-                        'route' => '/home'
-                    ];
-                    return json_encode($data);
-                } else if(!$consultarUsuario['status']){
-                    if (!$consultarUsuario['status']) {
-                        $usuarioModel->addError("datos", "El usuario se encuentra desactivado");
-                    }
-                    $data = [
-                        'title' => 'Usuario desactivado',
-                        'messages' => $usuarioModel->errors,
-                        'code' => 403
-                    ];
-                    return json_encode($data);
-                } else {
-                    if (!$consultarUsuario || !password_verify($password, $consultarUsuario['password'])) {
-                        $usuarioModel->addError("datos", "El correo o contraseña incorrectos");
-                    }
-
-                    $data = [
-                        'title' => 'Verifique sus datos',
-                        'messages' => $usuarioModel->errors,
-                        'code' => 422
-                    ];
-                    return json_encode($data);
                 }
+                $data = [
+                    'title' => 'Datos invalidos',
+                    'messages' => $usuarioModel->errors,
+                    'code' => 422
+                ];
+                return json_encode($data, 422);
             }
+        }catch (\Exception $ex){
             $data = [
                 'title' => 'Datos invalidos',
                 'messages' => $usuarioModel->errors,
                 'code' => 422
             ];
-            return json_encode($data, 422);
+            return json_encode($data);
         }
+       
     }
 
     public function cerrarSesion()

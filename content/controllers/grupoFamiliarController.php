@@ -245,41 +245,50 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$actualizar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        usuarios::validarLogin();
-        $grupo = new grupoFamiliarModel();
-        $grupo->loadData($request->getBody());
-        if ($grupo->validate()) {
-            $grupo_id = $request->getBody()['grupo_id'];
-            $nombre = $request->getBody()['nombre'];
-            $direccion = $request->getBody()['direccion'];
-            $lider = $request->getBody()['lider'];
-            $zona = $request->getBody()['zona'];
-            $fecha_actualizado = Carbon::now();
-            $grupo = grupoFamiliarModel::actualizar($nombre, $direccion, $lider, $zona, $fecha_actualizado, $grupo_id);
-            if ($grupo) {
-                bitacoraModel::guardar('Edito el grupo familiar:'. $nombre, 'Edito grupo familiar');
+        try{
+            usuarios::validarLogin();
+            $grupo = new grupoFamiliarModel();
+            $grupo->loadData($request->getBody());
+            if ($grupo->validate()) {
+                $grupo_id = $request->getBody()['grupo_id'];
+                $nombre = $request->getBody()['nombre'];
+                $direccion = $request->getBody()['direccion'];
+                $lider = $request->getBody()['lider'];
+                $zona = $request->getBody()['zona'];
+                $fecha_actualizado = Carbon::now();
+                $grupo = grupoFamiliarModel::actualizar($nombre, $direccion, $lider, $zona, $fecha_actualizado, $grupo_id);
+                if ($grupo) {
+                    bitacoraModel::guardar('Edito el grupo familiar:'. $nombre, 'Edito grupo familiar');
+                    $data = [
+                        'title' => 'Datos actualizados',
+                        'messages' => 'El Grupo Familiar se ha actualizado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El Grupo Familiar no se ha actualizado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            }
+            if (count($grupo->errors) > 0) {
                 $data = [
-                    'title' => 'Datos actualizados',
-                    'messages' => 'El Grupo Familiar se ha actualizado',
-                    'code' => 200
-                ];
-            } else {
-                $data = [
-                    'title' => 'Error',
-                    'messages' => 'El Grupo Familiar no se ha actualizado',
+                    'title' => 'Datos invalidos',
+                    'messages' => $grupo->errors,
                     'code' => 422
                 ];
+                return json_encode($data, 422);
             }
-            return json_encode($data);
-        }
-        if (count($grupo->errors) > 0) {
-            $data = [
-                'title' => 'Datos invalidos',
-                'messages' => $grupo->errors,
+        }catch (\Exception $ex){
+            return json_encode([
+                'title' => 'Error',
+                'messages' => 'El Grupo Familiar no se ha actualizado',
                 'code' => 422
-            ];
-            return json_encode($data, 422);
+            ]);
         }
+       
     }
 
     // Eliminar Grupo 
@@ -288,32 +297,41 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$eliminar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $user = usuarios::validarLogin();
-        $grupo_id = $request->getRouteParam('id');
-        if(!is_null($grupo_id)){
-            $grupos = grupoFamiliarModel::eliminar($grupo_id);
-            if($grupos){
-                bitacoraModel::guardar('Elimino el grupo familiar:'. $grupo_id, 'Elimino grupo familiar');
-                $data = [
-                    'title' => 'Dato eliminado',
-                    'messages' => 'Grupo Familiar se ha eliminado',
-                    'code' => 200
-                ];
-            } else {
-                $data = [
-                    'title' => 'Error',
-                    'messages' => 'Grupo Familiar no se ha eliminado',
-                    'code' => 422
-                ];
+        try{
+            $user = usuarios::validarLogin();
+            $grupo_id = $request->getRouteParam('id');
+            if(!is_null($grupo_id)){
+                $grupos = grupoFamiliarModel::eliminar($grupo_id);
+                if($grupos){
+                    bitacoraModel::guardar('Elimino el grupo familiar:'. $grupo_id, 'Elimino grupo familiar');
+                    $data = [
+                        'title' => 'Dato eliminado',
+                        'messages' => 'Grupo Familiar se ha eliminado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'Grupo Familiar no se ha eliminado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
             }
-            return json_encode($data);
+            $data = [
+                'title' => 'Error',
+                'messages' => 'Algo salio mal intente mas tardes',
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }catch (\Exception $ex){
+            return json_encode([
+                'title' => 'Error',
+                'messages' => 'Grupo Familiar no se ha eliminado',
+                'code' => 422
+            ]);
         }
-        $data = [
-            'title' => 'Error',
-            'messages' => 'Algo salio mal intente mas tardes',
-            'code' => 422
-        ];
-        return json_encode($data, 422);
+        
     }
 
     //Asignar Amigo
@@ -321,27 +339,36 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$actualizar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $user = usuarios::validarLogin();
-        $gf = new grupoFamiliarModel();
-        $gf->loadData($request->getBody());
-        $grupo_id = $request->getBody()['grupo_id'];
-        $amigo_id = $request->getBody()['amigo_id'];
-        $gf = grupoFamiliarModel::asignarAmigos($grupo_id,$amigo_id);
-        if ($gf) {
-            bitacoraModel::guardar('Agrego el amigo '. $amigo_id. ' al grupo familiar:'. $grupo_id, 'Agrego amigo al grupo familiar');
-            $data = [
-                'title' => 'Datos registrados',
-                'messages' => 'Se agregó el amigo',
-                'code' => 200
-            ];
-        } else {
-            $data = [
-                'title' => 'Error',
-                'messages' => 'No se pudo agregar el amigo',
-                'code' => 422
-            ];
+        try{
+            $user = usuarios::validarLogin();
+            $gf = new grupoFamiliarModel();
+            $gf->loadData($request->getBody());
+            $grupo_id = $request->getBody()['grupo_id'];
+            $amigo_id = $request->getBody()['amigo_id'];
+            $gf = grupoFamiliarModel::asignarAmigos($grupo_id,$amigo_id);
+            if ($gf) {
+                bitacoraModel::guardar('Agrego el amigo '. $amigo_id. ' al grupo familiar:'. $grupo_id, 'Agrego amigo al grupo familiar');
+                $data = [
+                    'title' => 'Datos registrados',
+                    'messages' => 'Se agregó el amigo',
+                    'code' => 200
+                ];
+            } else {
+                $data = [
+                    'title' => 'Error',
+                    'messages' => 'No se pudo agregar el amigo',
+                    'code' => 422
+                ];
+            }
+            return json_encode($data);
+        }catch (\Exception $ex){
+            return json_encode([
+                    'title' => 'Error',
+                    'messages' => 'No se pudo agregar el amigo',
+                    'code' => 422
+                ]);
         }
-        return json_encode($data);     
+        
     }
 
     // Eliminar Amigo 
@@ -350,32 +377,41 @@ class grupoFamiliarController extends Controller
         if (!in_array(permisos::$eliminar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        $user = usuarios::validarLogin();
-        $amigo_id = $request->getRouteParam('id');
-        $grupo_id = $request->getRouteParam('grupo_id');
-        if(!is_null($amigo_id)){
-            $amigos = grupoFamiliarModel::eliminarAmigo($amigo_id,$grupo_id);
-            if($amigos){
-                bitacoraModel::guardar('Elimino el amigo: '. $amigo_id. ' del grupo familiar:'. $grupo_id, 'Agrego amigo al grupo familiar');
-                $data = [
-                    'title' => 'Dato eliminado',
-                    'messages' => 'El amigo se ha eliminado',
-                    'code' => 200
-                ];
-            } else {
-                $data = [
-                    'title' => 'Error',
-                    'messages' => 'El amigo no se ha eliminado',
-                    'code' => 422
-                ];
+        try{
+            $user = usuarios::validarLogin();
+            $amigo_id = $request->getRouteParam('id');
+            $grupo_id = $request->getRouteParam('grupo_id');
+            if(!is_null($amigo_id)){
+                $amigos = grupoFamiliarModel::eliminarAmigo($amigo_id,$grupo_id);
+                if($amigos){
+                    bitacoraModel::guardar('Elimino el amigo: '. $amigo_id. ' del grupo familiar:'. $grupo_id, 'Agrego amigo al grupo familiar');
+                    $data = [
+                        'title' => 'Dato eliminado',
+                        'messages' => 'El amigo se ha eliminado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El amigo no se ha eliminado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
             }
-            return json_encode($data);
+            $data = [
+                'title' => 'Error',
+                'messages' => 'Algo salio mal intente mas tarde',
+                'code' => 422
+            ];
+            return json_encode($data, 422);
+        }catch (\Exception $exception){
+            return json_encode([
+                'title' => 'Error',
+                'messages' => 'El amigo no se ha eliminado ->'.$exception,
+                'code' => 422
+            ]);
         }
-        $data = [
-            'title' => 'Error',
-            'messages' => 'Algo salio mal intente mas tarde',
-            'code' => 422
-        ];
-        return json_encode($data, 422);
+       
     }
 }
