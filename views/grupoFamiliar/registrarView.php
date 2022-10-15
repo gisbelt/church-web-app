@@ -48,7 +48,8 @@ $this->title = 'Registrar Grupo Familiar'
                                 } ?>
                             </select>
                         </div>
-
+                        <!-- <hr> -->
+                        <h5 class="mb-4 text-danger">Opcional:</h5>
                         <div class="form-group">
                             <p class="text-first-color">Agregar Amigo: </p>
                             <div class="mb-4 input-group">
@@ -66,7 +67,7 @@ $this->title = 'Registrar Grupo Familiar'
                         <br>
                         <div class="btn-group modal-footer" role="group" aria-label="">
                             <button type="button" name="agregar" value="Agregar" id="agregarGrupoFamiliar"
-                                    class="btn btn-success" disabled>Agregar
+                                    class="btn btn-success">Agregar
                             </button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>

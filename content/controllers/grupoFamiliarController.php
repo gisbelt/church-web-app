@@ -80,9 +80,6 @@ class grupoFamiliarController extends Controller
     //Buscar amigo que no tenga grupo familiar (autocompletado)
     public function buscarAmigo(Request $request){
         $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
         $consultarAmigo = new grupoFamiliarModel();
         $consultarAmigo->loadData($request->getBody());
         $nombreAmigo = $request->getBody()['nombreAmigo'];
@@ -156,6 +153,9 @@ class grupoFamiliarController extends Controller
 
     //Registrar grupo y amigo a grupo familiar
     public static function guardar(Request $request){
+        if (!in_array(permisos::$crear_grupo_familiar, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         $gf = new grupoFamiliarModel();
         $gf->loadData($request->getBody());
@@ -168,8 +168,23 @@ class grupoFamiliarController extends Controller
         if(isset($nombre)){
             if($gf->validate()){
                 $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
-                bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
-            }
+                if($gf){
+                    bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
+                    $data = [
+                        'title' => 'Datos registrados',
+                        'messages' => 'El Grupo Familiar se ha registrado con exito',
+                        'code' => 200
+                    ];
+                }
+                else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'El grupo no se ha registrado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            } 
             if(count($gf->errors) > 0){
                 $data = [
                     'title' => 'Datos invalidos',
@@ -179,8 +194,24 @@ class grupoFamiliarController extends Controller
                 return json_encode($data, 422);
             } 
         }        
-        $gf = grupoFamiliarModel::guardar($nombre,$direccion,$lider,$zona,$fecha_crear,$amigo_id);     
-        bitacoraModel::guardar('Creo el grupo familiar:'. $nombre, 'Creo grupo familiar');
+
+        $gfa = grupoFamiliarModel::guardarGrupoAmigos($amigo_id);   
+        if($gfa){  
+            bitacoraModel::guardar('Creó el grupo familiar con amigos:'. $nombre, 'Creo grupo familiar');
+            $data = [
+                'title' => 'Datos registrados',
+                'messages' => 'El Grupo Familiar se ha registrado con exito',
+                'code' => 200
+            ];
+        }
+        else {
+            $data = [
+                'title' => 'Error',
+                'messages' => 'El grupo no se ha registrado',
+                'code' => 422
+            ];
+        }
+        return json_encode($data);
     }
 
     // Editar View 
@@ -211,7 +242,7 @@ class grupoFamiliarController extends Controller
     // Actualizar grupo
     public function actualizar(Request $request)
     {
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$actualizar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
         usuarios::validarLogin();
@@ -254,10 +285,10 @@ class grupoFamiliarController extends Controller
     // Eliminar Grupo 
     public function eliminar(Request $request)
     {
-        $user = usuarios::validarLogin();
-        if (!in_array(permisos::$permiso, $_SESSION['user_permisos'])) {
+        if (!in_array(permisos::$eliminar_grupo_familiar, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
+        $user = usuarios::validarLogin();
         $grupo_id = $request->getRouteParam('id');
         if(!is_null($grupo_id)){
             $grupos = grupoFamiliarModel::eliminar($grupo_id);
@@ -287,6 +318,9 @@ class grupoFamiliarController extends Controller
 
     //Asignar Amigo
     public static function asignarAmigos(Request $request){
+        if (!in_array(permisos::$actualizar_grupo_familiar, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         $gf = new grupoFamiliarModel();
         $gf->loadData($request->getBody());
@@ -313,6 +347,9 @@ class grupoFamiliarController extends Controller
     // Eliminar Amigo 
     public function eliminarAmigo(Request $request)
     {
+        if (!in_array(permisos::$eliminar_grupo_familiar, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
         $user = usuarios::validarLogin();
         $amigo_id = $request->getRouteParam('id');
         $grupo_id = $request->getRouteParam('grupo_id');

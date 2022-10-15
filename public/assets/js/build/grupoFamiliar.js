@@ -146,7 +146,6 @@ const nuevoAmigo = (addAmigo, nuevoAmigo) =>{
             var button_id = $(this).attr("id"); 
             $(".amigo-numero"+button_id).remove();
             if(NuevoAmigo.html() == ""){
-                button ? button.disabled = true: false;
                 button4 ? button4.disabled = true: false;
             }
         });
@@ -182,6 +181,15 @@ const registrarGrupoFamiliar = () =>{
                         cancelButtonText: 'close'
                     });
                 } else {
+                    swal.fire({
+                        title: response.title,
+                        html: response.messages,
+                        icon: 'success',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonText: 'close'
+                    });
+                    $("#form-registrarGrupo")[0].reset();
                     exito();
                 }
             },
@@ -199,20 +207,12 @@ const registrarGrupoFamiliar = () =>{
                     type: 'POST',
                     dataType: 'json',
                     success: function(response){
-                        swal.fire({
-                            title: response[1].title,
-                            html: response[1].messages,
-                            icon: 'success',
-                            showConfirmButton: false,
-                            showCancelButton: true,
-                            cancelButtonText: 'close'
-                        });
                         $("#form-registrarGrupo")[0].reset();
                         $("#nombre").focus(); 
-                        button.disabled = true; 
                         setTimeout(function() {
                             newAmigo.innerHTML = "";                            
                         },1000); 
+                        setTimeout(() => window.location.href = '', 1000);
                     },
                     error: function(){} 
                 })
@@ -243,6 +243,9 @@ const listaGrupoFamiliar = function () {
             { extend: 'csv', text: '<i class="bi bi-filetype-csv"></i> CSV', titleAttr: 'Exportar a CSV', className: 'btn btn-info' },
             { extend: 'pdf', text: '<i class="bi bi-filetype-pdf"></i> PDF', titleAttr: 'Exportar a PDF', className: 'btn btn-danger' },
         ],
+        language:{
+            "zeroRecords": "No se encontraron resultados",
+        },
         "initComplete": function () {
             let api = this.api();
             api.buttons().container().appendTo($('#table-buttons'));
@@ -269,6 +272,9 @@ const observar_amigos = function () {
                 {"data": "actions", "className": "center"},
             ],
             destroy: true,
+            language:{
+                "zeroRecords": "Este Grupo Familiar no tiene amigos",
+            },
             "initComplete": function () {
                 let api = this.api();
                 api.buttons().container()
@@ -410,7 +416,8 @@ const asignarAmigo = function () {
                         });
                         setTimeout(function() {
                             newAmigo.innerHTML = "";                            
-                        },1000); 
+                        },1000);
+                        setTimeout(() => window.location.href = '', 200); 
                     }
                 },
                 error: function(response){
