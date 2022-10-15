@@ -60,7 +60,7 @@
                             <h5 class="mb-4">Horario:*</h5>
                             <div class="form-group col-md-6">
                                 <div class="input-group input-time">
-                                    <input type="time" required name="hora" class="form-control form-input mb-4" id="hora" value="<?php echo $hora ?>" placeholder=" ">
+                                    <input type="time"  name="hora" class="form-control form-input mb-4" id="hora" value="<?php echo $hora ?>" placeholder=" ">
                                     <label for="hora" class="form-label fw-bold">Hora:*</label>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                         </div>
                         <!--Botones-->
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+                            <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Actualizar</button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
                     </form>
