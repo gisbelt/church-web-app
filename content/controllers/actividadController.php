@@ -53,7 +53,7 @@ class actividadController extends Controller
         $data['titulo'] = 'Registrar Actividades';
         return $this->render('actividades/registrarView');
     }
-    
+
     public function createTipo()
     {
         if (!in_array(permisos::$crear_actividades, $_SESSION['user_permisos'])) {
@@ -89,13 +89,10 @@ class actividadController extends Controller
             $hora = $actividades['hora'];
             $tipo = $actividades['tipo'];
             $fecha = date("d-m-Y", strtotime($fecha));
-<<<<<<< HEAD
+
             $hora = date("h:i:s A", strtotime($hora));
             switch ($actividades['estado_id']) {
-=======
-            $hora = date("h:i a", strtotime($hora));
-            switch ($actividades['estado_id']){
->>>>>>> aee16927dac605c5eeba742e4a5dd1be0c5ad730
+
                 case status::$en_curso:
                     $status = 'En Curso';
                     break;
@@ -216,6 +213,7 @@ class actividadController extends Controller
         }
 
     }
+
     public function storeTipo(Request $request)
     {
         try {
@@ -228,7 +226,7 @@ class actividadController extends Controller
             if ($actividad->validate()) {
                 $tipo = $request->getBody()['nombre'];
                 $fecha = Carbon::now();
-                $actividades = actividades::registrarTipoActividades($tipo,$fecha);
+                $actividades = actividades::registrarTipoActividades($tipo, $fecha);
                 bitacoraModel::guardar('Registro de tipo de actividades', 'Registro tipo de actividades');
                 if ($actividades) {
                     $data = [
@@ -290,16 +288,15 @@ class actividadController extends Controller
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
                 $actividades = actividades::modificarActividades($nombre, $description, $status, $tipo, $fecha, $id);
-//                $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
-<<<<<<< HEAD
+//              $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
+                //actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
+                //actividades::observacionActividadModificar($id, $observacion, $fecha);
+//              actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
+
                 actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
                 actividades::observacionActividadModificar($id, $observacion, $fecha);
-//                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
-=======
-                actividades::miembroActividadModificacion($miembro,$id,$status,$fecha);
-                actividades::observacionActividadModificar($id,$observacion,$fecha);
-                actividades::miembroActividadModificacion($miembro,$id,$status,$fecha);
->>>>>>> aee16927dac605c5eeba742e4a5dd1be0c5ad730
+                actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
+
                 if ($actividades) {
                     bitacoraModel::guardar('Actualizo la actividad: ' . $nombre, 'Actualizo actividades');
                     $data = [
