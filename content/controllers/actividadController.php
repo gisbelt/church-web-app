@@ -76,7 +76,7 @@ class actividadController extends Controller
             $hora= $actividades['hora'];
             $tipo = $actividades['tipo'];
             $fecha = date("d-m-Y", strtotime($fecha));
-            $hora = date("h:i:s A", strtotime($hora));
+            $hora = date("h:i:s", strtotime($hora));
             switch ($actividades['estado_id']){
                 case status::$en_curso:
                     $status = 'En Curso';
@@ -139,7 +139,7 @@ class actividadController extends Controller
     public function store(Request $request)
     {
         try {
-            if (!in_array(permisos::$donaciones, $_SESSION['user_permisos'])) {
+            if (!in_array(permisos::$crear_actividades, $_SESSION['user_permisos'])) {
                 throw new ForbiddenException();
             }
             usuarios::validarLogin();

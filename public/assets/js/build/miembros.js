@@ -45,7 +45,7 @@ const registrarMiembros = () => {
                 $('#agregar-miembros').disabled = false;
             }
         }).fail(function (json) {
-            console.log(JSON.parse(json));
+            console.log(json);
         });
     });
 }

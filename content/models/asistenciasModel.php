@@ -54,7 +54,7 @@ class asistenciasModel extends Model
         INNER JOIN miembros_actividades as ma on ma.actividad_id = actividades.id
         INNER JOIN miembros on miembros.id = ma.miembro_id
         INNER JOIN perfiles on perfiles.miembro_id = miembros.id
-        WHERE asistencias.status=? and ma.status=?");
+        WHERE asistencias.status=? and actividades.status=?");
         $sql->execute(array(self::ACTIVE,self::ACTIVE));
         $asistencias = $sql->fetchAll(PDO::FETCH_ASSOC);        
         return $asistencias;
