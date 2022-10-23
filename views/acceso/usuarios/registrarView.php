@@ -22,7 +22,7 @@ $this->title = 'Registrar usuario'
                         <div class="mb-4">
                             <p class="">Miembros:* </p>
                             <select class="form-select" id="miembro" name="miembro">
-                                <option value="">selecione miembro</option>
+                                <option value="">Seleccione un miembro</option>
                                 <?php foreach ($miembros as $miembro) {
                                     echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
                                 } ?>

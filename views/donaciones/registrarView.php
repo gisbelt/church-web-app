@@ -23,7 +23,7 @@ $this->title = 'Registrar donaciones'
                                 <div class="mb-3">
                                     <p class="">Donante:* </p>
                                     <select class="form-select" id="donante" name="donante">
-                                        <option value="">selecione miembro</option>
+                                        <option value="">Seleccione un miembro</option>
                                         <?php foreach ($miembros as $miembro) {
                                             echo '<option value="' . $miembro[miembro] . '">' . $miembro[nombre_completo] . '</option>';
                                         } ?>
@@ -41,7 +41,7 @@ $this->title = 'Registrar donaciones'
                                 <div class="mb-3">
                                     <p class="">Tipo donación:* </p>
                                     <select class="form-select" id="tipo_donacion" name="tipo_donacion">
-                                        <option value="">selecione tipo donacion</option>
+                                        <option value="">Seleccione tipo de donacion</option>
                                         <?php foreach ($tipo_donaciones as $tipo) {
                                             echo '<option value="' . $tipo[id] . '">' . $tipo[nombre] . '</option>';
                                         } ?>
@@ -51,7 +51,7 @@ $this->title = 'Registrar donaciones'
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="mb-3">
-                                        <p class="">Detalle:*</p>
+                                        <p class="">Detalles:*</p>
                                         <textarea class="form-control" name="detalles" id="detalles"
                                                   rows="3"></textarea>
                                     </div>

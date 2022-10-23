@@ -123,7 +123,6 @@ class miembrosController extends Controller
                         $cargo = $request->getBody()['cargo'];
                         $fecha = Carbon::now();
                         $miembro = miembrosModel::crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha);
-                        $logger->debug(__METHOD__, [$miembro]);
                         if ($miembro) {
                             $miembroId = $miembro;
                             $cedula = $request->getBody()['cedula'];

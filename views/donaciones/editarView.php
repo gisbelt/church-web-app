@@ -61,7 +61,7 @@ $this->title = 'Editar donacion';
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="mb-3">
-                                        <p class="">Detalle:*</p>
+                                        <p class="">Detalles:*</p>
                                         <textarea class="form-control" name="detalles" id="detalles" rows="3"><?php echo $detalle ?></textarea>
                                         <input type="hidden" name="donacion" class="form-control form-input mb-4"
                                                id="donacion" value="<?php echo $donacion ?>" autocomplete="off">
