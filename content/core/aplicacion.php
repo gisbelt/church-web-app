@@ -42,7 +42,7 @@ class Aplicacion
 
 
         if (isset($_SESSION['user'])) {
-            $this->user = $_SESSION['user'];;
+            $this->user = $_SESSION['user'];
         }
     }
 

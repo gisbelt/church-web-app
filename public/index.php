@@ -72,10 +72,7 @@ return ob_get_clean();*/
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use content\controllers\AutenticacionController;
-use content\controllers\homeController;
 use content\core\Aplicacion;
-use content\models\usuariosModel as usuarios;
 use config\settings\sysConfig as sysConfig;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
