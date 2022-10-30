@@ -29,8 +29,8 @@ $(document).ready(function(){
     // Cuenta / perfil 
 
     // Notificaciones
-    $('.notificaciones').click(function(e){
-        $(".notificaciones_region").slideToggle(550);
+    $('#noti-i').click(function(e){
+        $(".notificaciones_region").slideToggle(250);
     });
     $('.region_footer_link').click(function(e){
         $(".notificaciones_region").slideUp(250);

@@ -5,7 +5,7 @@
         <div class="header_tools">
             <!-- notificaciones  -->
             <div class="notificaciones">
-                <i class="bi bi-bell"></i>
+                <i class="bi bi-bell" id="noti-i"></i>
                 <span class="badge bg-danger notificaciones_badge">15</span>
 
                 <div class="notificaciones_region">
