@@ -555,13 +555,13 @@ background: #fff; }
     color: var(--first-color);
     position: relative;
     margin: 0 1.5rem;
-    cursor: pointer;
 }
 .notificaciones:hover{
     color: var(--first-color-2);
 }
 .notificaciones i{
     font-size: 1.2em;
+    cursor: pointer;
 }
 .notificaciones_region{
     display: flex;
