@@ -32,7 +32,7 @@ $this->title = 'Reportes'
                                             <span class="input-group-text">
                                                 <i class="bi bi-calendar-date text-first-color"></i>
                                             </span>
-                                            <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha nacimiento" autocomplete="off">
+                                            <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha de Nacimiento" autocomplete="off">
                                             <span class="input-group-btn">
                                                 <button type="button" name="busqueda_reporte_one" id="busqueda_reporte_one" class="btn btn-secondary btn-block">
                                                     <i class="bi bi-search"></i> Buscar
@@ -43,7 +43,7 @@ $this->title = 'Reportes'
                                 </div>
                             </div>
                         </form>
-                        <canvas id="report_one"></canvas>
+                        <canvas id="report_one" width="764" height="250"></canvas>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div>

@@ -70,6 +70,11 @@ a{
     border-radius: 50%;
     overflow: hidden;
 }
+.header_tools{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
 .header_img img{
     /* width: 40px; */
     width: 35px;

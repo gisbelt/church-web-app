@@ -28,6 +28,15 @@ $(document).ready(function(){
     });
     // Cuenta / perfil 
 
+    // Notificaciones
+    $('.notificaciones').click(function(e){
+        $(".notificaciones_region").slideToggle(550);
+    });
+    $('.region_footer_link').click(function(e){
+        $(".notificaciones_region").slideUp(250);
+    });
+    // Notificaciones
+
     // Filtro 
     $('.filtrar').click(function(e){
         var id = this.dataset['number'];

@@ -14,6 +14,7 @@ use content\controllers\seguridadController;
 use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
+use content\controllers\notificacionesController;
 use content\enums\permisos;
 
 if (!function_exists("routas")) {
@@ -1135,6 +1136,19 @@ if (!function_exists("routas")) {
                 'action' => 'get',
                 'permisos' => permisos::$ayuda,
                 'sinSubRutas' => 'ok',
+                'subRutas' => []
+            ],
+
+            'Notificaciones' => [
+                'controller' => notificacionesController::class,
+                'permisos' => [],
+                'parametros' => [],
+                'icon' => 'bx bx-help-circle',
+                'text' => 'Notificaciones',
+                'route' => '/notificaciones',
+                'method' => 'index',
+                'action' => 'get',     
+                'sinSubRutas' => 'ok',           
                 'subRutas' => []
             ],
 

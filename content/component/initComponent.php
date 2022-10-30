@@ -2,16 +2,37 @@
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
         <div class="header_img"><img src="../../assets/img/logo.png" alt=""></div>
-        <div class="dropdown">
-            <button class="btn dropdown-toggle center" type="button" id="triggerId"
-                    data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
-            </button>
-            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="/cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
-                <a class="dropdown-item" href="/preferencias">Preferencias</a>
-                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+        <div class="header_tools">
+            <!-- notificaciones  -->
+            <div class="notificaciones">
+                <i class="bi bi-bell"></i>
+                <span class="badge bg-danger notificaciones_badge">15</span>
+
+                <div class="notificaciones_region">
+                    <div class="region_header">
+                        <p>Notificaciones</p>
+                    </div>
+                    <div class="region_content">
+                        <div class="todas_notificaciones">Contenido</div>
+                        <div class="empty_message">No tiene notificaciones</div>
+                    </div>
+                    <div class="region_footer center">
+                        <a href="/notificaciones" class="btn btn-link region_footer_link">Ver todo</a>
+                    </div>
+                </div>
+            </div>
+            <!-- cuenta -->
+            <div class="dropdown">
+                <button class="btn dropdown-toggle center" type="button" id="triggerId"
+                        data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
+                </button>
+                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
+                    <a class="dropdown-item" href="/cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
+                    <a class="dropdown-item" href="/preferencias">Preferencias</a>
+                    <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                </div>
             </div>
         </div>
     </header>
