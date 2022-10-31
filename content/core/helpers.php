@@ -1226,6 +1226,17 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'actualizarContrasena' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-contrasena',
+                        'method' => 'actualizar_contrasena',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
                     'preferencias' => [
                         'permisos' => [],
                         'parametros' => [],
