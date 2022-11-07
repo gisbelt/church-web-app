@@ -44,6 +44,11 @@
     margin: 0;
     padding: 0;
 }
+html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
 body{
     /* background-image: url("../img/logo2.png");
     background-repeat: no-repeat;
@@ -340,6 +345,9 @@ background: #fff; }
 .dropdown-menu a:hover{
     color: var(--first-color-yellow) !important;
 }
+.dropdown-menu h6{
+    color: var(--first-color-yellow) !important;
+}
 /*Menú Vertical*/
 
 /*Home*/
@@ -588,6 +596,7 @@ background: #fff; }
     width: 100%;
     padding: 11px 20px 15px;
     overflow-y: auto;
+    scrollbar-color:  transparent transparent;
 }
 .notificaciones_region .region_footer{
     height: 50px;
@@ -596,6 +605,12 @@ background: #fff; }
     background-color: #fff;
     margin: 0 -1px;
     z-index: 1;
+}
+.notificaciones_region .region_content .todas_notificaciones a{
+    color: #0d6efd !important;
+}
+.notificaciones_region .region_content .todas_notificaciones a:hover{
+    color: #0a58ca !important;
 }
 .region_footer_link{
     text-decoration: none;
@@ -611,7 +626,7 @@ background: #fff; }
 }
 .notificaciones-area{
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     height: 500px;
     box-sizing: border-box;
     border-radius: 4px;
@@ -620,15 +635,14 @@ background: #fff; }
 }
 .notificaciones-area .control-area{
     box-sizing: border-box;
-    width: 300px;
     height: 100%;
     overflow: auto;
+    scrollbar-color:  transparent transparent;
     -webkit-overflow-scrolling: touch;
     border-right: 1px solid #e3e3e3;
 }
 .notificaciones-area .content-area{
     box-sizing: border-box;
-    width: calc(100% - 300px);
 }
 .control-area .empty-text{
     display: flex;
@@ -639,6 +653,10 @@ background: #fff; }
     display: flex;
     justify-content: center;
     padding-top: 100px;
+}
+.region_content::-webkit-scrollbar, .control-area::-webkit-scrollbar, .content-area::-webkit-scrollbar{
+    width: 0 !important;
+    display: none;
 }
 /* .empty-text{
     display: none;

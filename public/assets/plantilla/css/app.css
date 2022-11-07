@@ -44,13 +44,13 @@ a{
     text-decoration: none;
 }
 .header{
-    width: 100vw;
+    width: 100%;
     height: var(--header-height);
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;

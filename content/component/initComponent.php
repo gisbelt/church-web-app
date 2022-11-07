@@ -13,7 +13,14 @@
                         <p>Notificaciones</p>
                     </div>
                     <div class="region_content">
-                        <div class="todas_notificaciones">Contenido</div>
+                        <div class="todas_notificaciones">
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                            </div>
+                        </div>
+
                         <div class="empty_message">No tiene notificaciones</div>
                     </div>
                     <div class="region_footer center">
@@ -29,6 +36,8 @@
                     <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
                 </button>
                 <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
+                    <h6 class="dropdown-header">Usuario: <?php echo $_SESSION['username'] ?> </h6>
+                    <hr class="dropdown-devider my-0">
                     <a class="dropdown-item" href="/cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
                     <a class="dropdown-item" href="/preferencias">Preferencias</a>
                     <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
@@ -73,9 +82,6 @@
         </nav>
         </div>
     </div>
-    <?php if ($this->title == "Home") {?>
-    <div class="w-100 ms-3 d-none d-sm-block"><h1 class="display-5 font-monospace">Bienvenido: <?php echo $_SESSION['username'] ?></h1></div>
-    <?php } ?>
 </div>
 <!-- breadcrumb -->
 

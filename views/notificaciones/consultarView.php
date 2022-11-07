@@ -12,21 +12,24 @@ $this->title = 'Notificaciones';
                 <h3 class="card-title mt-2 fw-bold">Notificaciones</h3>
             </div>
             <div class="card-body">
-                <div class="notificaciones-area">
-                    <div class="control-area">
-                        <div class="noti-header"></div>
-                        <div class="noti-content"></div>
+                <div class="row justify-content-center align-items-center g-2">
+                    <div class="notificaciones-area">
+                        <div class="col-5 control-area">
+                            <div class="noti-header p-2 fw-bold"><a href=""> 01/12/2022: Actividad próxima </a></div>
+                            <div class="noti-header p-2 fw-bold"><a href=""> 01/12/2022: Actividad próxima </a></div>
+                            <div class="noti-header p-2 fw-bold"><a href=""> 01/12/2022: Actividad próxima </a></div>
 
-                        <div class="empty-text">
-                            <p>No tiene notificaciones</p>
+                            <div class="empty-text">
+                                <p>No tiene notificaciones</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="content-area">
-                        <div class="noti-header"></div>
-                        <div class="noti-content"></div>
+                        <div class="col-7 content-area">
+                            <div class="noti-header px-4 pt-4 fw-bold">Actividad próxima</div>
+                            <div class="noti-content px-4 text-info">Bautizos a nuevos miembros</div>
 
-                        <div class="empty-text">
-                            <p>Seleccione desde la lista lateral de notificaciones para ver más detalles</p>
+                            <div class="empty-text">
+                                <p>Seleccione desde la lista lateral de notificaciones para ver más detalles</p>
+                            </div>
                         </div>
                     </div>
                 </div>

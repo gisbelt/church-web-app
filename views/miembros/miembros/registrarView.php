@@ -20,8 +20,8 @@ $this->title = 'Registrar Miembros'
                     <form method="POST" enctype="multipart/form-data" id="form-registrar-miembros" action="/miembros/guardar">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div class="row"> 
+                                <div class="col-md-6"> <!-- 1 -->
                                     <div class="form-group">
                                         <input type="text" required name="cedula" class="form-control form-input mb-4" id="cedula" value="" placeholder=" " autofocus autocomplete="off">
                                         <label for="cedula" class="form-label fw-bold">Cedula:*</label>
@@ -30,14 +30,14 @@ $this->title = 'Registrar Miembros'
                                     <div class="form-group">
                                         <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" " autocomplete="off">
                                         <label for="nombre" class="form-label fw-bold">Nombre:*</label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" required name="telefono" class="form-control form-input mb-4" id="telefono" value="" placeholder=" " autocomplete="off">
-                                        <label for="telefono" class="form-label fw-bold">Teléfono:*</label>
-                                    </div>
+                                    </div>                                                                     
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6"> <!-- 2 -->
+                                    <div class="form-group">
+                                        <input type="text" required name="apellido" class="form-control form-input mb-4" id="apellido" value="" placeholder=" " autocomplete="off">
+                                        <label for="apellido" class="form-label fw-bold">Apellido:*</label>
+                                    </div>  
+
                                     <div class="form-group">
                                         <div class="input-group input-daterange" id="datepicker">
                                             <input type="text" class="form-control form-input mb-4" name="fecha_nacimiento" id="fecha_nacimiento"  placeholder=" " autocomplete="off">
@@ -49,12 +49,14 @@ $this->title = 'Registrar Miembros'
                                             </span>
                                         </div>
                                     </div>
-
+                                </div>   
+                                <div class="col-md-6"> <!-- 3 -->
                                     <div class="form-group">
-                                        <input type="text" required name="apellido" class="form-control form-input mb-4" id="apellido" value="" placeholder=" " autocomplete="off">
-                                        <label for="apellido" class="form-label fw-bold">Apellido:*</label>
-                                    </div>
-
+                                        <input type="text" required name="telefono" class="form-control form-input mb-4" id="telefono" value="" placeholder=" " autocomplete="off">
+                                        <label for="telefono" class="form-label fw-bold">Teléfono:*</label>
+                                    </div>                                    
+                                </div>                                    
+                                <div class="col-md-6"> <!-- 4 -->
                                     <div class="form-group mb-3">
                                         <p class="">Disponibilidad del vehiculo:* </p>
                                         <select class="form-select" name="disponibilidad" id="disponibilidad">
@@ -66,7 +68,7 @@ $this->title = 'Registrar Miembros'
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12"> <!-- 1 -->
                                     <div class="form-group">
                                         <input type="text" required name="direccion" class="form-control form-input mb-4" id="direccion" value="" placeholder=" " autocomplete="off">
                                         <label for="direccion" class="form-label fw-bold">Dirección:*</label>
@@ -89,7 +91,7 @@ $this->title = 'Registrar Miembros'
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6 mb-4 mb-md-0">
+                                <div class="form-group col-md-6 mb-4 mb-md-0"> <!-- 1 -->
                                     <p class="">Sexo:* </p>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="sexo" id="femenino" checked>
@@ -104,7 +106,8 @@ $this->title = 'Registrar Miembros'
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 mb-4 mb-md-0">
+
+                                <div class="form-group col-md-6 mb-4 mb-md-0"> <!-- 2 -->
                                     <p class="">Vehículo:* </p>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="vehiculo" id="si" checked>
