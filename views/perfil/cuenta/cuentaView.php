@@ -34,7 +34,7 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">                        
-                        <div class="input-group mb-3 w-50">
+                        <div class="input-group mb-3 w-auto">
                             <input type="text" class="form-control mb-2" value="" id="nombre-input" name="nombre" placeholder="Nombre:">
                             <input type="text" class="form-control mb-2" value="" id="apellido-input" name="apellido" placeholder="Apellido:">
                             <span class="input-group-btn">
@@ -53,7 +53,7 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <div class="input-group mb-3 w-50">
+                        <div class="input-group mb-3 w-auto">
                             <input type="text" class="form-control mb-2 w-50" value="" id="username-input" name="username" placeholder="Nombre de usuario:">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-username">Cambiar</a>
@@ -71,7 +71,7 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <div class="input-group mb-3 w-50">
+                        <div class="input-group mb-3 w-auto">
                             <input type="text" required class="form-control mb-2 w-auto" value="" id="telefono-input" name="telefono" placeholder="Teléfono">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-telefono">Cambiar</a>
