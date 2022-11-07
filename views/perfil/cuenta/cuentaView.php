@@ -20,7 +20,7 @@ $this->title = 'Mi Cuenta';
 
                 <div class="form-group mb-4">
                     <label for="correo" class="fw-bold mb-1">Correo: </label>
-                    <input type="text" disabled class="form-control mb-2 w-50" value="<?php echo $_SESSION['user_email'];?>" id="email" name="email" placeholder="Correo">
+                    <input type="text" disabled class="form-control mb-2 w-auto" value="<?php echo $_SESSION['user_email'];?>" id="email" name="email" placeholder="Correo">
                 </div>               
 
                 <hr>                
