@@ -565,13 +565,13 @@ background: #fff; }
 }
 .notificaciones_region{
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     opacity: 1;
     visibility: visible;
     position: absolute;
     right: 0;
     top: 41px;
-    height: 450px;
+    height: 350px;
     width: 380px;
     border: 1px solid #ddd;
     background-color: #fff;
@@ -687,19 +687,30 @@ background: #fff; }
     }    
 }
 
-@media screen and (max-width: 526px){
+@media screen and (max-width: 768px){
     .notificaciones_region{
         position: absolute;
         right: -21px;
         top: 41px;
+        width: 280px;
     }
 }
 
 @media screen and (max-width: 450px){
     .notificaciones_region{
         position: absolute;
-        right: -90px;
+        right: -10px;
         top: 41px;
+        width: 220px;
+    }
+    .todas_notificaciones, .todas_notificaciones span, .todas_notificaciones p{
+        font-size: 0.8rem;
+    }
+    .empty_message{
+        font-size: 0.8rem;
+    }
+    .card-header > div > h5{
+        display: none;
     }
 }
 

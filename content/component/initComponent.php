@@ -1,7 +1,7 @@
 <div id="body-pd" class="">
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
-        <div class="header_img"><img src="../../assets/img/logo.png" alt=""></div>
+        <div class="header_img" id="logo"><img src="../../assets/img/logo.png" alt=""></div>
         <div class="header_tools">
             <!-- notificaciones  -->
             <div class="notificaciones">
@@ -60,8 +60,8 @@
 </div>
 
  <!-- breadcrumb -->
- <div class="page-breadcrumb ps-4 pt-3 flex-row">
-    <div class="w-50 me-5">
+ <div class="page-breadcrumb ps-4 pt-3 column">
+    <div class="w-100">
         <h3 class="page-title mb-0 p-0 text-first-color"><?php echo $this->title; ?></h3>
         <div class="d-flex align-items-center">
         <nav aria-label="breadcrumb">
