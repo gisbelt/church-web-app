@@ -35,34 +35,32 @@ $this->title = 'Reportes'
                                             <span class="input-group-text">
                                                 <i class="bi bi-calendar-date text-first-color"></i>
                                             </span>
-                                                <input type="text" class="form-control" name="fecha" id="fecha"
-                                                       placeholder="Fecha nacimiento" autocomplete="off">
-                                                <span class="input-group-btn">
-                                                <button type="button" name="busqueda_reporte_one"
-                                                        id="busqueda_reporte_one" class="btn btn-secondary btn-block">
+                                            <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha de Nacimiento" autocomplete="off">
+                                            <span class="input-group-btn">
+                                                <button type="button" name="busqueda_reporte_one" id="busqueda_reporte_one" class="btn btn-secondary btn-block">
                                                     <i class="bi bi-search"></i> Buscar
                                                 </button>
                                             </span>
-                                            </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
-                            </form>
-                            <canvas id="report_one"></canvas>
-                        </div><!-- /.card-body -->
-                    </div><!-- /.card -->
-                </div>
-            </section>
-
-            <!-- 2
-            <section class="report">
-                <div class="report-header">
-                    <h4 class="">Reporte 2</h4>
-                    <div class="derecha">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report2">Expandir</button>
-                    </div>
-                    <p>reportes</p>
-                </div>-->
+                            </div>
+                        </form>
+                        <canvas id="report_one" width="764" height="250"></canvas>
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
+        </section>
+       
+        <!-- 2
+        <section class="report">
+            <div class="report-header">
+                <h4 class="">Reporte 2</h4>
+                <div class="derecha">
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#report2">Expandir</button>
+                </div>                
+                <p>reportes</p>
+            </div>-->
             <!-- put view here  -->
             <!-- <div class="report-content collapse" id="report2">
                  <div class="card bg-transparent">

@@ -1,17 +1,47 @@
 <div id="body-pd" class="">
     <header class="header" id="header">
         <div class="header_toggle"><i class='bx bx-menu text-bdazzled-blue disabled' id="header-toggle"></i></div>
-        <div class="header_img"><img src="../../assets/img/logo.png" alt=""></div>
-        <div class="dropdown">
-            <button class="btn dropdown-toggle center" type="button" id="triggerId"
-                    data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
-            </button>
-            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="/cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
-                <a class="dropdown-item" href="/preferencias">Preferencias</a>
-                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+        <div class="header_img" id="logo"><img src="../../assets/img/logo.png" alt=""></div>
+        <div class="header_tools">
+            <!-- notificaciones  -->
+            <div class="notificaciones">
+                <i class="bi bi-bell" id="noti-i"></i>
+                <span class="badge bg-danger notificaciones_badge">15</span>
+
+                <div class="notificaciones_region">
+                    <div class="region_header">
+                        <p>Notificaciones</p>
+                    </div>
+                    <div class="region_content">
+                        <div class="todas_notificaciones">
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                            </div>
+                        </div>
+
+                        <div class="empty_message">No tiene notificaciones</div>
+                    </div>
+                    <div class="region_footer center">
+                        <a href="/notificaciones" class="btn btn-link region_footer_link">Ver todo</a>
+                    </div>
+                </div>
+            </div>
+            <!-- cuenta -->
+            <div class="dropdown">
+                <button class="btn dropdown-toggle center" type="button" id="triggerId"
+                        data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
+                </button>
+                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="triggerId">
+                    <h6 class="dropdown-header">Usuario: <?php echo $_SESSION['username'] ?> </h6>
+                    <hr class="dropdown-devider my-0">
+                    <a class="dropdown-item" href="/cuenta">Cuenta <i class="bi bi-person text-light"></i> </a>
+                    <a class="dropdown-item" href="/preferencias">Preferencias</a>
+                    <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                </div>
             </div>
         </div>
     </header>
@@ -39,8 +69,8 @@
 </div>
 
  <!-- breadcrumb -->
- <div class="page-breadcrumb ps-4 pt-3 flex-row">
-    <div class="w-50 me-5">
+ <div class="page-breadcrumb ps-4 pt-3 column">
+    <div class="w-100">
         <h3 class="page-title mb-0 p-0 text-first-color"><?php echo $this->title; ?></h3>
         <div class="d-flex align-items-center">
         <nav aria-label="breadcrumb">
@@ -52,9 +82,6 @@
         </nav>
         </div>
     </div>
-    <?php if ($this->title == "Home") {?>
-    <div class="w-100 ms-3 d-none d-sm-block"><h1 class="display-5 font-monospace">Bienvenido: <?php echo $_SESSION['username'] ?></h1></div>
-    <?php } ?>
 </div>
 <!-- breadcrumb -->
 

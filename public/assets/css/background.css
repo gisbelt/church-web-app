@@ -16,9 +16,10 @@
     /* width: 35px; */
     /* height: 35px; */
     display: flex;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -70,13 +71,26 @@
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
   .waves {
-    height:40px;
-    min-height:40px;
+    height:50px;
+    min-height:50px;
   }
   .content {
     height:30vh;
   }
   h1 {
     font-size:24px;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .waves {
+    height:70px;
+    min-height:70px;
+  }
+  .background_img img{
+    margin-bottom: 10px;
+  }
+  .background_img h6{
+    font-size: 0.8rem;
   }
 }

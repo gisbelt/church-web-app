@@ -14,6 +14,7 @@ use content\controllers\seguridadController;
 use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
+use content\controllers\notificacionesController;
 use content\enums\permisos;
 
 if (!function_exists("routas")) {
@@ -1138,6 +1139,19 @@ if (!function_exists("routas")) {
                 'subRutas' => []
             ],
 
+            'Notificaciones' => [
+                'controller' => notificacionesController::class,
+                'permisos' => [],
+                'parametros' => [],
+                'icon' => 'bx bx-help-circle',
+                'text' => 'Notificaciones',
+                'route' => '/notificaciones',
+                'method' => 'index',
+                'action' => 'get',     
+                'sinSubRutas' => 'ok',           
+                'subRutas' => []
+            ],
+
             'perfil' => [
                 'permisos' => permisos::$perfiles,
                 'parametros' => [],
@@ -1208,6 +1222,17 @@ if (!function_exists("routas")) {
                         'icon' => '',
                         'route' => '/cuenta/actualizar-direccion',
                         'method' => 'actualizar_direccion',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'actualizarContrasena' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-contrasena',
+                        'method' => 'actualizar_contrasena',
                         'action' => 'post',
                         'subRutas' => []
                     ],
