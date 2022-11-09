@@ -186,6 +186,7 @@ a{
 .sub_nav_link i, .sub_nav_link span{
     font-size: calc(var(--normal-font-size) - 1px);
 }
+
 /* add spam item_show_tip  */
 /* .item_show_tip{
     display: none;
