@@ -36,6 +36,17 @@ class miembrosModel extends Model
         return $miembros;
     }
 
+    public static function buscarMiembro($miembro)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.*, perfiles.* FROM miembros
+                                            INNER JOIN perfiles on perfiles.miembro_id = miembros.id
+                                                                 WHERE miembros.status = ?");
+        $sql->execute(array(self::ACTIVE));
+        $miembros = $sql->fetch(PDO::FETCH_ASSOC);
+        return $miembros;
+    }
+
     // Obtener usuarios miembros
     public static function obtener_miembros_usuarios()
     {
