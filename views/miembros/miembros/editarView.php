@@ -1,7 +1,7 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Editar miembro'
+$this->title = 'Editar miembro';
 ?>
 <div class="container-fluid">
     <div class="row m-0">
@@ -125,39 +125,46 @@ $this->title = 'Editar miembro'
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-6 mb-4 mb-md-0"> <!-- 1 -->
-                                        <p class="">Sexo:* </p>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sexo"
-                                                   id="femenino" <?php if (isset($sexo) && $sexo == "0") echo "checked"; ?>
-                                            <label class="form-check-label" for="femenino">
-                                                Femenino
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sexo"
-                                                   id="masculino" <?php if (isset($sexo) && $sexo == "1") echo "checked"; ?>
-                                            <label class="form-check-label" for="masculino">
-                                                Masculino
-                                            </label>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <p class="">Sexo:* </p>
+                                            <select class="form-select" id="sexo" name="sexo">
+                                                <?php
+                                                if (1 == $sexo) {
+                                                    $selected = 'selected';
+                                                    echo '<option value="'. $sexo . '" ' . $selected . '> Masculino </option>';
+                                                    echo '<option value="0">Femenino</option>';
+                                                } else if (0 == $sexo) {
+                                                    $selected = 'selected';
+                                                    echo '<option value="1"> Masculino </option>';
+                                                    echo '<option value="'. $sexo . '" ' . $selected . '>Femenino</option>';
+                                                } else {
+                                                    echo '<option value="1"> Masculino </option>';
+                                                    echo '<option value="0">Femenino</option>';
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
-
-                                    <div class="form-group col-md-6 mb-4 mb-md-0"> <!-- 2 -->
-                                        <p class="">Vehículo:* </p>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="vehiculo"
-                                                   id="vehiculo" <?php if (isset($vehiculo) && $vehiculo == "1") echo "checked"; ?>
-                                            <label class="form-check-label" for="si">
-                                                Si
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="vehiculo"
-                                                   id="vehiculo" <?php if (isset($vehiculo) && $vehiculo == "0") echo "checked"; ?>
-                                            <label class="form-check-label" for="no">
-                                                No
-                                            </label>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <p class="">Vehiculo:* </p>
+                                            <select class="form-select" id="vehiculo" name="vehiculo">
+                                                <?php
+                                                if (1 == $vehiculo) {
+                                                    $selected = 'selected';
+                                                    echo '<option value="'. $vehiculo . '" ' . $selected . '> Si </option>';
+                                                    echo '<option value="0">No</option>';
+                                                } else if(0 == $vehiculo) {
+                                                    $selected = 'selected';
+                                                    echo '<option value="1"> Si </option>';
+                                                    echo '<option value="'. $vehiculo . '" ' . $selected . '>No</option>';
+                                                } else {
+                                                    echo '<option value="1"> Si </option>';
+                                                    echo '<option value="0">No</option>';
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -222,21 +229,22 @@ $this->title = 'Editar miembro'
                                         } ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6 mb-4 mb-md-0"> <!-- 2 -->
-                                    <p class="">Status:* </p>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"
-                                               name="status" <?php if (isset($status) && $status == "1") echo "checked"; ?>
-                                        <label class="form-check-label" for="si">
-                                            Activo
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"
-                                               name="status" <?php if (isset($status) && $status == "0") echo "checked"; ?>
-                                        <label class="form-check-label" for="no">
-                                            Inactivo
-                                        </label>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <p class="">Status:* </p>
+                                        <select class="form-select" id="status" name="status">
+                                            <?php
+                                            if (1 == $status) {
+                                                $selected = 'selected';
+                                                echo '<option value="'. $status . '" ' . $selected . '> Activo </option>';
+                                                echo '<option value="0">Inactivo</option>';
+                                            } else  {
+                                                $selected = 'selected';
+                                                echo '<option value="1"> Activo </option>';
+                                                echo '<option value="'. $status . '" ' . $selected . '>Inactivo</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -244,6 +252,8 @@ $this->title = 'Editar miembro'
                         <br>
                         <input type="hidden" name="miembro" class="form-control form-input mb-4"
                                id="donacion" value="<?php echo $miembro_id ?>" autocomplete="off">
+                        <input type="hidden" name="perfil" class="form-control form-input mb-4"
+                               id="donacion" value="<?php echo $perfil ?>" autocomplete="off">
                         <div class="btn-group modal-footer" role="group" aria-label="">
                             <button type="button" name="actualizar-miembros" id="actualizar-miembros" class="btn btn-success">
                                 Actualizar

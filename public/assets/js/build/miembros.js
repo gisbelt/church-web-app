@@ -42,6 +42,7 @@ const actualizarMiembro = () => {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
+                setTimeout(() => window.location.href = '', 1500);
                 $("#form-editar-miembro")[0].reset();
                 $('#actualizar-miembros').disabled = false;
             }
