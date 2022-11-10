@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     actualizarMiembro();
     registrarMiembros();
     listaMiembros();
@@ -100,7 +100,7 @@ const registrarMiembros = () => {
 }
 
 // Lista miembros
-const listaMiembros = () =>{
+const listaMiembros = () => {
     let api;
     let $button = $('#busqueda_miembros');
     let $table = $("#miembros-table");
@@ -122,9 +122,24 @@ const listaMiembros = () =>{
         responsive: "true",
         dom: '<"table-tools"<"col-12 col-sm-12 col-md-12 col-lg-4 top mb-3"B><"col-12 col-sm-12 col-md-12 col-lg-2 mb-3"l><"col-12 col-sm-12 col-md-12 col-lg-6 mb-3"f>>rtip',
         buttons: [
-            { extend: 'copy', text: '<i class="bx bx-copy"></i> Copy', titleAttr: 'Copiar', className: 'btn btn-secondary',  },
-            { extend: 'csv', text: '<i class="bi bi-filetype-csv"></i> CSV', titleAttr: 'Exportar a CSV', className: 'btn btn-info' },
-            { extend: 'pdf', text: '<i class="bi bi-filetype-pdf"></i> PDF', titleAttr: 'Exportar a PDF', className: 'btn btn-danger' },
+            {
+                extend: 'copy',
+                text: '<i class="bx bx-copy"></i> Copy',
+                titleAttr: 'Copiar',
+                className: 'btn btn-secondary',
+            },
+            {
+                extend: 'csv',
+                text: '<i class="bi bi-filetype-csv"></i> CSV',
+                titleAttr: 'Exportar a CSV',
+                className: 'btn btn-info'
+            },
+            {
+                extend: 'pdf',
+                text: '<i class="bi bi-filetype-pdf"></i> PDF',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger'
+            },
         ],
         "initComplete": function () {
             api = this.api();
@@ -148,7 +163,7 @@ const listaMiembros = () =>{
 }
 
 // Eliminar miembro
-const eliminarMiembro = () =>{
+const eliminarMiembro = () => {
     $(document).on('click', '#eliminar-miembro', function (e) {
         e.preventDefault();
         let route = $(this).data('route');

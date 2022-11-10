@@ -15,5 +15,6 @@ use content\core\Aplicacion;
     {{content}}
 </div>
 <?php \content\component\bottomComponent::Bottom(); ?>
+
 </body>
 </html>

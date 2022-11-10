@@ -143,7 +143,6 @@ class miembrosController extends Controller
             ];
             return json_encode($data);
         }
-
     }
 
     // Mostrar lista de miembros

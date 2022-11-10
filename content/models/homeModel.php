@@ -44,7 +44,6 @@ class homeModel extends Model {
 
     public static function cargarActividades($fecha)
     {
-        try{
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("SELECT actividades.id, actividades.nombre, actividades.descripcion, actividades.status, tipo_actividad.nombre as tipo, horarios.hora, horarios.fecha
             FROM actividades
@@ -57,18 +56,11 @@ class homeModel extends Model {
             $sql->execute(array(self::ACTIVE, $fecha));
             $actividades = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $actividades;
-        }catch(Exception $exception){
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$exception]);
-            return 'No disponible';
-        }
     }
 
     // Consultar registro de bitacora
     public static function bitacoraLastActions()
     {
-        try{
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("SELECT bitacora.id, bitacora.fecha_creado AS fecha, bitacora.descripcion, bitacora.modulo, usuarios.username as user, usuarios.id
             FROM bitacora 
@@ -80,12 +72,6 @@ class homeModel extends Model {
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$bitacora]);
             return $bitacora;
-        }catch(Exception $exception){
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$exception]);
-            return 'No disponible';
-        }
     }
     
 

@@ -14,14 +14,12 @@
                     </div>
                     <div class="region_content">
                         <div class="todas_notificaciones">
-                            <div class="list-group list-group-flush">
-                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
-                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
-                                <a href="#" class="list-group-item px-0 fw-bold">01/12/2022 - Actividad próxima </a>
+                            <div class="list-group list-group-flush todas_notificaciones_list" id="todas_notificaciones_lista">
+
                             </div>
                         </div>
 
-                        <div class="empty_message">No tiene notificaciones</div>
+                        <div class="empty_message d-none" id="empty_message">No tiene notificaciones</div>
                     </div>
                     <div class="region_footer center">
                         <a href="/notificaciones" class="btn btn-link region_footer_link">Ver todo</a>

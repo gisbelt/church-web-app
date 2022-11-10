@@ -14,7 +14,7 @@ use content\controllers\seguridadController;
 use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
-use content\controllers\notificacionesController;
+use content\controllers\notificacionController;
 use content\enums\permisos;
 
 if (!function_exists("routas")) {
@@ -1140,16 +1140,58 @@ if (!function_exists("routas")) {
             ],
 
             'Notificaciones' => [
-                'controller' => notificacionesController::class,
-                'permisos' => [],
+                'controller' => notificacionController::class,
+                'permisos' => permisos::$notificacion,
                 'parametros' => [],
                 'icon' => 'bx bx-help-circle',
                 'text' => 'Notificaciones',
-                'route' => '/notificaciones',
-                'method' => 'index',
-                'action' => 'get',     
-                'sinSubRutas' => 'ok',           
-                'subRutas' => []
+                'route' => null,
+                'subRutas' => [
+
+                    'notificcacionIndex' => [
+                        'permisos' => permisos::$notificacion,
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'Notificaciones',
+                        'route' => '/notificaciones',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'notificcacionCrear' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'crear notificacion',
+                        'route' => '/notificaciones/crear',
+                        'method' => 'crear',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'notificacionNavBar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'navbar notificacion',
+                        'route' => '/notificaciones/navbar',
+                        'method' => 'navbar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'notificacionVista' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'vista notificacion',
+                        'route' => '/notificaciones/vista/{id}',
+                        'method' => 'navbar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                ]
             ],
 
             'perfil' => [

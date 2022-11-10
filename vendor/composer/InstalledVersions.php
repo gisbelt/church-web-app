@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '2af6027a6974ca484bde86c01d6234f788986e3e',
+    'reference' => 'cc29d6467e17fc3420ebaa32de20f3cbef553afa',
     'name' => 'sistema/gestion',
   ),
   'versions' => 
@@ -46,12 +46,12 @@ private static $installed = array (
     ),
     'nesbot/carbon' => 
     array (
-      'pretty_version' => '2.62.1',
-      'version' => '2.62.1.0',
+      'pretty_version' => '2.63.0',
+      'version' => '2.63.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a',
+      'reference' => 'ad35dd71a6a212b98e4b87e97389b6fa85f0e347',
     ),
     'psr/log' => 
     array (
@@ -76,7 +76,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '2af6027a6974ca484bde86c01d6234f788986e3e',
+      'reference' => 'cc29d6467e17fc3420ebaa32de20f3cbef553afa',
     ),
     'symfony/deprecation-contracts' => 
     array (

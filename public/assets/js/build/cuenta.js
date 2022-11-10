@@ -7,7 +7,7 @@ $(document).ready(function () {
     actualizarContrasena();
 });
 
-const obtener_usuario = () =>{
+const obtener_usuario = () => {
     $.ajax({
         url: "/cuenta/obtener-usuario",
         type: "GET",
@@ -15,7 +15,7 @@ const obtener_usuario = () =>{
     }).done(function (response) {
         let data = JSON.parse(response);
         $('#username').append(data.username);
-        $('#nombre').append(data.nombre+' '+data.apellido);
+        $('#nombre').append(data.nombre + ' ' + data.apellido);
         $('#telefono').append(data.telefono);
         $('#direccion').append(data.direccion);
 
@@ -33,10 +33,10 @@ const obtener_usuario = () =>{
 }
 
 const actualizarUsername = function () {
-    obtenerusername = function(response){
+    obtenerusername = function (response) {
         const username = $('#username');
         const value = response.username;
-        username.empty();         
+        username.empty();
         username.append(value);
     };
     let $button = $('#cambiar-username');
@@ -84,11 +84,11 @@ const actualizarUsername = function () {
 }
 
 const actualizarNombre = function () {
-    obtenernombre = function(response){
+    obtenernombre = function (response) {
         let data = JSON.parse(response.nombre_completo);
         const nombre = $('#nombre');
-        const value = `${data.nombre+' '+data.apellido}`;
-        nombre.empty();         
+        const value = `${data.nombre + ' ' + data.apellido}`;
+        nombre.empty();
         nombre.append(value);
     };
     let $button = $('#cambiar-nombre');
@@ -136,10 +136,10 @@ const actualizarNombre = function () {
 }
 
 const actualizarTelefono = function () {
-    obtenertelefono = function(response){
+    obtenertelefono = function (response) {
         const telefono = $('#telefono');
         const value = response.telefono;
-        telefono.empty();         
+        telefono.empty();
         telefono.append(value);
     };
     let $button = $('#cambiar-telefono');
@@ -187,10 +187,10 @@ const actualizarTelefono = function () {
 }
 
 const actualizarDireccion = function () {
-    obtenerdireccion = function(response){
+    obtenerdireccion = function (response) {
         const direccion = $('#direccion');
         const value = response.direccion;
-        direccion.empty();         
+        direccion.empty();
         direccion.append(value);
     };
     let $button = $('#cambiar-direccion');
@@ -241,44 +241,44 @@ const actualizarDireccion = function () {
 const actualizarContrasena = function () {
     let $button = $('#cambiar-contrasena');
     $button.click(function (e) {
-    let $form = $('#form-contrasena');
-    e.preventDefault();
-    $button.disabled = true;
-    $.ajax({
-        type: $form.attr('method'),
-        url: $form.attr('action'),
-        data: $form.serialize(),
-        dataType: 'json',
-    }).done(function (response) {
-        if (response.code == 422) {
-            let html = '<ul class="list-group list-group-flush">';
-            $.each(response.messages, function (index, value) {
-                html += '<li class="list-group-item">' + value + '</li>';
-            });
-            html += '</ul>';
-            swal.fire({
-                title: response.title,
-                html: html,
-                icon: 'error',
-                showConfirmButton: false,
-                showCancelButton: true,
-                cancelButtonText: 'close'
-            });
-            $button.disabled = false;
-        } else {
-            swal.fire({
-                title: response.title,
-                html: response.messages,
-                icon: 'success',
-                showConfirmButton: false,
-                showCancelButton: true,
-                cancelButtonText: 'close'
-            });
-            $("#form-contrasena")[0].reset();
-            $button.disabled = false;
-        }
-    }).fail(function (json) {
-        console.log(json);
-    });
+        let $form = $('#form-contrasena');
+        e.preventDefault();
+        $button.disabled = true;
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            dataType: 'json',
+        }).done(function (response) {
+            if (response.code == 422) {
+                let html = '<ul class="list-group list-group-flush">';
+                $.each(response.messages, function (index, value) {
+                    html += '<li class="list-group-item">' + value + '</li>';
+                });
+                html += '</ul>';
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $button.disabled = false;
+            } else {
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $("#form-contrasena")[0].reset();
+                $button.disabled = false;
+            }
+        }).fail(function (json) {
+            console.log(json);
+        });
     });
 }
