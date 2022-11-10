@@ -45,6 +45,33 @@ class notificacionModel extends Model
         return $notificacion;
     }
 
+    // obtener notificacion
+    public static function leidas_user($notificacion)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT notificacion_usuario.usuario_id, notificacion_usuario.status, notificacion_usuario.autor
+                                                FROM notificacion_usuario
+                                                     WHERE notificacion_usuario.usuario_id = ? 
+                                                       and notificacion_usuario.notificacion_id = ? ");
+        $sql->execute(array($_SESSION['user'], $notificacion));
+        $notificacion = $sql->fetch(PDO::FETCH_ASSOC);
+        if ($notificacion == false){
+            $notificacion = null;
+        } else {
+            $notificacion;
+        }
+        return $notificacion;
+    }
+
+    // obtener notificacion
+    public static function leida($id, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO notificacion_usuario (usuario_id, notificacion_id, status, autor, fecha_creado) 
+        VALUES (?,?,?,?,?)");
+        return $sql->execute([$_SESSION['user'], $id, self::ACTIVE, self::INACTIVE, $fecha]);
+    }
+
     public function rules(): array
     {
         return [];

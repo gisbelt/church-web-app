@@ -82,16 +82,16 @@ class notificacionController extends Controller
 
     public function navbar()
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
         try {
             $notificaciones = notificacionModel::obtener_notificacion();
-            $logger->debug(__METHOD__, [$notificaciones]);
             if($notificaciones){
                 $notificacionCollection = new notificacionCollection();
                 $notificacionFormat = $notificacionCollection->formatNotificacion($notificaciones);
             } else {
-                $notificacionFormat = [];
+                $notificacionFormat = [
+                    'notificaciones' => [],
+                    'cantidad' => 0
+                ];
             }
             $data = [
                 'notificaciones' => $notificacionFormat['notificaciones'],
@@ -105,4 +105,20 @@ class notificacionController extends Controller
         }
     }
 
+    public function leida(Request $request)
+    {
+        try {
+            $id = $request->getRouteParams();
+            $fecha =  Carbon::now();
+            $notificaciones = notificacionModel::leida($id['id'], $fecha);
+            $data = [
+                'status' => 'ok'
+            ];
+            return json_encode($data);
+        } catch (\Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+        }
+    }
 }

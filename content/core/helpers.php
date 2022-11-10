@@ -1187,7 +1187,7 @@ if (!function_exists("routas")) {
                         'icon' => 'bx bx-log-in-circle',
                         'text' => 'vista notificacion',
                         'route' => '/notificaciones/vista/{id}',
-                        'method' => 'navbar',
+                        'method' => 'leida',
                         'action' => 'get',
                         'subRutas' => []
                     ],
