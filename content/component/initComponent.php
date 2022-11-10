@@ -6,7 +6,7 @@
             <!-- notificaciones  -->
             <div class="notificaciones">
                 <i class="bi bi-bell" id="noti-i"></i>
-                <span class="badge bg-danger notificaciones_badge">15</span>
+                <span class="badge bg-danger notificaciones_badge cantidad_notificaciones"></span>
 
                 <div class="notificaciones_region">
                     <div class="region_header">

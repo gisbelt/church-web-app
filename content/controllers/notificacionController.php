@@ -94,7 +94,8 @@ class notificacionController extends Controller
                 $notificacionFormat = [];
             }
             $data = [
-                'notificaciones' => $notificacionFormat,
+                'notificaciones' => $notificacionFormat['notificaciones'],
+                'cantidad' => $notificacionFormat['cantidad'],
             ];
             return json_encode($data);
         } catch (\Exception $exception) {
