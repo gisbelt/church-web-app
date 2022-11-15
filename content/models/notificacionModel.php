@@ -20,7 +20,7 @@ class notificacionModel extends Model
     public $fecha_creado;
     public $fecha_actualizado;
 
-    public static function agregar_mensaje($mensaje, $fecha)
+    public static function agregar_mensaje($mensaje, $fecha, $user)
     {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO notificacion (mesanje, status, fecha_creado) 
@@ -30,7 +30,7 @@ class notificacionModel extends Model
 
         $sql = $conexionBD->prepare("INSERT INTO notificacion_usuario (usuario_id, notificacion_id, status, autor, fecha_creado) 
         VALUES (?,?,?,?,?)");
-        return $sql->execute([$_SESSION['user'], $notificacion, self::ACTIVE, self::ACTIVE, $fecha]);
+        return $sql->execute([$user, $notificacion, self::ACTIVE, self::ACTIVE, $fecha]);
     }
 
     // obtener notificacion

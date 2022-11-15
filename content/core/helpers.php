@@ -1143,7 +1143,7 @@ if (!function_exists("routas")) {
                 'controller' => notificacionController::class,
                 'permisos' => permisos::$notificacion,
                 'parametros' => [],
-                'icon' => 'bx bx-help-circle',
+                'icon' => 'bi bi-bell',
                 'text' => 'Notificaciones',
                 'route' => null,
                 'subRutas' => [
@@ -1151,7 +1151,7 @@ if (!function_exists("routas")) {
                     'notificcacionIndex' => [
                         'permisos' => permisos::$notificacion,
                         'parametros' => [],
-                        'icon' => 'bx bx-log-in-circle',
+                        'icon' => 'bi bi-bell',
                         'text' => 'Notificaciones',
                         'route' => '/notificaciones',
                         'method' => 'index',

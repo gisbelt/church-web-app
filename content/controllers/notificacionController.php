@@ -48,7 +48,7 @@ class notificacionController extends Controller
                 if($request->getBody()['mesanje'] != ''){
                     $fecha =  Carbon::now();
                     $mensaje = $request->getBody()['mesanje'];
-                    $seguridad = notificacionModel::agregar_mensaje($mensaje, $fecha);
+                    $seguridad = notificacionModel::agregar_mensaje($mensaje, $fecha, $_SESSION['user']);
                     if($seguridad){
                         bitacoraModel::guardar('Registro de notificacion: '. $mensaje, 'Crear notificaicon');
                         $data = [
