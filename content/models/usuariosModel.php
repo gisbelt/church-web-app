@@ -6,23 +6,29 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use content\core\Model;
 use content\config\conection\database as BD;
-use PDO as pdo;
+use PDO;
 
+/**
+ *  Class usuario model
+ * @package content\models
+ */
 class usuariosModel extends Model //BD
 {
     public $id;
     public $username;
     public $email;
-    public $password = "password";
+    public $password;
     public $role_id;
     public $nombreMiembro;
+    public $fecha_creado;
+    public $fecha_actualizado;
 
     //Login
     public static function login($email)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id
-        FROM users WHERE email=?");
+        $sql = $conexionBD->prepare("SELECT id,username,email,password, role_id, status
+        FROM usuarios WHERE email=?");
         $sql->execute(array($email));
         $consultarUsuario = $sql->fetch(PDO::FETCH_ASSOC);
         return $consultarUsuario;
@@ -47,16 +53,20 @@ class usuariosModel extends Model //BD
         return [$username, $date];
     }
 
+    //Crear usuario
+    public static function crear($username, $email, $password, $rol, $miembro, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("INSERT INTO usuarios (username, email, password, miembro_id, status, role_id, fecha_creado) 
+        VALUES (?,?,?,?,?,?,?)");
+        $user = $sql->execute(array($username, $email, $password, $miembro, self::ACTIVE, $rol, $fecha));
+        return $user;
+    }
+
     // Validar que esté la sesión cerrada 
     public static function validarLogout()
     {
         // Si existe alguien logueado, mosrar alerta de cerrar sesión
-        if(isset($_SESSION['email'])){
-
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$_SESSION['email']]);
-        }
         if (isset($_SESSION['email'])) {
             echo "
             <script>
@@ -66,17 +76,6 @@ class usuariosModel extends Model //BD
         }
     }
 
-    /**
-     * @return array[]
-     */
-    public function rules(): array
-    {
-        return [
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]]
-            //password => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password]],
-        ];
-    }
     //Buscar Miembros
     public static function buscarMiembro($nombreMiembro)
     {
@@ -100,4 +99,85 @@ class usuariosModel extends Model //BD
         echo json_encode($result);
     }
 
+    public static function obtener_usuarios($cargo, $status, $miembro)
+    {
+        $connexionBD = BD::crearInstancia();
+        $query = "SELECT usuarios.id, usuarios.email, usuarios.status, usuarios.fecha_creado, cargos.nombre, cargos.id, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id   FROM usuarios
+            INNER JOIN miembros ON usuarios.miembro_id = miembros.id
+            INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+            INNER JOIN cargos ON miembros.cargo_id = cargos.id";
+        $conditions = array();
+
+        if($cargo != '') {
+            $conditions[] = "cargos.id='$cargo'";
+        }
+        if($status != '') {
+            $conditions[] = "usuarios.status='$status'";
+        }
+        if($miembro != '') {
+            $conditions[] = "miembros.id='$miembro'";
+        }
+        $queryString = $query;
+        if (count($conditions) > 0) {
+            $queryString .= " WHERE " . implode(' AND ', $conditions);
+        }
+        $sql = $connexionBD->prepare($queryString);
+        $sql->execute();
+        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuarios;
+    }
+
+    public static function id_usuario($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT * FROM usuarios WHERE id = ?");
+        $sql->execute(array($id));
+        $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+        return $usuario;
+    }
+
+    // Actualizar usuario
+    public static function actualizar($id, $username, $email, $status, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET username = ?, email = ?, status = ?, fecha_actualizado = ? WHERE id = ?");
+        $usuario = $sql->execute(array($username, $email, $status, $fecha, $id));
+        return $usuario;
+    }
+
+    // Actualizar clave
+    public static function actualizarClave($id, $clave)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET password = ? WHERE id = ?");
+        $usuario = $sql->execute(array($clave, $id));
+        return $usuario;
+    }
+
+    public static  function eliminar($id) {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE usuarios SET status = ? WHERE id = ?");
+        $usuarios = $sql->execute(array(self::INACTIVE, $id));
+        return $usuarios;
+    }
+
+    public static function usuarioBitacora()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT id, username FROM usuarios");
+        $sql->execute();
+        $usuario = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuario;
+    }
+
+    /**
+     * @return array[]
+     */
+    public function rules(): array
+    {
+        return [
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
+        ];
+    }
 }

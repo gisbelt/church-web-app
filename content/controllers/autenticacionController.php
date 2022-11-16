@@ -6,7 +6,8 @@ use content\core\Aplicacion;
 use content\core\Request;
 use content\core\Controller;
 use content\enums\seguridad;
-use content\models\seguridadModel;
+use content\models\bitacoraModel;
+use content\models\permisosModel;
 use content\models\usuariosModel as usuarios;
 
 use Monolog\Handler\StreamHandler;
@@ -46,7 +47,7 @@ class AutenticacionController extends Controller
             $password = $request->getBody()['password'];
             if ($usuarioModel->validate()) {
                 $consultarUsuario = $usuarioModel::login($email);
-                if ($consultarUsuario && password_verify($password, $consultarUsuario['password'])) {
+                if ($consultarUsuario && password_verify($password, $consultarUsuario['password']) && $consultarUsuario['status']) {
                     $_SESSION['email'] = 'ok';
                     $_SESSION['user'] = $consultarUsuario['id'];
                     $_SESSION['user_email'] = $consultarUsuario['email'];
@@ -54,14 +55,8 @@ class AutenticacionController extends Controller
                     $_SESSION['date'] = date('d_m_Y_H_i');
                     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
                     $_SESSION['rol'] = seguridad::getRolName($consultarUsuario['role_id']);
-                    /*Aplicacion::$app->session->set('email', 'ok');
-                    Aplicacion::$app->session->set('user', $consultarUsuario['id']);
-                    Aplicacion::$app->session->set('user_email', $consultarUsuario['email']);
-                    Aplicacion::$app->session->set('username', $consultarUsuario['username']);
-                    Aplicacion::$app->session->set('date', $_SERVER['REMOTE_ADDR']);
-                    Aplicacion::$app->session->set('ip',  date('d_m_Y_H_i'));*/
-
-                    $seguirdadModel = new seguridadModel();
+                    bitacoraModel::guardar('El usuario inicion session', 'inicio de sesion');
+                    $seguirdadModel = new permisosModel();
                     $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
                     $logger = new Logger("web");
                     $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
@@ -79,9 +74,19 @@ class AutenticacionController extends Controller
                         'route' => '/home'
                     ];
                     return json_encode($data);
+                } else if(!$consultarUsuario['status']){
+                    if (!$consultarUsuario['status']) {
+                        $usuarioModel->addError("datos", "El usuario se encuentra desactivado");
+                    }
+                    $data = [
+                        'title' => 'Usuario desactivado',
+                        'messages' => $usuarioModel->errors,
+                        'code' => 403
+                    ];
+                    return json_encode($data);
                 } else {
                     if (!$consultarUsuario || !password_verify($password, $consultarUsuario['password'])) {
-                        $usuarioModel->addError("datos", "El correo o contraseña son incorrectos");
+                        $usuarioModel->addError("datos", "El correo o contraseña incorrectos");
                     }
 
                     $data = [
@@ -97,34 +102,13 @@ class AutenticacionController extends Controller
                 'messages' => $usuarioModel->errors,
                 'code' => 422
             ];
-            return json_encode($data, 200);
+            return json_encode($data, 422);
         }
-        /*$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$body]);
-        usuarios::validarLogout();
-
-        if ($email == "" || $password == "") {
-            $mensaje1 = "Por favor debe ingresar los datos";
-        } else {
-            //ejecutamos
-            $consultarUsuario = usuarios::login($email);
-            if ($consultarUsuario && password_verify($password, $consultarUsuario->password)) {
-                $_SESSION['email'] = 'ok';
-                $_SESSION['user_email'] = $consultarUsuario->email;
-                $_SESSION['username'] = $consultarUsuario->username;
-                $_SESSION['date'] = date('d_m_Y_H_i');
-                $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-                return $this->render('homeView', $data);
-            } else {
-                $mensaje2 = "Error, el correo o contraseña son incorrectos";
-            }
-        }*/
     }
 
     public function cerrarSesion()
     {
+        bitacoraModel::guardar('El usuario'.  $_SESSION['username']. ' cerro session:', 'Cerrar session');
         unset($_SESSION['email']);
         unset($_SESSION['user_email']);
         unset($_SESSION['username']);
@@ -135,29 +119,122 @@ class AutenticacionController extends Controller
         Aplicacion::$app->response->redirect('/');
     }
 
-    public function cambiarContrasena()
+    public function cambiarContrasena(Request $request)
     {
-        /*usuarios::validarLogout();
-        $data['titulo'] = 'Resetear Clave';
-        include_once("view/acceso/login/resetPasswordView.php");*/
         usuarios::validarLogout();
-        $data = [
-            'name' => 'Resetea tu clave'
-        ];
         $this->setLayout('auth');
-        return $this->render('acceso/login/resetPasswordView', $data);
+        $id = $request->getRouteParam('id');
+        return $this->render('acceso/login/resetPasswordView', [
+            'id' => $id
+        ]);
     }
 
     public function recuperarContrasena()
     {
         usuarios::validarLogout();
-        /*$data['titulo'] = 'Clave Olvidada';
-        return new Response(require_once(realpath(dirname(__FILE__) . './../../views/acceso/login/forgotPasswordView.php')), 200);*/
         $data = [
             'name' => 'Clave Olvidada'
         ];
         $this->setLayout('auth');
         return $this->render('acceso/login/forgotPasswordView', $data);
+    }
+
+    public function verificarCorreo(Request $request)
+    {
+        try {
+            $correo = $request->getBody()['correo'];
+            $usuarioModel = new usuarios();
+            if (!empty($correo)) {
+                $existeCorreo = $usuarioModel::login($correo);
+                if ($existeCorreo) {
+                    $data = [
+                        'title' => 'Correo',
+                        'messages' => 'En breve sera redirigido',
+                        'route' => '/cambiar-contrasena/' . $existeCorreo['id'],
+                        'code' => 200,
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Correo',
+                        'messages' => 'Por favor verifique, no se encontro este correo:' . $correo,
+                        'code' => 404,
+                    ];
+                }
+                return json_encode($data);
+            } else {
+                $usuarioModel->addError("correo", "Por favor ingrese el correo");
+                $data = [
+                    'title' => 'Campo vacio',
+                    'messages' => $usuarioModel->errors,
+                    'code' => 422
+                ];
+                return json_encode($data);
+            }
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
+    }
+
+    public function resetearContrasena(Request $request)
+    {
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        $logger->debug(__METHOD__, [$request->getBody()]);
+        try {
+            $usuarioModel = new usuarios();
+            $clave = $request->getBody()['clave'];
+            $ConfirmarClave = $request->getBody()['confirmar-clave'];
+            if ($clave == $ConfirmarClave && strlen($clave) == strlen($ConfirmarClave)) {
+                $nuevaClave = password_hash($request->getBody()['clave'], PASSWORD_BCRYPT, ['cost' => 10]);
+                $id = $request->getBody()['user'];
+                $update = $usuarioModel::actualizarClave($id, $nuevaClave);
+                if ($update) {
+                    $data = [
+                        'title' => 'Contraseña restablecida',
+                        'messages' => 'Contraseña restablecida exitosamente',
+                        'code' => 200,
+                        'route' => '/'
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'Algo salio mal intente mas tardes',
+                        'code' => 404,
+                    ];
+                }
+                return json_encode($data);
+            } else {
+                if ($clave !== $ConfirmarClave) {
+                    $usuarioModel->addError("clave", "La clave debe ser igual a confirmar contraseña");
+                    $usuarioModel->addError("clave", "La longitud mínima debe ser 6");
+                    $usuarioModel->addError("clave", "La longitud maxima debe ser 16");
+                }
+                $data = [
+                    'title' => 'Campo vacio',
+                    'messages' => $usuarioModel->errors,
+                    'code' => 422
+                ];
+                return json_encode($data);
+            }
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
     }
 }
 

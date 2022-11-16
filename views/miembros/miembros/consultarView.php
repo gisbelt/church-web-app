@@ -1,110 +1,93 @@
 <?php
 $this->title = 'Miembros';
 ?>
-<h3 class="text-center mb-4">Listado de miembros <a href="/miembros/create" class="btn btn-success"><i
-                class="bi bi-person-plus"></i></a></h3>
-<div class="container">
-    <div class="row m-0">
-        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-            <div class="center">
-                <label>Sexo:</label>
-                <select class="form-control ms-2" id="sexo"">
-                <option value="">Todos</option>
-                <option value="">Femenino</option>
-                <option value="">Masculino</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
-            <div class="center">
-                <label>Fecha:</label>
-                <select class="form-control ms-2" id="status"">
-                <option value="">Todos</option>
-                <option value="">Paso de fe</option>
-                <option value="">Bautismo</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
-            <form action="" method="post">
-                <div class="input-group input-daterange" id="datepicker">
-                    <span class="input-group-text">                        
-                        <i class="bi bi-calendar-date text-first-color"></i>
-                    </span>
-                    <input type="text" name="" id="" class="form-control" placeholder="Insertar" value="dd/mm/aaaa">
-                    <span class="input-group-btn">
-                        <button type="submit" name="" class="btn btn-secondary">Buscar</button>
-                    </span>
+<div class="container-fluid">
+    <div class="row center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="text-center mt-1">Listado de Miembros <a href="/miembros/create" class="btn btn-success"><i
+                                    class="bi bi-person-plus"></i></a></h3>
                 </div>
-            </form>
-        </div>
+                <div class="card-body py-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                            <div class="form-group center">
+                                <input type="text" required name="nombre" class="form-control form-input mb-4"
+                                       id="nombre" value="" placeholder=" " autocomplete="off">
+                                <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                            </div>
+                        </div>
 
-        <div class="col-12 col-sm-12 col-md-2 mb-2 mb-md-0">
-            <div class="center izquierda">
-                <label>Mostrar:</label>
-                <select class="form-control ms-2 w-auto" id="per_page">
-                    <option>5</option>
-                    <option>10</option>
-                    <option selected="">15</option>
-                    <option>20</option>
-                </select>
-            </div>
-        </div>
-    </div>
+                        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                            <div class="form-group center">
+                                <label>Sexo:</label>
+                                <select class="form-select ms-2" id="sexo" name="sexo">
+                                    <option value="">Todos</option>
+                                    <option value="false">Femenino</option>
+                                    <option value="true">Masculino</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                            <div class="form-group center">
+                                <label>Fecha:</label>
+                                <select class="form-select ms-2" id="tipo_fecha"">
+                                <option value="">Tipo de fecha</option>
+                                <option value="1">Paso de fe</option>
+                                <option value="2">Bautismo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
+                            <div class="form-group center">
+                                <div class="input-group input-daterange" id="datepicker">
+                                    <span class="input-group-text">                        
+                                        <i class="bi bi-calendar-date text-first-color"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Insertar Fecha" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <button type="button" name="busqueda_miembros" id="busqueda_miembros"
+                                        class="btn btn-secondary btn-block">
+                                    <i class="bi bi-search"></i> Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--card-body-->
+            </div><!--card-->
+        </div><!--col-->
+    </div><!-- row -->
 </div><!--container-->
+<div class="container-fluid">
+    <div class="row center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+            <div class="card mb-5">
+                <div class="card-body center table-wrap">
+                    <table class="table table-bordered table-striped table-responsive table-hover table-modal w-100"
+                           id="miembros-table" data-route="miembros/data">
+                        <thead class="thead-primary">
+                        <tr>
+                            <th class="w-auto">Cédula</th>
+                            <th class="w-auto">Nombre</th>
+                            <th class="w-auto">Teléfono</th>
+                            <th class="w-auto">Status</th>
+                            <th class="w-auto">Paso de Fe</th>
+                            <th class="w-auto">Bautismo</th>
+                            <th class="text-center w-auto">Acciones</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div><!--card-body-->
+            </div><!--card-->
 
-<div class="container-fluid mt-4"> <!--container-->
-    <div class="row">
-        <div class="col-md-12 table-wrap">
-            <table class="table table-bordered table-striped table-responsive table-hover">
-                <thead class="thead-primary">
-                <tr>
-                    <th class="text-center">Acciones</th>
-                    <th class="">Cédula</th>
-                    <th class="">Nombre</th>
-                    <th class="">Teléfono</th>
-                    <th class="">Dirección</th>
-                    <th class="">Profesión</th>
-                    <th class="">Paso de Fe</th>
-                    <th class="">Bautismo</th>
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <tr>
-                    <td>
-                        <form method="POST" class="center">
-                            <a href="" name="seleccionar" id="seleccionar" class="btn btn-info me-2 seleccionar"
-                               value="">
-                                <i class="bi bi-pencil text-light"></i>
-                            </a>
-                            <a href="" name="borrar" id="" class="btn btn-danger ms-2">
-                                <i class="bi bi-trash text-light"></i>
-                            </a>
-                        </form>
-                    </td>
-                    <td name="cedula">22188492</td>
-                    <td name="noombre">Gisbel Torres</td>
-                    <td name="telefono">04245289570</td>
-                    <td name="direccion">Calle 9 Santa Isabel</td>
-                    <td name="profesion">Captación, tratamiento y suministro de agua</td>
-                    <td name="fpf">05/11/2019</td>
-                    <td name="fb">03/20/2017</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function () {
-        $("#miembro").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
+        </div><!--col-md-8-->
+    </div><!--row-->
+</div><!--container-->

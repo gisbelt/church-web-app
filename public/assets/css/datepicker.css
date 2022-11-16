@@ -54,9 +54,28 @@ button:focus {
   padding: 0 !important;
 }
 
-#calendar .datepicker{
+
+/* Calendar styles  */
+#calendar .datepicker,
+#calendar .datepicker .datepicker-days,
+#calendar .datepicker .datepicker-days table,
+#calendar .datepicker .datepicker-days .table-condensed thead,
+#calendar .datepicker .datepicker-days .table-condensed tbody,
+#calendar .datepicker .datepicker-days .table-condensed tfoot{
   width: 100%;
 }
+#calendar .datepicker table tr td.active{
+  border-radius: 0.25rem !important;
+  background-color: #0191b3 !important;
+}
+#calendar .datepicker .datepicker-days table tbody tr td{
+  line-height: 20px;
+}
+#calendar .prev, .next, .datepicker-switch{
+  opacity: 1 !important;
+}
+/* Calendar styles  */
+
 .datepicker-dropdown {
   border-right: var(--first-color) !important;
   border-left: var(--first-color) !important;
@@ -128,7 +147,7 @@ tfoot tr:nth-child(2) th {
 }
 
 .active {
-  background: var(--first-color-light-blue);
+  /* background: var(--first-color-light-blue); */
   overflow: hidden;
   color: var(--safety-yellow);
 }

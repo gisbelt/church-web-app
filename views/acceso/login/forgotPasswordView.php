@@ -14,15 +14,15 @@ $this->title = 'Olvido la contrasena'
                         Clave olvidada
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="post" enctype="multipart/form-data" action="/enviar/correo" id="enviar-correo-form">
                             <div class="form-group">                               
-                                <input type="text" class="form-control form-input" name="correo" id="correo" aria-describedby="emailHelp" placeholder=" ">
+                                <input type="email" class="form-control form-input" name="correo" id="correo" aria-describedby="emailHelp" placeholder=" " autocomplete="off">
                                 <label for="correo" class="form-label">
                                     Escribe tu correo:
                                     <span class="bi bi-envelope"></span>
                                 </label>
                             </div>
-                            <button type="submit" name="" class="btn btn-primary w-100 mt-2">Continuar</button>
+                            <button type="button" name="recuperar" id="recuperar" class="btn btn-primary w-100 mt-2">Continuar</button>
                         </form>
                         <div class="position-relative mb-2 mt-4">
                             <hr class="position-absolute top-0 start-0" width="43%"> 

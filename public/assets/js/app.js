@@ -1,11 +1,23 @@
 $(document).ready(function(){
 
     // Cuenta / perfil 
-    $('.editar_perfil').click(function(e){
+    const myNodePencil = document.getElementsByClassName('pencil');
+    const div = document.getElementsByClassName("tools");    
+    if(myNodePencil){        
+        for (i = 0; i < myNodePencil.length; i++) {            
+            for (i = 0; i < div.length; i++) {
+                div[i].id = ("show_"+i); //add id
+                div[i].classList.add('hidden'); //add class hidden                
+                myNodePencil[i].setAttribute("data-number", +i); //add data-number
+            }
+        }
+    }       
+    $('.pencil').click(function(e){
         var id = this.dataset['number'];
-        $(".show_"+id).slideToggle(250);
-        $(".show_"+id).removeClass("hidden");
+        $("#show_"+id).slideToggle(250);
+        $("#show_"+id).removeClass("hidden");
     });
+
     // Not finish yet 
     $('.avatar').hover(function(){ 
         // $('#avatar-pencil').addClass('avatar-pencil');
@@ -16,6 +28,15 @@ $(document).ready(function(){
     });
     // Cuenta / perfil 
 
+    // Notificaciones
+    $('#noti-i').click(function(e){
+        $(".notificaciones_region").slideToggle(250);
+    });
+    $('.region_footer_link').click(function(e){
+        $(".notificaciones_region").slideUp(250);
+    });
+    // Notificaciones
+
     // Filtro 
     $('.filtrar').click(function(e){
         var id = this.dataset['number'];
@@ -25,218 +46,5 @@ $(document).ready(function(){
     // Filtro 
 
 // ********************************************************************************************************************
-
-    //Usuarios
-    // Buscar miembro
-    const buscarUsuario = () =>{       
-        $("#buscarMiembro").keyup(function () {
-            const valorBusqueda = this.value;
-            var v = $(this).val().length;
-            if (v > 0) {
-                obtener_registros(valorBusqueda);
-            } else {
-                $(".tabla_resultado").fadeOut(100);
-            }
-        });              
-        const obtener_registros = (miembros) => {
-            const buscarMiembro = document.getElementById('buscarMiembro').value;
-            $.ajax({
-                url: '/usuarios/buscar-usuario',
-                data:{
-                    'buscarMiembro':buscarMiembro
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: function(data){
-                    const lista = document.querySelector('#tabla_resultado_usuarios');
-                    const campoMiembro = document.getElementById('nombreMiembro'); 
-                    const buscarMiembro = document.getElementById('buscarMiembro');
-
-                    //Filtramos los resultados según el valor que ha insertado el usuario
-                    const datos = data.filter (results => {
-                       return [results]
-                    });                    
-                    
-                    // Recorremos con el map los resultados filtrados para crear cada elemento
-                    lista.innerHTML = datos
-                    .map((result, index) => {
-                        const isSelected = index === 1;
-                        return `
-                        <li 
-                        class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
-                        data-id='${result.id }'
-                        >${result.nombre} ${result.apellido}</li>
-                        `                        
-                    })
-                    .join("");
-
-                    // Rellenar campo al hacer click en el elemento creado 
-                    $('.tabla_resultado').click(function (e) {                        
-                        const id = $(this).attr("data-id");
-                        const texto = $(this).text();
-                        campoMiembro.setAttribute('data-id', id);
-                        campoMiembro.value = texto;
-                        campoMiembro.focus();
-                        buscarMiembro.value = '';
-                        $('.tabla_resultado').fadeOut(100);
-                    });
-                },
-                error: function(){} 
-            })
-        }        
-    }
-    buscarUsuario();
-    //Usuarios
-
-// ********************************************************************************************************************
-
-    //Grupo Familiar
-    // Buscar miembro que no tenga grupo familiar 
-    const buscarMiembroGrupoFamiliar = () =>{       
-        $("#miembro").keyup(function () {
-            const valorBusqueda = this.value;
-            var v = $(this).val().length;
-            if (v > 0) {
-                obtener_registros(valorBusqueda);
-            } else {
-                $(".tabla_resultado").fadeOut(100);
-            }
-        });              
-        const obtener_registros = (miembros) => {
-            const nombreMiembro = document.getElementById('miembro').value;
-            $.ajax({
-                url: '/grupo-familiares/buscar-miembro',
-                data:{
-                    'nombreMiembro':nombreMiembro
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: function(data){
-                    const lista = document.querySelector('#tabla_resultado');
-                    const campoMiembro = document.getElementById('miembro'); 
-
-                    //Filtramos los resultados según el valor que ha insertado el usuario
-                    const datos = data.filter (results => {
-                       return [results]
-                    });                    
-                    
-                    // Recorremos con el map los resultados filtrados para crear cada elemento
-                    lista.innerHTML = datos
-                    .map((result, index) => {
-                        const isSelected = index === 1;
-                        return `
-                        <li 
-                        class='list-group-item bi bi-chevron-right pointer tabla_resultado' 
-                        data-id='${result.id }'
-                        >${result.cedula} - ${result.nombre} ${result.apellido}</li>
-                        `                        
-                    })
-                    .join("");
-
-                    // Rellenar campo al hacer click en el elemento creado 
-                    $('.tabla_resultado').click(function (e) {                        
-                        const id = $(this).attr("data-id");
-                        const texto = $(this).text();
-                        campoMiembro.setAttribute('data-id', id);
-                        campoMiembro.value = texto;
-                        campoMiembro.focus();
-                        document.getElementById('add-miembro').classList.remove("disabled"); 
-                        $('.tabla_resultado').fadeOut(100);
-                    });
-                },
-                error: function(){} 
-            })
-        }        
-    }
-    buscarMiembroGrupoFamiliar();
-
-    // Agregar item de miembro a grupo familiar   
-    const nuevoMiembro = (addID, NewMiembro) =>{
-        const add = document.getElementById(addID), 
-        newMiembro = $(NewMiembro);
-        newMiembro.empty;
-        if(add, newMiembro){
-            var i=0;
-            $('.add').on('click', function (e){
-                this.classList.add("disabled");
-                const miembro = document.getElementById('miembro').value;
-                const miembroID = document.getElementById('miembro').getAttribute('data-id');
-                i++;
-                var div = $("<div class='miembro-group"+i+" input-group'></div>");
-                var input = $("<input type='text' required name='miembroId' class='form-control form-input mb-4 miembroId' id='integrante"+i+"' value='"+miembro+"' placeholder=' ' data-id='"+miembroID+"'> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
-                div.append(input);
-                newMiembro.append(div);
-                $('#miembro').val(''); 
-            })
-            //Agregar de la lista
-            $('.addLista').on('click', function (e){
-                const miembro = $(this).parents("tr").find("#miembroLista").text();
-                const miembroID = $(this).parents("tr").attr("data-id");
-                i++;
-                var div = $("<div class='miembro-group"+i+" input-group'></div>");
-                var input = $("<input type='text' required name='miembroId' class='form-control form-input mb-4 miembroId' id='integrante"+i+"' value='"+miembro+"' placeholder=' ' data-id='"+miembroID+"'> <label for='integrante"+i+"' class='form-label fw-bold' id='form-label'>Integrante:</label><span class='input-group-append'><span class='input-group-text bg-transparent border-0'><a id='"+i+"' class='btn btn-danger btn-remove'><i class='bi bi-trash'></i></a></span></span>");
-                div.append(input);
-                newMiembro.append(div);
-                $('#miembro').val('');
-            })
-            $(document).on('click', ".btn-remove", function(e){
-                var button_id = $(this).attr("id"); 
-                $(".miembro-group"+button_id).remove();
-            });
-        }
-    }    
-    nuevoMiembro('add-miembro','.new-miembro');       
-
-    // Registrar GrupoFamiliar
-    const registrarGrupoFamiliar = () =>{  
-        const agregarGrupoFamiliar = document.getElementById('agregarGrupoFamiliar');
-        if(agregarGrupoFamiliar !== null){
-            agregarGrupoFamiliar.addEventListener('click', (ev) => {
-                // Registramos el nombre del grupo
-                const nombreGrupoFamiliar = document.getElementById('nombreGrupoFamiliar').value;
-                $.ajax({
-                    url: '/grupo-familiares/registrar-grupoFamiliar',
-                    data:{
-                        'nombreGrupoFamiliar':nombreGrupoFamiliar
-                    },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data){
-                        if(data.msj1) exito()
-                    },
-                    error: function(){}
-                })
-                // Registramos cada miembro al nuevo grupo
-                const exito = () => {
-                    const miembroId = document.getElementsByClassName('miembroId');
-                    const newMiembro = document.getElementById('new-miembro');
-                    for (i = 0; i < miembroId.length; i++) {
-                        $.ajax({
-                            url: '/grupo-familiares/registrar-grupoFamiliar',
-                            data:{
-                                'miembroId': miembroId[i].getAttribute('data-id')
-                            },
-                            type: 'POST',
-                            dataType: 'json',
-                            success: function(data){
-                                $("#tabla_exito").html("Registrado exitosamente").fadeIn(100);
-                                setTimeout(function() {
-                                    $("#tabla_exito").html("Registrado exitosamente").slideUp('slow');
-                                    newMiembro.remove('slow');
-                                    $("#nombreGrupoFamiliar").val('');
-                                    $("#nombreGrupoFamiliar").focus();
-                                },1000);
-                            },
-                            error: function(){}
-                        })
-                    }
-                }
-            }, false);
-        }
-    }      
-    registrarGrupoFamiliar();
-    //Grupo Familiar
-
-// ********************************************************************************************************************
-
+  
 });

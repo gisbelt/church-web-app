@@ -4,78 +4,105 @@
 $this->title = 'Mi Cuenta';
 ?>
 <!-- Menú -->
-<div class="offset-md-3 col-md-6">
-    
-        <div class="card">
+<div class="container-fluid">
+<div class="row center">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6">    
+        <div class="card mb-4">
             <div class="card-header">
                 <p class="p-0 text-center fw-bold">Administra tu cuenta</p>
             </div>
-
             <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" id="form-cuenta" action="">
-                <!-- Mensaje de éxito  -->
-                <div class="alert alert-primary hidden" role="alert">
+
+                <div class="avatar mb-3" id="avatar">
+                    <a id="avatar-link"><i class="bi bi-pencil" id="avatar-pencil"></i></a>
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt="">                        
                 </div>
 
-                <div class="form-group">
-                    <div class="avatar mb-3" id="avatar">
-                        <a class="editar_perfil" data-number="1" id="avatar-link"><i class="bi bi-pencil" id="avatar-pencil"></i></a>
-                        <img src="https://i.imgur.com/hczKIze.jpg" alt="">                        
-                    </div>
-                    <h4 class="mb-2">
-                        Nombre de usuario
-                        <a class="pointer editar_perfil" data-number="1"><i class="bi bi-pencil"></i></a>
-                    </h4>
-                    <div class="show_1 hidden">
-                        <input type="text" class="form-control mb-2" value="<?php echo $_SESSION['username'] ?>" id="username" name="username" placeholder="Nombre de usuario:">
-                        <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
-                    </div>
-                </div>
-
-                <hr>
-                
-                <div class="form-group">
-                    <h4 class="mb-2">Detalles</h4>
-                    <label for="telefono" class="fw-bold mb-1">Teléfono: </label>
-                    <p class="m-0">
-                        04245529755
-                        <a class="pointer editar_perfil" data-number="2"><i class="bi bi-pencil"></i></a>
-                    </p>
-                    <div class="row mt-2">
-                        <div class="col-md-3 show_2 hidden">
-                            <input type="text" required class="form-control mb-2" value="04245529755" id="telefono" name="telefono" placeholder="Teléfono">
-                        </div>
-                        <div class="col-md-3 show_2 hidden">
-                            <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group mb-4">
                     <label for="correo" class="fw-bold mb-1">Correo: </label>
-                    <input type="text" disabled class="form-control mb-2" value="" id="email" name="email" placeholder="Correo">
+                    <input type="text" disabled class="form-control mb-2 w-auto" value="<?php echo $_SESSION['user_email'];?>" id="email" name="email" placeholder="Correo">
+                </div>               
+
+                <hr>                
+                <h3 class="mb-2 text-first-color">Detalles</h3>
+
+                <div class="form-group">
+                    <form method="POST" enctype="multipart/form-data" id="form-nombre" action="/cuenta/actualizar-nombre">
+                    <p  class="fw-bold mb-1">Nombre: </p>
+                    <p>
+                        <span id="nombre"></span>
+                        <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
+                    </p>
+                    <div class="tools">                        
+                        <div class="input-group mb-3 w-auto">
+                            <input type="text" class="form-control mb-2" value="" id="nombre-input" name="nombre" placeholder="Nombre:">
+                            <input type="text" class="form-control mb-2" value="" id="apellido-input" name="apellido" placeholder="Apellido:">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-nombre">Cambiar</a>
+                            </span>
+                        </div>
+                    </div>
+                    </form>
                 </div>
 
                 <div class="form-group">
-                    <label for="direccion" class="fw-bold mb-1">Dirección:</label>
+                    <form method="POST" enctype="multipart/form-data" id="form-username" action="/cuenta/actualizar-username">
+                    <p  class="fw-bold mb-1">Nombre de usuario: </p>
                     <p>
-                        Av. Venezuela con calle 34
-                        <a class="pointer editar_perfil" data-number="3"><i class="bi bi-pencil"></i></a>
+                        <span id="username"></span>
+                        <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
-                    <div class="row mt-2">
-                        <div class="col-md-8 show_3 hidden">
-                            <textarea class="form-control mb-2" name="direccion" id="direccion" rows="1">Av. Venezuela con calle 34</textarea>
-                        </div>
-                        <div class="col-md-2 show_3 hidden">
-                            <a class="btn btn-success mb-2" value="Cambiar" placeholder="Cambiar">Cambiar</a>
-                        </div>
+                    <div class="tools">
+                        <div class="input-group mb-3 w-auto">
+                            <input type="text" class="form-control mb-2 w-50" value="" id="username-input" name="username" placeholder="Nombre de usuario:">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-username">Cambiar</a>
+                            </span>
+                        </div>                        
                     </div>
+                    </form>
                 </div>
-                </form>
+
+                <div class="form-group">  
+                    <form method="POST" enctype="multipart/form-data" id="form-telefono" action="/cuenta/actualizar-telefono">                      
+                    <p class="fw-bold mb-1">Teléfono: </p>
+                    <p>
+                        <span id="telefono"></span>
+                        <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
+                    </p>
+                    <div class="tools">
+                        <div class="input-group mb-3 w-auto">
+                            <input type="text" required class="form-control mb-2 w-auto" value="" id="telefono-input" name="telefono" placeholder="Teléfono">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-telefono">Cambiar</a>
+                            </span>
+                        </div>    
+                    </div>
+                    </form>
+                </div>              
+
+                <div class="form-group">
+                    <form method="POST" enctype="multipart/form-data" id="form-direccion" action="/cuenta/actualizar-direccion"> 
+                    <p class="fw-bold mb-1">Dirección:</p>
+                    <p>
+                        <span id="direccion"></span>
+                        <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
+                    </p>
+                    <div class="tools">
+                        <div class="input-group mb-3">
+                            <textarea class="form-control mb-2 " name="direccion" id="direccion-input" rows="1"></textarea>
+                            <span class="input-group-btn">
+                                <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-direccion">Cambiar</a>
+                            </span>
+                        </div> 
+                    </div>
+                    </form>
+                </div>
+
             </div><!--card-body-->
 
             <div class="card-footer bg-light">
-                <form method="POST" enctype="multipart/form-data" action="">
+                <form method="POST" enctype="multipart/form-data" action="/cuenta/actualizar-contrasena" id="form-contrasena">
                 <p class="p-0 text-center fw-bold">Seguridad</p>
                 <label for="password" class="fw-bold mb-1">Contraseña: </label>
                 <p>
@@ -84,39 +111,31 @@ $this->title = 'Mi Cuenta';
                     $contraseniaReplace = str_repeat('*', strlen($contrasenia) + 5);
                     echo $contraseniaReplace . "\n\n\n";
                     ?>
-                    <a class="pointer editar_perfil" data-number="4"><i class="bi bi-pencil"></i></a>
+                    <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                 </p>
+                <div class="tools">
+                    <div class="form-group">
+                        <input type="password" required name="passwordCurrent" class="form-control form-input mb-4" id="password-current" placeholder=" ">
+                        <label for="password-current" class="form-label fw-bold">Contraseña Actual:*</label>
+                    </div>
 
-                <div class="form-group show_4 hidden">
-                    <input type="password" required name="" class="form-control form-input mb-4" id="password" placeholder=" ">
-                    <label for="password" class="form-label fw-bold">Contraseña Actual:*</label>
-                </div>
+                    <div class="form-group">
+                        <input type="password" required name="password" class="form-control form-input mb-4" id="password" placeholder=" ">
+                        <label for="password" class="form-label fw-bold">Contraseña Nueva:*</label>
+                    </div>
 
-                <div class="form-group show_4 hidden">
-                    <input type="password" required name="" class="form-control form-input mb-4" id="password-new" placeholder=" ">
-                    <label for="password-new" class="form-label fw-bold">Contraseña Nueva:*</label>
-                </div>
-
-                <div class="form-group show_4 hidden">
-                    <input type="password" required name="" class="form-control form-input mb-4" id="password-confirm" placeholder=" ">
-                    <label for="password-confirm" class="form-label fw-bold">Confirmar contraseña:*</label>
+                    <div class="form-group">
+                        <input type="password" required name="passwordConfirm" class="form-control form-input mb-4" id="password-confirm" placeholder=" ">
+                        <label for="password-confirm" class="form-label fw-bold">Confirmar contraseña:*</label>
+                    </div>
                 </div>
                 <br>
                 <div class="btn-group derecha mb-3" role="group" aria-label="">
-                    <button type="submit" name="guardar_cambios" value="Guardar cambios" class="btn btn-success">Guardar cambios</button>
+                    <button type="submit" name="guardar_cambios" value="Guardar cambios" class="btn btn-success" id="cambiar-contrasena">Guardar cambios</button>
                 </div>   
                 </form>             
             </div><!--card-footer-->
         </div><!--card-->    
-</div><!--col-->
-
-<script>
-    // function limpiar() {
-    //     $("#form-cuenta")[0].reset();
-    //     $("#username").focus();
-    // }
-
-    // $(document).ready(function () {
-    //     $("#username").focus();
-    // });
-</script>
+    </div><!--col-->
+</div><!--row-->
+</div><!--container-->
