@@ -89,13 +89,8 @@ class actividadController extends Controller
             $hora = $actividades['hora'];
             $tipo = $actividades['tipo'];
             $fecha = date("d-m-Y", strtotime($fecha));
-<<<<<<< HEAD
-            $hora = date("h:i:s A", strtotime($hora));
-            switch ($actividades['estado_id']) {
-=======
             $hora = date("h:i a", strtotime($hora));
             switch ($actividades['estado_id']){
->>>>>>> aee16927dac605c5eeba742e4a5dd1be0c5ad730
                 case status::$en_curso:
                     $status = 'En Curso';
                     break;
@@ -291,15 +286,10 @@ class actividadController extends Controller
                 $fecha = Carbon::now();
                 $actividades = actividades::modificarActividades($nombre, $description, $status, $tipo, $fecha, $id);
 //                $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
-<<<<<<< HEAD
-                actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
-                actividades::observacionActividadModificar($id, $observacion, $fecha);
-//                actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
-=======
+
                 actividades::miembroActividadModificacion($miembro,$id,$status,$fecha);
                 actividades::observacionActividadModificar($id,$observacion,$fecha);
                 actividades::miembroActividadModificacion($miembro,$id,$status,$fecha);
->>>>>>> aee16927dac605c5eeba742e4a5dd1be0c5ad730
                 if ($actividades) {
                     bitacoraModel::guardar('Actualizo la actividad: ' . $nombre, 'Actualizo actividades');
                     $data = [
