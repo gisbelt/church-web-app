@@ -68,9 +68,6 @@ class homeModel extends Model {
             ORDER BY bitacora.fecha_creado DESC LIMIT 6");
             $sql->execute();
             $bitacora = $sql->fetchAll(PDO::FETCH_ASSOC);
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$bitacora]);
             return $bitacora;
     }
     
