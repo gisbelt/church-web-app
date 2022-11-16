@@ -28,6 +28,15 @@ $(document).ready(function(){
     });
     // Cuenta / perfil 
 
+    // Notificaciones
+    $('#noti-i').click(function(e){
+        $(".notificaciones_region").slideToggle(250);
+    });
+    $('.region_footer_link').click(function(e){
+        $(".notificaciones_region").slideUp(250);
+    });
+    // Notificaciones
+
     // Filtro 
     $('.filtrar').click(function(e){
         var id = this.dataset['number'];
@@ -38,5 +47,4 @@ $(document).ready(function(){
 
 // ********************************************************************************************************************
   
-
 });

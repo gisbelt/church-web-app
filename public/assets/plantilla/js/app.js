@@ -30,9 +30,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // display and hide nav_dropdown_icon
         if(nav.classList.toggle('true')){
           $(".nav_dropdown_icon").css("display","block"); 
+          $(".header_tools").addClass("header_tools_hidden"); 
         }else{
           $(".nav_dropdown_icon").css("display","none");
-          $(".nav_dropdown_icon").removeClass('rotate-icon');            
+          $(".nav_dropdown_icon").removeClass('rotate-icon');     
+          $(".header_tools").removeClass("header_tools_hidden");        
         }
         
       })
@@ -115,6 +117,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 
 //************************************************************
-
 
 });

@@ -17,7 +17,7 @@ class cuentaModel extends Model //BD
     public $id;
     public $username;
     public $email;
-    public $password;
+    public $clave;
     public $role_id;
     public $nombre;
     public $apellido;
@@ -135,6 +135,24 @@ class cuentaModel extends Model //BD
           $result = $row["direccion"];
           return $result;
       }
+
+        // Actualizar clave
+        public static function actualizarClave($email, $clave)
+        {
+            $conexionBD = BD::crearInstancia();
+            $sql = $conexionBD->prepare("UPDATE usuarios SET password = ? WHERE email = ?");
+            $usuario = $sql->execute(array($clave, $email));
+            return $usuario;
+        }
+        public static function obtener_clave_actual($email)
+        {
+            $conexionBD=BD::crearInstancia();
+            $sql= $conexionBD->prepare("SELECT password FROM usuarios WHERE email=?");
+            $sql->execute(array($email));
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+            $result = $row["password"];
+            return $result;
+        }
     
 
 
@@ -144,7 +162,7 @@ class cuentaModel extends Model //BD
     public function rules(): array
     {
         return [
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
+            // 'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 6], [self::RULE_MAX, 'max' => 16]],
         ];
     }
 }

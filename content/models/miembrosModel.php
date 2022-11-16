@@ -24,6 +24,15 @@ class miembrosModel extends Model
     public $fecha_creado;
     public $fecha_actualizado;
 
+    // Actualizar miembro
+    public static function actualizarMiembro($fechaPasoFe, $fechaBautismo, $membresia, $status, $cargo, $fecha, $miembroID)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE miembros SET fecha_paso_de_fe = ?, fecha_bautismo = ?, membresia_id = ?, status = ?, cargo_id = ?, fecha_actualizado = ? WHERE id = ?");
+        $miembro = $sql->execute(array($fechaPasoFe, $fechaBautismo, $membresia, $status, $cargo, $fecha, $miembroID));
+        return $miembro;
+    }
+
     // Obtener miembros
     public static function obtener_miembros()
     {
@@ -33,6 +42,17 @@ class miembrosModel extends Model
                                                                  WHERE miembros.status = ?");
         $sql->execute(array(self::ACTIVE));
         $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $miembros;
+    }
+
+    public static function buscarMiembro($miembro)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.*, perfiles.*, perfiles.id as perfil FROM miembros
+                                            INNER JOIN perfiles on perfiles.miembro_id = miembros.id
+                                                                 WHERE miembros.id = ?");
+        $sql->execute(array($miembro));
+        $miembros = $sql->fetch(PDO::FETCH_ASSOC);
         return $miembros;
     }
 
@@ -74,17 +94,17 @@ class miembrosModel extends Model
         return $conexionBD->lastInsertId();
     }
 
-public static function miemrbosSelect()
-{
+    public static function miemrbosSelect()
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT miembros.id, perfiles.nombre, membresias.nombre as status FROM miembros INNER JOIN membresias
+            ON miembros.membresia_id = membresias.id INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
+            where membresias.nombre = 'activo'");
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    $conexionBD = BD::crearInstancia();
-    $sql = $conexionBD->prepare("SELECT miembros.id, perfiles.nombre, membresias.nombre as status FROM miembros INNER JOIN membresias
-	ON miembros.membresia_id = membresias.id INNER JOIN perfiles ON miembros.id = perfiles.miembro_id
-	where membresias.nombre = 'activo'");
-    $sql->execute();
-    return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-}
     public static function obtener_miembros_filtro($nombre, $sexo, $tipo_fecha, $fecha)
     {
         $connexionBD = BD::crearInstancia();
@@ -95,9 +115,9 @@ public static function miemrbosSelect()
             $conditions[] = "perfiles.nombre LIKE '%$nombre%'";
         }
         if ($sexo != '') {
-            if ($sexo == 'true'){
+            if ($sexo == 'true') {
                 $conditions[] = "perfiles.sexo=1";
-            } else if($sexo == 'false'){
+            } else if ($sexo == 'false') {
                 $conditions[] = "perfiles.sexo=0";
             }
         }
@@ -119,7 +139,8 @@ public static function miemrbosSelect()
         return $miembros;
     }
 
-    public static  function eliminar($id) {
+    public static function eliminar($id)
+    {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE miembros SET status = ? WHERE id = ?");
         $miembros = $sql->execute(array(self::INACTIVE, $id));
@@ -134,9 +155,6 @@ public static function miemrbosSelect()
 	                INNER JOIN perfiles ON miembros.id = perfiles.miembro_id WHERE DATE(perfiles.fecha_nacimiento)=?
 	            GROUP BY perfiles.sexo, DATE(perfiles.fecha_nacimiento)");
         $sql->execute(array($fecha));
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-        $logger->debug(__METHOD__, [$sql]);
         $miembros = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $miembros;
     }

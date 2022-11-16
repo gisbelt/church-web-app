@@ -30,11 +30,35 @@ class perfilesModel extends Model
     public $fecha_creado;
     public $fecha_actualizado;
 
+    // Actualizar miembro
+    public static function actualizarPerfile($miembroID, $cedula, $nombre, $apellido, $fechaNacimiento,
+                                             $telefono, $direccion, $disponibilidad, $gradoInstruccion,
+                                             $sexo, $vehiculo, $profesionId, $fecha)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("UPDATE perfiles SET cedula = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, telefono = ?, 
+                        direccion = ?, disponibilidad = ?, grado_instruccion = ?, sexo = ?, vehiculo = ?, profesion_id = ?, fecha_actualizado = ? WHERE id = ?");
+        $amigo = $sql->execute(array($cedula, $nombre, $apellido, $fechaNacimiento,
+            $telefono, $direccion, $disponibilidad, $gradoInstruccion,
+            $sexo, $vehiculo, $profesionId, $fecha, $miembroID));
+        return $amigo;
+    }
+
+    // obtener perfil por id
+    public static function perfilId($id)
+    {
+        $conexionBD = BD::crearInstancia();
+        $sql = $conexionBD->prepare("SELECT * FROM perfiles WHERE id = ?");
+        $sql->execute(array($id));
+        $perfil = $sql->fetch(PDO::FETCH_ASSOC);
+        return $perfil;
+    }
+
     //Obtener miembro por cedula
     public static function obtener_miembro_cedula($cedula)
     {
         $conexionBD = BD::crearInstancia();
-        $sql = $conexionBD->prepare("SELECT * FROM miembros INNER JOIN perfiles ON miembros.id = perfiles.miembro_id WHERE perfiles.cedula = ?");
+        $sql = $conexionBD->prepare("SELECT perfiles.*, miembros.* FROM miembros INNER JOIN perfiles ON miembros.id = perfiles.miembro_id WHERE perfiles.cedula = ?");
         $sql->execute(array($cedula));
         $perfil = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $perfil;

@@ -20,7 +20,7 @@ $this->title = 'Editar Asistencias';
 
                     <div class="form-group mb-4">
                         <p class="">Actividad:* </p>
-                        <select class="form-select" name="actividad" id="actividad">
+                        <select class="form-select" name="actividad" id="actividad" disabled>
                             <option value="<?php echo $actividad_id ?>"><?php echo $nombre ?></option>
                             <?php foreach ($actividades as $actividad) {
                                 echo '<option value="' . $actividad[id] . '">' . $actividad[nombre] . '</option>';

@@ -162,7 +162,6 @@ abstract class Model
          ];
     }
 
-
     /**
      *  Has error
      * @param $attribute

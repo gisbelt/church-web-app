@@ -14,6 +14,7 @@ use content\controllers\seguridadController;
 use content\controllers\usuariosController;
 use content\controllers\perfilController;
 use content\controllers\errorController;
+use content\controllers\notificacionController;
 use content\enums\permisos;
 
 if (!function_exists("routas")) {
@@ -165,6 +166,104 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ]
+                ]
+            ],
+
+            'usuarios' => [
+                'controller' => usuariosController::class,
+                'icon' => 'bx bx-user',
+                'permisos' => permisos::$usuarios,
+                'parametros' => [],
+                'route' => null,
+                'text' => 'Usuarios',
+                'subRutas' => [
+                    'listaUsuarios' => [
+                        'permisos' => permisos::$usuarios,
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de usuarios',
+                        'route' => '/usuarios',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'crearUsuarios' => [
+                        'permisos' => permisos::$usuarios_crear,
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar usuarios',
+                        'route' => '/usuarios/create',
+                        'method' => 'create',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'guardarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/guardar',
+                        'method' => 'guardar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'buscarUsuario' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-search-alt-2',
+                        'text' => 'Buscar usuarios',
+                        'route' => '/usuarios/buscar-usuario',
+                        'method' => 'buscarUsuario',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'dataUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de usaurios',
+                        'route' => '/usuarios/data',
+                        'method' => 'obtenerUsuarios',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'borraUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'index',
+                        'route' => '/usuarios/eliminar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'eliminar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'editarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-pencil',
+                        'text' => 'Editar Permisos',
+                        'route' => '/usuarios/editar/{id}', //{id:\d+}/{username} {id}
+                        'method' => 'editar',
+                        'action' => 'get',
+                        'subRutas' => [],
+                    ],
+
+                    'actualizarUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-save',
+                        'text' => 'Actualizar usuarios',
+                        'route' => '/usuario/actualizar',
+                        'method' => 'actualizar',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
                 ]
             ],
 
@@ -781,104 +880,6 @@ if (!function_exists("routas")) {
                 ]
             ],
 
-            'usuarios' => [
-                'controller' => usuariosController::class,
-                'icon' => 'bx bx-user',
-                'permisos' => permisos::$usuarios,
-                'parametros' => [],
-                'route' => null,
-                'text' => 'Usuarios',
-                'subRutas' => [
-                    'listaUsuarios' => [
-                        'permisos' => permisos::$usuarios,
-                        'parametros' => [],
-                        'icon' => 'bx bx-list-ul',
-                        'text' => 'Lista de usuarios',
-                        'route' => '/usuarios',
-                        'method' => 'index',
-                        'action' => 'get',
-                        'subRutas' => []
-                    ],
-
-                    'crearUsuarios' => [
-                        'permisos' => permisos::$usuarios_crear,
-                        'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => 'Registrar usuarios',
-                        'route' => '/usuarios/create',
-                        'method' => 'create',
-                        'action' => 'get',
-                        'subRutas' => []
-                    ],
-
-                    'guardarUsuarios' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => 'index',
-                        'route' => '/usuarios/guardar',
-                        'method' => 'guardar',
-                        'action' => 'post',
-                        'subRutas' => []
-                    ],
-
-                    'buscarUsuario' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-search-alt-2',
-                        'text' => 'Buscar usuarios',
-                        'route' => '/usuarios/buscar-usuario',
-                        'method' => 'buscarUsuario',
-                        'action' => 'post',
-                        'subRutas' => []
-                    ],
-
-                    'dataUsuarios' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-list-ul',
-                        'text' => 'Lista de usaurios',
-                        'route' => '/usuarios/data',
-                        'method' => 'obtenerUsuarios',
-                        'action' => 'get',
-                        'subRutas' => []
-                    ],
-
-                    'borraUsuarios' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => 'index',
-                        'route' => '/usuarios/eliminar/{id}', //{id:\d+}/{username} {id}
-                        'method' => 'eliminar',
-                        'action' => 'get',
-                        'subRutas' => []
-                    ],
-
-                    'editarUsuarios' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-pencil',
-                        'text' => 'Editar Permisos',
-                        'route' => '/usuarios/editar/{id}', //{id:\d+}/{username} {id}
-                        'method' => 'editar',
-                        'action' => 'get',
-                        'subRutas' => [],
-                    ],
-
-                    'actualizarUsuarios' => [
-                        'permisos' => [],
-                        'parametros' => [],
-                        'icon' => 'bx bx-save',
-                        'text' => 'Actualizar usuarios',
-                        'route' => '/usuario/actualizar',
-                        'method' => 'actualizar',
-                        'action' => 'post',
-                        'subRutas' => []
-                    ],
-                ]
-            ],
-
             'reportes' => [
                 'permisos' => permisos::$reportes,
                 'parametros' => [],
@@ -1158,6 +1159,61 @@ if (!function_exists("routas")) {
                 'subRutas' => []
             ],
 
+            'Notificaciones' => [
+                'controller' => notificacionController::class,
+                'permisos' => permisos::$notificacion,
+                'parametros' => [],
+                'icon' => 'bi bi-bell',
+                'text' => 'Notificaciones',
+                'route' => null,
+                'subRutas' => [
+
+                    'notificcacionIndex' => [
+                        'permisos' => permisos::$notificacion,
+                        'parametros' => [],
+                        'icon' => 'bi bi-bell',
+                        'text' => 'Notificaciones',
+                        'route' => '/notificaciones',
+                        'method' => 'index',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'notificcacionCrear' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'crear notificacion',
+                        'route' => '/notificaciones/crear',
+                        'method' => 'crear',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'notificacionNavBar' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'navbar notificacion',
+                        'route' => '/notificaciones/navbar',
+                        'method' => 'navbar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'notificacionVista' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-log-in-circle',
+                        'text' => 'vista notificacion',
+                        'route' => '/notificaciones/vista/{id}',
+                        'method' => 'leida',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+                ]
+            ],
+
             'perfil' => [
                 'permisos' => permisos::$perfiles,
                 'parametros' => [],
@@ -1228,6 +1284,17 @@ if (!function_exists("routas")) {
                         'icon' => '',
                         'route' => '/cuenta/actualizar-direccion',
                         'method' => 'actualizar_direccion',
+                        'action' => 'post',
+                        'subRutas' => []
+                    ],
+
+                    'actualizarContrasena' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'text' => 'Cuenta',
+                        'icon' => '',
+                        'route' => '/cuenta/actualizar-contrasena',
+                        'method' => 'actualizar_contrasena',
                         'action' => 'post',
                         'subRutas' => []
                     ],

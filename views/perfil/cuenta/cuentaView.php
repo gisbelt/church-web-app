@@ -20,7 +20,7 @@ $this->title = 'Mi Cuenta';
 
                 <div class="form-group mb-4">
                     <label for="correo" class="fw-bold mb-1">Correo: </label>
-                    <input type="text" disabled class="form-control mb-2 w-50" value="<?php echo $_SESSION['user_email'];?>" id="email" name="email" placeholder="Correo">
+                    <input type="text" disabled class="form-control mb-2 w-auto" value="<?php echo $_SESSION['user_email'];?>" id="email" name="email" placeholder="Correo">
                 </div>               
 
                 <hr>                
@@ -34,7 +34,7 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">                        
-                        <div class="input-group mb-3 w-50">
+                        <div class="input-group mb-3 w-auto">
                             <input type="text" class="form-control mb-2" value="" id="nombre-input" name="nombre" placeholder="Nombre:">
                             <input type="text" class="form-control mb-2" value="" id="apellido-input" name="apellido" placeholder="Apellido:">
                             <span class="input-group-btn">
@@ -53,7 +53,7 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <div class="input-group mb-3 w-50">
+                        <div class="input-group mb-3 w-auto">
                             <input type="text" class="form-control mb-2 w-50" value="" id="username-input" name="username" placeholder="Nombre de usuario:">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-username">Cambiar</a>
@@ -71,7 +71,7 @@ $this->title = 'Mi Cuenta';
                         <a class="pointer pencil"><i class="bi bi-pencil"></i></a>
                     </p>
                     <div class="tools">
-                        <div class="input-group mb-3 w-50">
+                        <div class="input-group mb-3 w-auto">
                             <input type="text" required class="form-control mb-2 w-auto" value="" id="telefono-input" name="telefono" placeholder="Teléfono">
                             <span class="input-group-btn">
                                 <a class="btn btn-success mb-2" value="Cambiar" id="cambiar-telefono">Cambiar</a>
@@ -102,7 +102,7 @@ $this->title = 'Mi Cuenta';
             </div><!--card-body-->
 
             <div class="card-footer bg-light">
-                <form method="POST" enctype="multipart/form-data" action="/cuenta/actualizar-contrasena">
+                <form method="POST" enctype="multipart/form-data" action="/cuenta/actualizar-contrasena" id="form-contrasena">
                 <p class="p-0 text-center fw-bold">Seguridad</p>
                 <label for="password" class="fw-bold mb-1">Contraseña: </label>
                 <p>
@@ -115,23 +115,23 @@ $this->title = 'Mi Cuenta';
                 </p>
                 <div class="tools">
                     <div class="form-group">
-                        <input type="password" required name="" class="form-control form-input mb-4" id="password" placeholder=" ">
-                        <label for="password" class="form-label fw-bold">Contraseña Actual:*</label>
+                        <input type="password" required name="passwordCurrent" class="form-control form-input mb-4" id="password-current" placeholder=" ">
+                        <label for="password-current" class="form-label fw-bold">Contraseña Actual:*</label>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" required name="" class="form-control form-input mb-4" id="password-new" placeholder=" ">
-                        <label for="password-new" class="form-label fw-bold">Contraseña Nueva:*</label>
+                        <input type="password" required name="password" class="form-control form-input mb-4" id="password" placeholder=" ">
+                        <label for="password" class="form-label fw-bold">Contraseña Nueva:*</label>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" required name="" class="form-control form-input mb-4" id="password-confirm" placeholder=" ">
+                        <input type="password" required name="passwordConfirm" class="form-control form-input mb-4" id="password-confirm" placeholder=" ">
                         <label for="password-confirm" class="form-label fw-bold">Confirmar contraseña:*</label>
                     </div>
                 </div>
                 <br>
                 <div class="btn-group derecha mb-3" role="group" aria-label="">
-                    <button type="submit" name="guardar_cambios" value="Guardar cambios" class="btn btn-success">Guardar cambios</button>
+                    <button type="submit" name="guardar_cambios" value="Guardar cambios" class="btn btn-success" id="cambiar-contrasena">Guardar cambios</button>
                 </div>   
                 </form>             
             </div><!--card-footer-->

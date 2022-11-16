@@ -30,8 +30,122 @@ class miembrosController extends Controller
         $this->registerMiddleware(new AutenticacionMiddleware(['create']));
         $this->registerMiddleware(new AutenticacionMiddleware(['guardar']));
         $this->registerMiddleware(new AutenticacionMiddleware(['desactivarMiembro']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['actualizar']));
+        $this->registerMiddleware(new AutenticacionMiddleware(['editar']));
     }
 
+    //Actualizar dato de miembro
+    public function actualizar(Request $request)
+    {
+        if (!in_array(permisos::$actualizar_miembros, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        $logger = new Logger("web");
+        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+        try {
+            $miembros = new miembrosModel();
+            $perfiles = new perfilesModel();
+            usuarios::validarLogin();
+            if (!empty($request->getBody()['membresia']) && !empty($request->getBody()['cargo'])) {
+                $perfiles->loadData($request->getBody());
+                if ($perfiles->validate()) {
+                    $perfilData = perfilesModel::perfilId($request->getBody()['perfil']);
+                    if ($perfilData['id'] == $request->getBody()['perfil']) {
+                        if ($request->getBody()['fecha_paso_fe'] != "") {
+                            $fechaPasoFe = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_paso_fe'])->format('Y-m-d H:i:s');
+                        } else {
+                            $fechaPasoFe = NULL;
+                        }
+                        if ($request->getBody()['fecha_bautismo'] != "") {
+                            $fechaBautismo = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_bautismo'])->format('Y-m-d H:i:s');
+                        } else {
+                            $fechaBautismo = NULL;
+                        }
+                        $membresia = $request->getBody()['membresia'];
+                        $cargo = $request->getBody()['cargo'];
+                        $fecha = Carbon::now();
+                        $miembroID = $request->getBody()['miembro'];
+                        $status = $request->getBody()['status'];
+                        miembrosModel::actualizarMiembro($fechaPasoFe, $fechaBautismo, $membresia, $status, $cargo, $fecha, $miembroID);
+
+                        $cedula = $request->getBody()['cedula'];
+                        $nombre = $request->getBody()['nombre'];
+                        $apellido = $request->getBody()['apellido'];
+                        if ($request->getBody()['fecha_nacimiento'] != "") {
+                            $fechaNacimiento = Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha_nacimiento'])->format('Y-m-d H:i:s');
+                        } else {
+                            $fechaNacimiento = NULL;
+                        }
+
+                        $telefono = $request->getBody()['telefono'];
+                        $direccion = $request->getBody()['direccion'];
+                        $disponibilidad = $request->getBody()['disponibilidad'];
+                        $gradoInstruccion = $request->getBody()['grado_instruccion'];
+                        $sexo = $request->getBody()['sexo'];
+                        $vehiculo = $request->getBody()['vehiculo'];
+                        $profesionId = $request->getBody()['profesion'];
+                        $perfil = perfilesModel::actualizarPerfile($miembroID, $cedula, $nombre, $apellido, $fechaNacimiento,
+                            $telefono, $direccion, $disponibilidad, $gradoInstruccion,
+                            $sexo, $vehiculo, $profesionId, $fecha);
+
+                        if ($perfil) {
+                            bitacoraModel::guardar('Datos actualizado del miembro:' . $nombre . ' ' . $apellido, 'Actualizar miembro');
+                            $data = [
+                                'title' => 'Datos actualizado',
+                                'messages' => 'Datos del miembro se han actualizado',
+                                'code' => 200
+                            ];
+                        } else {
+                            $data = [
+                                'title' => 'Error',
+                                'messages' => 'No se ha podido actualizar los datos',
+                                'code' => 500
+                            ];
+                        }
+                        return json_encode($data);
+
+                    } else {
+                        $data = [
+                            'title' => 'Miembro',
+                            'messages' => 'La cedula no pertence a este miembro',
+                            'code' => 200
+                        ];
+                        return json_encode($data, 200);
+                    }
+                }
+                $miembros->errors = array_merge($miembros->errors, $perfiles->errors);
+            } else {
+                if (empty($request->getBody()['membresia']) && empty($request->getBody()['cargo'])) {
+                    $miembros->addError("cargo", "El campo cargo es requerido");
+                    $miembros->addError("membresia", "El campo membresia es requerido");
+                } else if (empty($request->getBody()['membresia'])) {
+                    $miembros->addError("membresia", "El campo membresia es requerido");
+                } else if (empty($request->getBody()['cargo'])) {
+                    $miembros->addError("cargo", "El campo cargo es requerido");
+                }
+            }
+            if (count($miembros->errors) > 0) {
+                $data = [
+                    'title' => 'Datos invalidos',
+                    'messages' => $miembros->errors,
+                    'code' => 422
+                ];
+                return json_encode($data, 422);
+            }
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
+    }
+
+    // Mostrar lista de miembros
     public function index()
     {
         if (!in_array(permisos::$lista_miembros, $_SESSION['user_permisos'])) {
@@ -123,7 +237,6 @@ class miembrosController extends Controller
                         $cargo = $request->getBody()['cargo'];
                         $fecha = Carbon::now();
                         $miembro = miembrosModel::crear($fechaPasoFe, $fechaBautismo, $membresia, $cargo, $fecha);
-                        $logger->debug(__METHOD__, [$miembro]);
                         if ($miembro) {
                             $miembroId = $miembro;
                             $cedula = $request->getBody()['cedula'];
@@ -147,10 +260,10 @@ class miembrosController extends Controller
                                 $sexo, $vehiculo, $profesionId, $fecha);
 
                             if ($perfil) {
-                                bitacoraModel::guardar('Creo el miembro:'. $miembroId, 'Creo miembros');
+                                bitacoraModel::guardar('Creo el miembro:' . $miembroId, 'Creo miembros');
                                 $data = [
                                     'title' => 'Datos registrado',
-                                    'messages' => 'El miemrbo se ha registrado',
+                                    'messages' => 'El miembro se ha registrado',
                                     'code' => 200
                                 ];
                             } else {
@@ -205,6 +318,59 @@ class miembrosController extends Controller
         }
     }
 
+    // Mostrar vista editar de miembros
+    public function editar(Request $request)
+    {
+        if (!in_array(permisos::$actualizar_miembros, $_SESSION['user_permisos'])) {
+            throw new ForbiddenException();
+        }
+        usuarios::validarLogin();
+        try {
+            $id = $request->getRouteParams();
+            $miembro = miembrosModel::buscarMiembro($id['id']);
+            $profesiones = profesionModel::obtener_profesiones();
+            $membresias = membresiasModel::obtener_membresias();
+            $cargos = cargosModel::obtener_cargos();
+            bitacoraModel::guardar('Ingreso editar miembro:' . $miembro['nombre'] . ' ' . $miembro['apellido'], 'Editar miembro');
+            $fechaBautismo = !is_null($miembro['fecha_bautismo']) ? Carbon::createFromFormat('Y-m-d H:i:s', $miembro['fecha_bautismo'])->format('d-m-Y') : '';
+            $fechaPasoDeFe = !is_null($miembro['fecha_paso_de_fe']) ? Carbon::createFromFormat('Y-m-d H:i:s', $miembro['fecha_paso_de_fe'])->format('d-m-Y') : '';
+            $fechaNacimiento = !is_null($miembro['fecha_nacimiento']) ? Carbon::createFromFormat('Y-m-d H:i:s', $miembro['fecha_nacimiento'])->format('d-m-Y') : '';
+            return $this->render('/miembros/miembros/editarView', [
+                'profesiones' => $profesiones,
+                'membresias' => $membresias,
+                'cargos' => $cargos,
+                'fecha_bautismo' => $fechaBautismo,
+                'fecha_paso_de_fe' => $fechaPasoDeFe,
+                'membresia_id' => $miembro['membresia_id'],
+                'status' => $miembro['status'],
+                'cargo_id' => $miembro['cargo_id'],
+                'cedula' => $miembro['cedula'],
+                'nombre' => $miembro['nombre'],
+                'apellido' => $miembro['apellido'],
+                'fecha_nacimiento' => $fechaNacimiento,
+                'telefono' => $miembro['telefono'],
+                'direccion' => $miembro['direccion'],
+                'disponibilidad' => $miembro['disponibilidad'],
+                'grado_instruccion' => $miembro['grado_instruccion'],
+                'sexo' => $miembro['sexo'],
+                'vehiculo' => $miembro['vehiculo'],
+                'miembro_id' => $miembro['miembro_id'],
+                'perfil' => $miembro['perfil'],
+                'profesion_id' => $miembro['profesion_id'],
+            ]);
+        } catch (\Exception $ex) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$ex, 'request' => $request]);
+            $data = [
+                'title' => 'Error',
+                'messages' => $ex,
+                'code' => 403
+            ];
+            return json_encode($data);
+        }
+    }
+
     public function desactivarMiembro(Request $request)
     {
         usuarios::validarLogin();
@@ -216,7 +382,7 @@ class miembrosController extends Controller
             if (!is_null($id)) {
                 $miembro = miembrosModel::eliminar($id);
                 if ($miembro) {
-                    bitacoraModel::guardar('Elimino el miembro:'. $id, 'Elimino miembros');
+                    bitacoraModel::guardar('Elimino el miembro:' . $id, 'Elimino miembros');
                     $data = [
                         'title' => 'Dato eliminado',
                         'messages' => 'El miembro se ha eliminado',

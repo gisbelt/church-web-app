@@ -38,7 +38,7 @@ $this->title = 'Registrar Amigos';
                                 <label for="apellido" class="form-label fw-bold">Apellido:*</label>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-4 mb-md-0">
                                 <p class="">Sexo:* </p>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="sexo" id="femenino"

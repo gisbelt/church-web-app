@@ -18,12 +18,12 @@
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/update">
                         <div class="form-group">
-                            <div class="mb-4 input-group">
+                            <div class="mb-4">
+                                <p class="">Miembro: </p>                                
                                 <select class="form-control" name="miembro_id" id="miembro_id">
                                 
                                 </select>
                             </div>
-                            <ul class="list-group" id="tabla_resultado_usuarios"></ul>
                         </div>
                         <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         <div class="form-group">

@@ -11,6 +11,7 @@ use content\core\middlewares\AutenticacionMiddleware;
 use content\enums\permisos;
 use content\models\bitacoraModel;
 use content\models\homeModel;
+use content\models\notificacionModel;
 use content\models\usuariosModel as usuarios;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -29,16 +30,18 @@ class homeController extends Controller
             throw new ForbiddenException();
         }
         bitacoraModel::guardar('Ingreso al home', 'Index home');
+        $notificacioneCantidad = 0;
         $amigos = homeModel::countAmigos();
         $miembrosAct = homeModel::countMiembrosActivos();
         $miembrosPas = homeModel::countMiembrosPasivos();
         $donaciones = homeModel::countDonaciones();
+
         $user = usuarios::validarLogin();
         return $this->render('homeView',[
             'amigos' => $amigos['numrows'],
             'miembrosAct' => $miembrosAct['numrows'],
             'miembrosPas' => $miembrosPas['numrows'],
-            'donaciones' => $donaciones['numrows'],
+            'donaciones' => $donaciones['numrows']
         ]);
     }
 
