@@ -50,7 +50,7 @@ class notificacionController extends Controller
                     $mensaje = $request->getBody()['mesanje'];
                     $seguridad = notificacionModel::agregar_mensaje($mensaje, $fecha, $_SESSION['user']);
                     if($seguridad){
-                        bitacoraModel::guardar('Registro de notificacion: '. $mensaje, 'Crear notificaicon');
+                        bitacoraModel::guardar('Registro de notificacion: '. $mensaje, 'Crear notificacion');
                         $data = [
                             'title' => 'Datos registrado',
                             'messages' => 'la notificacion se ha registrado',

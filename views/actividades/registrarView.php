@@ -16,7 +16,7 @@ $this->title = 'Actividades'
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/store">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades">
                     <div class="form-group">
                         <div class="mb-4 input-group">
                             <select class="form-control" name="miembro_id" id="miembro_id">

@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarTipoActividades" action="/actividades/tipos/store">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarTipoActividades" action="/actividades">
                         <div class="form-group">
                             <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">
                             <label for="nombre" class="form-label fw-bold">Tipo de  Actividad:*</label>

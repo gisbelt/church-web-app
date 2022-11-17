@@ -86,7 +86,7 @@
                         </div>
                         <!--Botones-->
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Actualizar</button>
+                            <button type="submit" name="actualizar-actividades" id="actualizar-actividades" value="Agregar" class="btn btn-success">Actualizar</button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
                     </form>

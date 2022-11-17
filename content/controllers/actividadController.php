@@ -190,7 +190,8 @@ class actividadController extends Controller
                         'code' => 422
                     ];
                 }
-                return json_encode($data);
+                return $this->render('actividades/consultarView');
+//                return json_encode($data);
             }
             if (count($actividad->errors) > 0) {
                 $data = [
@@ -241,7 +242,7 @@ class actividadController extends Controller
                         'code' => 422
                     ];
                 }
-                return json_encode($data);
+                return $this->render('actividades/consultarView');
             }
             if (count($actividad->errors) > 0) {
                 $data = [
@@ -267,6 +268,9 @@ class actividadController extends Controller
     public function update(Request $request)
     {
         try {
+            $logger = new Logger("actu");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, ['request' => $request]);
             if (!in_array(permisos::$actividades, $_SESSION['user_permisos'])) {
                 throw new ForbiddenException();
             }
@@ -311,7 +315,7 @@ class actividadController extends Controller
                         'code' => 422
                     ];
                 }
-                return json_encode($data);
+                return json_encode($data, 200);
             }
             if (count($actividad->errors) > 0) {
                 $data = [
