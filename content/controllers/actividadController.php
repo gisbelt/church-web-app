@@ -10,6 +10,7 @@ use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
 use content\models\bitacoraModel;
+use content\models\notificacionModel;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
 use content\models\miembrosModel as miembros;
@@ -177,6 +178,7 @@ class actividadController extends Controller
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
                 actividades::miembroActividad($miembro, $actividades['id'], $status, $fecha);
                 bitacoraModel::guardar('Registro de actividades', 'Registro actividades');
+                notificacionModel::agregar_mensaje($nombre, $fecha, $_SESSION['user']);
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
@@ -303,6 +305,7 @@ class actividadController extends Controller
 
                 if ($actividades) {
                     bitacoraModel::guardar('Actualizo la actividad: ' . $nombre, 'Actualizo actividades');
+                    notificacionModel::agregar_mensaje($nombre, $fecha, $_SESSION['user']);
                     $data = [
                         'title' => 'Datos Actualizado',
                         'messages' => 'La actividad se ha actualizado',

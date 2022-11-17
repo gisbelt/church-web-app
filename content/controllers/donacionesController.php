@@ -116,7 +116,6 @@ class donacionesController extends Controller
                 $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad, $fecha_crear);
                 if ($donacion) {
                     bitacoraModel::guardar('Registro donacion:'. $detalles, 'Registro donacion');
-                    notificacionModel::agregar_mensaje($detalles, $fecha_crear, $_SESSION['user']);
                     $data = [
                         'title' => 'Datos registrado',
                         'messages' => 'La donacion se ha registrado',
