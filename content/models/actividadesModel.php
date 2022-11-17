@@ -92,6 +92,25 @@ class actividadesModel extends Model
         }
        
     }
+    
+    public static function registrarTipoActividades($nombre,$fecha)
+    {
+        try{
+            $conexionBD = BD::crearInstancia();
+            $sql = $conexionBD->prepare("INSERT INTO `tipo_actividad`(`nombre`, `fecha_creado`, `fecha_actualizado`) VALUES (?,?,?);");
+            $actividades =  $sql->execute([$nombre,$fecha,$fecha]);
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$actividades]);
+            return $actividades;
+        }catch(Exception $exception){
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
+        }
+        
+    }
     public static function modificarActividades($nombre,$descripcion,$status,$tipo,$fechaActualizada,$id)
     {
         $conexionBD = BD::crearInstancia();
@@ -213,6 +232,8 @@ class actividadesModel extends Model
         }
     
     /**
+     * Registrar
+     *
      * @param $miembroId
      * @param $actividadId
      * @param $status
@@ -302,7 +323,7 @@ class actividadesModel extends Model
     {
         return [
             'nombre' => [self::RULE_REQUIRED],
-            'descripcion' => [self::RULE_REQUIRED],
+            'descripcion' => [self::RULE_NULL],
         ];
     }
 }

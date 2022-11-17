@@ -27,7 +27,6 @@ class notificacionModel extends Model
         VALUES (?,?,?)");
         $sql->execute([$mensaje, self::ACTIVE, $fecha]);
         $notificacion = $conexionBD->lastInsertId();
-
         $sql = $conexionBD->prepare("INSERT INTO notificacion_usuario (usuario_id, notificacion_id, status, autor, fecha_creado) 
         VALUES (?,?,?,?,?)");
         return $sql->execute([$user, $notificacion, self::ACTIVE, self::ACTIVE, $fecha]);

@@ -80,7 +80,7 @@ $this->title = 'Actividades'
                     </div>
                     <!--Botones-->
                     <div class="btn-group modal-footer" role="group" aria-label="">
-                        <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+                        <button type="submit" name="agregar" value="Agregar" id="agregar-actividad" class="btn btn-success">Agregar</button>
                         <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                     </div>
                     </form>

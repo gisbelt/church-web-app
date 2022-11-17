@@ -58,6 +58,8 @@ class AutenticacionController extends Controller
                     bitacoraModel::guardar('El usuario inicion session', 'inicio de sesion');
                     $seguirdadModel = new permisosModel();
                     $permisos = $seguirdadModel->getRolePermissionUser($consultarUsuario['role_id']);
+                    $logger = new Logger("web");
+                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                     $userPermisos = [];
                     foreach ($permisos as $permiso) {
                         $userPermisos[] = (int)$permiso['permiso'];
