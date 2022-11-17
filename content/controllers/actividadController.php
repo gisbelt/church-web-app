@@ -167,7 +167,7 @@ class actividadController extends Controller
                 $description = $request->getBody()['descripcion'];
                 $tipo = $request->getBody()['tipo_actividad'];
                 $status = $request->getBody()['status'];
-                $fechaHora = $request->getBody()['fecha'];
+                $fechaHora = !empty($request->getBody()['fecha']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha'])->format('Y-m-d') : null;
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
                 $miembro = $request->getBody()['miembro_id'];
@@ -178,7 +178,7 @@ class actividadController extends Controller
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
                 actividades::miembroActividad($miembro, $actividades['id'], $status, $fecha);
                 bitacoraModel::guardar('Registro de actividades', 'Registro actividades');
-                notificacionModel::agregar_mensaje($nombre, $fecha, $_SESSION['user']);
+                notificacionModel::agregar_mensaje($nombre, $fechaHora, $_SESSION['user']);
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',
