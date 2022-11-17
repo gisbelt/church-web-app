@@ -12,6 +12,7 @@ use content\enums\permisos;
 use content\models\bitacoraModel;
 use content\models\donacionesModel as donacion;
 use content\models\miembrosModel as miembros;
+use content\models\notificacionModel;
 use content\models\observacionDonacionModel;
 use content\models\usuariosModel as usuarios;
 
@@ -102,40 +103,48 @@ class donacionesController extends Controller
         if (!in_array(permisos::$crear_donacion, $_SESSION['user_permisos'])) {
             throw new ForbiddenException();
         }
-        usuarios::validarLogin();
-        $donacion = new donacion();
-        $donacion->loadData($request->getBody());
-        if ($donacion->validate()) {
-            $donante = $request->getBody()['donante'];
-            $detalles = $request->getBody()['detalles'];
-            $tipo_donacion = $request->getBody()['tipo_donacion'];
-            $cantidad = $request->getBody()['cantidad'];
-            $fecha_crear = Carbon::now();
-            $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad, $fecha_crear);
-            if ($donacion) {
-                bitacoraModel::guardar('Registro donacion:'. $detalles, 'Registro donacion');
+        try {
+            usuarios::validarLogin();
+            $donacion = new donacion();
+            $donacion->loadData($request->getBody());
+            if ($donacion->validate()) {
+                $donante = $request->getBody()['donante'];
+                $detalles = $request->getBody()['detalles'];
+                $tipo_donacion = $request->getBody()['tipo_donacion'];
+                $cantidad = $request->getBody()['cantidad'];
+                $fecha_crear = Carbon::now();
+                $donacion = donacion::guardar($donante, $detalles, $tipo_donacion, $cantidad, $fecha_crear);
+                if ($donacion) {
+                    bitacoraModel::guardar('Registro donacion:'. $detalles, 'Registro donacion');
+                    notificacionModel::agregar_mensaje($detalles, $fecha_crear, $_SESSION['user']);
+                    $data = [
+                        'title' => 'Datos registrado',
+                        'messages' => 'La donacion se ha registrado',
+                        'code' => 200
+                    ];
+                } else {
+                    $data = [
+                        'title' => 'Error',
+                        'messages' => 'La donacion no se ha registrado',
+                        'code' => 422
+                    ];
+                }
+                return json_encode($data);
+            }
+            if (count($donacion->errors) > 0) {
                 $data = [
-                    'title' => 'Datos registrado',
-                    'messages' => 'La donacion se ha registrado',
-                    'code' => 200
-                ];
-            } else {
-                $data = [
-                    'title' => 'Error',
-                    'messages' => 'La donacion no se ha registrado',
+                    'title' => 'Datos invalidos',
+                    'messages' => $donacion->errors,
                     'code' => 422
                 ];
+                return json_encode($data, 422);
             }
-            return json_encode($data);
+        } catch (\Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
         }
-        if (count($donacion->errors) > 0) {
-            $data = [
-                'title' => 'Datos invalidos',
-                'messages' => $donacion->errors,
-                'code' => 422
-            ];
-            return json_encode($data, 422);
-        }
+
     }
 
     // Obtener donaciones
