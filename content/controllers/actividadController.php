@@ -10,6 +10,7 @@ use content\core\middlewares\AutenticacionMiddleware;
 use content\core\Request;
 use content\enums\permisos;
 use content\models\bitacoraModel;
+use content\models\notificacionModel;
 use content\models\usuariosModel as usuarios;
 use content\models\actividadesModel as actividades;
 use content\models\miembrosModel as miembros;
@@ -151,7 +152,7 @@ class actividadController extends Controller
                 $description = $request->getBody()['descripcion'];
                 $tipo = $request->getBody()['tipo_actividad'];
                 $status = $request->getBody()['status'];
-                $fechaHora = $request->getBody()['fecha'];
+                $fechaHora = !empty($request->getBody()['fecha']) ? Carbon::createFromFormat('d-m-Y', $request->getBody()['fecha'])->format('Y-m-d') : null;
                 $hora = $request->getBody()['hora'];
                 $observacion = $request->getBody()['observacion'];
                 $miembro = $request->getBody()['miembro_id'];
@@ -161,7 +162,10 @@ class actividadController extends Controller
                 $actividadHorarios = actividades::actividadesHorariosCreate($actividades['id'], $horarios['id'], $fecha);
                 actividades::observacionActividad($actividades['id'], $observacion, $fecha);
                 actividades::miembroActividad($miembro, $actividades['id'], $status, $fecha);
+                // notificacion 
+                notificacionModel::agregar_mensaje($nombre, $fechaHora, $_SESSION['user']);
                 bitacoraModel::guardar('Registro de actividades', 'Registro actividades');
+                bitacoraModel::guardar('Registro de notificacion: '. $nombre, 'Crear notificacion');
                 if ($actividades && $horarios && $actividadHorarios) {
                     $data = [
                         'title' => 'Datos registrado',

@@ -83,6 +83,19 @@ class permisosModel extends Model
         return $permiso;
     }
 
+    //Obtener Usuarios
+    public static function obtener_usuarios()
+    {
+        $connexionBD = BD::crearInstancia();
+        $query = "SELECT usuarios.id as user, CONCAT(perfiles.nombre,' ',perfiles.apellido) AS nombre_completo, miembros.id FROM usuarios
+        INNER JOIN miembros ON usuarios.miembro_id = miembros.id
+        INNER JOIN perfiles ON miembros.id = perfiles.miembro_id";
+        $sql = $connexionBD->prepare($query);
+        $sql->execute();
+        $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $usuarios;
+    }
+
     /**
      * @return array[]
      */

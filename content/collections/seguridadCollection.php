@@ -27,6 +27,25 @@ class seguridadCollection
         return $data;
     }
 
+    public function formatConfigurar($permisos)
+    {
+        $dataNoti = [];
+        $html = null;
+        $cant = 0;
+
+        foreach ($permisos as $permiso) {
+            $permiso['nombre_completo'];
+            $permiso['user'];
+            $permiso['route'] = '/seguridad/permisos/configurar/' . $permiso['user'];
+            $dataPermi[] = $permiso;
+        }
+
+        $data = [
+            'usuarios' => $dataPermi,
+        ];
+        return $data;
+    }
+
     public function formatRoles($roles)
     {
         $data = [];

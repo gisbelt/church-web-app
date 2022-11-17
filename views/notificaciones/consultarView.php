@@ -41,11 +41,7 @@ $this->title = 'Notificaciones';
                     <div class="row justify-content-center align-items-center g-2">
                         <div class="notificaciones-area">
                             <div class="col-5 control-area">
-                                <div class="noti-header p-2 fw-bold"><a href=""> 01/12/2022: Actividad próxima </a>
-                                </div>
-                                <div class="noti-header p-2 fw-bold"><a href=""> 01/12/2022: Actividad próxima </a>
-                                </div>
-                                <div class="noti-header p-2 fw-bold"><a href=""> 01/12/2022: Actividad próxima </a>
+                                <div class="noti-header p-2 fw-bold list-group list-group-flush">
                                 </div>
 
                                 <div class="empty-text">
@@ -53,8 +49,8 @@ $this->title = 'Notificaciones';
                                 </div>
                             </div>
                             <div class="col-7 content-area">
-                                <div class="noti-header px-4 pt-4 fw-bold">Actividad próxima</div>
-                                <div class="noti-content px-4 text-info">Bautizos a nuevos miembros</div>
+                                <!-- <div class="noti-header px-4 pt-4 fw-bold list-group-flush">Actividad próxima</div>
+                                <div class="noti-content px-4 text-info">Bautizos a nuevos miembros</div> -->
 
                                 <div class="empty-text">
                                     <p>Seleccione desde la lista lateral de notificaciones para ver más detalles</p>

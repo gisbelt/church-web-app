@@ -606,10 +606,12 @@ background: #fff; }
     margin: 0 -1px;
     z-index: 1;
 }
-.notificaciones_region .region_content .todas_notificaciones a{
+.notificaciones_region .region_content .todas_notificaciones a,
+.noti-header a{
     color: #0d6efd !important;
 }
-.notificaciones_region .region_content .todas_notificaciones a:hover{
+.notificaciones_region .region_content .todas_notificaciones a:hover,
+.noti-header a:hover{
     color: #0a58ca !important;
 }
 .region_footer_link{

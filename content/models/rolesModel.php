@@ -25,13 +25,13 @@ class rolesModel extends Model
         return $roles;
     }
 
-    public static function getRoleUser($roleId)
+    public static function getRoleUser($userId)
     {
         $connexionBD = BD::crearInstancia();
-        $sql = $connexionBD->prepare("SELECT roles.id as rol, roles.nombre as permiso_nombre FROM roles
+        $sql = $connexionBD->prepare("SELECT roles.id as rol, roles.nombre as rol_nombre FROM roles
          INNER JOIN usuarios ON usuarios.role_id = roles.id 
-         WHERE roles.id =?");
-        $sql->execute(array($roleId));
+         WHERE usuarios.id =?");
+        $sql->execute(array($userId));
         $userRol = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $userRol;
     }

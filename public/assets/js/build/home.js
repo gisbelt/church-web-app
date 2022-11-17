@@ -57,13 +57,16 @@ const notificacionNavBar = function () {
         let dataNotificacion = JSON.parse(response);
         if (dataNotificacion.notificaciones.length === 0) {
             $('#empty_message').removeClass('d-none');
+            $('.empty-text').removeClass('d-none');
             $(".lista-notifi").remove();
             $('.cantidad_notificaciones').remove();
         } else {
             $(".lista-notifi").remove();
             $('#empty_message').addClass('d-none');
+            $('.empty-text').addClass('d-none');
             $.each(dataNotificacion.notificaciones, function (count, item) {
                 $(".todas_notificaciones_list").append("<a href='#' data-route=" + item.route + " class='list-group-item px-0 fw-bold lista-notifi'>" + item.fecha_creada + " - " + item.mesanje + "</a>");
+                $(".noti-header").append("<a href='#' data-route=" + item.route + " class='list-group-item px-0 fw-bold lista-notifi'>" + item.fecha_creada + " - " + item.mesanje + "</a>");
             });
             $('.cantidad_notificaciones').append(dataNotificacion.cantidad);
         }
@@ -98,7 +101,7 @@ const notificacionLeida = function () {
                        $('.cantidad_notificaciones').remove();
                    } else {
                        $(".lista-notifi").remove();
-                       $('.cantidad_notificaciones').remove();
+                    //    $('.cantidad_notificaciones').remove();
                        $('#empty_message').addClass('d-none');
                        $.each(dataNotificacion.notificaciones, function (count, item) {
                            $(".todas_notificaciones_list").append("<a href='#' data-route=" + item.route + " class='list-group-item px-0 fw-bold lista-notifi'>" + item.fecha_creada + " - " + item.mesanje + "</a>");

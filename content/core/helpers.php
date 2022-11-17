@@ -1012,6 +1012,39 @@ if (!function_exists("routas")) {
                         'subRutas' => []
                     ],
 
+                    'ConfigurarPermisos' => [
+                        'permisos' => permisos::$seguridad,
+                        'parametros' => [],
+                        'icon' => 'bi bi-gear-fill',
+                        'text' => 'Configurar Permisos',
+                        'route' => '/seguridad/permisos/configurar',
+                        'method' => 'configurar',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'obtenerUsuarios' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bi bi-gear-fill',
+                        'text' => 'Configurar Permisos',
+                        'route' => '/seguridad/permisos/obtener_usuarios',
+                        'method' => 'obtener_usuarios',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
+                    'obtenerRolUser' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bi bi-gear-fill',
+                        'text' => 'Configurar Permisos',
+                        'route' => '/seguridad/permisos/configurar/{id}',
+                        'method' => 'obtener_rol_user',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
+
                     //roles
                     'listaRoles' => [
                         'permisos' => permisos::$seguridad,
