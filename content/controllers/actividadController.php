@@ -90,7 +90,7 @@ class actividadController extends Controller
             $tipo = $actividades['tipo'];
             $fecha = date("d-m-Y", strtotime($fecha));
 
-            $hora = date("h:i:s A", strtotime($hora));
+            $hora = date("h:i:s", strtotime($hora));
             switch ($actividades['estado_id']) {
 
                 case status::$en_curso:
@@ -190,8 +190,7 @@ class actividadController extends Controller
                         'code' => 422
                     ];
                 }
-                return $this->render('actividades/consultarView');
-//                return json_encode($data);
+                return json_encode($data);
             }
             if (count($actividad->errors) > 0) {
                 $data = [

@@ -573,7 +573,7 @@ if (!function_exists("routas")) {
                         'parametros' => [],
                         'icon' => 'bx bx-save',
                         'text' => 'Registrar actividades',
-                        'route' => '/actividades',
+                        'route' => '/actividades/store',
                         'method' => 'store',
                         'action' => 'post',
                         'subRutas' => []

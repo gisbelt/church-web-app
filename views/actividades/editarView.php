@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/update">
+                    <form method="POST" enctype="multipart/form-data" id="form-actualizar-actividades" action="/actividades/update">
                         <div class="form-group">
                             <div class="mb-4">
                                 <p class="">Miembro: </p>                                

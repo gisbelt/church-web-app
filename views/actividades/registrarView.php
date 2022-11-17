@@ -16,7 +16,7 @@ $this->title = 'Actividades'
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarActividades" action="/actividades/store">
                     <div class="form-group">
                         <div class="mb-4 input-group">
                             <select class="form-control" name="miembro_id" id="miembro_id">
@@ -80,7 +80,7 @@ $this->title = 'Actividades'
                     </div>
                     <!--Botones-->
                     <div class="btn-group modal-footer" role="group" aria-label="">
-                        <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+                        <button type="submit" name="agregar" value="Agregar" id="agregar-actividad" class="btn btn-success">Agregar</button>
                         <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                     </div>
                     </form>
