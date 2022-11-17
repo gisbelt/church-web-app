@@ -31,8 +31,7 @@ class helperMenu
      */
     private static function menuItems($menu)
     {
-        $logger = new Logger("web");
-        $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+      
         $html = null;
         foreach ($menu as $key => $item) {
             if ($key !== 'login' && $key !== 'home' && $key !== 'error' && $key !== 'perfil') {
