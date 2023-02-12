@@ -2,6 +2,7 @@ $(document).ready(function () {
     listaActividades();
     actualizarActividades();
     registrarActividades();
+    registrarTipoActividades();
 });
 // Lista Actividades
 const listaActividades = function () {
@@ -122,5 +123,50 @@ const actualizarActividades = function () {
         }).fail(function (json) {
             console.log(JSON.parse(json));
         });
+    });
+}
+
+const registrarTipoActividades = function () {
+    let $button = $('#agregar-tipo-actividad');
+    $button.click(function (e) {
+        e.preventDefault();
+        let $form = $('#form-registrarTipoActividades');
+        $button.disabled = true;
+        $.ajax({
+            url: $form.attr('action'),
+            type: $form.attr('method'),
+            data: $form.serialize(),            
+            dataType: 'json',
+            success: function(response){
+            if (response.code == 422) {
+                let html = '<ul class="list-group list-group-flush">';
+                $.each(response.messages, function (index, value) {
+                    html += '<li class="list-group-item">' + value + '</li>';
+                });
+                html += '</ul>';
+                swal.fire({
+                    title: response.title,
+                    html: html,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $button.disabled = false;
+            } else {
+                swal.fire({
+                    title: response.title,
+                    html: response.messages,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'close'
+                });
+                $("#form-registrar-asistencias")[0].reset();
+                $button.disabled = false;
+            }
+            },
+            error: function(json){console.log(JSON.stringify(json));} 
+        })
     });
 }

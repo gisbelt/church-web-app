@@ -14,14 +14,14 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" id="form-registrarTipoActividades" action="/actividades">
+                    <form method="POST" enctype="multipart/form-data" id="form-registrarTipoActividades" action="/actividades/storeTipo">
                         <div class="form-group">
                             <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">
                             <label for="nombre" class="form-label fw-bold">Tipo de  Actividad:*</label>
                         </div>
                         <!--Botones-->
                         <div class="btn-group modal-footer" role="group" aria-label="">
-                            <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+                            <button type="submit" name="agregar" value="Agregar" id="agregar-tipo-actividad" class="btn btn-success">Agregar</button>
                             <a name="limpiar" value="Limpiar" class="btn btn-secondary" onclick="limpiar();">Limpiar</a>
                         </div>
                     </form>

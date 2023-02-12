@@ -5,9 +5,6 @@ $(document).ready(function () {
     registrarPermiso();
     actualizarPermiso();
 
-    obtenerUsuarios()
-    obtenerRolUser()
-
     //roles
     listaRoles();
     eliminarRol();
@@ -15,27 +12,6 @@ $(document).ready(function () {
     actualizarRol();
 
 });
-
-const obtenerUsuarios = function () {
-    $.ajax({
-        url: "/seguridad/permisos/obtener_usuarios",
-        type: "GET",
-        dateType: "json",
-    }).done(function (response) {
-        var usuario = $("#usuario").val();
-        let data = JSON.parse(response);
-        $.each(data.usuarios, function (count, item) {
-            if(usuario !== item.user){
-                $("#usuario").append('<option value="' + item.user + '" data-route="' + item.route + '" class="lista-users">' + item.nombre_completo + '</option>');
-            }
-        });
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        swal({
-            title: 'Error',
-            icon: 'error'
-        })
-    })
-}
 
 //Registrar permiso
 const registrarPermiso = function (){

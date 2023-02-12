@@ -207,59 +207,6 @@ class seguridadController extends Controller
         return json_encode($data, 422);
     }
 
-    public function configurar()
-    {
-        if (!in_array(permisos::$seguridad_permisos, $_SESSION['user_permisos'])) {
-            throw new ForbiddenException();
-        }
-        $user = usuarios::validarLogin();
-        // $roles = rolesModel::getRoleUser($_SESSION['user']);
-        // $permisos = permisosModel::obtener_permisos();
-        // $usuarios = permisosModel::obtener_usuarios();
-        bitacoraModel::guardar('Ingresó a configurar permisos', 'Configurar Permisos');
-        return $this->render('seguridad/permisos/configurarView');
-    }
-
-    public function obtener_usuarios()
-    {
-        try {
-            $usuarios = permisosModel::obtener_usuarios();
-            if($usuarios){
-                $permisosColletion = new seguridadCollection();
-                $permisosFormat = $permisosColletion->formatConfigurar($usuarios);
-            } else {
-                $permisosFormat = [
-                    'usuarios' => [],
-                ];
-            }
-            $data = [
-                'usuarios' => $permisosFormat['usuarios'],
-            ];
-            return json_encode($data);
-        } catch (\Exception $exception) {
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$exception]);
-        }
-    }
-
-    public function obtener_rol_user()
-    {
-        try {
-            $id = $request->getRouteParams();
-            $roles = rolesModel::getRoleUser($id['id']);
-            $data = [
-                'rol' => $roles['rol'],
-                'rol_nombre' => $roles['rol_nombre']
-            ];
-            return json_encode($data);
-        } catch (\Exception $exception) {
-            $logger = new Logger("web");
-            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-            $logger->debug(__METHOD__, [$exception]);
-        }
-    }
-
     public function actualizarRol(Request $request)
     {
         usuarios::validarLogin();

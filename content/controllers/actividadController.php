@@ -245,7 +245,7 @@ class actividadController extends Controller
                         'code' => 422
                     ];
                 }
-                return $this->render('actividades/consultarView');
+                return json_encode($data);
             }
             if (count($actividad->errors) > 0) {
                 $data = [
