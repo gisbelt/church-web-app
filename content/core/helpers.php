@@ -631,8 +631,8 @@ if (!function_exists("routas")) {
                     'registrarTipoDeActividad' => [
                         'permisos' =>  permisos::$crear_actividades,
                         'parametros' => [],
-                        'icon' => 'bx bx-list-ul',
-                        'text' => 'Registrar tipo',
+                        'icon' => 'bx bx-save',
+                        'text' => 'Registrar Tipo',
                         'route' => '/actividades/registrar/tipo',
                         'method' => 'createTipo',
                         'action' => 'get',

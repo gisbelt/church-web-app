@@ -6,17 +6,12 @@ $this->title = 'Registrar Amigos';
 <div class="container-fluid">
     <div class="row center">
         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-            <div class="card">
-                <div class="card-header mb-4">
-                    <div>
-                        <h5 class="p-0 absolute text-center">Datos de los amigos</h5>
-                    </div>
-                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/amigos" class="btn btn-outline-success text-center">Ver listado</a>
-                    </div>
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/amigos" class="btn btn-outline-success text-center mt-3">Ver Lista de Amigos</a>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body px-5 pb-5 pt-4">
                     <form method="POST" enctype="multipart/form-data" id="form-registrar-amigos" action="/amigo/guardar">
                     <div class="row">
                         <div class="col-md-6">

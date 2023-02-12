@@ -6,17 +6,12 @@ $this->title = 'Editar miembro';
 <div class="container-fluid">
     <div class="row m-0">
         <div class="col-md-12">
-            <div class="card mb-4">
-                <div class="card-header mb-4">
-                    <div>
-                        <h5 class="p-0 absolute text-center">Datos de los miembros</h5>
-                    </div>
-                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/miembros" class="btn btn-outline-success text-center">Ver listado</a>
-                    </div>
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/miembros" class="btn btn-outline-success text-center mt-3">Ver Lista de Miembros</a>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body px-5 pb-5 pt-4">
                     <form method="POST" enctype="multipart/form-data" id="form-editar-miembro"
                           action="/miembros/actualizar">
                         <div class="row">

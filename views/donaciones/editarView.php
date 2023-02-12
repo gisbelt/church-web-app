@@ -5,16 +5,11 @@ $this->title = 'Editar donacion';
 <div class="container-fluid">
     <div class="row">
         <div class="offset-md-3 col-md-6">
-            <div class="card">
-                <div class="card-header mb-4">
-                    <div>
-                        <h5 class="p-0 absolute text-center"><?php echo $this->title; ?></h5>
-                    </div>
-                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/donaciones" class="btn btn-outline-success text-center">Ver listado</a>
-                    </div>
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/donaciones" class="btn btn-outline-success text-center mt-3">Ver Lista de Donaciones</a>
                 </div>
-                <div class="card-body">
+                <div class="card-body px-5 pb-5 pt-4">
                     <form method="post" enctype="multipart/form-data" id="form-actualizar-donacion" action="/donacion/actualizar">
                         <div class="row">
                             <div class="col-md-6">
@@ -31,7 +26,7 @@ $this->title = 'Editar donacion';
                                         } ?>
                                     </select>
                                     <input type="hidden" name="donante" class="form-control form-input mb-4"
-                                            value="<?php echo $donante ?>" autocomplete="off">
+                                           value="<?php echo $donante ?>" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-6">

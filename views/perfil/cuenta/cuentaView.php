@@ -7,9 +7,9 @@ $this->title = 'Mi Cuenta';
 <div class="container-fluid">
 <div class="row center">
     <div class="col-12 col-sm-12 col-md-12 col-lg-6">    
-        <div class="card mb-4">
+        <div class="card mb-5">
             <div class="card-header">
-                <p class="p-0 text-center fw-bold">Administra tu cuenta</p>
+                <p class="p-0 m-0 text-center fw-bold">Administra tu cuenta</p>
             </div>
             <div class="card-body">
 

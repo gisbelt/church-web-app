@@ -10,7 +10,7 @@ $this->title = 'Notificaciones';
             <div class="card">
                 <div class="card-header">
                     <div class="mb-2 p-2">
-                        <h5 class="p-0 absolute text-center"><?php echo $this->title; ?></h5>
+                        <h5 class="p-0 absolute text-start"><?php echo $this->title; ?></h5>
                     </div>
                 </div>
                 <div class="card-body">

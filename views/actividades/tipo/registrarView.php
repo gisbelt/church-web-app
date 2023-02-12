@@ -7,13 +7,11 @@
 <div class="container-fluid">
     <div class="row center">
         <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-header mb-4">
-                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/actividades" class="btn btn-outline-success text-center">Ver listado</a>
-                    </div>
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/actividades" class="btn btn-outline-success text-center mt-3">Ver Lista de Actividades</a>
                 </div>
-                <div class="card-body">
+                <div class="card-body px-5 pb-5 pt-4">
                     <form method="POST" enctype="multipart/form-data" id="form-registrarTipoActividades" action="/actividades/storeTipo">
                         <div class="form-group">
                             <input type="text" required name="nombre" class="form-control form-input mb-4" id="nombre" value="" placeholder=" ">

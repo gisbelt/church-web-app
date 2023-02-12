@@ -1,16 +1,16 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Bitacora'
+$this->title = 'Bitácora'
 ?>
 <div class="container-fluid">
     <div class="row center">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10">
             <div class="card mb-3">
                 <div class="card-header">
-                    <h3 class="text-center mt-1"><?php echo $this->title; ?></h3>
+                    <h3 class="text-start mt-1"><?php echo $this->title; ?></h3>
                 </div>
-                <div class="card-body py-4">
+                <div class="card-body px-5 pb-5 pt-2">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-4 mb-2 mb-md-0">
                             <div class="form-group">
@@ -47,8 +47,8 @@ $this->title = 'Bitacora'
                         <div class="col-md-12 mt-3">
                             <div class="form-group">
                                 <button type="button" name="busqueda_bitacora" id="busqueda_bitacora"
-                                        class="btn btn-secondary btn-sm btn-block">
-                                    <i class="bi bi-search"></i> Buscar
+                                        class="btn btn-secondary btn-block">
+                                    Buscar <i class="bi bi-search mx-1"></i> 
                                 </button>
                             </div>
                         </div>

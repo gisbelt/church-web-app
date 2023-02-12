@@ -6,17 +6,12 @@ $this->title = 'Registrar usuario'
 <div class="container-fluid">
 <div class="row center">
     <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-        <div class="card">
-            <div class="card-header mb-4">
-                <div>
-                    <p class="p-0 absolute">Datos de los usuarios</p>
-                </div>
-                <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                    <a href="/usuarios" class="btn btn-outline-success text-center">Ver usuarios</a>
-                </div>
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/usuarios" class="btn btn-outline-success text-center mt-3">Ver Lista de usuarios</a>
             </div>
 
-            <div class="card-body">
+            <div class="card-body px-5 pb-5 pt-3">
                 <form method="POST" id="form-registrar-usuario" action="/usuarios/guardar">
                     <div class="form-group">
                         <div class="mb-4">

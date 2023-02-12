@@ -303,6 +303,27 @@ background: #fff; }
 }
 /* table  */
 
+/* cards */
+.card {
+    border-radius: 0.70rem !important;
+    border: 0 !important;
+}
+.card .card-header {
+    background-color: #fff;
+    padding: 0.75rem 3rem;
+    border-bottom: 0 !important;
+}
+.card .card-header h3 {
+    font-size: 1.25rem !important;   
+    font-weight: 700;
+}
+.card .card-header h5 {
+    font-weight: 700;
+}
+
+
+/* cards */
+
 /* Filter  */
 .filter-group {
     position: absolute;

@@ -1,17 +1,21 @@
 <?php
 /**  @var $this \content\core\View */
 
-$this->title = 'Amigos';
+$this->title = 'Listado de Amigos';
 ?>
 <div class="container-fluid">
 <div class="row center">
     <div class="col-12 col-sm-12 col-md-12 col-lg-10">
         <div class="card mb-3">
             <div class="card-header">
-                <h3 class="text-center mt-1">Listado de Amigos <a href="/amigos/create" class="btn btn-success"><i class="bi bi-person-plus"></i></a></h3>
+                <h3 class="text-start mt-1"><?php echo $this->title; ?>  </h3>
+                <a href="/amigos/create" class="btn btn-success">
+                    Nuevo
+                    <i class="bi bi-person-plus mx-1"></i>
+                </a>
             </div>
-            <div class="card-body py-4">
-                <div class="row">
+            <div class="card-body px-5 pb-5 pt-2">
+                <div class="row d-flex justify-content-between">
                     <div class="col-12 col-sm-12 col-md-3 mb-2 mb-md-0">
                         <div class="form-group mt-3">
                             <input type="text" required name="cedula" class="form-control form-input mb-4"
@@ -44,7 +48,7 @@ $this->title = 'Amigos';
                         <div class="form-group">
                             <button type="button" name="busqueda_amigos" id="busqueda_amigos"
                                     class="btn btn-secondary btn-block">
-                                <i class="bi bi-search"></i> Buscar
+                                Buscar <i class="bi bi-search mx-1"></i>
                             </button>
                         </div>
                     </div>

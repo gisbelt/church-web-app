@@ -1,20 +1,15 @@
 <?php
 /**  @var $this \content\core\View */
-$this->title = 'Editar';
+$this->title = 'Editar Roles';
 ?>
 <div class="container-fluid">
     <div class="row">
         <div class="offset-md-3 col-md-6">
-            <div class="card">
-                <div class="card-header mb-4">
-                    <div>
-                        <h5 class="p-0 absolute text-center"><?php echo $this->title; ?></h5>
-                    </div>
-                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/seguridad/roles" class="btn btn-outline-success text-center">Ver listado</a>
-                    </div>
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/seguridad/roles" class="btn btn-outline-success text-center mt-3">Ver Lista de Roles</a>
                 </div>
-                <div class="card-body">
+                <div class="card-body px-5 pb-5 pt-4">
                     <form method="post" id="form-actualizar-rol" action="/seguridad/roles/actualizar">
                         <div class="row">
                             <div class="col">

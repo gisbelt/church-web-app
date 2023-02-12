@@ -6,16 +6,11 @@ $this->title = 'Editar Asistencias';
 <div class="container-fluid">
     <div class="row center">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-            <div class="card">
-                <div class="card-header mb-4">
-                    <div>
-                        <h5 class="p-0 absolute text-center">Actualizar Datos</h5>
-                    </div>
-                    <div class="derecha mb-2 p-2 " role="group" aria-label="">
-                        <a href="/asistencias" class="btn btn-outline-success text-center">Ver listado</a>
-                    </div>
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/asistencias" class="btn btn-outline-success text-center mt-3">Ver Lista de Asistencias</a>
                 </div>
-                <div class="card-body ">
+                <div class="card-body px-5 pb-5 pt-4">
                     <form method="POST" enctype="multipart/form-data" id="form-actualizar-asistencia" action="/asistencias/actualizar">  
 
                     <div class="form-group mb-4">
