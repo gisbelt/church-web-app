@@ -92,7 +92,7 @@ $this->title = 'Home'
         <div class="col-lg-4 col-12">            
             <div class="card bg-first-color mb-3">
               <div class="card-header">
-                <h3 class="text-white mt-2">
+                <h3 class="mt-2">
                   <i class="bi bi-calendar-week"></i> Calendario
                 </h3>
               </div>
@@ -128,7 +128,7 @@ $this->title = 'Home'
         <div class="col-lg-3 col-12">            
             <div class="card bg-secondary mb-3">
                 <div class="card-header">
-                    <h3 class="text-white mt-2">Accesos Rápidos</h3>
+                    <h3 class="mt-2">Accesos Rápidos</h3>
                 </div>
                 <div class="card-body">
                     <?php

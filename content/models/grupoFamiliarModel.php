@@ -206,7 +206,7 @@ class grupoFamiliarModel extends Model
      {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("SELECT COUNT(grupos_familiares.id) as cantidad,  MONTH(grupos_familiares.fecha_creado) as mes FROM  grupos_familiares
-                                                WHERE MONTH(grupos_familiares.fecha_creado) BETWEEN ? AND ? 
+                                                WHERE MONTH(grupos_familiares.fecha_creado)  
                                         GROUP BY  MONTH(grupos_familiares.fecha_creado)");
          $sql->execute(array($startMonth, $endMonth));
         $reporte = $sql->fetchAll(PDO::FETCH_ASSOC);

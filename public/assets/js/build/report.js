@@ -6,18 +6,6 @@ $(document).ready(function () {
             case '#report1':
                 report1();
                 break;
-
-            /*case '#report2':
-                report2();
-                break;
-
-            case '#report3':
-                report3();
-                break;
-
-            case '#report4':
-                report4(); 
-                break;*/
             case '#report5':
                 report5(); 
                 break;
@@ -29,6 +17,10 @@ $(document).ready(function () {
                 break;
         }
     })   
+    report1();
+    report5();
+    report6();
+    report7();
 });
 
 const report1 = function () {
@@ -46,19 +38,17 @@ const report1 = function () {
                 let cantidad = [];
                 let color = [];
                 let bordercolor = [];
-
                 for (let i in data.miembros) {
                     sexo.push(data.miembros[i].sexo);
                     cantidad.push(data.miembros[i].cantidad);
                     if(data.miembros[i].sexo == 'Masculino'){
-                        color.push('rgba(54, 162, 235, 0.2)');
+                        color.push('rgba(54, 162, 235, 1)');
                         bordercolor = ['rgba(54, 162, 235, 1)'];
                     } else {
-                        color = ['rgba(255, 99, 132, 0.2)'];
+                        color = ['rgba(255, 99, 132, 1)'];
                         bordercolor = ['rgba(255,99,132,1)'];
                     }
                 }
-
                 let chartdata = {
                     labels: sexo,
                     datasets: [{
@@ -77,6 +67,7 @@ const report1 = function () {
                     data: chartdata,
                     options: {
                         responsive: true,
+                        maintainAspectRatio: false,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -94,108 +85,6 @@ const report1 = function () {
     });
 }
 
-/*const report2 = function () {
-    let $grafica_one = document.querySelector("#report_two");
-    let datosVentas2020 = {
-        label: "Ventas por mes",
-        data: [5000, 1500, 8000, 5102],
-        backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-        ],
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-    };
-
-    let $report_one = new Chart($grafica_one, {
-        type: 'doughnut',
-        data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril"],
-            datasets: [
-                datosVentas2020,
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-            },
-        }
-    });
-}
-
-const report3 = function () {
-    let $grafica_one = document.querySelector("#report_three");
-    let datosVentas2020 = {
-        label: "Ventas por mes",
-        data: [5000, 1500, 8000, 5102],
-        backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-        ],
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-    };
-
-    let $report_one = new Chart($grafica_one, {
-        type: 'doughnut',
-        data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril"],
-            datasets: [
-                datosVentas2020,
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-            },
-        }
-    });
-}
-
-const report4 = function () {
-    let $grafica_one = document.querySelector("#report_four");
-    let datosVentas2020 = {
-        label: "Ventas por mes",
-        data: [5000, 1500, 8000, 5102],
-        backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-        ],
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-    };
-
-    let $report_one = new Chart($grafica_one, {
-        type: 'doughnut',
-        data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril"],
-            datasets: [
-                datosVentas2020,
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-            },
-        }
-    });
-}*/
-
 const report5 = function () {
     let $grafica_five = $("#report_five");
     $.ajax({
@@ -212,38 +101,19 @@ const report5 = function () {
                 mes.push(data.grupos[i].mes)
                 cantidad.push(data.grupos[i].cantidad);
             }
+            for (let j=0; j<mes.length; j++) {
+                const r = Math.floor(Math.random() * 255)
+                const g = Math.floor(Math.random() * 255)
+                const b = Math.floor(Math.random() * 255)
+                color.push(`rgba(${r}, ${g}, ${b}, 1)`)                
+                bordercolor.push(`rgba(${r}, ${g}, ${b}, 1)`)                
+            }
             let chartdata = {
                 labels: mes,
                 datasets: [{
                     label: mes,
-                    backgroundColor: [
-                        'rgb(255, 205, 86)',
-                        'rgb(54, 162, 70)',
-                        'rgb(54, 162, 165)',
-                        'rgb(54, 162, 40)',
-                        'rgb(54, 162, 145)',
-                        'rgb(54, 162, 20)',
-                        'rgb(54, 162, 125)',
-                        'rgb(54, 162, 19)',
-                        'rgb(54, 162, 219)',
-                        'rgb(54, 162, 17)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                    ],
-                    borderColor: [
-                        'rgb(255, 205, 86)',
-                        'rgb(54, 162, 70)',
-                        'rgb(54, 162, 165)',
-                        'rgb(54, 162, 40)',
-                        'rgb(54, 162, 145)',
-                        'rgb(54, 162, 20)',
-                        'rgb(54, 162, 125)',
-                        'rgb(54, 162, 19)',
-                        'rgb(54, 162, 219)',
-                        'rgb(54, 162, 17)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                    ],
+                    backgroundColor: color,
+                    borderColor: bordercolor,
                     borderWidth: 2,
                     hoverBackgroundColor: color,
                     hoverBorderColor: bordercolor,
@@ -256,6 +126,7 @@ const report5 = function () {
                 data: chartdata,
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -299,20 +170,18 @@ const report6 = function () {
                 } else {
                     let grupo = [];
                     let cantidad_amigos = [];
-                    let color = [
-                        'rgb(255, 99, 132, 0.7)',
-                        'rgb(54, 162, 235, 0.7)',
-                        'rgb(255, 205, 86, 0.7)',
-                    ];
-                    let bordercolor = [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)',
-                    ];
-
+                    let color = [];
+                    let bordercolor = [];
                     for (let i in data.gruposAmigos) {
                         grupo.push(data.gruposAmigos[i].grupo);
                         cantidad_amigos.push(data.gruposAmigos[i].cantidad_amigos);
+                    }
+                    for (let j=0; j<grupo.length; j++) {
+                        const r = Math.floor(Math.random() * 255)
+                        const g = Math.floor(Math.random() * 255)
+                        const b = Math.floor(Math.random() * 255)
+                        color.push(`rgba(${r}, ${g}, ${b}, 1)`)                
+                        bordercolor.push(`rgba(${r}, ${g}, ${b}, 1)`)                
                     }
                     let chartdata = {
                         labels: grupo,
@@ -330,7 +199,8 @@ const report6 = function () {
                         type: 'doughnut',
                         data: chartdata,
                         options: {
-                            responsive: true,
+                            maintainAspectRatio: false,
+                            responsive: true,                            
                             scales: {
                                 yAxes: [{
                                     ticks: {
@@ -376,27 +246,25 @@ const report7 = function () {
                 } else {
                     let grupo = [];
                     let cantidad_familia = [];
-                    let color = [
-                        'rgb(255, 99, 132, 0.7)',
-                        'rgb(54, 162, 235, 0.7)',
-                        'rgb(255, 205, 86, 0.7)',
-                    ];
-                    let bordercolor = [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)',
-                    ];
-
+                    let color = [];
+                    let bordercolor = [];
                     for (let i in data.gruposIngresados) {
                         grupo.push(data.gruposIngresados[i].grupo);
                         cantidad_familia.push(data.gruposIngresados[i].cantidad_familia);
+                    }
+                    for (let j=0; j<grupo.length; j++) {
+                        const r = Math.floor(Math.random() * 255)
+                        const g = Math.floor(Math.random() * 255)
+                        const b = Math.floor(Math.random() * 255)
+                        color.push(`rgba(${r}, ${g}, ${b}, 1)`)                
+                        bordercolor.push(`rgba(${r}, ${g}, ${b}, 1)`)                
                     }
                     let chartdata = {
                         labels: grupo,
                         datasets: [{
                             label: grupo,
                             backgroundColor: color,
-                            borderColor: color,
+                            borderColor: bordercolor,
                             borderWidth: 2,
                             hoverBackgroundColor: color,
                             hoverBorderColor: bordercolor,
@@ -408,6 +276,7 @@ const report7 = function () {
                         data: chartdata,
                         options: {
                             responsive: true,
+                            maintainAspectRatio: false,
                             scales: {
                                 yAxes: [{
                                     ticks: {

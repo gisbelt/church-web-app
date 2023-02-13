@@ -54,7 +54,7 @@ $this->title = 'Usuarios';
                         <div class="form-group">
                             <button type="button" name="busqueda_usuario" id="busqueda_usuario"
                                     class="btn btn-secondary btn-block">
-                                <i class="bi bi-search"></i> Buscar
+                                Buscar <i class="bi bi-search mx-1"></i> 
                             </button>
                         </div>
                     </div>
