@@ -10,8 +10,8 @@ $this->title = 'Olvido la contrasena'
 
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header mb-2">
-                        Clave olvidada
+                    <div class="card-header">
+                        <h5 class="fw-bold m-0">Clave olvidada</h5>
                     </div>
                     <div class="card-body">
                         <form method="post" enctype="multipart/form-data" action="/enviar/correo" id="enviar-correo-form">

@@ -10,8 +10,8 @@ $this->title = 'Restablecer contraseña'
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header mb-2">
-                    Resetea tu clave
+                <div class="card-header">
+                    <h5 class="fw-bold m-0">Resetea tu clave</h5>
                 </div>
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="/resetear-contrasena" id="resetear-contrasena-form">

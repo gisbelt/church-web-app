@@ -8,8 +8,8 @@ $this->title = 'Iniciar Sesión'
 <div class="row rowLogin center">
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header mb-2">
-                Iniciar Sesión
+            <div class="card-header">
+                <h5 class="fw-bold m-0">Iniciar Sesión</h5>
             </div>
             <div class="card-body">
                 <!-- Creamos Formulario: !crt-form-login -->
@@ -24,7 +24,7 @@ $this->title = 'Iniciar Sesión'
                         <input type="password" class="form-control form-input mb-2" name="password" id="password" placeholder=" " value="123456" autocomplete="off">
                         <label for="password" class="form-label fw-bold">Contraseña: <span class="bi bi-lock"></span></label>
                     </div>
-                    <button type="button" id="login" name="login" class="btn btn-primary w-100 mt-3">Iniciar Sesión
+                    <button type="button" id="login" name="login" class="btn btn-primary w-100 mt-4">Iniciar Sesión
                     </button>
                 </form>
                 <div class="position-relative mb-2 mt-4">
