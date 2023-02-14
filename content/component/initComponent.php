@@ -46,7 +46,7 @@
 
     <!-- menu  -->
     <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
+        <nav class="nav nav-body">
             <div>
                 <a href="/home" class="nav_logo">
                     <i class='bx bx-layer nav_logo-icon'></i>

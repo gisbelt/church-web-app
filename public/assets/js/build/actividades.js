@@ -1,9 +1,11 @@
 $(document).ready(function () {
     listaActividades();
+    listaActividadesCalendario();
     actualizarActividades();
     registrarActividades();
     registrarTipoActividades();
 });
+
 // Lista Actividades
 const listaActividades = function () {
     let table = $("#actividad-table");
@@ -33,6 +35,42 @@ const listaActividades = function () {
             // observacion_donacion();
         }
     })
+}
+
+// Lista Actividades Calendario
+const listaActividadesCalendario = function () {
+    $('#calendario').fullCalendar({
+        header: {
+            left: 'month,agendaWeek,agendaDay',
+            center: 'title',
+            right: 'prev,next today'
+        },
+        defaultView: 'month',
+        editable: false,
+        eventLimit: 3,
+        timeFormat: 'HH:mm',
+        events: {
+            url: 'actividad/dataCalendario',
+            type: 'GET',
+            error: function() {
+                alert('Error al cargar los eventos');
+            }
+        },
+        locale: 'es',
+        views: {
+            // cambiar la vista móvil a una lista de eventos
+            listMobile: {
+                type: 'list',
+                buttonText: 'Lista',
+                duration: { days: 7 }, // mostrar eventos de una semana
+            }
+        },
+        eventRender: function(event, element, view) {
+            // Agregar un botón de edición
+            var editButton = '<a href="/actividades/editar/' + event.id + '" class="btn btn-info me-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>'
+            element.find('.fc-content').append(editButton);
+        }
+    });
 }
 
 const registrarActividades = function () {

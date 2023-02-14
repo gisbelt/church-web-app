@@ -347,7 +347,6 @@ class actividadController extends Controller
         try {
             $user = usuarios::validarLogin();
             $actividades = actividades::cargarActividades();
-
             if ($actividades) {
                 $actividadesCollection = new actividadesCollection();
                 $permisosFormat = $actividadesCollection->formatActividadesData($actividades);
@@ -357,6 +356,31 @@ class actividadController extends Controller
             $data = [
                 'actividades' => $permisosFormat,
             ];
+            return json_encode($data);
+        } catch (\Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return json_encode([]);
+        }
+    }
+
+    public function obtenerActividadesCalendario()
+    {
+        try {
+            $user = usuarios::validarLogin();
+            $actividades = actividades::cargarActividades();
+            $data = array();
+            foreach ($actividades as $actividad) {
+                $event = array(
+                    'id' => $actividad['id'],
+                    'title' => $actividad['nombre'],
+                    'start' => date('Y-m-d\TH:i:s', strtotime($actividad['fecha'] . ' ' . $actividad['hora'])),// fecha y hora de inicio
+                    'description' => $actividad['descripcion'] // descripción del evento (opcional)
+                    // otras propiedades opcionales...
+                );
+                array_push($data, $event);
+            }
             return json_encode($data);
         } catch (\Exception $exception) {
             $logger = new Logger("web");

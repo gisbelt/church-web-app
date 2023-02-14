@@ -45,6 +45,29 @@ $(document).ready(function(){
     });
     // Filtro 
 
+    //Actividades Tabs
+    const tab_active = document.querySelectorAll('.tabs-link')
+    const tab_content = document.querySelectorAll('.tabs-content')
+    function activeLink() {
+        if(tab_active) {
+            tab_active.forEach(l=> l.classList.remove('active'))
+            this.classList.add('active')
+            let id = this.id
+            tab_content.forEach(t=> {
+                if( t.id === id ) {
+                    t.classList.add('active-tab')
+                    t.classList.remove('hidden')
+                } else {
+                    t.classList.add('hidden')
+                    t.classList.remove('active-tab')
+                }
+            })
+           
+        }
+    }
+    tab_active.forEach(l=> l.addEventListener('click', activeLink))
+    //Actividades Tabs
+
 // ********************************************************************************************************************
   
 });

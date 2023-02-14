@@ -102,7 +102,7 @@ a{
     width: 0 !important;
     display: none;
 }
-.nav{
+.nav-body{
     min-height: 95vh;
     max-height: 95vh;
     overflow-y: scroll;
@@ -112,7 +112,7 @@ a{
     flex-wrap: nowrap;
     scrollbar-color:  transparent transparent;
 }
-.nav::-webkit-scrollbar {
+.nav-body::-webkit-scrollbar {
     width: 0 !important;
     display: none;
 }

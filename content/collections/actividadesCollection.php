@@ -11,13 +11,6 @@ use Monolog\Logger;
 
 class actividadesCollection
 {
-//    public function formatStatusActividades($actividades)
-//    {
-//        $data = [];
-//        foreach ($actividades as $actividad) {
-//
-//        }
-//    }
 
     public function formatActividadesData($actividades)
     {
@@ -70,8 +63,6 @@ class actividadesCollection
             }
             $data[] = $actividad;
         }
-
-
         return $data;
     }
 }

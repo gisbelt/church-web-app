@@ -608,6 +608,16 @@ if (!function_exists("routas")) {
                         'action' => 'get',
                         'subRutas' => []
                     ],
+                    'dataActividadesCalendario' => [
+                        'permisos' => [],
+                        'parametros' => [],
+                        'icon' => 'bx bx-list-ul',
+                        'text' => 'Lista de Activdades',
+                        'route' => 'actividad/dataCalendario',
+                        'method' => 'obtenerActividadesCalendario',
+                        'action' => 'get',
+                        'subRutas' => []
+                    ],
                     'tipoActividad' => [
                         'permisos' => [],
                         'parametros' => [],

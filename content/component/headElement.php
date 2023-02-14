@@ -40,6 +40,12 @@ class headElement
              <!-- datable-->
             <!--<link rel="stylesheet" href="../assets/css/dataTables.bootstrap.min.css">-->
              <!--<link rel="stylesheet" href="../../../assets/css/buttons.bootstrap.min.css">-->
+
+            <!-- Full Calendar -->
+            <link rel="stylesheet" href="../../../assets/css/full-calendar.css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.min.css" rel="stylesheet" media="print" />
+            
            
             '
         );

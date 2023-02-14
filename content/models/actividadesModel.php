@@ -26,28 +26,28 @@ class actividadesModel extends Model
         try{
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("SELECT
-                                                actividades.id,
-                                                actividades.nombre,
-                                                actividades.descripcion,
-                                                actividades.status,
-                                                tipo_actividad.nombre as tipo,
-                                                horarios.hora,
-                                                horarios.fecha
-                                            FROM
-                                                actividades
-                                                INNER JOIN
-                                                actividades_horarios
-                                                ON
-                                                    actividades.id = actividades_horarios.actividad_id
-                                                INNER JOIN
-                                                horarios
-                                                ON
-                                                    actividades_horarios.horario_id = horarios.id
-                                                INNER JOIN
-                                                tipo_actividad
-                                                ON
-		                            actividades.tipo_actividad_id = tipo_actividad.id
-		                            where actividades.status != 4");
+                actividades.id,
+                actividades.nombre,
+                actividades.descripcion,
+                actividades.status,
+                tipo_actividad.nombre as tipo,
+                horarios.hora,
+                horarios.fecha
+            FROM
+                actividades
+            INNER JOIN
+                actividades_horarios
+            ON
+                    actividades.id = actividades_horarios.actividad_id
+            INNER JOIN
+                horarios
+            ON
+                    actividades_horarios.horario_id = horarios.id
+            INNER JOIN
+                tipo_actividad
+            ON
+            actividades.tipo_actividad_id = tipo_actividad.id
+            where actividades.status != 4");
             $sql->execute();
            
             $actividades = $sql->fetchAll(PDO::FETCH_ASSOC);

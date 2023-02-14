@@ -65,7 +65,13 @@ class bottomComponent
             <script src="../../../assets/js/build/notificacion.js"></script>
 
             <!-- Charts -->
-            <script src="../../../assets/js/chart.bundle.min.js"></script>'
+            <script src="../../../assets/js/chart.bundle.min.js"></script>
+            
+            <!-- Full calendar -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/locale-all.js"></script>
+            '
         );
     }
 }

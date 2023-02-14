@@ -1,0 +1,25 @@
+.fc-header {
+    background-color: #0191b3;
+    color: #fff;
+}
+.fc-agendaWeek-button{
+    background-color: #0191b3 !important;
+    z-index: 10;
+}
+
+.fc-event {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    color: #fff;
+}
+
+.fc-event:hover {
+    background-color: #286090;
+    border-color: #204d74;
+    color: #fff;
+}
+
+.fc-highlight {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}

@@ -9,25 +9,37 @@
             <div class="card mb-5">
                 <div class="card-header">
                     <h3 class="text-start mt-1"><?php echo $this->title; ?> </h3>
-                    <a href="/actividades/create" class="btn btn-success">
-                        Nuevo
-                        <i class="bi bi-plus-circle mx-1"></i>
-                    </a>
+                    <div class="d-flex gap-5">
+                        <a href="/actividades/create" class="btn btn-success">
+                            Nuevo
+                            <i class="bi bi-plus-circle mx-1"></i>
+                        </a> 
+                        <div class="tabs tabs-nav" id="nav-tab" role="tablist">
+                            <button class="tabs-link active" id="calendar-tab">Calendario</button>
+                            <button class="tabs-link" id="actividad-tab">Ver Lista</button>
+                        </div>
+                    </div>                                                                 
                 </div>
-                <div class="card-body center table-wrap">
-                    <table class="table table-bordered table-striped table-responsive table-hover w-100"
-                           id="actividad-table" data-route="actividad/data">
-                        <thead class="thead-primary">
-                        <tr>
-                            <th class="w-auto">Nombre</th>
-                            <th class="w-auto">Descripcion</th>
-                            <th class="w-auto">status</th>
-                            <th class="w-auto">Tipo</th>
-                            <th class="w-auto">Fecha</th>
-                            <th class="text-center w-auto">Action</th>
-                        </tr>
-                        </thead>
-                    </table>
+                <div class="card-body table-wrap">                    
+                        <div class="tabs-content " id="calendar-tab">
+                            <div id="calendario"></div>
+                        </div>
+
+                        <div class="tabs-content hidden" id="actividad-tab">
+                            <table class="table table-bordered table-striped table-responsive table-hover w-100"
+                                id="actividad-table" data-route="actividad/data">
+                                <thead class="thead-primary">
+                                <tr>
+                                    <th class="w-auto">Nombre</th>
+                                    <th class="w-auto">Descripcion</th>
+                                    <th class="w-auto">status</th>
+                                    <th class="w-auto">Tipo</th>
+                                    <th class="w-auto">Fecha</th>
+                                    <th class="text-center w-auto">Action</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
                 </div><!--card-body-->
             </div><!--card-->
         
