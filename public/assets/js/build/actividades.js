@@ -41,13 +41,13 @@ const listaActividades = function () {
 const listaActividadesCalendario = function () {
     $('#calendario').fullCalendar({
         header: {
-            left: 'month,agendaWeek,agendaDay',
+            left: 'prev',
             center: 'title',
-            right: 'prev,next today'
+            right: 'next today'
         },
         defaultView: 'month',
         editable: false,
-        eventLimit: 3,
+        eventLimit: 4,
         timeFormat: 'HH:mm',
         events: {
             url: 'actividad/dataCalendario',
@@ -67,8 +67,9 @@ const listaActividadesCalendario = function () {
         },
         eventRender: function(event, element, view) {
             // Agregar un botón de edición
-            var editButton = '<a href="/actividades/editar/' + event.id + '" class="btn btn-info me-2" target="_blank" data-title="editar"><i class="bi bi-pencil text-light"></i></a>'
+            var editButton = '<a href="/actividades/editar/' + event.id + '" class="btn btn-link" target="_blank" id="fc-edit-item" title="editar"><i class="bi bi-pencil fc-text-info"></i></a>'
             element.find('.fc-content').append(editButton);
+            element.find('.fc-content').attr("title", `${event.title}: ${event.status}`);
         }
     });
 }
@@ -109,7 +110,7 @@ const registrarActividades = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-asistencias")[0].reset();
+                $("#form-registrarActividades")[0].reset();
                 $button.disabled = false;
             }
             },
@@ -155,7 +156,6 @@ const actualizarActividades = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-permisos").reset();
                 $button.disabled = false;
             }
         }).fail(function (json) {
@@ -200,7 +200,7 @@ const registrarTipoActividades = function () {
                     showCancelButton: true,
                     cancelButtonText: 'close'
                 });
-                $("#form-registrar-asistencias")[0].reset();
+                $("#form-registrarTipoActividades")[0].reset();
                 $button.disabled = false;
             }
             },

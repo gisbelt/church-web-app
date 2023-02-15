@@ -23,7 +23,7 @@ class actividadesModel extends Model
      */
     public static function cargarActividades()
     {
-        try{
+        try {
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("SELECT
                 actividades.id,
@@ -55,7 +55,7 @@ class actividadesModel extends Model
            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$actividades]);
             return $actividades;
-        }catch(Exception $exception){
+        } catch(Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);
@@ -74,7 +74,7 @@ class actividadesModel extends Model
      */
     public static function registrarActividades($nombre, $descripcion, $status, $tipo, $fecha)
     {
-        try{
+        try {
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("INSERT INTO `actividades`(`nombre`, `descripcion`, `status`, `tipo_actividad_id`, `fecha_creado`, `fecha_actualizado`) VALUES ( ?, ?, ?, ?, ?, ?)");
             $actividades =  $sql->execute([$nombre, $descripcion, $status, $tipo, $fecha,$fecha]);
@@ -84,7 +84,7 @@ class actividadesModel extends Model
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$data]);
             return $data;
-        }catch(Exception $exception){
+        } catch(Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);
@@ -95,7 +95,7 @@ class actividadesModel extends Model
     
     public static function registrarTipoActividades($nombre,$fecha)
     {
-        try{
+        try {
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("INSERT INTO `tipo_actividad`(`nombre`, `fecha_creado`, `fecha_actualizado`) VALUES (?,?,?);");
             $actividades =  $sql->execute([$nombre,$fecha,$fecha]);
@@ -103,7 +103,7 @@ class actividadesModel extends Model
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$actividades]);
             return $actividades;
-        }catch(Exception $exception){
+        } catch(Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);
@@ -111,34 +111,36 @@ class actividadesModel extends Model
         }
         
     }
+
     public static function modificarActividades($nombre,$descripcion,$status,$tipo,$fechaActualizada,$id)
     {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE `actividades` SET `nombre` = '$nombre', `descripcion` = '$descripcion', `status` = '$status', `tipo_actividad_id` = '$tipo', `fecha_actualizado` = '$fechaActualizada' WHERE `id` ='$id'");
         return $sql->execute();
     }
+
     public static function desactivarActividades($id)
     {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("SELECT * FROM actividades WHERE actividades.id=".'$id');
-        $sql->execute();
+        $sql->execute();        
+    }
+
+    public static function tipoActividad()
+    {
+        try {
+            $conexionBD = BD::crearInstancia();
+            $sql = $conexionBD->prepare("SELECT tipo_actividad.nombre,tipo_actividad.id FROM tipo_actividad");
+            $sql->execute();
+            return  $sql->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
+        }
         
     }
-        public static function tipoActividad()
-        {
-            try{
-                $conexionBD = BD::crearInstancia();
-                $sql = $conexionBD->prepare("SELECT tipo_actividad.nombre,tipo_actividad.id FROM tipo_actividad");
-                $sql->execute();
-              return  $sql->fetchAll(PDO::FETCH_ASSOC);
-            }catch(Exception $exception){
-                $logger = new Logger("web");
-                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$exception]);
-                return null;
-            }
-           
-        }
     
     /**
      * @param $hora
@@ -149,7 +151,7 @@ class actividadesModel extends Model
      */
     public static function horariosCreate($hora, $fecha, $fechaCreacion)
         {
-            try{
+            try {
                 $conexionBD = BD::crearInstancia();
                 $date = str_replace('/', '-', $fecha);
                 $fechaNew = date('Y-m-d', strtotime($date));
@@ -158,7 +160,7 @@ class actividadesModel extends Model
                 $id = $conexionBD->lastInsertId();
                 $data = ['id'=> $id, 'horarios'=> $horarios];
                 return $data;
-            }catch(Exception $exception){
+            } catch(Exception $exception) {
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                 $logger->debug(__METHOD__, [$exception]);
@@ -175,11 +177,11 @@ class actividadesModel extends Model
      */
     public static function actividadesHorariosCreate($actividadId, $horarioId, $fecha)
         {
-            try{
+            try {
                 $conexionBD = BD::crearInstancia();
                 $sql = $conexionBD->prepare("INSERT INTO `actividades_horarios`(`actividad_id`, `horario_id`, `fecha_creado`, `fecha_actualizado`) VALUES (?, ?, ?, ?);");
                 return $sql->execute([$actividadId,$horarioId,$fecha,$fecha]);
-            }catch(Exception $exception){
+            } catch(Exception $exception) {
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
                 $logger->debug(__METHOD__, [$exception]);
@@ -195,41 +197,42 @@ class actividadesModel extends Model
      * @return bool|null
      */
     public static function observacionActividad($actividadId, $descripcion, $fecha)
-        {
-            try{
-                $conexionBD = BD::crearInstancia();
-                if(!is_null($descripcion)){
-                    $sql = $conexionBD->prepare("INSERT INTO `observacion_actividad`(`descripcion`, `actividad_id`, `fecha_creado`, `fecha_actualizado`) VALUES (?, ?, ?, ?);");
-                    return $sql->execute([$descripcion,$actividadId,$fecha,$fecha]);
-                }else{
-                    return null;
-                }
-               
-            }catch(Exception $exception){
-                $logger = new Logger("web");
-                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$exception]);
+    {
+        try {
+            $conexionBD = BD::crearInstancia();
+            if(!is_null($descripcion)){
+                $sql = $conexionBD->prepare("INSERT INTO `observacion_actividad`(`descripcion`, `actividad_id`, `fecha_creado`, `fecha_actualizado`) VALUES (?, ?, ?, ?);");
+                return $sql->execute([$descripcion,$actividadId,$fecha,$fecha]);
+            }else{
                 return null;
             }
+            
+        } catch(Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
         }
-        public static function observacionActividadModificar($actividadId, $descripcion, $fecha)
-        {
-            try{
-                $conexionBD = BD::crearInstancia();
-                if(!is_null($descripcion)){
-                    $sql = $conexionBD->prepare("UPDATE `observacion_actividad` SET `descripcion` = '$descripcion', `fecha_actualizado` = '$fecha' WHERE `actividad_id` = '$actividadId';");
-                    return $sql->execute();
-                }else{
-                    return null;
-                }
-               
-            }catch(Exception $exception){
-                $logger = new Logger("web");
-                $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$exception]);
+    }
+
+    public static function observacionActividadModificar($actividadId, $descripcion, $fecha)
+    {
+        try {
+            $conexionBD = BD::crearInstancia();
+            if(!is_null($descripcion)){
+                $sql = $conexionBD->prepare("UPDATE `observacion_actividad` SET `descripcion` = '$descripcion', `fecha_actualizado` = '$fecha' WHERE `actividad_id` = '$actividadId';");
+                return $sql->execute();
+            }else{
                 return null;
             }
+            
+        } catch(Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
         }
+    }
     
     /**
      * Registrar
@@ -242,50 +245,68 @@ class actividadesModel extends Model
      * @return bool|null
      */
     public static function miembroActividad($miembroId, $actividadId, $status, $fecha)
-        {
-            try{
-                $conexionBD = BD::crearInstancia();
-                if(!is_null($miembroId)){
-                    $sql = $conexionBD->prepare("INSERT INTO `miembros_actividades`(`miembro_id`, `actividad_id`, `status`,`fecha_creado`, `fecha_actualizado`) VALUES (?, ?,?, ?, ?);");
-                    return $sql->execute([$miembroId,$actividadId,$status,$fecha,$fecha]);
-                }else{
-                    $logger = new Logger("web");
-                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                    $logger->debug(__METHOD__, [$miembroId]);
-                    return null;
-                }
-               
-            }catch(Exception $exception){
+    {
+        try {
+            $conexionBD = BD::crearInstancia();
+            if(!is_null($miembroId)){
+                $sql = $conexionBD->prepare("INSERT INTO `miembros_actividades`(`miembro_id`, `actividad_id`, `status`,`fecha_creado`, `fecha_actualizado`) VALUES (?, ?,?, ?, ?);");
+                return $sql->execute([$miembroId,$actividadId,$status,$fecha,$fecha]);
+            }else{
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$exception]);
+                $logger->debug(__METHOD__, [$miembroId]);
                 return null;
             }
+            
+        } catch(Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
         }
-        public static function miembroActividadModificacion($miembroId, $actividadId, $status, $fecha)
-        {
-            try{
-                $conexionBD = BD::crearInstancia();
-                if(!is_null($miembroId)){
-                    $sql = $conexionBD->prepare("UPDATE `miembros_actividades` SET `status` = '$status', `fecha_actualizado` = '$fecha' WHERE `miembro_id` = '$miembroId' AND `actividad_id` = '$actividadId';");
-                    return $sql->execute();
-                }else{
-                    $logger = new Logger("web");
-                    $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                    $logger->debug(__METHOD__, [$miembroId]);
-                    return null;
-                }
-               
-            }catch(Exception $exception){
+    }
+    public static function miembroActividadModificacion($miembroId, $actividadId, $status, $fecha)
+    {
+        try {
+            $conexionBD = BD::crearInstancia();
+            if(!is_null($miembroId)){
+                $sql = $conexionBD->prepare("UPDATE `miembros_actividades` SET `status` = '$status', `fecha_actualizado` = '$fecha' WHERE `miembro_id` = '$miembroId' AND `actividad_id` = '$actividadId';");
+                return $sql->execute();
+            }else{
                 $logger = new Logger("web");
                 $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
-                $logger->debug(__METHOD__, [$exception]);
+                $logger->debug(__METHOD__, [$miembroId]);
                 return null;
             }
+            
+        } catch(Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
         }
+    }
+    public static function horarioActividadModificacion ($hora, $fecha, $actividadId) {
+        try {
+            $date = str_replace('/', '-', $fecha);
+            $fechaNew = date('Y-m-d', strtotime($date));
+            $conexionBD = BD::crearInstancia();
+            $sql = $conexionBD->prepare("UPDATE horarios AS h
+            INNER JOIN actividades_horarios AS ah ON h.id=ah.actividad_id
+            SET h.hora=?, h.fecha=?
+            WHERE ah.actividad_id=?");
+            $horarios = $sql->execute(array($hora, $fechaNew, $actividadId));
+            return $horarios;            
+        } catch(Exception $exception) {
+            $logger = new Logger("web");
+            $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
+            $logger->debug(__METHOD__, [$exception]);
+            return null;
+        }
+    }
     public static function actividadesPorId($id)
     {
-        try{
+        try {
             $conexionBD = BD::crearInstancia();
             $sql = $conexionBD->prepare("SELECT
                     actividades.nombre AS actividad,
@@ -309,7 +330,7 @@ class actividadesModel extends Model
                 WHERE actividades.id = '$id'");
             $sql->execute();
             return $sql->fetch(PDO::FETCH_ASSOC);
-        }catch(Exception $exception){
+        } catch(Exception $exception) {
             $logger = new Logger("web");
             $logger->pushHandler(new StreamHandler(__DIR__ . "./../../Logger/log.txt", Logger::DEBUG));
             $logger->debug(__METHOD__, [$exception]);

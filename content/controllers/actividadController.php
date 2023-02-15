@@ -295,20 +295,15 @@ class actividadController extends Controller
                 $observacion = $request->getBody()['observacion'];
                 $fecha = Carbon::now();
                 $actividades = actividades::modificarActividades($nombre, $description, $status, $tipo, $fecha, $id);
-//              $actividadHorarios = actividades::actividadesHorariosCreate($id,$horarios['id'],$fecha);
-                //actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
-                //actividades::observacionActividadModificar($id, $observacion, $fecha);
-//              actividades::miembroActividad($actividades['id'],$observacion,$status,$fecha);
-
+                $actividadHorarios = actividades::horarioActividadModificacion($hora, $fechaHora, $id);  
                 actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
-                actividades::observacionActividadModificar($id, $observacion, $fecha);
-                actividades::miembroActividadModificacion($miembro, $id, $status, $fecha);
+                actividades::observacionActividadModificar($id, $observacion, $fecha);                              
 
-                if ($actividades) {
+                if ($actividades && $actividadHorarios) {
                     bitacoraModel::guardar('Actualizo la actividad: ' . $nombre, 'Actualizo actividades');
                     notificacionModel::agregar_mensaje($nombre, $fecha, $_SESSION['user']);
                     $data = [
-                        'title' => 'Datos Actualizado',
+                        'title' => 'Datos Actualizados',
                         'messages' => 'La actividad se ha actualizado',
                         'code' => 200
                     ];
@@ -372,11 +367,30 @@ class actividadController extends Controller
             $actividades = actividades::cargarActividades();
             $data = array();
             foreach ($actividades as $actividad) {
+                switch ($actividad['status']) {
+                    case status::$en_curso:
+                        $status = 'En Curso';
+                        break;
+                    case status::$en_pausa:
+                        $status = 'En Pausa';
+                        break;
+                    case status::$terminado:
+                        $status = 'Terminado';
+                        break;
+                    case status::$cancelado:
+                        $status = 'Cancelado';
+                        break;
+                    default:
+                    {
+                        $status = 'No Disponible';
+                    }
+                }
                 $event = array(
                     'id' => $actividad['id'],
                     'title' => $actividad['nombre'],
                     'start' => date('Y-m-d\TH:i:s', strtotime($actividad['fecha'] . ' ' . $actividad['hora'])),// fecha y hora de inicio
-                    'description' => $actividad['descripcion'] // descripción del evento (opcional)
+                    'description' => $actividad['descripcion'], // descripción del evento (opcional)
+                    'status' => $status
                     // otras propiedades opcionales...
                 );
                 array_push($data, $event);

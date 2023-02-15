@@ -1,25 +1,94 @@
-.fc-header {
-    background-color: #0191b3;
-    color: #fff;
+.fc-state-default {
+    background-image: none !important;
 }
-.fc-agendaWeek-button{
+
+.fc-left button, .fc-right button {
     background-color: #0191b3 !important;
-    z-index: 10;
+    color: white !important;
+}
+.fc-left button:hover, .fc-right button:hover {
+    background-color: #00819e !important;
+}
+
+.fc-center h2 {
+    font-weight: 700;
+}
+
+.fc td, .fc th {
+    padding: 0 !important;
+}
+
+.fc-day-top {
+    padding: 0 !important;
+}
+
+.fc-basic-view .fc-day-number, .fc-basic-view .fc-week-number {
+    padding: 0 10px !important;
+}
+
+.fc-day-grid-event {
+    margin: 1px 2px 0;
+    padding: 0px !important;
+}
+
+.fc-event-container {
+    padding: 0 !important;
 }
 
 .fc-event {
-    background-color: #337ab7;
-    border-color: #2e6da4;
-    color: #fff;
+    border: none !important;
 }
 
-.fc-event:hover {
-    background-color: #286090;
-    border-color: #204d74;
-    color: #fff;
+.fc-event, .fc-event-dot {
+    background-color: transparent !important;
+}
+
+.fc-event, .fc-event:hover, .ui-widget .fc-event {
+    color: #0000b1 !important;
+    text-decoration: none;
+}
+
+.fc-content {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.fc-title {
+    width: 80px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;    
+}
+
+#fc-edit-item {
+    padding: 0 !important;
+    transition: transform .2s;
+}
+#fc-edit-item:hover {
+    transform: scale(1.17);
+}
+
+.fc-text-info {
+    color: #009dbd;
+    font-weight: 900;
+}
+
+
+.fc-time::before {
+    content: '• Hora: ';
+    font-weight: 700;                                    
+}
+
+.fc-unthemed td.fc-today {
+    background: #b0f1ff !important;
+    color: #000 !important;
 }
 
 .fc-highlight {
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
+

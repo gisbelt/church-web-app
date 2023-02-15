@@ -21,7 +21,7 @@
                     </div>                                                                 
                 </div>
                 <div class="card-body table-wrap">                    
-                        <div class="tabs-content " id="calendar-tab">
+                        <div class="tabs-content active-tab" id="calendar-tab">
                             <div id="calendario"></div>
                         </div>
 
