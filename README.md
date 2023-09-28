@@ -1,4 +1,7 @@
-## :rocket: Sistema de Seguimiento de personal y visitantes de La Iglesia la Gracia de Dios
-### `PHP - COMPOSER - MVC - BOOTSTRAP - RESPONSIVE`
+## :rocket: Staff Tracking System
+### `PHP - COMPOSER - JAVASCRIPT - JQUERY - AJAX - BOOTSTRAP`
 
-
+### Installation
+`composer update`
+### Run in development mode
+`php -S localhost:8080 -t public`
