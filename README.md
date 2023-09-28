@@ -1,6 +1,6 @@
 ## :rocket: Staff Tracking System
-### `Partnership: Frontend developer`
-### `PHP - COMPOSER - JAVASCRIPT - JQUERY - AJAX - BOOTSTRAP`
+### Partnership: Frontend developer
+### PHP - COMPOSER - JAVASCRIPT - JQUERY - AJAX - BOOTSTRAP
 
 ### Installation
 `composer update`
